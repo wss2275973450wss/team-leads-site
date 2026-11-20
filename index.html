@@ -1068,6 +1068,7 @@ document.addEventListener("click", function(ev){
     if(zhTa && foView){
       var zhVal = zhTa.value;
       var foVal = decodeURIComponent(foView.getAttribute("data-val") || "");
+      if(isFirstMsgField(entry.foreign)){ zhVal = stripCatalogLine(zhVal).body; foVal = stripCatalogLine(foVal).body; }
       if(zhVal !== (lead[entry.zh] || "") || foVal !== (lead[entry.foreign] || "")){
         var patch = {}; patch[entry.zh] = zhVal; patch[entry.foreign] = foVal; patch[entry.edited] = 1;
         pre = patchLead(lead, patch).catch(function(){});
@@ -1457,18 +1458,23 @@ function cardHtml(l){
   if(l.source_url) contacts += '<div>来源链接：<a target="_blank" rel="noopener" href="'+esc(l.source_url)+'">打开来源</a>'+(l.source_date_text ? "（"+esc(l.source_date_text)+"）" : "")+"</div>";
   if(contacts) contacts = '<div class="contact-box">'+contacts+"</div>";
 
+  var firstLang = firstMsgLang(l);
+  var fmFo = withCatalogLine(l.first_message || "", firstLang);
+  var fmZh = withCatalogLine(l.first_message_zh || "", "zh");
+  var tgFmFo = withCatalogLine(l.telegram_first_message || "", firstLang);
+  var tgFmZh = withCatalogLine(l.telegram_first_message_zh || "", "zh");
   var msgs = "";
   if(l.whatsapp){
-    var links1 = [{ label:"WhatsApp 第一封", href: waUniversal(l.whatsapp, l.first_message), channel:"whatsapp", kind:"first" }];
-    if(l.whatsapp_backup) links1.push({ label:"备用号发第一封", href: waUniversal(l.whatsapp_backup, l.first_message), channel:"whatsapp", kind:"first", backup:true });
-    msgs += msgBlock("第一封（WhatsApp）", l.first_message || "", links1, { zhText: l.first_message_zh || "", zhField: "first_message_zh", foreignField: "first_message", editedField: "first_message_edited" });
+    var links1 = [{ label:"WhatsApp 第一封", href: waUniversal(l.whatsapp, fmFo), channel:"whatsapp", kind:"first" }];
+    if(l.whatsapp_backup) links1.push({ label:"备用号发第一封", href: waUniversal(l.whatsapp_backup, fmFo), channel:"whatsapp", kind:"first", backup:true });
+    msgs += msgBlock("第一封（WhatsApp）", fmFo, links1, { zhText: fmZh, zhField: "first_message_zh", foreignField: "first_message", editedField: "first_message_edited" });
     var links2 = [{ label:"WhatsApp 跟进信", href: waUniversal(l.whatsapp, l.followup_message), channel:"whatsapp", kind:"followup" }];
     if(l.whatsapp_backup) links2.push({ label:"备用号发跟进信", href: waUniversal(l.whatsapp_backup, l.followup_message), channel:"whatsapp", kind:"followup", backup:true });
     msgs += msgBlock("3 天跟进信（WhatsApp）", l.followup_message || "", links2, { zhText: l.followup_message_zh || "", zhField: "followup_message_zh", foreignField: "followup_message", editedField: "followup_message_edited" });
   }
   if(tgu){
     if(l.telegram_first_message || l.telegram_first_message_zh){
-      msgs += msgBlock("第一封（Telegram）", l.telegram_first_message || "", [{ label:"Telegram 第一封", href:"https://t.me/"+tgu+"?text="+encodeURIComponent(l.telegram_first_message || ""), channel:"telegram", kind:"first" }], { zhText: l.telegram_first_message_zh || "", zhField: "telegram_first_message_zh", foreignField: "telegram_first_message", editedField: "telegram_first_message_edited" });
+      msgs += msgBlock("第一封（Telegram）", tgFmFo, [{ label:"Telegram 第一封", href:"https://t.me/"+tgu+"?text="+encodeURIComponent(tgFmFo), channel:"telegram", kind:"first" }], { zhText: tgFmZh, zhField: "telegram_first_message_zh", foreignField: "telegram_first_message", editedField: "telegram_first_message_edited" });
     }
     if(l.telegram_followup_message || l.telegram_followup_message_zh){
       msgs += msgBlock("跟进信（Telegram）", l.telegram_followup_message || "", [{ label:"Telegram 跟进信", href:"https://t.me/"+tgu+"?text="+encodeURIComponent(l.telegram_followup_message || ""), channel:"telegram", kind:"followup" }], { zhText: l.telegram_followup_message_zh || "", zhField: "telegram_followup_message_zh", foreignField: "telegram_followup_message", editedField: "telegram_followup_message_edited" });
@@ -1477,7 +1483,7 @@ function cardHtml(l){
   if(!tgu && (l.telegram_first_message || l.telegram_followup_message || l.telegram_first_message_zh || l.telegram_followup_message_zh)){
     var tgNote = "没有用户名：点「复制这封」，自己去 Telegram 搜到这个客户，再粘贴发送。";
     if(l.telegram_first_message || l.telegram_first_message_zh){
-      msgs += msgBlock("第一封（Telegram · 这家没留用户名）", l.telegram_first_message || "", [], { note: tgNote, zhText: l.telegram_first_message_zh || "", zhField: "telegram_first_message_zh", foreignField: "telegram_first_message", editedField: "telegram_first_message_edited" });
+      msgs += msgBlock("第一封（Telegram · 这家没留用户名）", tgFmFo, [], { note: tgNote, zhText: tgFmZh, zhField: "telegram_first_message_zh", foreignField: "telegram_first_message", editedField: "telegram_first_message_edited" });
     }
     if(l.telegram_followup_message || l.telegram_followup_message_zh){
       msgs += msgBlock("跟进信（Telegram · 这家没留用户名）", l.telegram_followup_message || "", [], { note: tgNote, zhText: l.telegram_followup_message_zh || "", zhField: "telegram_followup_message_zh", foreignField: "telegram_followup_message", editedField: "telegram_followup_message_edited" });
@@ -1516,10 +1522,10 @@ function cardHtml(l){
 
   /* 卡面快捷动作：发第一封 + 已联系 + 客户回了 + 展开详情 */
   var quick = '<div class="quick-actions">';
-  if(l.whatsapp) quick += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="first" href="'+esc(waUniversal(l.whatsapp, l.first_message))+'">WhatsApp 第一封</a>';
-  else if(tgu && l.telegram_first_message) quick += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="telegram" data-kind="first" href="https://t.me/'+esc(tgu)+"?text="+encodeURIComponent(l.telegram_first_message)+'">Telegram 第一封</a>';
+  if(l.whatsapp) quick += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="first" href="'+esc(waUniversal(l.whatsapp, fmFo))+'">WhatsApp 第一封</a>';
+  else if(tgu && l.telegram_first_message) quick += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="telegram" data-kind="first" href="https://t.me/'+esc(tgu)+"?text="+encodeURIComponent(tgFmFo)+'">Telegram 第一封</a>';
   else if(l.email) quick += '<a class="btn btn-outline btn-sm" data-sendlink="1" data-channel="email" data-kind="first" href="mailto:'+esc(l.email)+'">发邮件</a>';
-  if(!tgu && l.telegram_first_message) quick += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(l.telegram_first_message)+'">复制消息（去 Telegram 发）</button>';
+  if(!tgu && l.telegram_first_message) quick += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(tgFmFo)+'">复制消息（去 Telegram 发）</button>';
   if(!state.isLeader){
     quick += '<button class="btn btn-primary btn-sm" type="button" data-act="contacted">已联系</button>'
       + '<button class="btn btn-outline btn-sm" type="button" data-act="replied">客户回了</button>';
@@ -1791,15 +1797,18 @@ function bindOneCard(card){
         if(ta._trTimer) clearTimeout(ta._trTimer);
         if(stEl){ stEl.className = "tr-status"; stEl.textContent = "输入完停一下，外文版会自动翻译更新…"; }
         ta._trTimer = setTimeout(function(){
-          var zhText = ta.value.trim();
+          var isFirst = isFirstMsgField(foreignField);
+          var stripped = isFirst ? stripCatalogLine(ta.value) : { body: ta.value, had: false };
+          var zhText = stripped.body.trim();
           if(!zhText){ if(stEl) stEl.textContent = "中文框是空的，先写中文，外文版才会跟着变。"; return; }
           if(stEl){ stEl.className = "tr-status"; stEl.textContent = "正在翻译…"; }
           translateZhAll(zhText, lead.country).then(function(out){
-            if(foView){ foView.setAttribute("data-val", encodeURIComponent(out)); foView.textContent = out; }
+            var finalOut = (isFirst && stripped.had) ? withCatalogLine(out, firstMsgLang(lead)) : out;
+            if(foView){ foView.setAttribute("data-val", encodeURIComponent(finalOut)); foView.textContent = finalOut; }
             var entry = null;
             MSG_FIELDS.forEach(function(f){ if(f.foreign === foreignField) entry = f; });
-            if(entry) syncSendLinks(card, lead, entry, out);
-            if(block){ var cp = block.querySelector("[data-copy]"); if(cp) cp.setAttribute("data-copy", encodeURIComponent(out)); }
+            if(entry) syncSendLinks(card, lead, entry, finalOut);
+            if(block){ var cp = block.querySelector("[data-copy]"); if(cp) cp.setAttribute("data-copy", encodeURIComponent(finalOut)); }
             if(stEl){ stEl.className = "tr-status"; stEl.textContent = "外文版已更新，就是下面这版，点发送就发这版。"; }
           }).catch(function(){
             if(stEl){ stEl.className = "tr-status err"; stEl.textContent = "翻译没成功，先用原来的发"; }
@@ -2241,6 +2250,26 @@ function renderOverview(){
   }).join("");
 }
 
+/* ================= 产品目录链接（只加在第一封，渲染/发送时动态拼接，不写进数据库） ================= */
+var CATALOG_URL = "https://wss2275973450wss.github.io/catalog/";
+var CATALOG_LEADIN = { zh: "产品目录：", ru: "Каталог：", en: "Catalog: ", ar: "الكتالوج: ", es: "Catálogo: ", vi: "Danh mục sản phẩm: ", th: "แค็ตตาล็อกสินค้า: ", ms: "Katalog produk: ", id: "Katalog produk: ", km: "កាតាឡុកផលិតផល៖ ", my: "ထုတ်ကုန်ကတ်တလောက်: " };
+function catalogLine(lang){ return (CATALOG_LEADIN[lang] || CATALOG_LEADIN.en) + CATALOG_URL; }
+function stripCatalogLine(text){
+  var t = String(text || "");
+  if(t.indexOf(CATALOG_URL) < 0) return { body: t, had: false };
+  var kept = t.split("\n").filter(function(ln){ return ln.indexOf(CATALOG_URL) < 0; });
+  var body = kept.join("\n").replace(/\n{3,}/g, "\n\n").replace(/\s+$/, "");
+  return { body: body, had: true };
+}
+function withCatalogLine(text, lang){
+  var t = String(text || "");
+  if(!t.trim()) return t;
+  if(t.indexOf(CATALOG_URL) >= 0) return t;
+  return t.replace(/\s+$/, "") + "\n\n" + catalogLine(lang);
+}
+function isFirstMsgField(foreignField){ return foreignField === "first_message" || foreignField === "telegram_first_message"; }
+function firstMsgLang(lead){ var ls = targetLangsForCountry(lead ? lead.country : ""); return (ls && ls[0]) || "en"; }
+
 /* ================= 翻译（走 Supabase Edge Function 中转，失败明确报错） ================= */
 /* 浏览器不直接调 Google（队友在国内不用梯子打不开）：统一走已部署的
    Edge Function「translate」中转。翻不出来时绝不乱改，保留原来的外文，
@@ -2327,6 +2356,7 @@ function openEditor(lead){
   wrap.innerHTML = MSG_FIELDS.map(function(f){
     var zh = lead[f.zh] || "";
     var fo = lead[f.foreign] || "";
+    if(isFirstMsgField(f.foreign)){ zh = withCatalogLine(zh, "zh"); fo = withCatalogLine(fo, firstMsgLang(lead)); }
     return '<div class="edit-field"><label>'+esc(f.label)+'（中文，在这里改）</label>'
       + '<textarea data-zh="'+f.zh+'" data-foreign="'+f.foreign+'" data-edited="'+f.edited+'">'+esc(zh)+"</textarea>"
       + '<label style="margin-top:6px">外语版（自动翻译生成，只读）</label>'
@@ -2334,11 +2364,13 @@ function openEditor(lead){
       + '<div class="tr-status" data-st="'+f.foreign+'"></div></div>';
   }).join("");
   function runModalTranslate(ta, foEl, stEl){
-    var zhText = ta.value.trim();
+    var isFirst = isFirstMsgField(ta.getAttribute("data-foreign"));
+    var stripped = isFirst ? stripCatalogLine(ta.value) : { body: ta.value, had: false };
+    var zhText = stripped.body.trim();
     if(!zhText){ if(stEl) stEl.textContent = ""; return; }
     if(stEl){ stEl.className = "tr-status"; stEl.textContent = "正在翻译…"; }
     translateZhAll(zhText, lead.country).then(function(out){
-      foEl.value = out;
+      foEl.value = (isFirst && stripped.had) ? withCatalogLine(out, firstMsgLang(lead)) : out;
       if(stEl){ stEl.className = "tr-status"; stEl.textContent = "外文版已更新，保存后一键发送就用这版。"; }
     }).catch(function(){
       if(stEl){ stEl.className = "tr-status err"; stEl.textContent = "翻译没成功，先用原来的发"; }
@@ -2379,6 +2411,7 @@ $("editSave").addEventListener("click", function(){
     var foEl = wrap.querySelector('textarea[data-fo="'+f.foreign+'"]');
     var zhV = zhEl ? zhEl.value : (lead[f.zh] || "");
     var foV = foEl ? foEl.value : (lead[f.foreign] || "");
+    if(isFirstMsgField(f.foreign)){ zhV = stripCatalogLine(zhV).body; foV = stripCatalogLine(foV).body; }
     if(zhV !== (lead[f.zh] || "") || foV !== (lead[f.foreign] || "")){
       patch[f.zh] = zhV; patch[f.foreign] = foV; patch[f.edited] = 1; changed = true;
     }
@@ -2651,7 +2684,7 @@ function topFiveItemHtml(l, idx){
   var h = '<div class="top5-item"><span class="rank">' + ((idx || 0) + 1) + '</span><div class="top5-main"><span class="nm">' + esc(l.company || "（未填公司名）") + "</span> " + starStr(l.stars)
     + '<div class="sub2">' + esc([l.country, l.product, l.variety].filter(Boolean).join(" · ")) + " · 负责人：" + esc(displayName(l.assignee || "未分配")) + "</div>"
     + (reason ? '<div class="why">为什么选它：' + esc(reason) + "</div>" : "") + "</div><div>";
-  if(l.whatsapp) h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="first" data-lead="' + esc(l.id) + '" href="' + esc(waUniversal(l.whatsapp, l.first_message)) + '">WhatsApp 第一封</a>';
+  if(l.whatsapp) h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="first" data-lead="' + esc(l.id) + '" href="' + esc(waUniversal(l.whatsapp, withCatalogLine(l.first_message || "", firstMsgLang(l)))) + '">WhatsApp 第一封</a>';
   else if(l.email) h += '<a class="btn btn-outline btn-sm" data-sendlink="1" data-channel="email" data-kind="first" data-lead="' + esc(l.id) + '" href="mailto:' + esc(l.email) + '">发邮件</a>';
   else h += '<span class="sub2">没留 WhatsApp / 邮箱</span>';
   return h + "</div></div>";
