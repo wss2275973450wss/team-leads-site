@@ -216,6 +216,13 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
 .nowa-hint{margin-top:12px;background:var(--amber-bg);color:var(--amber);border:1px solid #ecd9a8;border-radius:10px;padding:9px 12px;font-size:13.5px}
 .next-step{margin-top:14px;background:var(--green-soft);border:1px solid #cfe0d2;border-radius:12px;padding:11px 14px;font-size:14px;color:#2c362d}
 .next-step b{color:var(--green)}
+/* ---------- 卡片收起：卡面只留关键信息，详情点开看 ---------- */
+.quick-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.quick-actions .btn-primary{width:auto}
+.lead-body{margin-top:12px;border-top:1px dashed var(--gold-line);padding-top:2px}
+.lead-body .meta{margin-top:10px}
+.lead-body .section-label{font-size:12px;font-weight:700;color:var(--green);letter-spacing:.04em;margin:14px 0 2px}
+details.fold .guide-bar{margin:14px 0 0}
 /* ---------- 可折叠分组 ---------- */
 details.fold{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px;margin:16px 0}
 details.fold>summary{cursor:pointer;list-style:none;display:block;font-family:var(--serif);font-size:20px;color:var(--green);letter-spacing:.03em}
@@ -279,12 +286,15 @@ details.fold-in .filters{margin-top:10px}
     <div class="gold-rule"></div>
   </header>
 
-  <!-- 今天三步，照着点就行 -->
-  <div class="guide-bar" id="guideBar" aria-label="今天三步">
-    <span class="g-step"><b>第一步</b>　从下面「今天最值得联系的 5 家」挑一家，点开卡片。</span>
-    <span class="g-step"><b>第二步</b>　点「WhatsApp 第一封」发出去，记得附上产品目录。</span>
-    <span class="g-step"><b>第三步</b>　发完点「已联系」。客户回了：看「助手建议」，挑一封点「用这封发」。</span>
-  </div>
+  <!-- 今天三步，收起来的折叠区，默认收起 -->
+  <details class="fold" aria-label="今天三步">
+    <summary>今天三步 <span class="hint">照着点就行，点开看</span></summary>
+    <div class="guide-bar" id="guideBar" aria-label="今天三步">
+      <span class="g-step"><b>第一步</b>　从下面「今天最值得联系的 5 家」挑一家，点开卡片。</span>
+      <span class="g-step"><b>第二步</b>　点「WhatsApp 第一封」发出去，记得附上产品目录。</span>
+      <span class="g-step"><b>第三步</b>　发完点「已联系」。客户回了：展开卡片详情看「助手建议」，挑一封点「用这封发」。</span>
+    </div>
+  </details>
 
   <!-- 成交后马上告诉王烁杉 -->
   <div class="deal-banner" id="dealBanner" role="status"></div>
@@ -385,7 +395,7 @@ details.fold-in .filters{margin-top:10px}
     <ol class="steps">
       <li><b>决定一：今天联系哪家。</b>打开页面最上面就是「今天最值得联系的 5 家」，只显示分给你的，5 星的排前面，挑一家点开看卡片。「早上报数」里每人各有 5 家，也可以从那里挑。</li>
       <li><b>决定二：发哪一封。</b>卡片上有「WhatsApp 第一封」「WhatsApp 跟进信」，点开就发，记得把产品目录一起发过去；Telegram 的客户点「Telegram 第一封」「Telegram 跟进信」。想改先点「编辑消息」，改中文就行，外语版跟着变；卡片下面「中文对照，只给你看，不发给客户」就是这封信的中文意思。注意：邮件的跟进信 AI 可以直接发，WhatsApp 没有接口发不出去，只能由你点一键发送——不要等它自己发。</li>
-      <li><b>决定三：客户回了怎么回。</b>卡片上的「助手建议」一次给你两三个回复，挑一个点「用这封发」就直接发出去了，不用再等谁点头。客户回了点一下「客户回了」，跟进次数清零重新算。</li>
+      <li><b>决定三：客户回了怎么回。</b>展开卡片详情，「助手建议」一次给你两三个回复，挑一个点「用这封发」就直接发出去了，不用再等谁点头。客户回了点一下「客户回了」，跟进次数清零重新算。</li>
       <li><b>决定四：报不报价、报多少。</b>卡片上点「报价」，填每行的单价（美元），自动算小计和总价，有效期 15 天。价目表上的品种按价目表报；价目表上没有的品种自己估一个报，那行会打上「估价」。估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。</li>
       <li><b>决定五：成交还是继续跟。</b>客户说要下单，点卡片上的「成交」，状态就改成「已成交」，跟进提醒自动停掉；成交后页面会弹出「马上告诉王烁杉」，点一下就把成交消息发给王烁杉。没回就等 3 天再发跟进信，满 5 次没回会自动转「没兴趣」。</li>
     </ol>
@@ -1011,12 +1021,14 @@ function cardHtml(l){
   var lt = localTimeInfo(l.country);
   var tags = "";
   var tl = typeLabel(l); if(tl) tags += '<span class="tag type">'+esc(tl)+"</span>";
-  if(l.subtype) tags += '<span class="tag">'+esc(l.subtype)+"</span>";
   if(l.is_duplicate) tags += '<span class="tag dup">重复公司</span>';
-  if(l.social_platform) tags += '<span class="tag">平台：'+esc(l.social_platform)+"</span>";
-  if(l.source_name) tags += '<span class="tag">来源：'+esc(l.source_name)+"</span>";
   if(lt) tags += '<span class="tag">当地 '+esc(lt.text)+" 大概</span>" + (lt.night ? '<span class="tag night">深夜，别这时候发</span>' : "");
   if(l.has_replied) tags += '<span class="tag" style="background:var(--green-soft);color:var(--green);font-weight:600">客户已回复</span>';
+  var tagsMore = "";
+  if(l.subtype) tagsMore += '<span class="tag">'+esc(l.subtype)+"</span>";
+  if(l.social_platform) tagsMore += '<span class="tag">平台：'+esc(l.social_platform)+"</span>";
+  if(l.source_name) tagsMore += '<span class="tag">来源：'+esc(l.source_name)+"</span>";
+  if(tagsMore) tagsMore = '<div class="meta">'+tagsMore+"</div>";
 
   var place = [l.country, l.city].filter(Boolean).join(" · ");
   var prod = [l.product, l.variety].filter(Boolean).join(" · ");
@@ -1066,12 +1078,22 @@ function cardHtml(l){
   var starOpts = "";
   for(var s=0;s<=5;s++) starOpts += '<option value="'+s+'"'+(parseInt(l.stars,10)===s?" selected":"")+">"+s+" 星</option>";
 
+  /* 卡面快捷动作：发第一封 + 已联系 + 客户回了 + 展开详情 */
+  var quick = '<div class="quick-actions">';
+  if(l.whatsapp) quick += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" href="'+esc(waLink(l.whatsapp, l.first_message))+'">WhatsApp 第一封</a>';
+  else if(tgu && l.telegram_first_message) quick += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" href="https://t.me/'+esc(tgu)+"?text="+encodeURIComponent(l.telegram_first_message)+'">Telegram 第一封</a>';
+  else if(l.email) quick += '<a class="btn btn-outline btn-sm" href="mailto:'+esc(l.email)+'">发邮件</a>';
+  if(!state.isLeader){
+    quick += '<button class="btn btn-primary btn-sm" type="button" data-act="contacted">已联系</button>'
+      + '<button class="btn btn-outline btn-sm" type="button" data-act="replied">客户回了</button>';
+  }
+  quick += '<button class="btn btn-outline btn-sm" type="button" data-act="toggle" aria-expanded="false">展开详情 ▾</button></div>';
+
   return '<article class="lead" data-id="'+esc(l.id)+'">'
     + '<div class="lead-top"><div><h3>'+esc(l.company || "（未填公司名）")+"</h3>"
     + (l.title_zh ? '<p class="title-zh">'+esc(l.title_zh)+"</p>" : "")
     + "</div><div class=\"stars\" aria-label=\"星级\">"+starStr(l.stars)+"</div></div>"
     + (l.summary_zh ? '<p class="summary">'+esc(l.summary_zh)+"</p>" : "")
-    + (state.isLeader ? "" : '<div class="import-top"><button class="btn btn-green" type="button" data-act="importchat-top">发聊天记录</button><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按卡片上助手建议直接回，不会回才把客户那句话发进来。</span></div>')
     + '<div class="meta">'
     + (place ? '<span class="tag">'+esc(place)+"</span>" : "")
     + (l.region ? '<span class="tag">'+esc(l.region)+"</span>" : "")
@@ -1081,11 +1103,16 @@ function cardHtml(l){
     + (prod ? '<div class="kv">产品：<b>'+esc(prod)+"</b></div>" : "")
     + (detail ? '<div class="kv">'+detail+"</div>" : "")
     + '<div class="kv">已跟进：<b>'+esc(l.owner_contact_count || 0)+"</b> 次 / 最多 5 次"+(l.found_at ? " · 找到于 "+esc(fmtTime(l.found_at)) : "")+"</div>"
-    + contacts + nowaHint + msgs + suggHtml + profHtml + chatHtml
     + '<div class="next-step">下一步：<b>' + esc(nextStepText(l)) + '</b></div>'
-    + (state.isLeader ? "" : '<div class="actions">'
-    + '<button class="btn btn-primary btn-sm" type="button" data-act="contacted" style="width:auto">已联系</button>'
-    + '<button class="btn btn-outline btn-sm" type="button" data-act="replied">客户回了</button>'
+    + quick
+    + '<div class="lead-body hidden">'
+    + tagsMore
+    + (state.isLeader ? "" : '<div class="import-top"><button class="btn btn-green" type="button" data-act="importchat-top">发聊天记录</button><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按助手建议直接回，不会回才把客户那句话发进来。</span></div>')
+    + (contacts ? '<div class="section-label">联系方式</div>' + contacts : "")
+    + nowaHint
+    + (msgs ? '<div class="section-label">要发的消息</div>' + msgs : "")
+    + suggHtml + profHtml + chatHtml
+    + (state.isLeader ? "" : '<div class="section-label">更多操作</div><div class="actions">'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="activity">流水账</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="editmsg">编辑消息</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="quote">报价</button>'
@@ -1095,6 +1122,7 @@ function cardHtml(l){
     + '<label>星级</label><select data-field="stars">'+starOpts+"</select></div>")
     + (l.notes ? '<div class="notes-old">'+esc(l.notes)+"</div>" : "")
     + '<div class="activity" data-activity></div>'
+    + "</div>"
     + "</article>";
 }
 function findLead(id){ for(var i=0;i<state.leads.length;i++) if(String(state.leads[i].id)===String(id)) return state.leads[i]; return null; }
@@ -1114,6 +1142,20 @@ function bindCards(){
           navigator.clipboard.writeText(text).then(function(){ toast("已复制"); }, function(){ toast("复制失败，请长按文字复制", true); });
         } else { toast("这个浏览器不支持一键复制，请长按文字复制", true); }
       });
+    });
+    var toggleBtn = card.querySelector('[data-act="toggle"]');
+    if(toggleBtn) toggleBtn.addEventListener("click", function(){
+      var body = card.querySelector(".lead-body");
+      if(!body) return;
+      if(body.classList.contains("hidden")){
+        body.classList.remove("hidden");
+        toggleBtn.textContent = "收起详情 ▴";
+        toggleBtn.setAttribute("aria-expanded", "true");
+      } else {
+        body.classList.add("hidden");
+        toggleBtn.textContent = "展开详情 ▾";
+        toggleBtn.setAttribute("aria-expanded", "false");
+      }
     });
     var contactedBtn = card.querySelector('[data-act="contacted"]');
     if(contactedBtn) contactedBtn.addEventListener("click", function(){
@@ -1799,9 +1841,9 @@ function topFiveItemHtml(l, idx){
 }
 
 function nextStepText(l){
-  if(state.isLeader) return "你是团队负责人，不用发消息；有意见写在下面「负责人意见」里，队友能看到。";
+  if(state.isLeader) return "你是团队负责人，不用发消息；点「展开详情」，在「负责人意见」里写跟进意见，队友能看到。";
   if(l.status === "deal") return "已成交，不用再跟了。";
-  if(l.has_replied) return "客户回了：看下面「助手建议」，挑一封点「用这封发」。";
+  if(l.has_replied) return "客户回了：点「展开详情」看「助手建议」，挑一封点「用这封发」。";
   var n = parseInt(l.owner_contact_count, 10) || 0;
   if(n === 0) return "点「WhatsApp 第一封」发出去，记得附上产品目录，发完点「已联系」。";
   if(n >= 5) return "已跟进 5 次没回，不用再跟了。";
