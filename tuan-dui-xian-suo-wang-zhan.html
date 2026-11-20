@@ -1,0 +1,1967 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:,">
+<title>团队线索 · 苗木花卉找客户</title>
+<style>
+:root{
+  --bg:#f7f3ea; --bg2:#efe8d7; --card:#fffdf7; --ink:#21271f; --muted:#6f7263;
+  --green:#143527; --green2:#1e5c3f; --green-soft:#e8efe4;
+  --gold:#b08d3e; --gold-soft:#c9ab63; --gold-line:#d9c48c; --line:#e5dbc2;
+  --red:#9c2b1e; --red-bg:#fbeae7; --amber:#8a5a12; --amber-bg:#fdf3dc;
+  --radius:18px;
+  --shadow:0 1px 2px rgba(20,53,39,.05),0 10px 30px -12px rgba(20,53,39,.14);
+  --shadow-lift:0 2px 4px rgba(20,53,39,.06),0 18px 40px -14px rgba(20,53,39,.22);
+  --serif:"Songti SC","STSongti-SC-Regular","STSong","Noto Serif SC","Source Han Serif SC","SimSun",serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--ink);line-height:1.6;font-size:15px;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+  background:
+    radial-gradient(1100px 480px at 85% -120px, rgba(201,171,99,.14), rgba(201,171,99,0) 60%),
+    radial-gradient(900px 420px at -10% 0, rgba(20,53,39,.06), rgba(20,53,39,0) 55%),
+    var(--bg);
+  background-attachment:fixed}
+a{color:var(--green2)}
+button,[role="button"],select,input,textarea{font:inherit}
+button,select,input[type="text"],input[type="email"],input[type="password"]{min-height:44px}
+:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px 56px}
+/* ---------- login ---------- */
+.login-wrap{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px 14px}
+.login-card{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:20px;box-shadow:var(--shadow-lift);padding:36px 28px;width:100%;max-width:400px}
+.login-card h1{font-family:var(--serif);font-size:30px;line-height:1.3;margin:0 0 6px;color:var(--green);letter-spacing:.06em}
+.login-card p.sub{margin:0 0 22px;color:var(--muted);font-size:14px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--green)}
+.field input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.field input:focus{outline:2px solid var(--gold-line);outline-offset:1px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid transparent;border-radius:10px;padding:9px 16px;min-height:44px;cursor:pointer;font-weight:600;font-size:14px;text-decoration:none;background:#fff;color:var(--green);transition:background .15s ease,border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.btn-primary{background:var(--green);color:#fff;width:100%;box-shadow:0 6px 16px -6px rgba(20,53,39,.45)}
+.btn-primary:hover{background:var(--green2)}
+.btn-primary:active{background:var(--green2)}
+.btn-outline{border-color:var(--gold-line);background:#fffdf8}
+.btn-outline:hover{border-color:var(--gold-soft);background:#fff}
+.btn-green{background:var(--green2);color:#fff;box-shadow:0 6px 14px -6px rgba(30,92,63,.5)}
+.btn-green:hover{background:var(--green)}
+.btn-sm{min-height:38px;padding:6px 13px;font-size:13px;border-radius:8px}
+.btn:disabled{opacity:.55;cursor:wait}
+.err{background:var(--red-bg);color:var(--red);border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:14px;display:none}
+.err.show{display:block}
+.ok{background:var(--green-soft);color:var(--green);border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:14px;display:none}
+.ok.show{display:block}
+/* ---------- app header ---------- */
+.app-head{padding:20px 0 2px}
+.app-head h1{font-family:var(--serif);font-size:34px;margin:10px 0 0;color:var(--green);line-height:1.25;letter-spacing:.05em}
+.app-head .sub{color:var(--muted);font-size:14px;margin:5px 0 0}
+.gold-rule{height:2px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-line) 34%,rgba(217,196,140,0) 88%);margin:16px 0 2px;border-radius:2px}
+.topbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:30;background:rgba(247,243,234,.92);backdrop-filter:blur(6px);padding:10px 0;border-bottom:1px solid var(--line)}
+.who{font-size:14px;color:var(--green);font-weight:600}
+.who span{color:var(--muted);font-weight:400}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+/* ---------- panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px;margin:16px 0}
+.panel h2{font-family:var(--serif);font-size:20px;margin:0 0 12px;color:var(--green);letter-spacing:.03em}
+.panel h2::after{content:"";display:block;width:36px;height:2px;background:var(--gold);border-radius:2px;margin-top:7px}
+.panel h2 .hint{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;font-size:12px;color:var(--muted);font-weight:400;letter-spacing:0}
+.panel-hero{background:linear-gradient(155deg,#1a4630 0%,var(--green) 55%,#0e2a1d 100%);border-color:#0e2a1d;border-top:3px solid var(--gold);color:#f2ecdc;box-shadow:0 18px 44px -16px rgba(14,42,29,.5)}
+.panel-hero h2{color:#f5edd6}
+.panel-hero h2 .hint{color:#cdbd8f}
+.panel-hero .sync-line{color:#ddd6c2}
+.panel-hero .sync-line b{color:#f5edd6}
+.filters{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.filters{grid-template-columns:1fr 1fr 1fr auto}}
+.filters label{font-size:12px;font-weight:600;color:var(--green);display:block}
+.filters select{width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:44px}
+.count-line{font-size:13px;color:var(--muted);margin-top:10px}
+.search-row{margin-top:10px}
+.search-row input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:44px}
+/* ---------- lead cards ---------- */
+.cards{display:flex;flex-direction:column;gap:16px;margin-top:16px}
+.lead{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;transition:box-shadow .18s ease,transform .18s ease}
+.lead:hover{box-shadow:var(--shadow-lift);transform:translateY(-1px)}
+.lead-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.lead h3{font-family:var(--serif);font-size:21px;margin:0;line-height:1.35;color:var(--green);letter-spacing:.02em}
+.lead .title-zh{font-size:14px;color:var(--ink);margin:3px 0 0}
+.lead .summary{font-size:13.5px;color:#3d443e;margin:9px 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{display:inline-flex;align-items:center;font-size:12px;padding:3px 10px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);color:#3d443e;min-height:26px}
+.tag.type{background:var(--green-soft);border-color:#cfe0d2;color:var(--green);font-weight:600}
+.tag.dup{background:var(--red-bg);border-color:#efc4bd;color:var(--red);font-weight:600}
+.tag.night{background:#2b2118;color:#f5cf8a;border-color:#2b2118;font-weight:600}
+.stars{font-size:17px;letter-spacing:3px;color:var(--gold);white-space:nowrap}
+.stars .off{color:#ddd3b8}
+.kv{font-size:13.5px;margin-top:9px;color:#3d443e;font-variant-numeric:tabular-nums}
+.kv b{color:var(--green)}
+.contact-box{margin-top:12px;border-top:1px dashed var(--gold-line);padding-top:12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.contact-box a{word-break:break-all}
+.msg-block{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+.msg-block .msg-title{font-size:12px;font-weight:700;color:var(--green);margin-bottom:5px;letter-spacing:.04em}
+.msg-block .msg-text{font-size:13px;white-space:pre-wrap;word-break:break-word;color:#3d443e;max-height:110px;overflow:auto}
+.msg-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.actions .btn-primary{width:auto}
+.edit-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-size:13px}
+.edit-row select{padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;min-height:40px}
+.edit-row label{font-weight:600;color:var(--green)}
+.note-area{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff;min-height:64px;margin-top:6px}
+.notes-old{font-size:12.5px;color:var(--muted);white-space:pre-wrap;word-break:break-word;margin-top:6px;max-height:120px;overflow:auto}
+.activity{margin-top:12px;border-top:1px dashed var(--line);padding-top:8px;font-size:13px;display:none}
+.activity.open{display:block}
+.activity div{padding:4px 0;border-bottom:1px dotted var(--line)}
+.activity div:last-child{border-bottom:none}
+.activity .t{color:var(--muted);font-size:12px}
+/* ---------- team / tutorial / sync ---------- */
+.team-grid{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:640px){.team-grid{grid-template-columns:1fr 1fr}}
+.team-item{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff;font-size:14px;min-height:48px}
+.team-item .nm{font-weight:600;color:var(--green)}
+.team-item .wa{color:var(--muted);font-size:13px}
+ol.steps{margin:0;padding-left:22px;font-size:14px}
+ol.steps li{margin:7px 0}
+ol.steps li::marker{color:var(--gold);font-weight:700}
+.sync-line{font-size:14px;color:#3d443e}
+.sync-line b{color:var(--green)}
+/* ---------- zh / suggestion / profile / chat / overview ---------- */
+.zh-block{background:#f8f3e3;border-color:var(--gold-line)}
+.zh-item{font-size:13px;margin:6px 0;color:#3d443e}
+.zh-item b{color:var(--green)}
+.suggest-box{margin-top:12px;border:1px solid #cfe0d2;border-radius:12px;padding:12px 14px;background:var(--green-soft);font-size:13.5px}
+.suggest-box .msg-title{font-size:12px;font-weight:700;color:var(--green);margin-bottom:5px;letter-spacing:.04em}
+.suggest-box .next{margin-top:6px}
+.profile-box{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;font-size:13.5px}
+.profile-box summary{cursor:pointer;font-weight:700;color:var(--green);font-size:13px;min-height:44px;display:flex;align-items:center}
+.profile-box .kv2{margin-top:6px}
+.chat-log{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;font-size:13px}
+.chat-log summary{cursor:pointer;font-weight:700;color:var(--green);font-size:13px;min-height:44px;display:flex;align-items:center}
+.chat-line{padding:5px 0;border-bottom:1px dotted var(--line)}
+.chat-line:last-child{border-bottom:none}
+.chat-line .who-me{color:var(--green2);font-weight:700}
+.chat-line .who-cu{color:#8a5a12;font-weight:700}
+.chat-line .ct{color:var(--muted);font-size:12px}
+.overview-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.overview-grid{grid-template-columns:1fr 1fr}}
+.ov-item{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;font-size:13.5px}
+.ov-item .nm{font-family:var(--serif);font-weight:700;color:var(--green);font-size:16px;letter-spacing:.03em}
+.ov-item .nums{margin-top:5px;color:#3d443e;font-variant-numeric:tabular-nums}
+.ov-item .nums b{color:var(--green)}
+.edit-field{margin-bottom:12px}
+.edit-field label{display:block;font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px}
+.edit-field textarea{width:100%;min-height:64px;border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff}
+.edit-field textarea.foreign{background:var(--bg2)}
+.tr-status{font-size:12px;color:var(--muted);margin-top:4px}
+.tr-status.err{color:var(--red)}
+.imp-preview{max-height:220px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;font-size:13px;margin-top:8px}
+.imp-line{padding:5px 0;border-bottom:1px dotted var(--line);cursor:pointer}
+.imp-line:last-child{border-bottom:none}
+.tut-note{font-size:14px;margin:12px 0 0}
+.tut-note b{color:var(--green)}
+/* ---------- modal / toast ---------- */
+.modal-mask{position:fixed;inset:0;background:rgba(16,32,24,.5);display:none;align-items:flex-end;justify-content:center;z-index:50}
+.modal-mask.open{display:flex}
+.modal{background:#fffdf7;width:100%;max-width:480px;border-top:3px solid var(--gold);border-radius:20px 20px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -12px 40px rgba(14,42,29,.25)}
+@media(min-width:640px){.modal-mask{align-items:center}.modal{border-radius:20px}}
+.modal h3{font-family:var(--serif);margin:0 0 12px;font-size:19px;color:var(--green);letter-spacing:.03em}
+.modal .field select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:44px}
+.modal-btns{display:flex;gap:8px;margin-top:14px}
+.modal-btns .btn{flex:1}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom));background:var(--green);color:#fff;border:1px solid var(--gold-line);padding:11px 20px;border-radius:999px;font-size:14px;box-shadow:0 10px 28px rgba(14,42,29,.35);display:none;z-index:60;max-width:92vw;text-align:center}
+.toast.show{display:block}
+.toast.err-t{background:var(--red);border-color:var(--red)}
+.empty{padding:34px 16px;text-align:center;color:var(--muted);font-size:14px}
+.loading{padding:34px 16px;text-align:center;color:var(--muted)}
+.top5-item{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fffdf7;margin-bottom:10px;font-size:14px;box-shadow:0 1px 3px rgba(20,53,39,.05)}
+.top5-item .rank{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--gold);color:var(--green);font-family:var(--serif);font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#fbf6e7}
+.top5-item .top5-main{flex:1;min-width:0}
+.top5-item .nm{font-weight:700;color:var(--green);font-size:15px}
+.top5-item .sub2{font-size:12.5px;color:var(--muted);margin-top:2px}
+.num-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+@media(min-width:640px){.num-grid{grid-template-columns:1fr 1fr 1fr 1fr}}
+.num-cell{border:1px solid var(--line);border-radius:14px;padding:14px 12px;background:#fff;font-size:13.5px;text-align:center;color:var(--muted)}
+.num-cell b{font-family:var(--serif);display:block;font-size:32px;line-height:1.15;color:var(--green);font-variant-numeric:tabular-nums;margin-bottom:2px}
+.sum-row{border:1px solid var(--line);border-radius:14px;padding:13px 15px;background:#fff;margin-bottom:10px;font-size:14px;font-variant-numeric:tabular-nums}
+.sum-row .nm{font-family:var(--serif);font-weight:700;color:var(--green);font-size:16px;letter-spacing:.03em}
+.sum-row b{color:var(--green)}
+.deal-banner{background:linear-gradient(150deg,#1a4630,var(--green));border:1px solid var(--gold);color:#fff;border-radius:14px;padding:16px 18px;margin:16px 0;display:none;font-size:14px;box-shadow:0 14px 34px -12px rgba(14,42,29,.5)}
+.deal-banner.show{display:block}
+.deal-banner .btn{margin-top:8px}
+.import-top{display:flex;gap:12px;align-items:center;margin-top:14px;flex-wrap:wrap;background:#fbf6e7;border:1px solid var(--gold-line);border-radius:12px;padding:12px 14px}
+.import-hint{font-size:13px;color:#5c5844;flex:1;min-width:200px}
+.quote-row{display:grid;grid-template-columns:1fr;gap:8px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;margin-bottom:10px}
+.quote-row input,.quote-row select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;min-height:44px}
+.quote-row .est-tag{display:inline-block;background:var(--amber-bg);color:var(--amber);border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700}
+.reply-item{border:1px solid var(--gold-line);border-radius:12px;padding:12px 14px;background:#fbf6e7;margin-bottom:8px;font-size:14px}
+.sugg-item{border-top:1px dashed var(--line);padding-top:9px;margin-top:9px}
+.sugg-item:first-child{border-top:none;padding-top:0;margin-top:0}
+details.other-ways{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;font-size:13.5px}
+details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min-height:44px;display:flex;align-items:center}
+.guide-bar{background:linear-gradient(150deg,#1a4630,var(--green) 60%,#0e2a1d);border:1px solid #0e2a1d;border-top:3px solid var(--gold);color:#f2ecdc;border-radius:16px;padding:18px;margin:16px 0;font-size:14px;line-height:1.65;box-shadow:0 14px 34px -14px rgba(14,42,29,.45)}
+.guide-bar b{color:#e8cf8f}
+.guide-bar .g-step{display:block;padding:10px 0;border-top:1px solid rgba(217,196,140,.28)}
+.guide-bar .g-step:first-child{border-top:none;padding-top:0}
+.guide-bar .g-step:last-child{padding-bottom:0}
+.guide-bar .g-step b{display:block;font-family:var(--serif);font-size:15px;letter-spacing:.14em;margin-bottom:2px}
+@media(min-width:760px){
+  .guide-bar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 22px}
+  .guide-bar .g-step{border-top:none;border-left:1px solid rgba(217,196,140,.28);padding:0 0 0 22px}
+  .guide-bar .g-step:first-child{border-left:none;padding-left:0}
+}
+.next-step{margin-top:14px;background:var(--green-soft);border:1px solid #cfe0d2;border-radius:12px;padding:11px 14px;font-size:14px;color:#2c362d}
+.next-step b{color:var(--green)}
+.hidden{display:none!important}
+.mywa-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.mywa-row input{flex:1;min-width:180px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:44px}
+.foot{font-size:12px;color:var(--muted);text-align:center;margin-top:30px}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .lead:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 登录（未登录只能看到这里） ============ -->
+<div id="loginView" class="login-wrap">
+  <form class="login-card" id="loginForm" autocomplete="on">
+    <h1>团队线索</h1>
+    <p class="sub">苗木花卉找客户 · 团队内部使用，请先登录</p>
+    <div class="err" id="loginErr">账号或密码不对，请检查后重试。</div>
+    <div class="ok" id="loginOk"></div>
+    <div class="field">
+      <label for="email">邮箱</label>
+      <input type="email" id="email" name="email" required autocomplete="username" placeholder="你的登录邮箱">
+    </div>
+    <div class="field">
+      <label for="password">密码</label>
+      <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="密码">
+    </div>
+    <button class="btn btn-primary" type="submit" id="loginBtn">登录</button>
+  </form>
+</div>
+
+<!-- ============ 登录后主界面 ============ -->
+<div id="appView" class="wrap hidden">
+  <header class="app-head">
+    <div class="topbar">
+      <div class="who" id="whoLine">已登录</div>
+      <div class="top-actions">
+        <button class="btn btn-outline btn-sm" id="topImportBtn" type="button">发聊天记录</button>
+        <button class="btn btn-outline btn-sm" id="pwdBtn" type="button">改密码</button>
+        <button class="btn btn-outline btn-sm" id="logoutBtn" type="button">退出登录</button>
+      </div>
+    </div>
+    <h1>客户线索</h1>
+    <p class="sub" id="headSub">正在加载…</p>
+    <div class="gold-rule"></div>
+  </header>
+
+  <!-- 今天三步，照着点就行 -->
+  <div class="guide-bar" aria-label="今天三步">
+    <span class="g-step"><b>第一步</b>　从下面「今天最值得联系的 5 家」挑一家，点开卡片。</span>
+    <span class="g-step"><b>第二步</b>　点「WhatsApp 第一封」发出去，记得附上产品目录。</span>
+    <span class="g-step"><b>第三步</b>　发完点「已联系」。客户回了：看「助手建议」，挑一封点「用这封发」。</span>
+  </div>
+
+  <!-- 成交后马上告诉王烁杉 -->
+  <div class="deal-banner" id="dealBanner" role="status"></div>
+
+  <!-- 今天最值得联系的 5 家 -->
+  <section class="panel panel-hero" aria-label="今天最值得联系的 5 家">
+    <h2>今天最值得联系的 5 家 <span class="hint">只显示分给你的，5 星在前</span></h2>
+    <p class="sync-line" style="margin:0 0 10px">先从这里挑一家，点「WhatsApp 第一封」发出去，发完点「已联系」。</p>
+    <div id="top5Box">正在读取…</div>
+  </section>
+
+  <!-- 早上报数 -->
+  <section class="panel" aria-label="早上报数">
+    <h2>早上报数 <span class="hint">今天的新线索，现场算出来的</span></h2>
+    <div id="morningBox">正在读取…</div>
+  </section>
+
+  <!-- 晚上 8 点汇总 -->
+  <section class="panel" aria-label="晚上 8 点汇总">
+    <h2>晚上 8 点汇总 <span class="hint">全队都看得到</span></h2>
+    <div id="eveningBox">正在读取…</div>
+  </section>
+
+  <!-- 每周一汇总 -->
+  <section class="panel" aria-label="每周一汇总">
+    <h2>每周一汇总 <span class="hint">全队都看得到，现场算出来的</span></h2>
+    <div id="weeklyBox">正在读取…</div>
+  </section>
+
+  <!-- 同步状态 -->
+  <section class="panel" aria-label="同步状态">
+    <h2>同步状态</h2>
+    <div class="sync-line" id="syncBox">正在读取…</div>
+  </section>
+
+  <!-- 团队总览 -->
+  <section class="panel" aria-label="团队总览">
+    <h2>团队总览 <span class="hint">只算自动记下来的四项</span></h2>
+    <div class="overview-grid" id="overviewBox">正在读取…</div>
+  </section>
+
+  <!-- 筛选 -->
+  <section class="panel" aria-label="筛选">
+    <h2>筛选</h2>
+    <div class="filters">
+      <label>负责人
+        <select id="fAssignee"></select>
+      </label>
+      <label>地区
+        <select id="fRegion">
+          <option value="">全部地区</option>
+          <option>中亚</option><option>中东</option><option>东南亚</option>
+          <option>俄罗斯及周边</option><option>南亚</option><option>东亚</option>
+          <option>南美</option><option>大洋洲</option><option value="__other">其他</option>
+        </select>
+      </label>
+      <label>状态
+        <select id="fStatus">
+          <option value="">全部状态</option>
+          <option value="new">未处理</option>
+          <option value="focus">重点跟进</option>
+          <option value="contacted">已联系</option>
+          <option value="ignored">没兴趣</option>
+          <option value="deal">已成交</option>
+        </select>
+      </label>
+      <label>&nbsp;<button class="btn btn-outline" id="exportBtn" type="button" style="width:100%">导出 CSV</button></label>
+    </div>
+    <div class="search-row"><input type="text" id="fSearch" placeholder="搜公司名 / 产品 / 国家…"></div>
+    <div class="count-line" id="countLine"></div>
+  </section>
+
+  <!-- 线索列表 -->
+  <main id="listBox"><div class="loading">正在加载线索…</div></main>
+
+  <!-- 我的 WhatsApp -->
+  <section class="panel" aria-label="我的联系方式">
+    <h2>我的 WhatsApp <span class="hint">第一次打开先填，队友能在团队名单里看到</span></h2>
+    <div id="myWaBox" class="sync-line">正在读取…</div>
+  </section>
+
+  <!-- 团队名单 -->
+  <section class="panel" aria-label="团队名单">
+    <h2>团队名单</h2>
+    <div class="team-grid" id="teamBox"></div>
+  </section>
+
+  <!-- 使用教程 -->
+  <section class="panel" aria-label="使用教程">
+    <h2>使用教程</h2>
+    <p class="tut-note"><b>AI 每天替你干了这些：</b>早上 8 点搜新线索、去重、打分、按人分好、写好第一封和跟进信（外语版加中文对照）、盯着同步和邮件回复、算跟进次数、晚上 8 点出汇总。你不用管这些。</p>
+    <p class="tut-note"><b>你每天只用干这几下：</b>下面五个决定，每个都是一点就行的选择。</p>
+    <ol class="steps">
+      <li><b>决定一：今天联系哪家。</b>打开页面最上面就是「今天最值得联系的 5 家」，只显示分给你的，5 星的排前面，挑一家点开看卡片。「早上报数」里每人各有 5 家，也可以从那里挑。</li>
+      <li><b>决定二：发哪一封。</b>卡片上有「WhatsApp 第一封」「WhatsApp 跟进信」，点开就发，记得把产品目录一起发过去；Telegram 的客户点「Telegram 第一封」「Telegram 跟进信」。想改先点「编辑消息」，改中文就行，外语版跟着变；卡片下面「中文对照，只给你看，不发给客户」就是这封信的中文意思。注意：邮件的跟进信 AI 可以直接发，WhatsApp 没有接口发不出去，只能由你点一键发送——不要等它自己发。</li>
+      <li><b>决定三：客户回了怎么回。</b>卡片上的「助手建议」一次给你两三个回复，挑一个点「用这封发」就直接发出去了，不用再等谁点头。客户回了点一下「客户回了」，跟进次数清零重新算。</li>
+      <li><b>决定四：报不报价、报多少。</b>卡片上点「报价」，填每行的单价（美元），自动算小计和总价，有效期 15 天。价目表上的品种按价目表报；价目表上没有的品种自己估一个报，那行会打上「估价」。估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。</li>
+      <li><b>决定五：成交还是继续跟。</b>客户说要下单，点卡片上的「成交」，状态就改成「已成交」，跟进提醒自动停掉；成交后页面会弹出「马上告诉王烁杉」，点一下就把成交消息发给王烁杉。没回就等 3 天再发跟进信，满 5 次没回会自动转「没兴趣」。</li>
+    </ol>
+    <p class="tut-note"><b>核心一句话：客户没回，只点一下「已联系」就行，不用发聊天记录；客户回了，平时按卡片上助手建议直接回，不会回的时候才把客户那句话发进来。</b></p>
+    <p class="tut-note"><b>怎么把聊天记录发进来（只有不会回的时候才用）：</b>点卡片顶部的「发聊天记录」或者页面顶部的「发聊天记录」，默认就是粘贴框：粘贴聊天文字，点「发进来」，两下点完。上传文件和转发说明收在「其他方式」里。</p>
+    <ol class="steps">
+      <li>粘贴文字：手机上最方便，直接粘贴聊天文字。</li>
+      <li>上传文件：WhatsApp 点客户名 → 导出聊天记录 → 不含媒体 → 在「其他方式」里上传；电脑上有 Telegram，用桌面端导出 JSON 再上传。</li>
+      <li>转发消息：把消息转发给王烁杉，再由他转给助手。</li>
+      <li>Telegram 手机端不能一键导整个聊天，只能粘贴或转发。</li>
+      <li>截图：直接发给助手就能读，不用上传到网站。</li>
+      <li>语音、图片导进来只有文字部分能分析。</li>
+    </ol>
+    <p class="tut-note"><b>底线要记住：</b>助手看不到你手机里的 WhatsApp / Telegram，没有自动抓取的办法，想让助手帮忙总得发一次；但平时不用每次回了都发，只有不会回的时候才发，日常回复不经过助手。</p>
+    <p class="tut-note"><b>客户回了的消息提醒：</b>客户一回，打开网站就会弹出来，写着是哪家客户、负责人是谁、什么时候回的，点一下关掉就行，只弹新的，不重复弹。</p>
+    <p class="tut-note"><b>邮件有两条路：</b></p>
+    <ol class="steps">
+      <li>客户回的邮件，转发到王烁杉的邮箱，助手盯着邮箱自动关联到对应客户下面。</li>
+      <li>或者在卡片「发聊天记录」里直接粘贴邮件正文，按发件人、时间、内容存下来。</li>
+      <li>注意：只有发到王烁杉邮箱的邮件和手动粘贴的会关联上，不是所有邮件都会自动关联。</li>
+    </ol>
+    <p class="tut-note">没回的时候，点一下「已联系」也算联系过一次，不用写任何字，选渠道（WhatsApp / 邮件 / Telegram）和发的是第一封还是跟进信就行。发进来的记录导进来一次，就自动记了已联系、算了跟进次数、判了客户回没回，档案也会跟着更新。</p>
+    <p class="tut-note">「早上报数」「晚上 8 点汇总」「每周一汇总」都在页面上面：早上报数是今天新线索的数字加每人各 5 家；晚上 8 点汇总是当天全队每人一行；每周一汇总是本周最值得联系的 5 家（全队、每人各 5 家）加本周数字。</p>
+  </section>
+
+  <p class="foot">团队内部使用 · 数据来自团队数据库，登录后实时读取</p>
+</div>
+
+<!-- 已联系弹窗 -->
+<div class="modal-mask" id="contactModal" role="dialog" aria-modal="true" aria-label="记录已联系">
+  <div class="modal">
+    <h3 id="contactModalTitle">记录已联系</h3>
+    <div class="field">
+      <label for="cChannel">联系渠道</label>
+      <select id="cChannel">
+        <option value="whatsapp">WhatsApp</option>
+        <option value="email">邮件</option>
+        <option value="telegram">Telegram</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="cKind">发的是哪封</label>
+      <select id="cKind">
+        <option value="first">第一封</option>
+        <option value="followup">跟进信</option>
+      </select>
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-outline" type="button" id="cCancel">取消</button>
+      <button class="btn btn-green" type="button" id="cConfirm">确认记下</button>
+    </div>
+  </div>
+</div>
+
+<!-- 改密码弹窗 -->
+<div class="modal-mask" id="pwdModal" role="dialog" aria-modal="true" aria-label="改密码">
+  <div class="modal">
+    <h3>改密码</h3>
+    <div class="err" id="pwdErr"></div>
+    <div class="field">
+      <label for="oldPwd">旧密码</label>
+      <input type="password" id="oldPwd" autocomplete="current-password" placeholder="输入现在的密码">
+    </div>
+    <div class="field">
+      <label for="newPwd">新密码</label>
+      <input type="password" id="newPwd" autocomplete="new-password" placeholder="至少 8 位">
+    </div>
+    <div class="field">
+      <label for="newPwd2">确认新密码</label>
+      <input type="password" id="newPwd2" autocomplete="new-password" placeholder="再输一遍新密码">
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-outline" type="button" id="pwdCancel">取消</button>
+      <button class="btn btn-green" type="button" id="pwdConfirm">确认修改</button>
+    </div>
+  </div>
+</div>
+
+<!-- 编辑消息弹窗 -->
+<div class="modal-mask" id="editModal" role="dialog" aria-modal="true" aria-label="编辑消息">
+  <div class="modal" style="max-width:560px">
+    <h3 id="editModalTitle">编辑消息</h3>
+    <p class="sync-line" style="margin:0 0 12px">改中文，外语版跟着变。翻译没连上时会明确告诉你，外语版不会乱改。</p>
+    <div id="editFields"></div>
+    <div class="err" id="editErr"></div>
+    <div class="modal-btns">
+      <button class="btn btn-outline" type="button" id="editCancel">取消</button>
+      <button class="btn btn-green" type="button" id="editSave">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- 导入聊天记录弹窗 -->
+<div class="modal-mask" id="importModal" role="dialog" aria-modal="true" aria-label="导入聊天记录">
+  <div class="modal" style="max-width:560px">
+    <h3 id="importModalTitle">导入聊天记录</h3>
+    <p class="sync-line" style="margin:0 0 12px">只有不会回的时候才用这个。客户没回只点「已联系」就行，不用发记录；客户回了平时按卡片上助手建议直接回；只有不会回的时候，才把客户那句话发进来。助手看不到你手机里的 WhatsApp / Telegram，没有自动抓取的办法，想让助手帮忙总得发一次。</p>
+    <div class="field">
+      <label for="impPaste">直接粘贴聊天文字（手机上最方便）</label>
+      <textarea id="impPaste" class="note-area" style="min-height:180px" placeholder="粘贴聊天文字，每行一条，例如：18:00 王烁杉：你好……"></textarea>
+    </div>
+    <div class="field">
+      <label for="impChannel">这是在哪个渠道聊的</label>
+      <select id="impChannel" style="width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fffdf8;min-height:44px">
+        <option value="whatsapp">WhatsApp</option>
+        <option value="telegram">Telegram</option>
+        <option value="email">邮件</option>
+      </select>
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-outline" type="button" id="impCancel">取消</button>
+      <button class="btn btn-green" type="button" id="impQuickSend">发进来</button>
+    </div>
+    <details class="other-ways">
+      <summary>其他方式：上传文件 / 转发说明</summary>
+      <div class="field" style="margin-top:10px">
+        <label for="impFile">上传文件（WhatsApp 导出的 .txt，Telegram 桌面端导出的 .json）</label>
+        <input type="file" id="impFile" accept=".txt,.json" style="width:100%">
+      </div>
+      <div class="field">
+        <label for="impSource">记录来源</label>
+        <select id="impSource" style="width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fffdf8;min-height:44px">
+          <option value="whatsapp">WhatsApp 导出</option>
+          <option value="telegram">Telegram 导出/复制</option>
+          <option value="email">邮件正文</option>
+          <option value="paste">粘贴的文字</option>
+        </select>
+      </div>
+      <div class="modal-btns">
+        <button class="btn btn-outline" type="button" id="impParse">解析看看</button>
+        <button class="btn btn-green" type="button" id="impConfirm">确认导入</button>
+      </div>
+      <p class="sync-line" style="margin:12px 0 0">转发给王烁杉、再由他转给助手也行；截图直接发给助手，不用上传到网站。语音、图片导进来只有文字部分能分析。</p>
+    </details>
+    <div id="impPreview"></div>
+    <div class="err" id="impErr"></div>
+  </div>
+</div>
+
+<!-- 客户回了提醒弹窗 -->
+<div class="modal-mask" id="replyModal" role="dialog" aria-modal="true" aria-label="客户回了">
+  <div class="modal" style="max-width:560px">
+    <h3>客户回了</h3>
+    <p class="sync-line" style="margin:0 0 12px">今天刚回的客户，点进去看卡片，按助手建议回。</p>
+    <div id="replyList"></div>
+    <div class="modal-btns">
+      <button class="btn btn-green" type="button" id="replyClose">知道了</button>
+    </div>
+  </div>
+</div>
+
+<!-- 报价弹窗 -->
+<div class="modal-mask" id="quoteModal" role="dialog" aria-modal="true" aria-label="报价">
+  <div class="modal" style="max-width:560px">
+    <h3 id="quoteModalTitle">报价</h3>
+    <p class="sync-line" style="margin:0 0 4px"><b>规则：</b>价目表上的品种按价目表报；价目表上没有的品种自己估一个报，那行会打上「估价」。</p>
+    <p class="sync-line" style="margin:0 0 12px">报价有效期 15 天（到 <b id="quoteExpiry"></b>）。估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。</p>
+    <div id="quoteRows"></div>
+    <div class="sync-line" style="font-size:16px;margin:6px 0 0">总价：<b id="quoteTotal">$0.00</b></div>
+    <div class="err" id="quoteErr"></div>
+    <div class="modal-btns">
+      <button class="btn btn-outline" type="button" id="quoteCancel">取消</button>
+      <button class="btn btn-outline" type="button" id="quoteSave">保存草稿</button>
+      <button class="btn btn-green" type="button" id="quoteSend">发出报价</button>
+    </div>
+  </div>
+</div>
+
+<!-- 选一条线索发聊天记录 -->
+<div class="modal-mask" id="pickLeadModal" role="dialog" aria-modal="true" aria-label="选一条线索">
+  <div class="modal">
+    <h3>发聊天记录 · 先选哪家客户</h3>
+    <div class="field">
+      <label for="pickLeadSel">客户</label>
+      <select id="pickLeadSel" style="width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fffdf8;min-height:44px"></select>
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-outline" type="button" id="pickLeadCancel">取消</button>
+      <button class="btn btn-green" type="button" id="pickLeadGo">打开导入框</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+/* ================= 配置 ================= */
+var SUPABASE_URL = "https://xwiqbiktepxszawtjxmx.supabase.co";
+var ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3aXFiaWt0ZXB4c3phd3RqeG14Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwODIyNDUsImV4cCI6MjExMDY1ODI0NX0.kYpSVn6liv2_QTc0zJ_Lc7uKR8UZlioDcOIo5lEhmkk";
+var REST = SUPABASE_URL + "/rest/v1/";
+var TEAM = ["艾孜买提","叶尔扎提","阿仁","陈阳","于傲雪","王思甜","王烁杉"];
+var STATUS_ZH = { new:"未处理", focus:"重点跟进", contacted:"已联系", ignored:"没兴趣", deal:"已成交" };
+var REGIONS = ["中亚","中东","东南亚","俄罗斯及周边","南亚","东亚","南美","大洋洲"];
+var TYPE_ZH = { inquiry:"求购", demand:"求购", purchase:"求购", tender:"招标", expo:"展会", exhibition:"展会", fair:"展会", import:"进口数据", import_data:"进口数据", trade:"进口数据" };
+
+/* 国家 -> 主城市时区（大概） */
+var TZ = {
+ "哈萨克斯坦":"Asia/Almaty","哈萨克":"Asia/Almaty","Kazakhstan":"Asia/Almaty",
+ "乌兹别克斯坦":"Asia/Tashkent","Uzbekistan":"Asia/Tashkent",
+ "吉尔吉斯斯坦":"Asia/Bishkek","Kyrgyzstan":"Asia/Bishkek",
+ "塔吉克斯坦":"Asia/Dushanbe","Tajikistan":"Asia/Dushanbe",
+ "土库曼斯坦":"Asia/Ashgabat","Turkmenistan":"Asia/Ashgabat",
+ "俄罗斯":"Europe/Moscow","Russia":"Europe/Moscow",
+ "白俄罗斯":"Europe/Minsk","Belarus":"Europe/Minsk",
+ "乌克兰":"Europe/Kyiv","Ukraine":"Europe/Kyiv",
+ "格鲁吉亚":"Asia/Tbilisi","Georgia":"Asia/Tbilisi",
+ "阿塞拜疆":"Asia/Baku","Azerbaijan":"Asia/Baku",
+ "亚美尼亚":"Asia/Yerevan","Armenia":"Asia/Yerevan",
+ "蒙古":"Asia/Ulaanbaatar","Mongolia":"Asia/Ulaanbaatar",
+ "阿联酋":"Asia/Dubai","UAE":"Asia/Dubai","阿拉伯联合酋长国":"Asia/Dubai",
+ "沙特阿拉伯":"Asia/Riyadh","沙特":"Asia/Riyadh","Saudi Arabia":"Asia/Riyadh",
+ "卡塔尔":"Asia/Qatar","Qatar":"Asia/Qatar",
+ "科威特":"Asia/Kuwait","Kuwait":"Asia/Kuwait",
+ "阿曼":"Asia/Muscat","Oman":"Asia/Muscat",
+ "伊朗":"Asia/Tehran","Iran":"Asia/Tehran",
+ "伊拉克":"Asia/Baghdad","Iraq":"Asia/Baghdad",
+ "土耳其":"Europe/Istanbul","Turkey":"Europe/Istanbul",
+ "以色列":"Asia/Jerusalem","Israel":"Asia/Jerusalem",
+ "越南":"Asia/Ho_Chi_Minh","Vietnam":"Asia/Ho_Chi_Minh",
+ "泰国":"Asia/Bangkok","Thailand":"Asia/Bangkok",
+ "马来西亚":"Asia/Kuala_Lumpur","Malaysia":"Asia/Kuala_Lumpur",
+ "印度尼西亚":"Asia/Jakarta","印尼":"Asia/Jakarta","Indonesia":"Asia/Jakarta",
+ "菲律宾":"Asia/Manila","Philippines":"Asia/Manila",
+ "新加坡":"Asia/Singapore","Singapore":"Asia/Singapore",
+ "柬埔寨":"Asia/Phnom_Penh","Cambodia":"Asia/Phnom_Penh",
+ "缅甸":"Asia/Yangon","Myanmar":"Asia/Yangon",
+ "老挝":"Asia/Vientiane","Laos":"Asia/Vientiane",
+ "印度":"Asia/Kolkata","India":"Asia/Kolkata",
+ "巴基斯坦":"Asia/Karachi","Pakistan":"Asia/Karachi",
+ "孟加拉国":"Asia/Dhaka","孟加拉":"Asia/Dhaka","Bangladesh":"Asia/Dhaka",
+ "尼泊尔":"Asia/Kathmandu","Nepal":"Asia/Kathmandu",
+ "斯里兰卡":"Asia/Colombo","Sri Lanka":"Asia/Colombo",
+ "日本":"Asia/Tokyo","Japan":"Asia/Tokyo",
+ "韩国":"Asia/Seoul","Korea":"Asia/Seoul",
+ "中国":"Asia/Shanghai","China":"Asia/Shanghai",
+ "巴西":"America/Sao_Paulo","Brazil":"America/Sao_Paulo",
+ "智利":"America/Santiago","Chile":"America/Santiago",
+ "秘鲁":"America/Lima","Peru":"America/Lima",
+ "哥伦比亚":"America/Bogota","Colombia":"America/Bogota",
+ "阿根廷":"America/Argentina/Buenos_Aires","Argentina":"America/Argentina/Buenos_Aires",
+ "墨西哥":"America/Mexico_City","Mexico":"America/Mexico_City",
+ "澳大利亚":"Australia/Sydney","Australia":"Australia/Sydney",
+ "新西兰":"Pacific/Auckland","New Zealand":"Pacific/Auckland",
+ "埃及":"Africa/Cairo","Egypt":"Africa/Cairo",
+ "摩洛哥":"Africa/Casablanca","Morocco":"Africa/Casablanca",
+ "南非":"Africa/Johannesburg","South Africa":"Africa/Johannesburg",
+ "肯尼亚":"Africa/Nairobi","Kenya":"Africa/Nairobi",
+ "埃塞俄比亚":"Africa/Addis_Ababa","Ethiopia":"Africa/Addis_Ababa",
+ "波兰":"Europe/Warsaw","Poland":"Europe/Warsaw",
+ "德国":"Europe/Berlin","Germany":"Europe/Berlin",
+ "荷兰":"Europe/Amsterdam","Netherlands":"Europe/Amsterdam",
+ "法国":"Europe/Paris","France":"Europe/Paris",
+ "英国":"Europe/London","UK":"Europe/London",
+ "西班牙":"Europe/Madrid","Spain":"Europe/Madrid",
+ "意大利":"Europe/Rome","Italy":"Europe/Rome",
+ "美国":"America/New_York","USA":"America/New_York",
+ "加拿大":"America/Toronto","Canada":"America/Toronto"
+};
+
+/* ================= 状态 ================= */
+var state = {
+  token: sessionStorage.getItem("leads_token") || "",
+  user: null,
+  myProfile: null,
+  myName: "",
+  isAdmin: false,
+  profiles: [],
+  leads: [],
+  filtered: [],
+  pendingContactLead: null,
+  suggByLead: {},
+  profByLead: {},
+  chatByLead: {},
+  ceByLead: {},
+  reByLead: {},
+  adminWaLink: ""
+};
+try { state.user = JSON.parse(sessionStorage.getItem("leads_user") || "null"); } catch(e){ state.user = null; }
+
+/* ================= 工具 ================= */
+function $(id){ return document.getElementById(id); }
+function esc(s){ if(s===null||s===undefined) return ""; return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+function toast(msg, isErr){
+  var t = $("toast"); t.textContent = msg; t.className = "toast show" + (isErr ? " err-t" : "");
+  setTimeout(function(){ t.className = "toast"; }, 3200);
+}
+function fmtTime(iso){
+  if(!iso) return "";
+  var d = new Date(iso); if(isNaN(d.getTime())) return String(iso);
+  function p(n){ return (n<10?"0":"")+n; }
+  return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes());
+}
+function nowStamp(){
+  var d = new Date(); function p(n){ return (n<10?"0":"")+n; }
+  return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes());
+}
+function starStr(n){
+  n = parseInt(n,10); if(isNaN(n)) n = 0; if(n<0) n=0; if(n>5) n=5;
+  var s = "";
+  for(var i=0;i<5;i++) s += i<n ? "★" : '<span class="off">★</span>';
+  return s;
+}
+function typeLabel(lead){
+  var t = lead.lead_type || "";
+  if(TYPE_ZH[t]) return TYPE_ZH[t];
+  if(t) return t;
+  return "";
+}
+function localTimeInfo(country){
+  if(!country) return null;
+  var tz = TZ[String(country).trim()];
+  if(!tz){
+    for(var k in TZ){ if(String(country).indexOf(k)>=0 || k.indexOf(String(country).trim())>=0){ tz = TZ[k]; break; } }
+  }
+  if(!tz) return null;
+  try{
+    var parts = new Intl.DateTimeFormat("en-GB",{ timeZone:tz, hour:"2-digit", minute:"2-digit", hour12:false }).formatToParts(new Date());
+    var hh="", mm="";
+    for(var i=0;i<parts.length;i++){ if(parts[i].type==="hour") hh=parts[i].value; if(parts[i].type==="minute") mm=parts[i].value; }
+    var hour = parseInt(hh,10);
+    return { text: hh+":"+mm, hour: hour, night: (hour>=22 || hour<7) };
+  }catch(e){ return null; }
+}
+function waLink(base, text){
+  if(!base) return "";
+  var sep = base.indexOf("?")>=0 ? "&" : "?";
+  return base + sep + "text=" + encodeURIComponent(text || "");
+}
+function tgUser(raw){
+  if(!raw) return "";
+  var u = String(raw).trim();
+  if(u.indexOf("t.me/")>=0) u = u.split("t.me/")[1];
+  u = u.replace(/^@+/,"").split("/")[0].split("?")[0].trim();
+  return u;
+}
+
+/* ================= Supabase fetch ================= */
+function api(path, opts){
+  opts = opts || {};
+  var headers = { "apikey": ANON_KEY, "Authorization": "Bearer " + state.token, "Content-Type": "application/json" };
+  if(opts.headers){ for(var k in opts.headers) headers[k] = opts.headers[k]; }
+  return fetch(REST + path, { method: opts.method || "GET", headers: headers, body: opts.body ? JSON.stringify(opts.body) : undefined })
+    .then(function(res){
+      if(res.status === 401){ doLogout(true); throw new Error("登录已失效，请重新登录"); }
+      if(!res.ok){ return res.text().then(function(t){ throw new Error("请求失败（"+res.status+"）"+(t?": "+t.slice(0,160):"")); }); }
+      if(res.status === 204) return null;
+      return res.text().then(function(t){ return t ? JSON.parse(t) : null; });
+    });
+}
+function logActivity(leadId, action, detail){
+  return api("lead_activity", { method:"POST", headers:{ "Prefer":"return=minimal" },
+    body:{ lead_id: leadId, actor: state.myName || "", action: action, detail: detail || "" } }).catch(function(){});
+}
+
+/* ================= 登录 / 退出 ================= */
+$("loginForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var email = $("email").value.trim(), pw = $("password").value;
+  var btn = $("loginBtn"); btn.disabled = true; btn.textContent = "登录中…";
+  $("loginErr").className = "err";
+  $("loginOk").className = "ok";
+  fetch(SUPABASE_URL + "/auth/v1/token?grant_type=password", {
+    method: "POST",
+    headers: { "apikey": ANON_KEY, "Content-Type": "application/json" },
+    body: JSON.stringify({ email: email, password: pw })
+  }).then(function(res){
+    return res.json().then(function(data){ return { ok: res.ok, data: data }; });
+  }).then(function(r){
+    if(!r.ok || !r.data || !r.data.access_token) throw new Error("bad");
+    state.token = r.data.access_token;
+    state.user = r.data.user || null;
+    sessionStorage.setItem("leads_token", state.token);
+    sessionStorage.setItem("leads_user", JSON.stringify(state.user));
+    if(r.data.refresh_token) sessionStorage.setItem("leads_refresh", r.data.refresh_token);
+    enterApp();
+  }).catch(function(){
+    $("loginErr").className = "err show";
+  }).then(function(){
+    btn.disabled = false; btn.textContent = "登录";
+  });
+});
+function doLogout(silent){
+  state.token = ""; state.user = null;
+  sessionStorage.removeItem("leads_token"); sessionStorage.removeItem("leads_user"); sessionStorage.removeItem("leads_refresh");
+  $("appView").classList.add("hidden");
+  $("loginView").classList.remove("hidden");
+  if(silent) toast("登录已失效，请重新登录", true);
+}
+$("logoutBtn").addEventListener("click", function(){ doLogout(false); });
+
+/* ================= 改密码 ================= */
+function pwdShowErr(msg){
+  var e = $("pwdErr"); e.textContent = msg; e.className = "err show";
+}
+function pwdHideErr(){ var e = $("pwdErr"); e.textContent = ""; e.className = "err"; }
+$("pwdBtn").addEventListener("click", function(){
+  $("oldPwd").value = ""; $("newPwd").value = ""; $("newPwd2").value = "";
+  pwdHideErr();
+  $("pwdModal").classList.add("open");
+});
+$("pwdCancel").addEventListener("click", function(){ $("pwdModal").classList.remove("open"); });
+$("pwdConfirm").addEventListener("click", function(){
+  var oldPw = $("oldPwd").value;
+  var newPw = $("newPwd").value;
+  var newPw2 = $("newPwd2").value;
+  pwdHideErr();
+  if(newPw.length < 8){ pwdShowErr("新密码至少 8 位"); return; }
+  if(newPw !== newPw2){ pwdShowErr("两次输入的新密码不一致"); return; }
+  var email = state.user && state.user.email ? state.user.email : "";
+  if(!email){ pwdShowErr("修改失败，请稍后重试。"); return; }
+  var btn = $("pwdConfirm"); btn.disabled = true; btn.textContent = "修改中…";
+  fetch(SUPABASE_URL + "/auth/v1/token?grant_type=password", {
+    method: "POST",
+    headers: { "apikey": ANON_KEY, "Content-Type": "application/json" },
+    body: JSON.stringify({ email: email, password: oldPw })
+  }).then(function(res){
+    return res.json().then(function(data){ return { ok: res.ok, data: data }; }).catch(function(){ return { ok: res.ok, data: null }; });
+  }).then(function(r){
+    if(!r.ok || !r.data || !r.data.access_token){
+      pwdShowErr("旧密码不对，请检查后重试。");
+      btn.disabled = false; btn.textContent = "确认修改";
+      return null;
+    }
+    var freshToken = r.data.access_token;
+    return fetch(SUPABASE_URL + "/auth/v1/user", {
+      method: "PUT",
+      headers: { "apikey": ANON_KEY, "Authorization": "Bearer " + freshToken, "Content-Type": "application/json" },
+      body: JSON.stringify({ password: newPw })
+    }).then(function(res){
+      if(!res.ok) throw new Error("update failed");
+      return res.json().catch(function(){ return {}; });
+    }).then(function(){
+      $("pwdModal").classList.remove("open");
+      btn.disabled = false; btn.textContent = "确认修改";
+      doLogout(false);
+      $("email").value = email;
+      $("password").value = "";
+      var okBox = $("loginOk"); okBox.textContent = "密码已改好，请用新密码重新登录。"; okBox.className = "ok show";
+      toast("密码已改好，请用新密码重新登录。");
+    }).catch(function(){
+      pwdShowErr("修改失败，请稍后重试。");
+      btn.disabled = false; btn.textContent = "确认修改";
+    });
+  }).catch(function(){
+    pwdShowErr("修改失败，请稍后重试。");
+    btn.disabled = false; btn.textContent = "确认修改";
+  });
+});
+
+/* ================= 进入应用 ================= */
+function enterApp(){
+  $("loginView").classList.add("hidden");
+  $("appView").classList.remove("hidden");
+  loadAll();
+}
+function loadAll(){
+  loadProfiles().then(function(){ renderWho(); renderTeam(); renderMyWa(); buildAssigneeFilter(); return loadLeads(); }).then(function(){ loadSync(); loadTeamData(); loadEvening(); });
+}
+function loadProfiles(){
+  return api("profiles?select=*&order=created_at.asc").then(function(rows){
+    state.profiles = rows || [];
+    state.myProfile = null;
+    if(state.user && state.user.id){
+      for(var i=0;i<state.profiles.length;i++){ if(state.profiles[i].id === state.user.id){ state.myProfile = state.profiles[i]; break; } }
+    }
+    if(state.myProfile){
+      state.myName = state.myProfile.name || "";
+      state.isAdmin = state.myProfile.role === "admin" || state.myName === "王烁杉";
+    } else {
+      state.myName = ""; state.isAdmin = false;
+    }
+    var admin = null;
+    for(var i=0;i<state.profiles.length;i++){ if(state.profiles[i].name === "王烁杉"){ admin = state.profiles[i]; break; } }
+    if(admin && admin.whatsapp){
+      var digits = String(admin.whatsapp).replace(/\D/g, "");
+      if(digits) state.adminWaLink = "https://wa.me/" + digits;
+    }
+  }).catch(function(){ state.profiles = []; state.myProfile = null; });
+}
+function renderWho(){
+  var label = state.myName ? state.myName : (state.user ? state.user.email : "");
+  $("whoLine").innerHTML = "已登录：<span></span>";
+  $("whoLine").querySelector("span").textContent = label + (state.isAdmin ? "（管理员，看全部）" : "");
+  $("headSub").textContent = state.myName
+    ? (state.isAdmin ? "你能看到全队 7 个人的线索。" : "默认只看分给你的客户，用上面的筛选可以切换。")
+    : "还没有找到你的个人档案，名单和默认筛选可能不完整，请联系王烁杉确认账号。";
+}
+function renderTeam(){
+  var byName = {};
+  state.profiles.forEach(function(p){ if(p && p.name) byName[p.name] = p; });
+  $("teamBox").innerHTML = TEAM.map(function(name){
+    var p = byName[name];
+    var wa = p && p.whatsapp ? p.whatsapp : "未填";
+    return '<div class="team-item"><span class="nm">'+esc(name)+(name==="王烁杉"?' <span style="color:var(--gold);font-size:12px">管理员</span>':"")+'</span><span class="wa">WhatsApp：'+esc(wa)+"</span></div>";
+  }).join("");
+}
+function renderMyWa(){
+  var box = $("myWaBox");
+  if(!state.myProfile){
+    box.textContent = "你的个人档案还没建好，暂时填不了。档案建好后这里就能填自己的 WhatsApp 号。";
+    return;
+  }
+  box.innerHTML = '<div class="mywa-row"><input type="text" id="myWaInput" placeholder="例如 +86 138…"><button class="btn btn-green btn-sm" id="myWaSave" type="button">保存</button></div>';
+  $("myWaInput").value = state.myProfile.whatsapp || "";
+  $("myWaSave").addEventListener("click", function(){
+    var v = $("myWaInput").value.trim();
+    api("profiles?id=eq." + encodeURIComponent(state.myProfile.id), { method:"PATCH", headers:{ "Prefer":"return=minimal" }, body:{ whatsapp: v } })
+      .then(function(){ state.myProfile.whatsapp = v; renderTeam(); toast("已保存"); })
+      .catch(function(e){ toast(e.message || "保存失败", true); });
+  });
+}
+function loadSync(){
+  api("sync_state?select=*").then(function(rows){
+    var box = $("syncBox");
+    if(!rows || !rows.length){ box.textContent = "暂无同步记录"; return; }
+    var map = {}; rows.forEach(function(r){ map[r.key] = r.value; });
+    var pushRun = fmtRel(map.push_last_run);
+    var pushNew = map.push_new_count;
+    if(pushNew === "" || pushNew === undefined || pushNew === null) pushNew = "0";
+    var total = map.push_last_space_total || state.leads.length || "";
+    var wbRun = fmtRel(map.wb_last_run);
+    var err = (map.wb_last_error || "").trim();
+    var status = err ? "出错了：" + err : "正常";
+    box.innerHTML = "上次推新线索：<b>" + esc(pushRun) + "</b><br>"
+      + "新线索：<b>" + esc(pushNew) + "</b> 条<br>"
+      + "线索总数：<b>" + esc(total) + "</b> 条<br>"
+      + "上次回写：<b>" + esc(wbRun) + "</b> · " + esc(status);
+  }).catch(function(){ $("syncBox").textContent = "暂无同步记录"; });
+}
+
+/* ================= 线索 ================= */
+function loadLeads(){
+  $("listBox").innerHTML = '<div class="loading">正在加载线索…</div>';
+  return api("leads?select=*&order=found_at.desc.nullslast,created_at.desc&limit=1000").then(function(rows){
+    state.leads = rows || [];
+    applyFilters();
+  }).catch(function(e){
+    $("listBox").innerHTML = '<div class="empty">线索加载失败：'+esc(e.message)+'<br><br><button class="btn btn-outline" onclick="location.reload()">重新加载</button></div>';
+  });
+}
+function buildAssigneeFilter(){
+  var sel = $("fAssignee");
+  var cur = sel.value;
+  var opts = ['<option value="">全部负责人</option>'];
+  TEAM.forEach(function(n){ opts.push('<option value="'+esc(n)+'">'+esc(n)+"</option>"); });
+  var extra = {};
+  state.leads.forEach(function(l){ if(l.assignee && TEAM.indexOf(l.assignee)<0) extra[l.assignee]=1; });
+  Object.keys(extra).forEach(function(n){ opts.push('<option value="'+esc(n)+'">'+esc(n)+"</option>"); });
+  sel.innerHTML = opts.join("");
+  if(cur) sel.value = cur;
+  else if(!state.isAdmin && state.myName) sel.value = state.myName;
+  else sel.value = "";
+}
+function currentFilters(){
+  return { assignee: $("fAssignee").value, region: $("fRegion").value, status: $("fStatus").value, q: $("fSearch").value.trim().toLowerCase() };
+}
+function applyFilters(){
+  var f = currentFilters();
+  state.filtered = state.leads.filter(function(l){
+    if(f.assignee && l.assignee !== f.assignee) return false;
+    if(f.region){
+      if(f.region === "__other"){ if(REGIONS.indexOf(l.region)>=0) return false; }
+      else if(l.region !== f.region) return false;
+    }
+    if(f.status && l.status !== f.status) return false;
+    if(f.q){
+      var hay = [l.company,l.country,l.city,l.product,l.variety,l.title_zh,l.contact_name].join(" ").toLowerCase();
+      if(hay.indexOf(f.q)<0) return false;
+    }
+    return true;
+  });
+  $("countLine").textContent = "共 " + state.filtered.length + " 条（全部可见 " + state.leads.length + " 条）";
+  renderLeads();
+  renderTop5();
+  renderMorning();
+  renderWeekly();
+}
+["fAssignee","fRegion","fStatus"].forEach(function(id){ $(id).addEventListener("change", applyFilters); });
+$("fSearch").addEventListener("input", applyFilters);
+
+function renderLeads(){
+  var box = $("listBox");
+  if(!state.filtered.length){ box.innerHTML = '<div class="panel empty">这个筛选下暂时没有线索。</div>'; return; }
+  box.innerHTML = '<div class="cards">' + state.filtered.map(cardHtml).join("") + "</div>";
+  bindCards();
+}
+function msgBlock(title, text, links){
+  if(!text && !links.length) return "";
+  var h = '<div class="msg-block"><div class="msg-title">'+esc(title)+"</div>";
+  if(text) h += '<div class="msg-text">'+esc(text)+"</div>";
+  h += '<div class="msg-actions">';
+  links.forEach(function(L){ h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" href="'+esc(L.href)+'">'+esc(L.label)+"</a>"; });
+  if(text) h += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(text)+'">复制这封</button>';
+  h += "</div></div>";
+  return h;
+}
+function cardHtml(l){
+  var lt = localTimeInfo(l.country);
+  var tags = "";
+  var tl = typeLabel(l); if(tl) tags += '<span class="tag type">'+esc(tl)+"</span>";
+  if(l.subtype) tags += '<span class="tag">'+esc(l.subtype)+"</span>";
+  if(l.is_duplicate) tags += '<span class="tag dup">重复公司</span>';
+  if(l.social_platform) tags += '<span class="tag">平台：'+esc(l.social_platform)+"</span>";
+  if(l.source_name) tags += '<span class="tag">来源：'+esc(l.source_name)+"</span>";
+  if(lt) tags += '<span class="tag">当地 '+esc(lt.text)+" 大概</span>" + (lt.night ? '<span class="tag night">深夜，别这时候发</span>' : "");
+  if(l.has_replied) tags += '<span class="tag" style="background:var(--green-soft);color:var(--green);font-weight:600">客户已回复</span>';
+
+  var place = [l.country, l.city].filter(Boolean).join(" · ");
+  var prod = [l.product, l.variety].filter(Boolean).join(" · ");
+  var detail = "";
+  if(l.quantity) detail += "数量："+esc(l.quantity)+"　";
+  if(l.budget) detail += "预算："+esc(l.budget)+"　";
+  if(l.deadline) detail += "截止："+esc(l.deadline);
+  detail = detail.trim();
+
+  var contacts = "";
+  if(l.contact_name) contacts += "<div>联系人：<b>"+esc(l.contact_name)+"</b></div>";
+  if(l.phone) contacts += "<div>电话：<b>"+esc(l.phone)+"</b></div>";
+  if(l.email) contacts += '<div>邮箱：<a href="mailto:'+esc(l.email)+'">'+esc(l.email)+"</a></div>";
+  var tgu = tgUser(l.telegram);
+  if(l.telegram) contacts += "<div>Telegram："+esc(l.telegram)+(tgu ? '（<a target="_blank" rel="noopener" href="https://t.me/'+esc(tgu)+'">打开</a>）' : "")+"</div>";
+  if(l.source_url) contacts += '<div>来源链接：<a target="_blank" rel="noopener" href="'+esc(l.source_url)+'">打开来源</a>'+(l.source_date_text ? "（"+esc(l.source_date_text)+"）" : "")+"</div>";
+  if(contacts) contacts = '<div class="contact-box">'+contacts+"</div>";
+
+  var msgs = "";
+  if(l.whatsapp){
+    var links1 = [{ label:"WhatsApp 第一封", href: waLink(l.whatsapp, l.first_message) }];
+    if(l.whatsapp_backup) links1.push({ label:"备用号发第一封", href: waLink(l.whatsapp_backup, l.first_message) });
+    msgs += msgBlock("第一封（WhatsApp）", l.first_message || "", links1);
+    var links2 = [{ label:"WhatsApp 跟进信", href: waLink(l.whatsapp, l.followup_message) }];
+    if(l.whatsapp_backup) links2.push({ label:"备用号发跟进信", href: waLink(l.whatsapp_backup, l.followup_message) });
+    msgs += msgBlock("3 天跟进信（WhatsApp）", l.followup_message || "", links2);
+  }
+  if(tgu){
+    var tgLinks = [];
+    if(l.telegram_first_message) tgLinks.push({ label:"Telegram 第一封", href:"https://t.me/"+tgu+"?text="+encodeURIComponent(l.telegram_first_message) });
+    if(l.telegram_followup_message) tgLinks.push({ label:"Telegram 跟进信", href:"https://t.me/"+tgu+"?text="+encodeURIComponent(l.telegram_followup_message) });
+    var tgText = l.telegram_first_message || l.telegram_followup_message || "";
+    msgs += msgBlock("Telegram 消息", tgText, tgLinks);
+    if(l.telegram_first_message && l.telegram_followup_message && l.telegram_first_message !== tgText){
+      msgs += msgBlock("Telegram 跟进信原文", l.telegram_followup_message, []);
+    }
+  }
+
+  msgs += zhBlock(l);
+  var suggHtml = suggBlock(l);
+  var profHtml = profBlock(l);
+  var chatHtml = chatBlock(l);
+  var statusOpts = Object.keys(STATUS_ZH).map(function(k){
+    return '<option value="'+k+'"'+(l.status===k?" selected":"")+">"+STATUS_ZH[k]+"</option>";
+  }).join("");
+  var starOpts = "";
+  for(var s=0;s<=5;s++) starOpts += '<option value="'+s+'"'+(parseInt(l.stars,10)===s?" selected":"")+">"+s+" 星</option>";
+
+  return '<article class="lead" data-id="'+esc(l.id)+'">'
+    + '<div class="lead-top"><div><h3>'+esc(l.company || "（未填公司名）")+"</h3>"
+    + (l.title_zh ? '<p class="title-zh">'+esc(l.title_zh)+"</p>" : "")
+    + "</div><div class=\"stars\" aria-label=\"星级\">"+starStr(l.stars)+"</div></div>"
+    + (l.summary_zh ? '<p class="summary">'+esc(l.summary_zh)+"</p>" : "")
+    + '<div class="import-top"><button class="btn btn-green" type="button" data-act="importchat-top">发聊天记录</button><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按卡片上助手建议直接回，不会回才把客户那句话发进来。</span></div>'
+    + '<div class="meta">'
+    + (place ? '<span class="tag">'+esc(place)+"</span>" : "")
+    + (l.region ? '<span class="tag">'+esc(l.region)+"</span>" : "")
+    + '<span class="tag">状态：'+esc(STATUS_ZH[l.status] || l.status || "未处理")+"</span>"
+    + '<span class="tag">负责人：'+esc(l.assignee || "未分配")+"</span>"
+    + tags + "</div>"
+    + (prod ? '<div class="kv">产品：<b>'+esc(prod)+"</b></div>" : "")
+    + (detail ? '<div class="kv">'+detail+"</div>" : "")
+    + '<div class="kv">已跟进：<b>'+esc(l.owner_contact_count || 0)+"</b> 次 / 最多 5 次"+(l.found_at ? " · 找到于 "+esc(fmtTime(l.found_at)) : "")+"</div>"
+    + contacts + msgs + suggHtml + profHtml + chatHtml
+    + '<div class="next-step">下一步：<b>' + esc(nextStepText(l)) + '</b></div>'
+    + '<div class="actions">'
+    + '<button class="btn btn-primary btn-sm" type="button" data-act="contacted" style="width:auto">已联系</button>'
+    + '<button class="btn btn-outline btn-sm" type="button" data-act="replied">客户回了</button>'
+    + '<button class="btn btn-outline btn-sm" type="button" data-act="activity">流水账</button>'
+    + '<button class="btn btn-outline btn-sm" type="button" data-act="editmsg">编辑消息</button>'
+    + '<button class="btn btn-outline btn-sm" type="button" data-act="quote">报价</button>'
+    + '<button class="btn btn-outline btn-sm" type="button" data-act="deal">成交</button>'
+    + "</div>"
+    + '<div class="edit-row"><label>状态</label><select data-field="status">'+statusOpts+'</select>'
+    + '<label>星级</label><select data-field="stars">'+starOpts+"</select></div>"
+    + (l.notes ? '<div class="notes-old">'+esc(l.notes)+"</div>" : "")
+    + '<div class="activity" data-activity></div>'
+    + "</article>";
+}
+function findLead(id){ for(var i=0;i<state.leads.length;i++) if(String(state.leads[i].id)===String(id)) return state.leads[i]; return null; }
+function patchLead(l, patch){
+  return api("leads?id=eq." + encodeURIComponent(l.id), { method:"PATCH", headers:{ "Prefer":"return=minimal" }, body: patch })
+    .then(function(){ for(var k in patch) l[k] = patch[k]; });
+}
+function bindCards(){
+  var cards = document.querySelectorAll(".lead");
+  Array.prototype.forEach.call(cards, function(card){
+    var id = card.getAttribute("data-id");
+    var lead = findLead(id); if(!lead) return;
+    card.querySelectorAll("[data-copy]").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var text = decodeURIComponent(btn.getAttribute("data-copy"));
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(function(){ toast("已复制"); }, function(){ toast("复制失败，请长按文字复制", true); });
+        } else { toast("这个浏览器不支持一键复制，请长按文字复制", true); }
+      });
+    });
+    card.querySelector('[data-act="contacted"]').addEventListener("click", function(){
+      state.pendingContactLead = lead;
+      $("contactModalTitle").textContent = "记录已联系 · " + (lead.company || "");
+      $("contactModal").classList.add("open");
+    });
+    card.querySelector('[data-act="replied"]').addEventListener("click", function(){ markReplied(lead); });
+    card.querySelector('[data-act="activity"]').addEventListener("click", function(){
+      var box = card.querySelector("[data-activity]");
+      if(box.classList.contains("open")){ box.classList.remove("open"); return; }
+      box.innerHTML = "正在加载…"; box.classList.add("open");
+      api("lead_activity?select=*&lead_id=eq." + encodeURIComponent(lead.id) + "&order=created_at.desc&limit=100").then(function(rows){
+        if(!rows || !rows.length){ box.innerHTML = "还没有流水记录。"; return; }
+        box.innerHTML = rows.map(function(r){
+          return "<div><span class=\"t\">"+esc(fmtTime(r.created_at))+"</span> · <b>"+esc(r.actor || "")+"</b> · "+esc(r.action || "")+(r.detail ? " · "+esc(r.detail) : "")+"</div>";
+        }).join("");
+      }).catch(function(){ box.innerHTML = "流水加载失败。"; });
+    });
+    card.querySelector('[data-act="editmsg"]').addEventListener("click", function(){ openEditor(lead); });
+    card.querySelector('[data-act="importchat-top"]').addEventListener("click", function(){ openImport(lead); });
+    card.querySelector('[data-act="quote"]').addEventListener("click", function(){ openQuote(lead); });
+    card.querySelector('[data-act="deal"]').addEventListener("click", function(){ markDeal(lead); });
+    card.querySelectorAll("[data-sugg-send]").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var text = decodeURIComponent(btn.getAttribute("data-text"));
+        if(lead.whatsapp){ window.open(waLink(lead.whatsapp, text), "_blank"); }
+        else if(lead.email){ window.open("https://mail.google.com/mail/?view=cm&to="+encodeURIComponent(lead.email)+"&su="+encodeURIComponent("回复 - "+(lead.company||""))+"&body="+encodeURIComponent(text), "_blank"); }
+        else if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){ toast("已复制，粘贴到聊天里发出去"); }, function(){ toast("复制失败，请长按文字复制", true); }); }
+        else { toast("这家没留 WhatsApp 也没留邮箱，复制文字自己发", true); }
+      });
+    });
+    var stSel = card.querySelector('select[data-field="status"]');
+    stSel.addEventListener("change", function(){
+      var nv = stSel.value; var old = lead.status;
+      if(nv === old) return;
+      patchLead(lead, { status: nv }).then(function(){
+        return logActivity(lead.id, "status", "状态：" + (STATUS_ZH[old]||old||"") + " → " + (STATUS_ZH[nv]||nv));
+      }).then(function(){ toast("状态已改成「"+(STATUS_ZH[nv]||nv)+"」"); applyFilters(); }).catch(function(e){ toast(e.message, true); stSel.value = old; });
+    });
+    var starSel = card.querySelector('select[data-field="stars"]');
+    starSel.addEventListener("change", function(){
+      var nv = parseInt(starSel.value,10);
+      patchLead(lead, { stars: nv, stars_manual: 1 }).then(function(){
+        return logActivity(lead.id, "stars", "星级改为 " + nv + " 星");
+      }).then(function(){ toast("星级已更新"); applyFilters(); }).catch(function(e){ toast(e.message, true); });
+    });
+  });
+}
+
+/* ================= 已联系 / 客户回了 ================= */
+$("cCancel").addEventListener("click", function(){ $("contactModal").classList.remove("open"); state.pendingContactLead = null; });
+$("cConfirm").addEventListener("click", function(){
+  var lead = state.pendingContactLead; if(!lead) return;
+  var channel = $("cChannel").value, kind = $("cKind").value;
+  var btn = $("cConfirm"); btn.disabled = true; btn.textContent = "记录中…";
+  var newCount = (parseInt(lead.owner_contact_count,10) || 0) + 1;
+  var patch = { owner_contact_count: newCount, contact_count: (parseInt(lead.contact_count,10)||0) + 1 };
+  var autoIgnored = false;
+  if(newCount >= 5 && !lead.has_replied){ patch.status = "ignored"; autoIgnored = true; }
+  else if(lead.status === "new"){ patch.status = "contacted"; }
+  api("contact_events", { method:"POST", headers:{ "Prefer":"return=minimal" },
+    body:{ lead_id: lead.id, actor: state.myName || "", channel: channel, kind: kind, counts_toward_followup: true } })
+  .then(function(){ return patchLead(lead, patch); })
+  .then(function(){
+    var chZh = channel==="whatsapp"?"WhatsApp":(channel==="email"?"邮件":"Telegram");
+    return logActivity(lead.id, "contacted", "通过"+chZh+"发了"+(kind==="first"?"第一封":"跟进信")+"，第 "+newCount+" 次跟进"+(autoIgnored?"；满 5 次未回复，自动转「没兴趣」":""));
+  })
+  .then(function(){
+    $("contactModal").classList.remove("open"); state.pendingContactLead = null;
+    toast(autoIgnored ? "已记录。这家满 5 次没回，已自动转「没兴趣」" : "已记录，第 " + newCount + " 次跟进");
+    applyFilters();
+  })
+  .catch(function(e){ toast(e.message || "记录失败", true); })
+  .then(function(){ btn.disabled = false; btn.textContent = "确认记下"; });
+});
+function markReplied(lead){
+  var patch = { owner_contact_count: 0, has_replied: true, status: "contacted", replied_at: new Date().toISOString() };
+  api("reply_events", { method:"POST", headers:{ "Prefer":"return=minimal" }, body:{ lead_id: lead.id, actor: state.myName || "" } })
+  .then(function(){ return patchLead(lead, patch); })
+  .then(function(){ return logActivity(lead.id, "replied", "客户回复了，跟进次数清零，状态转「已联系」"); })
+  .then(function(){ toast("已记下：客户回了，跟进次数清零"); applyFilters(); })
+  .catch(function(e){ toast(e.message || "记录失败", true); });
+}
+
+/* ================= 导出 CSV ================= */
+$("exportBtn").addEventListener("click", function(){
+  var rows = state.filtered.slice();
+  rows.sort(function(a,b){
+    var aa = a.assignee||"", bb = b.assignee||"";
+    if(aa !== bb) return aa < bb ? -1 : 1;
+    return String(b.found_at||"") < String(a.found_at||"") ? -1 : 1;
+  });
+  var head = ["负责人","公司","国家","城市","地区","产品","品种","数量","预算","状态","星级","联系人","电话","邮箱","Telegram","来源","找到时间"];
+  function cell(v){ v = v===null||v===undefined?"":String(v); return '"' + v.replace(/"/g,'""') + '"'; }
+  var lines = [head.map(cell).join(",")];
+  rows.forEach(function(l){
+    lines.push([l.assignee,l.company,l.country,l.city,l.region,l.product,l.variety,l.quantity,l.budget,STATUS_ZH[l.status]||l.status,l.stars,l.contact_name,l.phone,l.email,l.telegram,l.source_name||l.source_url,fmtTime(l.found_at)].map(cell).join(","));
+  });
+  var blob = new Blob(["\ufeff" + lines.join("\r\n")], { type:"text/csv;charset=utf-8" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "线索导出_" + nowStamp().slice(0,10) + ".csv";
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 400);
+  toast("已导出 " + rows.length + " 条");
+});
+
+/* ================= 中文对照 / 建议 / 档案 / 聊天记录（2026-11-20） ================= */
+var MSG_FIELDS = [
+  { zh:"first_message_zh", foreign:"first_message", edited:"first_message_edited", label:"第一封" },
+  { zh:"followup_message_zh", foreign:"followup_message", edited:"followup_message_edited", label:"跟进信" },
+  { zh:"telegram_first_message_zh", foreign:"telegram_first_message", edited:"telegram_first_message_edited", label:"Telegram 第一封" },
+  { zh:"telegram_followup_message_zh", foreign:"telegram_followup_message", edited:"telegram_followup_message_edited", label:"Telegram 跟进信" }
+];
+var STAGE_ZH = { new:"新线索", contacted:"已联系", replied:"已回", negotiating:"谈判中", quoted:"已报价", deal:"已成交", ignored:"没兴趣" };
+function stageZh(s){ return STAGE_ZH[s] || s || "新线索"; }
+function zhBlock(l){
+  var items = MSG_FIELDS.map(function(f){ return [f.label + "中文", l[f.zh]]; }).filter(function(x){ return x[1]; });
+  if(!items.length) return "";
+  var h = '<div class="msg-block zh-block"><div class="msg-title">中文对照，只给你看，不发给客户</div>';
+  items.forEach(function(x){ h += '<div class="zh-item"><b>'+esc(x[0])+'：</b><span>'+esc(x[1])+"</span></div>"; });
+  return h + "</div>";
+}
+function suggBlock(l){
+  var list = (state.suggByLead && state.suggByLead[l.id]) || [];
+  var h = '<div class="suggest-box"><div class="msg-title">助手建议</div>';
+  if(!list.length){
+    h += '<div>助手还没写建议，等助手分析完这里会显示。</div>';
+  } else {
+    list.forEach(function(s, i){
+      h += '<div class="sugg-item">';
+      h += "<div>跟到哪一步：<b>"+esc(stageZh(s.stage))+"</b> · 客户回没回：<b>"+(s.has_replied ? "回了" : "还没回")+"</b></div>";
+      if(s.meaning) h += "<div>客户什么意思："+esc(s.meaning)+"</div>";
+      if(s.next_reply){
+        h += '<div class="next">建议'+(list.length>1 ? (i+1)+"：" : "怎么回：")+'<b>'+esc(s.next_reply)+"</b></div>";
+        h += '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-sugg-send data-text="'+encodeURIComponent(s.next_reply)+'">用这封发</button></div>';
+      }
+      if(s.updated_at) h += '<div class="tr-status">更新于 '+esc(fmtTime(s.updated_at))+"</div>";
+      h += "</div>";
+    });
+  }
+  return h + "</div>";
+}
+function profBlock(l){
+  var p = (state.profByLead && state.profByLead[l.id]) || null;
+  var chats = (state.chatByLead && state.chatByLead[l.id]) || [];
+  var h = '<details class="profile-box"><summary>客户档案</summary>';
+  if(!p){
+    h += '<div class="kv2">档案还没生成，导入一次聊天记录或联系一次后自动生成。</div>';
+  } else {
+    h += '<div class="kv2">公司：<b>'+esc(l.company || "")+"</b></div>";
+    h += '<div class="kv2">国家：'+esc([l.country, l.city].filter(Boolean).join(" · "))+"</div>";
+    h += '<div class="kv2">联系人：'+esc(l.contact_name || "—")+" · 电话："+esc(l.phone || "—")+"</div>";
+    h += '<div class="kv2">感兴趣的产品：'+esc([l.product, l.variety].filter(Boolean).join(" · ") || "—")+(l.quantity ? " · 数量："+esc(l.quantity) : "")+"</div>";
+    h += '<div class="kv2">报价情况：'+esc(p.quote_status || "还没报价")+(p.quote_amount ? " · "+esc(p.quote_amount) : "")+"</div>";
+    h += '<div class="kv2">当前阶段：<b>'+esc(stageZh(p.stage))+"</b></div>";
+    h += '<div class="kv2">下一步：'+esc(p.next_step || "—")+(p.next_step_at ? "（"+esc(fmtRel(p.next_step_at))+"）" : "")+"</div>";
+    if(p.summary) h += '<div class="kv2">'+esc(p.summary)+"</div>";
+    h += '<div class="kv2">沟通记录：聊天 '+chats.length+" 条 · 联系 "+esc(l.owner_contact_count || 0)+" 次 · "+(l.has_replied ? "客户回过" : "客户还没回")+"</div>";
+    h += '<div class="kv2">负责人：'+esc(l.assignee || "未分配")+"</div>";
+  }
+  return h + "</details>";
+}
+function chatBlock(l){
+  var chats = (state.chatByLead && state.chatByLead[l.id]) || [];
+  if(!chats.length) return "";
+  var show = chats.slice(-10);
+  var h = '<details class="chat-log"><summary>聊天记录（'+chats.length+" 条）</summary>";
+  show.forEach(function(m){
+    var who = m.speaker === "me" ? '<span class="who-me">我方</span>' : '<span class="who-cu">客户</span>';
+    var t = m.msg_time ? fmtTime(m.msg_time) : fmtTime(m.created_at);
+    h += '<div class="chat-line"><span class="ct">'+esc(t)+"</span> · "+who+(m.sender_name ? "（"+esc(m.sender_name)+"）" : "")+"<br>"+esc(m.body)+"</div>";
+  });
+  return h + "</details>";
+}
+
+/* ---------- 相对中文时间 ---------- */
+function fmtRel(iso){
+  if(!iso) return "还没";
+  var d = new Date(iso); if(isNaN(d.getTime())) return String(iso);
+  function parts(dt){
+    var pp = new Intl.DateTimeFormat("en-GB", { timeZone:"Asia/Shanghai", year:"numeric", month:"numeric", day:"numeric", hour:"2-digit", minute:"2-digit", hour12:false }).formatToParts(dt);
+    var o = {};
+    pp.forEach(function(x){ o[x.type] = x.value; });
+    return o;
+  }
+  var a = parts(d), b = parts(new Date());
+  function p2(n){ return (n < 10 ? "0" : "") + n; }
+  var hm = p2(parseInt(a.hour, 10) % 24) + ":" + a.minute;
+  var day = Date.UTC(parseInt(a.year, 10), parseInt(a.month, 10) - 1, parseInt(a.day, 10));
+  var today = Date.UTC(parseInt(b.year, 10), parseInt(b.month, 10) - 1, parseInt(b.day, 10));
+  var diff = Math.round((today - day) / 86400000);
+  if(diff === 0) return "今天 " + hm;
+  if(diff === 1) return (parseInt(a.hour, 10) >= 18 ? "昨晚 " : "昨天 ") + hm;
+  if(diff === 2) return "前天 " + hm;
+  return parseInt(a.month, 10) + "月" + parseInt(a.day, 10) + "日 " + hm;
+}
+
+/* ---------- 团队总览 ---------- */
+function loadTeamData(){
+  Promise.all([
+    api("contact_events?select=lead_id,created_at&order=created_at.desc&limit=2000").catch(function(){ return []; }),
+    api("reply_events?select=lead_id,created_at&order=created_at.desc&limit=2000").catch(function(){ return []; }),
+    api("assistant_suggestions?select=*&limit=1000").catch(function(){ return []; }),
+    api("client_profiles?select=*&limit=1000").catch(function(){ return []; }),
+    api("chat_messages?select=lead_id,speaker,sender_name,body,msg_time,created_at&order=msg_time.asc.nullslast,created_at.asc&limit=2000").catch(function(){ return []; })
+  ]).then(function(res){
+    var ce = res[0] || [], re = res[1] || [];
+    state.ceByLead = {}; ce.forEach(function(r){ (state.ceByLead[r.lead_id] = state.ceByLead[r.lead_id] || []).push(r); });
+    state.reByLead = {}; re.forEach(function(r){ (state.reByLead[r.lead_id] = state.reByLead[r.lead_id] || []).push(r); });
+    state.suggByLead = {}; (res[2] || []).forEach(function(r){ (state.suggByLead[r.lead_id] = state.suggByLead[r.lead_id] || []).push(r); });
+    state.profByLead = {}; (res[3] || []).forEach(function(r){ state.profByLead[r.lead_id] = r; });
+    state.chatByLead = {}; (res[4] || []).forEach(function(r){ (state.chatByLead[r.lead_id] = state.chatByLead[r.lead_id] || []).push(r); });
+    renderOverview();
+    renderWeekly();
+    checkReplyPopup();
+    applyFilters();
+  });
+}
+function renderOverview(){
+  var box = $("overviewBox"); if(!box) return;
+  var byPerson = {};
+  state.leads.forEach(function(l){
+    var name = l.assignee || "未分配";
+    var g = byPerson[name] || (byPerson[name] = { leads:0, contacts:0, replied:0, contacted:0, last:null, dueNow:0, nextDue:null });
+    g.leads++;
+    g.contacts += parseInt(l.owner_contact_count, 10) || 0;
+    if(l.has_replied) g.replied++;
+    if(l.status === "contacted") g.contacted++;
+    var times = [];
+    (state.ceByLead[l.id] || []).forEach(function(r){ if(r.created_at) times.push(new Date(r.created_at).getTime()); });
+    (state.reByLead[l.id] || []).forEach(function(r){ if(r.created_at) times.push(new Date(r.created_at).getTime()); });
+    var last = times.length ? Math.max.apply(null, times) : null;
+    if(last && (!g.last || last > g.last)) g.last = last;
+    if(l.status === "contacted" && !l.has_replied){
+      var due = last ? last + 3*86400000 : null;
+      if(!due || due <= Date.now()) g.dueNow++;
+      else if(!g.nextDue || due < g.nextDue) g.nextDue = due;
+    }
+  });
+  var names = Object.keys(byPerson);
+  if(!names.length){ box.textContent = "暂无数据"; return; }
+  names.sort(function(a, b){ if(a === "未分配") return 1; if(b === "未分配") return -1; return a < b ? -1 : 1; });
+  box.innerHTML = names.map(function(name){
+    var g = byPerson[name];
+    var lastTxt;
+    if(g.last) lastTxt = fmtRel(new Date(g.last).toISOString());
+    else if(g.contacts > 0) lastTxt = "建站前联系过（时间没记进来）";
+    else lastTxt = "还没联系过";
+    var nextTxt;
+    if(g.dueNow > 0) nextTxt = "今天要跟进 <b>" + g.dueNow + "</b> 家";
+    else if(g.nextDue) nextTxt = "下一家 " + fmtRel(new Date(g.nextDue).toISOString());
+    else nextTxt = "暂时没有要跟进的";
+    return '<div class="ov-item"><div class="nm">'+esc(name)+"</div>"
+      + '<div class="nums">联系次数：<b>'+g.contacts+"</b> 次 · 客户回了 <b>"+g.replied+"</b> 家 / 联系过 "+g.contacted+" 家</div>"
+      + '<div class="nums">最后联系：<b>'+esc(lastTxt)+"</b></div>"
+      + '<div class="nums">下一步：'+nextTxt+"</div></div>";
+  }).join("");
+}
+
+/* ================= 翻译（词典优先 + 免费接口，失败明确报错） ================= */
+/* 实测结论（2026-11-20）：本机直连出口被拦，curl 连 example.com 都超时，
+   所以两个免费接口在本机上都测不通；页面在用户手机浏览器里跑，接口能不能通
+   要看用户那边的网络。接口调不通时绝不乱翻，只报失败、保留原外语版。 */
+var TRANS_TIMEOUT_MS = 8000;
+function detectLang(text){
+  if(!text) return "en";
+  if(/[\u0400-\u04FF]/.test(text)) return "ru";
+  if(/[\u0600-\u06FF]/.test(text)) return "ar";
+  if(/[áéíóúñÁÉÍÓÚÑ¿¡]/.test(text)) return "es";
+  return "en";
+}
+var PRODUCT_DICT = {
+  ru: [["牡丹","пион"],["月季","роза"],["玫瑰","роза"],["蝴蝶兰","орхидея"],["多肉","суккулент"],["云杉","ель"],["松树","сосна"],["灌木","кустарник"],["果树","фруктовое дерево"],["盆栽花卉","цветы в горшках"],["观赏乔木","декоративное дерево"],["观赏苗木","декоративный посадочный материал"],["检疫证","фитосанитарный сертификат"],["产品目录","каталог продукции"]],
+  en: [["牡丹","peony"],["月季","rose"],["玫瑰","rose"],["蝴蝶兰","orchid"],["多肉","succulent"],["云杉","spruce"],["松树","pine"],["灌木","shrub"],["果树","fruit tree"],["盆栽花卉","potted flowers"],["观赏乔木","ornamental tree"],["观赏苗木","ornamental nursery stock"],["检疫证","phytosanitary certificate"],["产品目录","product catalog"]],
+  es: [["牡丹","peonia"],["月季","rosa"],["玫瑰","rosa"],["蝴蝶兰","orquídea"],["多肉","suculenta"],["云杉","abeto"],["松树","pino"],["灌木","arbusto"],["果树","árbol frutal"],["盆栽花卉","flores en maceta"],["观赏乔木","árbol ornamental"],["检疫证","certificado fitosanitario"],["产品目录","catálogo de productos"]],
+  ar: [["牡丹","الفاوانيا"],["月季","الورد"],["玫瑰","الورد"],["蝴蝶兰","السحلبية"],["多肉","النباتات العصارية"],["云杉","التنوب"],["松树","الصنوبر"],["灌木","الشجيرات"],["果树","أشجار الفاكهة"],["盆栽花卉","زهور في أصص"],["检疫证","الشهادة الصحية النباتية"],["产品目录","كتالوج المنتجات"]]
+};
+function applyDictFix(text, to){
+  var dict = PRODUCT_DICT[to]; if(!dict || !text) return text;
+  var out = text;
+  dict.forEach(function(pair){ out = out.split(pair[0]).join(pair[1]); });
+  return out;
+}
+function fetchWithTimeout(url, ms){
+  var ctrl = new AbortController();
+  var timer = setTimeout(function(){ ctrl.abort(); }, ms);
+  return fetch(url, { signal: ctrl.signal }).then(function(res){
+    clearTimeout(timer);
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    return res.json();
+  }).catch(function(e){ clearTimeout(timer); throw e; });
+}
+function translateViaGoogle(text, to){
+  var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=" + encodeURIComponent(to) + "&dt=t&q=" + encodeURIComponent(text);
+  return fetchWithTimeout(url, TRANS_TIMEOUT_MS).then(function(data){
+    if(!data || !data[0] || !data[0].length) throw new Error("empty");
+    var out = data[0].map(function(seg){ return seg[0] || ""; }).join("");
+    if(!out || /[\u4e00-\u9fff]/.test(out) && out === text) throw new Error("empty");
+    return out;
+  });
+}
+function translateViaMyMemory(text, to){
+  var url = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(text) + "&langpair=zh-CN|" + encodeURIComponent(to);
+  return fetchWithTimeout(url, TRANS_TIMEOUT_MS).then(function(data){
+    if(!data || !data.responseData || data.responseStatus !== 200) throw new Error("bad");
+    var out = data.responseData.translatedText || "";
+    if(!out || /MYMEMORY WARNING/i.test(out) || /QUERY LENGTH LIMIT/i.test(out)) throw new Error("bad");
+    return out;
+  });
+}
+function translateZh(text, to){
+  return translateViaGoogle(text, to).catch(function(){ return translateViaMyMemory(text, to); })
+    .then(function(out){ return applyDictFix(out, to); });
+}
+
+/* ================= 编辑消息 ================= */
+var editLead = null;
+var editTimers = {};
+function openEditor(lead){
+  editLead = lead;
+  $("editModalTitle").textContent = "编辑消息 · " + (lead.company || "");
+  $("editErr").className = "err";
+  var wrap = $("editFields");
+  wrap.innerHTML = MSG_FIELDS.map(function(f){
+    var zh = lead[f.zh] || "";
+    var fo = lead[f.foreign] || "";
+    return '<div class="edit-field"><label>'+esc(f.label)+'（中文）</label>'
+      + '<textarea data-zh="'+f.zh+'" data-foreign="'+f.foreign+'" data-edited="'+f.edited+'">'+esc(zh)+"</textarea>"
+      + '<label style="margin-top:6px">外语版（自动翻译生成，也可以直接改）</label>'
+      + '<textarea class="foreign" data-fo="'+f.foreign+'">'+esc(fo)+"</textarea>"
+      + '<div class="tr-status" data-st="'+f.foreign+'"></div></div>';
+  }).join("");
+  wrap.querySelectorAll("textarea[data-zh]").forEach(function(ta){
+    ta.addEventListener("input", function(){
+      var foKey = ta.getAttribute("data-foreign");
+      var stEl = wrap.querySelector('[data-st="'+foKey+'"]');
+      var foEl = wrap.querySelector('[data-fo="'+foKey+'"]');
+      if(editTimers[foKey]) clearTimeout(editTimers[foKey]);
+      if(stEl) stEl.textContent = "等一下，正在翻译…";
+      editTimers[foKey] = setTimeout(function(){
+        var zhText = ta.value.trim();
+        if(!zhText){ if(stEl) stEl.textContent = ""; return; }
+        var to = detectLang(foEl.value || lead[foKey] || "");
+        translateZh(zhText, to).then(function(out){
+          foEl.value = out;
+          if(stEl){ stEl.className = "tr-status"; stEl.textContent = "已翻译成外语版，保存后一键发送就用这版。"; }
+        }).catch(function(){
+          if(stEl){ stEl.className = "tr-status err"; stEl.textContent = "翻译没连上，外语版没改。请检查网络后点「重新翻译」，或者直接在外语框里改。"; }
+        });
+      }, 800);
+    });
+  });
+  wrap.querySelectorAll(".tr-status").forEach(function(st){
+    var btn = document.createElement("button");
+    btn.type = "button"; btn.className = "btn btn-outline btn-sm"; btn.textContent = "重新翻译";
+    btn.style.marginTop = "4px";
+    btn.addEventListener("click", function(){
+      var foKey = st.getAttribute("data-st");
+      var ta = wrap.querySelector('textarea[data-foreign="'+foKey+'"]');
+      var foEl = wrap.querySelector('[data-fo="'+foKey+'"]');
+      st.className = "tr-status"; st.textContent = "等一下，正在翻译…";
+      var to = detectLang(foEl.value || lead[foKey] || "");
+      translateZh(ta.value.trim(), to).then(function(out){
+        foEl.value = out; st.textContent = "已翻译成外语版，保存后一键发送就用这版。";
+      }).catch(function(){
+        st.className = "tr-status err"; st.textContent = "翻译没连上，外语版没改。请检查网络后重试，或者直接在外语框里改。";
+      });
+    });
+    st.parentNode.insertBefore(btn, st.nextSibling);
+  });
+  $("editModal").classList.add("open");
+}
+$("editCancel").addEventListener("click", function(){ $("editModal").classList.remove("open"); editLead = null; });
+$("editSave").addEventListener("click", function(){
+  var lead = editLead; if(!lead) return;
+  var wrap = $("editFields");
+  var patch = {};
+  var changed = false;
+  MSG_FIELDS.forEach(function(f){
+    var zhEl = wrap.querySelector('textarea[data-zh="'+f.zh+'"]');
+    var foEl = wrap.querySelector('textarea[data-fo="'+f.foreign+'"]');
+    var zhV = zhEl ? zhEl.value : (lead[f.zh] || "");
+    var foV = foEl ? foEl.value : (lead[f.foreign] || "");
+    if(zhV !== (lead[f.zh] || "") || foV !== (lead[f.foreign] || "")){
+      patch[f.zh] = zhV; patch[f.foreign] = foV; patch[f.edited] = 1; changed = true;
+    }
+  });
+  if(!changed){ $("editModal").classList.remove("open"); editLead = null; toast("没有改动"); return; }
+  var btn = $("editSave"); btn.disabled = true; btn.textContent = "保存中…";
+  patchLead(lead, patch).then(function(){
+    return logActivity(lead.id, "editmsg", "改了消息（中文对照和外语版一起改了）");
+  }).then(function(){
+    $("editModal").classList.remove("open"); editLead = null;
+    toast("已保存，发送链接用的就是改过的版本");
+    applyFilters();
+  }).catch(function(e){
+    var err = $("editErr"); err.textContent = e.message || "保存失败"; err.className = "err show";
+  }).then(function(){ btn.disabled = false; btn.textContent = "保存"; });
+});
+
+/* ================= 导入聊天记录 ================= */
+var importLead = null;
+var importParsed = [];
+function openImport(lead){
+  importLead = lead;
+  importParsed = [];
+  $("importModalTitle").textContent = "导入聊天记录 · " + (lead.company || "");
+  $("impFile").value = ""; $("impPaste").value = ""; $("impPreview").innerHTML = ""; $("impErr").className = "err";
+  $("importModal").classList.add("open");
+}
+$("impCancel").addEventListener("click", function(){ $("importModal").classList.remove("open"); importLead = null; importParsed = []; });
+function isMeName(name){
+  if(!name) return false;
+  var n = String(name).trim();
+  if(n === "我" || n === state.myName || n === "王烁杉") return true;
+  if(/^quinn/i.test(n)) return true;
+  return false;
+}
+function parseWhatsAppTxt(text){
+  var out = [];
+  var skippedMedia = 0;
+  var lines = String(text).split(/\r?\n/);
+  var re = /^\[?(\d{1,2})\/(\d{1,2})\/(\d{2,4}),?\s+(\d{1,2}):(\d{2})(?::(\d{2}))?\]?\s*(?:[-–—]\s*)?([^:：]+)[:：]\s*(.*)$/;
+  lines.forEach(function(line){
+    var m = line.match(re);
+    if(m){
+      var body = (m[8] || "").trim();
+      if(/<Media omitted>|<媒体已省略>|此消息已删除|This message was deleted/i.test(body)){ skippedMedia++; return; }
+      var y = parseInt(m[3], 10); if(y < 100) y += 2000;
+      var t = new Date(y, parseInt(m[2], 10) - 1, parseInt(m[1], 10), parseInt(m[4], 10), parseInt(m[5], 10));
+      var sender = (m[7] || "").trim();
+      out.push({ speaker: isMeName(sender) ? "me" : "customer", sender_name: sender, body: body, time: isNaN(t.getTime()) ? null : t.toISOString() });
+    } else if(out.length && line.trim()){
+      if(/<Media omitted>|<媒体已省略>/i.test(line)){ skippedMedia++; return; }
+      out[out.length - 1].body += "\n" + line.trim();
+    }
+  });
+  return { msgs: out, skippedMedia: skippedMedia };
+}
+function parseTelegramJson(text){
+  var obj = JSON.parse(text);
+  var arr = obj.messages || obj;
+  if(!Array.isArray(arr)) throw new Error("不是 Telegram 导出的 JSON");
+  var out = [];
+  arr.forEach(function(m){
+    if(!m || m.type === "service" || m.action) return;
+    var body = "";
+    if(typeof m.text === "string") body = m.text;
+    else if(Array.isArray(m.text)) body = m.text.map(function(p){ return typeof p === "string" ? p : (p.text || ""); }).join("");
+    body = (body || "").trim();
+    if(!body) return;
+    var t = null;
+    if(m.date){ var d = new Date(typeof m.date === "number" ? m.date * 1000 : m.date); if(!isNaN(d.getTime())) t = d.toISOString(); }
+    var sender = (m.from || "").trim();
+    out.push({ speaker: isMeName(sender) ? "me" : "customer", sender_name: sender, body: body, time: t });
+  });
+  return { msgs: out, skippedMedia: 0 };
+}
+function parsePasteText(text){
+  var out = [];
+  var lines = String(text).split(/\r?\n/);
+  var re = /^(?:(\d{1,2}):(\d{2})\s+)?([^:：]+)[:：]\s*(.*)$/;
+  lines.forEach(function(line){
+    var m = line.match(re);
+    if(m && (m[3] || "").trim()){
+      var sender = m[3].trim();
+      var body = (m[4] || "").trim();
+      if(!body) return;
+      var t = null;
+      if(m[1]){ var now = new Date(); t = new Date(now.getFullYear(), now.getMonth(), now.getDate(), parseInt(m[1], 10), parseInt(m[2], 10)).toISOString(); }
+      out.push({ speaker: (sender === "客户" ? "customer" : (isMeName(sender) ? "me" : "customer")), sender_name: sender, body: body, time: t });
+    } else if(out.length && line.trim()){
+      out[out.length - 1].body += "\n" + line.trim();
+    }
+  });
+  return { msgs: out, skippedMedia: 0 };
+}
+function renderImportPreview(){
+  var box = $("impPreview");
+  if(!importParsed.length){ box.innerHTML = ""; return; }
+  box.innerHTML = '<div style="font-weight:700;color:var(--green);margin-bottom:4px">解析出 ' + importParsed.length + ' 条，点一下可以改“我方/客户”：</div>'
+    + importParsed.map(function(m, i){
+        var tag = m.speaker === "me" ? "我方" : "客户";
+        return '<div class="imp-line" data-idx="'+i+'"><b>['+tag+"]</b> "+(m.sender_name ? esc(m.sender_name)+"：" : "")+esc(m.body)+"</div>";
+      }).join("");
+  box.querySelectorAll(".imp-line").forEach(function(el){
+    el.addEventListener("click", function(){
+      var i = parseInt(el.getAttribute("data-idx"), 10);
+      importParsed[i].speaker = importParsed[i].speaker === "me" ? "customer" : "me";
+      renderImportPreview();
+    });
+  });
+}
+$("impParse").addEventListener("click", function(){
+  var errEl = $("impErr"); errEl.className = "err";
+  var file = $("impFile").files && $("impFile").files[0];
+  var paste = $("impPaste").value.trim();
+  function done(res){
+    importParsed = res.msgs;
+    if(!importParsed.length){ errEl.textContent = "没解析出聊天内容，请检查文件或粘贴的文字格式。"; errEl.className = "err show"; return; }
+    renderImportPreview();
+    if(res.skippedMedia) toast("解析出 " + importParsed.length + " 条，跳过了 " + res.skippedMedia + " 条只有图片/语音的记录");
+    else toast("解析出 " + importParsed.length + " 条");
+  }
+  function fail(e){
+    errEl.textContent = "解析失败：" + (e.message || "文件格式不对"); errEl.className = "err show";
+  }
+  if(file){
+    var reader = new FileReader();
+    reader.onload = function(){
+      try{
+        var text = String(reader.result || "");
+        if(/\.json$/i.test(file.name)) done(parseTelegramJson(text));
+        else done(parseWhatsAppTxt(text));
+      }catch(e){ fail(e); }
+    };
+    reader.onerror = function(){ fail(new Error("文件读不出来")); };
+    reader.readAsText(file);
+  } else if(paste){
+    try{ done(parsePasteText(paste)); }catch(e){ fail(e); }
+  } else {
+    errEl.textContent = "先上传文件，或者粘贴聊天文字。"; errEl.className = "err show";
+  }
+});
+$("impConfirm").addEventListener("click", function(){
+  var lead = importLead; if(!lead) return;
+  var errEl = $("impErr"); errEl.className = "err";
+  if(!importParsed.length){ errEl.textContent = "先点「解析看看」，解析出内容再导入。"; errEl.className = "err show"; return; }
+  var channel = $("impChannel").value;
+  var source = $("impSource").value;
+  var btn = $("impConfirm"); btn.disabled = true; btn.textContent = "导入中…";
+  var rows = importParsed.map(function(m){
+    return { lead_id: lead.id, speaker: m.speaker, sender_name: m.sender_name || "", source: source, body: m.body, msg_time: m.time || null };
+  });
+  var lastMeIdx = -1;
+  importParsed.forEach(function(m, i){ if(m.speaker === "me") lastMeIdx = i; });
+  var replied = importParsed.some(function(m, i){ return m.speaker === "customer" && i > lastMeIdx; });
+  var lastTime = null;
+  importParsed.forEach(function(m){ if(m.time && (!lastTime || m.time > lastTime)) lastTime = m.time; });
+  var newCount = (parseInt(lead.owner_contact_count, 10) || 0) + 1;
+  var kind = (parseInt(lead.owner_contact_count, 10) || 0) === 0 ? "first" : "followup";
+  api("chat_messages", { method:"POST", headers:{ "Prefer":"return=minimal" }, body: rows })
+  .then(function(){
+    return api("contact_events", { method:"POST", headers:{ "Prefer":"return=minimal" },
+      body:{ lead_id: lead.id, actor: state.myName || "", channel: channel, kind: kind, counts_toward_followup: true } });
+  })
+  .then(function(){
+    var patch = { owner_contact_count: newCount, contact_count: (parseInt(lead.contact_count, 10) || 0) + 1 };
+    if(replied){
+      patch.has_replied = true; patch.replied_at = new Date().toISOString();
+      patch.owner_contact_count = 0; patch.status = "contacted";
+    } else if(lead.status === "new"){
+      patch.status = "contacted";
+    }
+    return patchLead(lead, patch);
+  })
+  .then(function(){
+    if(!replied) return null;
+    return api("reply_events", { method:"POST", headers:{ "Prefer":"return=minimal" }, body:{ lead_id: lead.id, actor: state.myName || "" } });
+  })
+  .then(function(){
+    var stage = replied ? "replied" : (lead.status === "deal" ? "deal" : (lead.status === "ignored" ? "ignored" : "contacted"));
+    var due = lastTime ? new Date(new Date(lastTime).getTime() + 3*86400000) : new Date(Date.now() + 3*86400000);
+    var prof = { lead_id: lead.id, stage: stage,
+      next_step: replied ? "按助手建议回客户" : "3 天后发跟进信",
+      next_step_at: replied ? null : due.toISOString(),
+      summary: "" };
+    return api("client_profiles?on_conflict=lead_id", { method:"POST", headers:{ "Prefer":"resolution=merge-duplicates,return=minimal" }, body: prof });
+  })
+  .then(function(){
+    return logActivity(lead.id, "importchat", "导入聊天记录 " + rows.length + " 条（" + (channel === "whatsapp" ? "WhatsApp" : channel === "telegram" ? "Telegram" : "邮件") + "），第 " + newCount + " 次跟进" + (replied ? "；客户回了，跟进次数清零" : "；客户还没回"));
+  })
+  .then(function(){
+    $("importModal").classList.remove("open"); importLead = null; importParsed = [];
+    toast(replied ? "已导入，记了 1 次联系，客户回了，跟进次数清零" : "已导入，记了 1 次联系，客户还没回");
+    loadTeamData();
+  })
+  .catch(function(e){
+    errEl.textContent = "导入失败：" + (e.message || "请重试"); errEl.className = "err show";
+  })
+  .then(function(){ btn.disabled = false; btn.textContent = "确认导入"; });
+});
+
+/* ================= 北京时间日期工具 ================= */
+function bjParts(d){
+  var o = {};
+  new Intl.DateTimeFormat("en-CA", { timeZone:"Asia/Shanghai", year:"numeric", month:"2-digit", day:"2-digit" }).formatToParts(d).forEach(function(x){ o[x.type] = x.value; });
+  return o;
+}
+function bjDateStr(d){ if(!d || isNaN(d.getTime())) return ""; var o = bjParts(d); return o.year + "-" + o.month + "-" + o.day; }
+function isTodayBJ(iso){ if(!iso) return false; return bjDateStr(new Date(iso)) === bjDateStr(new Date()); }
+function bjWeekStartStr(){
+  var o = bjParts(new Date());
+  var day = new Date(Date.UTC(+o.year, +o.month - 1, +o.day));
+  var diff = (day.getUTCDay() + 6) % 7;
+  day.setUTCDate(day.getUTCDate() - diff);
+  return day.toISOString().slice(0, 10);
+}
+function isThisWeekBJ(iso){ if(!iso) return false; return bjDateStr(new Date(iso)) >= bjWeekStartStr(); }
+function hasContact(l){ return !!(l.whatsapp || l.email || l.telegram || l.phone); }
+function topFiveFor(name){
+  return state.leads.filter(function(l){
+    return l.assignee === name
+      && (parseInt(l.owner_contact_count, 10) || 0) === 0
+      && (parseInt(l.contact_count, 10) || 0) === 0
+      && l.status !== "deal" && l.status !== "ignored"
+      && hasContact(l);
+  }).sort(function(a, b){
+    var d = (parseInt(b.stars, 10) || 0) - (parseInt(a.stars, 10) || 0);
+    if(d) return d;
+    var fa = String(a.found_at || a.created_at || ""), fb = String(b.found_at || b.created_at || "");
+    return fb < fa ? -1 : (fb > fa ? 1 : 0);
+  }).slice(0, 5);
+}
+function topFiveItemHtml(l, idx){
+  var h = '<div class="top5-item"><span class="rank">' + ((idx || 0) + 1) + '</span><div class="top5-main"><span class="nm">' + esc(l.company || "（未填公司名）") + "</span> " + starStr(l.stars)
+    + '<div class="sub2">' + esc([l.country, l.product, l.variety].filter(Boolean).join(" · ")) + " · 负责人：" + esc(l.assignee || "未分配") + "</div></div><div>";
+  if(l.whatsapp) h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" href="' + esc(waLink(l.whatsapp, l.first_message)) + '">WhatsApp 第一封</a>';
+  else if(l.email) h += '<a class="btn btn-outline btn-sm" href="mailto:' + esc(l.email) + '">发邮件</a>';
+  else h += '<span class="sub2">没留 WhatsApp / 邮箱</span>';
+  return h + "</div></div>";
+}
+
+function nextStepText(l){
+  if(l.status === "deal") return "已成交，不用再跟了。";
+  if(l.has_replied) return "客户回了：看下面「助手建议」，挑一封点「用这封发」。";
+  var n = parseInt(l.owner_contact_count, 10) || 0;
+  if(n === 0) return "点「WhatsApp 第一封」发出去，记得附上产品目录，发完点「已联系」。";
+  if(n >= 5) return "已跟进 5 次没回，不用再跟了。";
+  return "已跟进 " + n + " 次：3 天没回就点「WhatsApp 跟进信」，发完点「已联系」。";
+}
+
+/* ---------- 13. 今天最值得联系的 5 家（只看自己的） ---------- */
+function renderTop5(){
+  var box = $("top5Box"); if(!box) return;
+  if(!state.myName){ box.textContent = "还没有找到你的个人档案，暂时排不出来，请联系王烁杉确认账号。"; return; }
+  var list = topFiveFor(state.myName);
+  if(!list.length){ box.innerHTML = "今天分给你的客户都联系过了，或者还没有带联系方式的新客户。"; return; }
+  box.innerHTML = list.map(topFiveItemHtml).join("");
+}
+
+/* ---------- 14. 早上报数（现场算） ---------- */
+function renderMorning(){
+  var box = $("morningBox"); if(!box) return;
+  var today = state.leads.filter(function(l){ return isTodayBJ(l.found_at || l.created_at); });
+  var withContact = today.filter(hasContact).length;
+  var withWA = today.filter(function(l){ return !!l.whatsapp; }).length;
+  var seenCompanies = {}, dup = 0;
+  today.forEach(function(l){
+    var c = (l.company || "").trim(); if(!c) return;
+    var earlier = state.leads.some(function(x){
+      return (x.company || "").trim() === c && String(x.found_at || x.created_at || "") < String(l.found_at || l.created_at || "");
+    });
+    if((l.is_duplicate || earlier) && !seenCompanies[c]){ seenCompanies[c] = 1; dup++; }
+  });
+  var byRegion = {};
+  today.forEach(function(l){ var r = l.region || "其他"; byRegion[r] = (byRegion[r] || 0) + 1; });
+  var regionTxt = Object.keys(byRegion).map(function(r){ return r + " " + byRegion[r] + " 条"; }).join("、") || "—";
+  var h = '<div class="num-grid">'
+    + '<div class="num-cell"><b>' + today.length + '</b>今天新增</div>'
+    + '<div class="num-cell"><b>' + withContact + '</b>有联系方式</div>'
+    + '<div class="num-cell"><b>' + withWA + '</b>有 WhatsApp</div>'
+    + '<div class="num-cell"><b>' + dup + '</b>重复公司</div></div>';
+  if(!today.length) h += '<div class="sync-line">今天 0 条新的。</div>';
+  else h += '<div class="sync-line">按地区：' + esc(regionTxt) + '</div>';
+  h += '<div style="margin-top:12px"><b style="color:var(--green)">每人今天最值得联系的 5 家</b></div>';
+  TEAM.forEach(function(name){
+    var list = topFiveFor(name);
+    h += '<div style="margin-top:10px"><b>' + esc(name) + '</b>'
+      + (list.length ? list.map(topFiveItemHtml).join("") : '<div class="sync-line">今天没有要联系的新客户。</div>') + '</div>';
+  });
+  box.innerHTML = h;
+}
+
+/* ---------- 15. 晚上 8 点汇总（读 daily_summaries，全队可见） ---------- */
+function loadEvening(){
+  api("daily_summaries?select=*&order=summary_date.desc&limit=100").then(function(rows){
+    renderEvening(rows || []);
+  }).catch(function(){ renderEvening(null); });
+}
+function renderEvening(rows){
+  var box = $("eveningBox"); if(!box) return;
+  if(rows === null){ box.innerHTML = "汇总表还没法读，待 daily_summaries 表建好后复验。"; return; }
+  if(!rows.length){ box.innerHTML = "今晚 8 点的汇总还没出来，晚上 8 点后这里会显示当天的汇总。"; return; }
+  var date = rows[0].summary_date;
+  var byMember = {};
+  rows.filter(function(r){ return r.summary_date === date; }).forEach(function(r){ byMember[r.member] = r; });
+  var h = '<div class="sync-line" style="margin-bottom:10px">' + esc(date) + ' 的汇总（全队都看得到）</div>';
+  TEAM.forEach(function(name){
+    var r = byMember[name];
+    if(!r){ h += '<div class="sum-row"><span class="nm">' + esc(name) + '</span> · 今天还没有汇总</div>'; return; }
+    h += '<div class="sum-row"><span class="nm">' + esc(name) + '</span><br>'
+      + '开发新客户 <b>' + (r.new_dev || 0) + '</b> 家 · 跟进老客户 <b>' + (r.old_follow || 0) + '</b> 家 · 新客户回了 <b>' + (r.new_replied || 0) + '</b> 家 · 老客户回了 <b>' + (r.old_replied || 0) + '</b> 家<br>'
+      + '重点、要持续跟进的：' + esc(r.focus_list || "—") + '</div>';
+  });
+  box.innerHTML = h;
+}
+
+/* ---------- 20. 每周一汇总（现场算） ---------- */
+function renderWeekly(){
+  var box = $("weeklyBox"); if(!box) return;
+  var ws = bjWeekStartStr();
+  var weekNew = state.leads.filter(function(l){ var d = bjDateStr(new Date(l.found_at || l.created_at || "")); return d && d >= ws; });
+  var ceCount = 0, reCount = 0;
+  Object.keys(state.ceByLead || {}).forEach(function(k){ (state.ceByLead[k] || []).forEach(function(r){ if(isThisWeekBJ(r.created_at)) ceCount++; }); });
+  Object.keys(state.reByLead || {}).forEach(function(k){ (state.reByLead[k] || []).forEach(function(r){ if(isThisWeekBJ(r.created_at)) reCount++; }); });
+  var h = '<div class="num-grid">'
+    + '<div class="num-cell"><b>' + weekNew.length + '</b>本周新增</div>'
+    + '<div class="num-cell"><b>' + ceCount + '</b>本周联系</div>'
+    + '<div class="num-cell"><b>' + reCount + '</b>本周回复</div></div>';
+  h += '<div style="margin-top:12px"><b style="color:var(--green)">本周最值得联系的 5 家（全队）</b></div>';
+  var all = state.leads.filter(function(l){
+    return (parseInt(l.owner_contact_count, 10) || 0) === 0
+      && (parseInt(l.contact_count, 10) || 0) === 0
+      && l.status !== "deal" && l.status !== "ignored" && hasContact(l);
+  }).sort(function(a, b){
+    var d = (parseInt(b.stars, 10) || 0) - (parseInt(a.stars, 10) || 0);
+    if(d) return d;
+    var fa = String(a.found_at || a.created_at || ""), fb = String(b.found_at || b.created_at || "");
+    return fb < fa ? -1 : (fb > fa ? 1 : 0);
+  }).slice(0, 5);
+  h += all.length ? all.map(topFiveItemHtml).join("") : '<div class="sync-line">本周没有要联系的新客户。</div>';
+  h += '<div style="margin-top:12px"><b style="color:var(--green)">每人 5 家</b></div>';
+  TEAM.forEach(function(name){
+    var list = topFiveFor(name);
+    h += '<div style="margin-top:10px"><b>' + esc(name) + '</b>'
+      + (list.length ? list.map(topFiveItemHtml).join("") : '<div class="sync-line">本周没有要联系的新客户。</div>') + '</div>';
+  });
+  box.innerHTML = h;
+}
+
+/* ---------- 16. 客户回了马上弹提醒（只弹新的） ---------- */
+function checkReplyPopup(){
+  api("reply_events?select=*&order=id.desc&limit=100").then(function(rows){
+    rows = rows || [];
+    var today = rows.filter(function(r){ return isTodayBJ(r.created_at || r.replied_at); });
+    if(!today.length) return;
+    var key = "leads_seen_reply_max_" + (state.user && state.user.id ? state.user.id : "anon");
+    var seen = parseInt(localStorage.getItem(key) || "0", 10) || 0;
+    var fresh = today.filter(function(r){ return (r.id || 0) > seen; });
+    var byId = {}; state.leads.forEach(function(l){ byId[l.id] = l; });
+    if(!state.isAdmin) fresh = fresh.filter(function(r){ var l = byId[r.lead_id]; return l && l.assignee === state.myName; });
+    if(!fresh.length) return;
+    var maxId = Math.max.apply(null, fresh.map(function(r){ return r.id || 0; }));
+    localStorage.setItem(key, String(Math.max(seen, maxId)));
+    $("replyList").innerHTML = fresh.map(function(r){
+      var l = byId[r.lead_id] || {};
+      return '<div class="reply-item"><b>' + esc(l.company || ("客户 #" + r.lead_id)) + '</b><br>负责人：' + esc(l.assignee || "—") + ' · 回信时间：' + esc(fmtTime(r.created_at || r.replied_at)) + '</div>';
+    }).join("");
+    $("replyModal").classList.add("open");
+  }).catch(function(){});
+}
+$("replyClose").addEventListener("click", function(){ $("replyModal").classList.remove("open"); });
+
+/* ---------- 18. 报价 ---------- */
+var quoteLead = null;
+function qtyNum(q){
+  if(!q) return 1;
+  var m = String(q).match(/[\d,.]+/);
+  if(!m) return 1;
+  var n = parseFloat(m[0].replace(/,/g, ""));
+  return (isNaN(n) || n <= 0) ? 1 : n;
+}
+function money(n){ return "$" + (Math.round(n * 100) / 100).toFixed(2); }
+function openQuote(lead){
+  quoteLead = lead;
+  $("quoteModalTitle").textContent = "报价 · " + (lead.company || "");
+  var exp = new Date(Date.now() + 15 * 86400000);
+  function p2(n){ return (n < 10 ? "0" : "") + n; }
+  $("quoteExpiry").textContent = exp.getFullYear() + "-" + p2(exp.getMonth() + 1) + "-" + p2(exp.getDate());
+  var name = [lead.product, lead.variety].filter(Boolean).join(" · ") || "产品";
+  var qtyText = lead.quantity || "";
+  var qty = qtyNum(qtyText);
+  $("quoteRows").innerHTML = '<div class="quote-row" data-name="' + esc(name) + '" data-qty="' + qty + '" data-qtytext="' + esc(qtyText) + '">'
+    + '<div><b>' + esc(name) + '</b>' + (qtyText ? ' · 数量：' + esc(qtyText) : "") + '</div>'
+    + '<label style="font-size:13px">单价（美元）</label><input type="number" min="0" step="0.01" data-price placeholder="填单价，美元">'
+    + '<label style="font-size:13px">价目表上有没有这个品种</label><select data-est><option value="0">价目表上有，按价目表报</option><option value="1">价目表上没有，自己估一个报（估价）</option></select>'
+    + '<div class="sync-line">小计：<b data-line>$0.00</b> <span class="est-tag" data-esttag style="display:none">估价</span></div></div>';
+  $("quoteErr").className = "err";
+  recalcQuote();
+  $("quoteRows").querySelectorAll("input,select").forEach(function(el){
+    el.addEventListener("input", recalcQuote);
+    el.addEventListener("change", recalcQuote);
+  });
+  $("quoteModal").classList.add("open");
+}
+function collectQuoteItems(){
+  var rows = document.querySelectorAll("#quoteRows .quote-row");
+  var items = [], total = 0, anyEst = false;
+  rows.forEach(function(r){
+    var price = parseFloat(r.querySelector("[data-price]").value) || 0;
+    var est = r.querySelector("[data-est]").value === "1";
+    var qty = parseFloat(r.getAttribute("data-qty")) || 1;
+    var line = Math.round(price * qty * 100) / 100;
+    total += line; if(est) anyEst = true;
+    items.push({ name: r.getAttribute("data-name"), quantity: r.getAttribute("data-qtytext"), qty: qty, unit_price: price, estimate: est, line_total: line });
+  });
+  return { items: items, total: Math.round(total * 100) / 100, anyEst: anyEst };
+}
+function recalcQuote(){
+  var q = collectQuoteItems();
+  $("quoteTotal").textContent = money(q.total);
+  document.querySelectorAll("#quoteRows .quote-row").forEach(function(r, i){
+    var it = q.items[i]; if(!it) return;
+    r.querySelector("[data-line]").textContent = money(it.line_total);
+    r.querySelector("[data-esttag]").style.display = it.estimate ? "inline-block" : "none";
+  });
+}
+function saveQuote(status){
+  var lead = quoteLead; if(!lead) return;
+  var q = collectQuoteItems();
+  var errEl = $("quoteErr"); errEl.className = "err";
+  if(!q.items.length || q.items.every(function(i){ return !i.unit_price; })){
+    errEl.textContent = "先填一下单价（美元）。"; errEl.className = "err show"; return;
+  }
+  var btn = status === "sent" ? $("quoteSend") : $("quoteSave");
+  btn.disabled = true;
+  api("quote_drafts", { method:"POST", headers:{ "Prefer":"return=minimal" },
+    body:{ lead_id: lead.id, items: q.items, total_usd: q.total, is_estimate: q.anyEst, status: status, created_by: state.myName || "" } })
+  .then(function(){
+    return logActivity(lead.id, "quote", "报价 " + money(q.total) + (q.anyEst ? "（含估价）" : "") + "，状态：" + (status === "sent" ? "已发出" : "草稿"));
+  })
+  .then(function(){
+    $("quoteModal").classList.remove("open"); quoteLead = null;
+    if(status === "sent"){
+      var lines = q.items.map(function(i){
+        return "- " + i.name + " x " + (i.quantity || i.qty) + "：单价 $" + i.unit_price.toFixed(2) + "，小计 $" + i.line_total.toFixed(2) + (i.estimate ? "（估价）" : "");
+      });
+      var text = "报价单（" + (lead.company || "") + "，有效期至 " + $("quoteExpiry").textContent + "）：\n" + lines.join("\n") + "\n总价：$" + q.total.toFixed(2);
+      if(lead.whatsapp){ window.open(waLink(lead.whatsapp, text), "_blank"); }
+      else if(lead.email){ window.open("https://mail.google.com/mail/?view=cm&to=" + encodeURIComponent(lead.email) + "&su=" + encodeURIComponent("报价单 - " + (lead.company || "")) + "&body=" + encodeURIComponent(text), "_blank"); }
+      else { toast("已保存报价，但这家没留 WhatsApp 也没留邮箱，发不出去", true); }
+      toast("报价已发出，估价不用单独告诉王烁杉，晚上 8 点汇总里会记一笔");
+    } else {
+      toast("报价草稿已保存");
+    }
+  })
+  .catch(function(e){ errEl.textContent = "保存失败：" + (e.message || "请重试"); errEl.className = "err show"; })
+  .then(function(){ btn.disabled = false; });
+}
+$("quoteCancel").addEventListener("click", function(){ $("quoteModal").classList.remove("open"); quoteLead = null; });
+$("quoteSave").addEventListener("click", function(){ saveQuote("draft"); });
+$("quoteSend").addEventListener("click", function(){ saveQuote("sent"); });
+
+/* ---------- 19. 成交 ---------- */
+function markDeal(lead){
+  patchLead(lead, { status: "deal" }).then(function(){
+    return logActivity(lead.id, "deal", "客户说要下单，负责人直接成交，跟进提醒已停掉");
+  }).then(function(){
+    toast("已成交，跟进提醒已停掉");
+    var banner = $("dealBanner");
+    var txt = "成交了：" + (lead.company || "") + "（" + (lead.country || "") + "），" + ([lead.product, lead.variety].filter(Boolean).join(" · ") || "") + (lead.quantity ? "，数量：" + lead.quantity : "") + "。请确认。";
+    banner.innerHTML = "已成交：<b>" + esc(lead.company || "") + "</b>，跟进提醒已停掉。<br>请马上告诉王烁杉："
+      + (state.adminWaLink ? '<a class="btn btn-primary btn-sm" target="_blank" rel="noopener" href="' + esc(waLink(state.adminWaLink, txt)) + '">马上告诉王烁杉</a>' : "（王烁杉的 WhatsApp 还没填）")
+      + ' <button class="btn btn-sm" type="button" id="dealBannerClose">先不发</button>';
+    banner.classList.add("show");
+    var c = $("dealBannerClose");
+    if(c) c.addEventListener("click", function(){ banner.classList.remove("show"); });
+    applyFilters();
+  }).catch(function(e){ toast(e.message || "记录失败", true); });
+}
+
+/* ---------- 21. 页面顶部「发聊天记录」：先选哪家客户 ---------- */
+$("topImportBtn").addEventListener("click", function(){
+  var sel = $("pickLeadSel");
+  var mine = state.leads.filter(function(l){ return state.isAdmin || l.assignee === state.myName; });
+  if(!mine.length){ toast("还没有分给你的客户", true); return; }
+  sel.innerHTML = mine.map(function(l){
+    return '<option value="' + esc(l.id) + '">' + esc((l.company || "（未填公司名）") + " · " + (l.assignee || "未分配")) + "</option>";
+  }).join("");
+  $("pickLeadModal").classList.add("open");
+});
+$("pickLeadCancel").addEventListener("click", function(){ $("pickLeadModal").classList.remove("open"); });
+$("pickLeadGo").addEventListener("click", function(){
+  var l = findLead($("pickLeadSel").value);
+  $("pickLeadModal").classList.remove("open");
+  if(l) openImport(l);
+});
+
+/* ---------- 21. 导入默认走粘贴：「发进来」两下点完 ---------- */
+$("impQuickSend").addEventListener("click", function(){
+  var errEl = $("impErr"); errEl.className = "err";
+  var paste = $("impPaste").value.trim();
+  if(!paste){ errEl.textContent = "先粘贴聊天文字。"; errEl.className = "err show"; return; }
+  try{
+    var res = parsePasteText(paste);
+    importParsed = res.msgs;
+    if(!importParsed.length){ errEl.textContent = "没解析出聊天内容，请检查粘贴的文字格式。"; errEl.className = "err show"; return; }
+    renderImportPreview();
+    $("impConfirm").click();
+  }catch(e){
+    errEl.textContent = "解析失败：" + (e.message || "格式不对"); errEl.className = "err show";
+  }
+});
+
+/* ================= 启动 ================= */
+if(state.token){ enterApp(); }
+</script>
+</body>
+</html>
