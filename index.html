@@ -133,6 +133,9 @@ ol.steps li::marker{color:var(--gold);font-weight:700}
 .suggest-box{margin-top:12px;border:1px solid #cfe0d2;border-radius:12px;padding:12px 14px;background:var(--green-soft);font-size:13.5px}
 .suggest-box .msg-title{font-size:12px;font-weight:700;color:var(--green);margin-bottom:5px;letter-spacing:.04em}
 .suggest-box .next{margin-top:6px}
+.leader-box{margin-top:10px;border-top:1px dashed var(--gold-line);padding-top:9px}
+.leader-box .msg-title{font-size:12px;font-weight:700;color:var(--amber);margin-bottom:5px;letter-spacing:.04em}
+.leader-box textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff;min-height:56px;margin-top:6px}
 .profile-box{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;font-size:13.5px}
 .profile-box summary{cursor:pointer;font-weight:700;color:var(--green);font-size:13px;min-height:44px;display:flex;align-items:center}
 .profile-box .kv2{margin-top:6px}
@@ -260,7 +263,7 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
   </header>
 
   <!-- 今天三步，照着点就行 -->
-  <div class="guide-bar" aria-label="今天三步">
+  <div class="guide-bar" id="guideBar" aria-label="今天三步">
     <span class="g-step"><b>第一步</b>　从下面「今天最值得联系的 5 家」挑一家，点开卡片。</span>
     <span class="g-step"><b>第二步</b>　点「WhatsApp 第一封」发出去，记得附上产品目录。</span>
     <span class="g-step"><b>第三步</b>　发完点「已联系」。客户回了：看「助手建议」，挑一封点「用这封发」。</span>
@@ -271,7 +274,7 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
 
   <!-- 今天最值得联系的 5 家 -->
   <section class="panel panel-hero" aria-label="今天最值得联系的 5 家">
-    <h2>今天最值得联系的 5 家 <span class="hint">只显示分给你的，5 星在前</span></h2>
+    <h2>今天最值得联系的 5 家 <span class="hint" id="top5Hint">只显示分给你的，5 星在前</span></h2>
     <p class="sync-line" style="margin:0 0 10px">先从这里挑一家，点「WhatsApp 第一封」发出去，发完点「已联系」。</p>
     <div id="top5Box">正在读取…</div>
   </section>
@@ -553,6 +556,7 @@ var SUPABASE_URL = "https://xwiqbiktepxszawtjxmx.supabase.co";
 var ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3aXFiaWt0ZXB4c3phd3RqeG14Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwODIyNDUsImV4cCI6MjExMDY1ODI0NX0.kYpSVn6liv2_QTc0zJ_Lc7uKR8UZlioDcOIo5lEhmkk";
 var REST = SUPABASE_URL + "/rest/v1/";
 var TEAM = ["艾孜买提","叶尔扎提","阿仁","陈阳","于傲雪","王思甜","王烁杉"];
+var TEAM_ALL = TEAM.concat(["柯赛"]);
 var STATUS_ZH = { new:"未处理", focus:"重点跟进", contacted:"已联系", ignored:"没兴趣", deal:"已成交" };
 var REGIONS = ["中亚","中东","东南亚","俄罗斯及周边","南亚","东亚","南美","大洋洲"];
 var TYPE_ZH = { inquiry:"求购", demand:"求购", purchase:"求购", tender:"招标", expo:"展会", exhibition:"展会", fair:"展会", import:"进口数据", import_data:"进口数据", trade:"进口数据" };
@@ -628,6 +632,7 @@ var state = {
   myProfile: null,
   myName: "",
   isAdmin: false,
+  isLeader: false,
   profiles: [],
   leads: [],
   filtered: [],
@@ -830,8 +835,9 @@ function loadProfiles(){
     if(state.myProfile){
       state.myName = state.myProfile.name || "";
       state.isAdmin = state.myProfile.role === "admin" || state.myName === "王烁杉";
+      state.isLeader = state.myProfile.role === "leader";
     } else {
-      state.myName = ""; state.isAdmin = false;
+      state.myName = ""; state.isAdmin = false; state.isLeader = false;
     }
     var admin = null;
     for(var i=0;i<state.profiles.length;i++){ if(state.profiles[i].name === "王烁杉"){ admin = state.profiles[i]; break; } }
@@ -844,18 +850,25 @@ function loadProfiles(){
 function renderWho(){
   var label = state.myName ? state.myName : (state.user ? state.user.email : "");
   $("whoLine").innerHTML = "已登录：<span></span>";
-  $("whoLine").querySelector("span").textContent = label + (state.isAdmin ? "（管理员，看全部）" : "");
+  $("whoLine").querySelector("span").textContent = label + (state.isAdmin ? "（管理员，看全部）" : (state.isLeader ? "（团队负责人，看全部）" : ""));
   $("headSub").textContent = state.myName
-    ? (state.isAdmin ? "你能看到全队 7 个人的线索。" : "默认只看分给你的客户，用上面的筛选可以切换。")
+    ? (state.isAdmin ? "你能看到全队 8 个人的线索。" : (state.isLeader ? "你是团队负责人，能看到全队所有人的线索，不跟具体客户。" : "默认只看分给你的客户，用上面的筛选可以切换。"))
     : "还没有找到你的个人档案，名单和默认筛选可能不完整，请联系王烁杉确认账号。";
+  var tib = $("topImportBtn");
+  if(tib) tib.style.display = state.isLeader ? "none" : "";
+  if(state.isLeader){
+    var gb = $("guideBar");
+    if(gb) gb.innerHTML = "你是团队负责人：首页是全队最值得联系的 5 家；点开卡片看详情，在「负责人意见」里写跟进意见，队友能看到；早上报数、晚上 8 点汇总、每周一汇总都在上面，全队都看得到。";
+  }
 }
 function renderTeam(){
   var byName = {};
   state.profiles.forEach(function(p){ if(p && p.name) byName[p.name] = p; });
-  $("teamBox").innerHTML = TEAM.map(function(name){
+  $("teamBox").innerHTML = TEAM_ALL.map(function(name){
     var p = byName[name];
     var wa = p && p.whatsapp ? p.whatsapp : "未填";
-    return '<div class="team-item"><span class="nm">'+esc(name)+(name==="王烁杉"?' <span style="color:var(--gold);font-size:12px">管理员</span>':"")+'</span><span class="wa">WhatsApp：'+esc(wa)+"</span></div>";
+    var roleTag = name==="王烁杉" ? ' <span style="color:var(--gold);font-size:12px">管理员</span>' : (name==="柯赛" ? ' <span style="color:var(--gold);font-size:12px">团队负责人</span>' : "");
+    return '<div class="team-item"><span class="nm">'+esc(name)+roleTag+'</span><span class="wa">WhatsApp：'+esc(wa)+"</span></div>";
   }).join("");
 }
 function renderMyWa(){
@@ -906,13 +919,13 @@ function buildAssigneeFilter(){
   var sel = $("fAssignee");
   var cur = sel.value;
   var opts = ['<option value="">全部负责人</option>'];
-  TEAM.forEach(function(n){ opts.push('<option value="'+esc(n)+'">'+esc(n)+"</option>"); });
+  TEAM_ALL.forEach(function(n){ opts.push('<option value="'+esc(n)+'">'+esc(n)+"</option>"); });
   var extra = {};
-  state.leads.forEach(function(l){ if(l.assignee && TEAM.indexOf(l.assignee)<0) extra[l.assignee]=1; });
+  state.leads.forEach(function(l){ if(l.assignee && TEAM_ALL.indexOf(l.assignee)<0) extra[l.assignee]=1; });
   Object.keys(extra).forEach(function(n){ opts.push('<option value="'+esc(n)+'">'+esc(n)+"</option>"); });
   sel.innerHTML = opts.join("");
   if(cur) sel.value = cur;
-  else if(!state.isAdmin && state.myName) sel.value = state.myName;
+  else if(!state.isAdmin && !state.isLeader && state.myName) sel.value = state.myName;
   else sel.value = "";
 }
 function currentFilters(){
@@ -1021,7 +1034,7 @@ function cardHtml(l){
     + (l.title_zh ? '<p class="title-zh">'+esc(l.title_zh)+"</p>" : "")
     + "</div><div class=\"stars\" aria-label=\"星级\">"+starStr(l.stars)+"</div></div>"
     + (l.summary_zh ? '<p class="summary">'+esc(l.summary_zh)+"</p>" : "")
-    + '<div class="import-top"><button class="btn btn-green" type="button" data-act="importchat-top">发聊天记录</button><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按卡片上助手建议直接回，不会回才把客户那句话发进来。</span></div>'
+    + (state.isLeader ? "" : '<div class="import-top"><button class="btn btn-green" type="button" data-act="importchat-top">发聊天记录</button><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按卡片上助手建议直接回，不会回才把客户那句话发进来。</span></div>')
     + '<div class="meta">'
     + (place ? '<span class="tag">'+esc(place)+"</span>" : "")
     + (l.region ? '<span class="tag">'+esc(l.region)+"</span>" : "")
@@ -1033,7 +1046,7 @@ function cardHtml(l){
     + '<div class="kv">已跟进：<b>'+esc(l.owner_contact_count || 0)+"</b> 次 / 最多 5 次"+(l.found_at ? " · 找到于 "+esc(fmtTime(l.found_at)) : "")+"</div>"
     + contacts + msgs + suggHtml + profHtml + chatHtml
     + '<div class="next-step">下一步：<b>' + esc(nextStepText(l)) + '</b></div>'
-    + '<div class="actions">'
+    + (state.isLeader ? "" : '<div class="actions">'
     + '<button class="btn btn-primary btn-sm" type="button" data-act="contacted" style="width:auto">已联系</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="replied">客户回了</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="activity">流水账</button>'
@@ -1042,7 +1055,7 @@ function cardHtml(l){
     + '<button class="btn btn-outline btn-sm" type="button" data-act="deal">成交</button>'
     + "</div>"
     + '<div class="edit-row"><label>状态</label><select data-field="status">'+statusOpts+'</select>'
-    + '<label>星级</label><select data-field="stars">'+starOpts+"</select></div>"
+    + '<label>星级</label><select data-field="stars">'+starOpts+"</select></div>")
     + (l.notes ? '<div class="notes-old">'+esc(l.notes)+"</div>" : "")
     + '<div class="activity" data-activity></div>'
     + "</article>";
@@ -1065,13 +1078,16 @@ function bindCards(){
         } else { toast("这个浏览器不支持一键复制，请长按文字复制", true); }
       });
     });
-    card.querySelector('[data-act="contacted"]').addEventListener("click", function(){
+    var contactedBtn = card.querySelector('[data-act="contacted"]');
+    if(contactedBtn) contactedBtn.addEventListener("click", function(){
       state.pendingContactLead = lead;
       $("contactModalTitle").textContent = "记录已联系 · " + (lead.company || "");
       $("contactModal").classList.add("open");
     });
-    card.querySelector('[data-act="replied"]').addEventListener("click", function(){ markReplied(lead); });
-    card.querySelector('[data-act="activity"]').addEventListener("click", function(){
+    var repliedBtn = card.querySelector('[data-act="replied"]');
+    if(repliedBtn) repliedBtn.addEventListener("click", function(){ markReplied(lead); });
+    var activityBtn = card.querySelector('[data-act="activity"]');
+    if(activityBtn) activityBtn.addEventListener("click", function(){
       var box = card.querySelector("[data-activity]");
       if(box.classList.contains("open")){ box.classList.remove("open"); return; }
       box.innerHTML = "正在加载…"; box.classList.add("open");
@@ -1082,10 +1098,14 @@ function bindCards(){
         }).join("");
       }).catch(function(){ box.innerHTML = "流水加载失败。"; });
     });
-    card.querySelector('[data-act="editmsg"]').addEventListener("click", function(){ openEditor(lead); });
-    card.querySelector('[data-act="importchat-top"]').addEventListener("click", function(){ openImport(lead); });
-    card.querySelector('[data-act="quote"]').addEventListener("click", function(){ openQuote(lead); });
-    card.querySelector('[data-act="deal"]').addEventListener("click", function(){ markDeal(lead); });
+    var editmsgBtn = card.querySelector('[data-act="editmsg"]');
+    if(editmsgBtn) editmsgBtn.addEventListener("click", function(){ openEditor(lead); });
+    var importTopBtn = card.querySelector('[data-act="importchat-top"]');
+    if(importTopBtn) importTopBtn.addEventListener("click", function(){ openImport(lead); });
+    var quoteBtn = card.querySelector('[data-act="quote"]');
+    if(quoteBtn) quoteBtn.addEventListener("click", function(){ openQuote(lead); });
+    var dealBtn = card.querySelector('[data-act="deal"]');
+    if(dealBtn) dealBtn.addEventListener("click", function(){ markDeal(lead); });
     card.querySelectorAll("[data-sugg-send]").forEach(function(btn){
       btn.addEventListener("click", function(){
         var text = decodeURIComponent(btn.getAttribute("data-text"));
@@ -1095,8 +1115,28 @@ function bindCards(){
         else { toast("这家没留 WhatsApp 也没留邮箱，复制文字自己发", true); }
       });
     });
+    var leaderSaveBtn = card.querySelector("[data-leader-save]");
+    if(leaderSaveBtn) leaderSaveBtn.addEventListener("click", function(){
+      var ta = card.querySelector("[data-leader-advice]");
+      var val = ta ? ta.value.trim() : "";
+      leaderSaveBtn.disabled = true; leaderSaveBtn.textContent = "保存中…";
+      var nowIso = new Date().toISOString();
+      api("assistant_suggestions?on_conflict=lead_id", { method:"POST",
+        headers:{ "Prefer":"resolution=merge-duplicates,return=minimal" },
+        body:{ lead_id: lead.id, leader_advice: val, leader_advice_at: nowIso, updated_by: state.myName || "" } })
+      .then(function(){
+        var arr = state.suggByLead[lead.id] || (state.suggByLead[lead.id] = [{}]);
+        arr[0].leader_advice = val; arr[0].leader_advice_at = nowIso;
+        toast("意见已保存，队友能看到");
+        applyFilters();
+      })
+      .catch(function(e){
+        toast(e.message || "保存失败", true);
+        leaderSaveBtn.disabled = false; leaderSaveBtn.textContent = "保存意见";
+      });
+    });
     var stSel = card.querySelector('select[data-field="status"]');
-    stSel.addEventListener("change", function(){
+    if(stSel) stSel.addEventListener("change", function(){
       var nv = stSel.value; var old = lead.status;
       if(nv === old) return;
       patchLead(lead, { status: nv }).then(function(){
@@ -1104,7 +1144,7 @@ function bindCards(){
       }).then(function(){ toast("状态已改成「"+(STATUS_ZH[nv]||nv)+"」"); applyFilters(); }).catch(function(e){ toast(e.message, true); stSel.value = old; });
     });
     var starSel = card.querySelector('select[data-field="stars"]');
-    starSel.addEventListener("change", function(){
+    if(starSel) starSel.addEventListener("change", function(){
       var nv = parseInt(starSel.value,10);
       patchLead(lead, { stars: nv, stars_manual: 1 }).then(function(){
         return logActivity(lead.id, "stars", "星级改为 " + nv + " 星");
@@ -1199,11 +1239,28 @@ function suggBlock(l){
       if(s.meaning) h += "<div>客户什么意思："+esc(s.meaning)+"</div>";
       if(s.next_reply){
         h += '<div class="next">建议'+(list.length>1 ? (i+1)+"：" : "怎么回：")+'<b>'+esc(s.next_reply)+"</b></div>";
-        h += '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-sugg-send data-text="'+encodeURIComponent(s.next_reply)+'">用这封发</button></div>';
+        if(!state.isLeader) h += '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-sugg-send data-text="'+encodeURIComponent(s.next_reply)+'">用这封发</button></div>';
       }
       if(s.updated_at) h += '<div class="tr-status">更新于 '+esc(fmtTime(s.updated_at))+"</div>";
       h += "</div>";
     });
+  }
+  h += leaderAdviceBlock(l, list);
+  return h + "</div>";
+}
+function leaderAdviceBlock(l, list){
+  var advice = "", adviceAt = "";
+  (list || []).forEach(function(s){ if(s && s.leader_advice){ advice = s.leader_advice; adviceAt = s.leader_advice_at || ""; } });
+  var h = '<div class="leader-box"><div class="msg-title">负责人意见</div>';
+  if(advice){
+    h += "<div>柯赛（团队负责人）的跟进意见：<b>"+esc(advice)+"</b></div>";
+    if(adviceAt) h += '<div class="tr-status">更新于 '+esc(fmtTime(adviceAt))+"</div>";
+  } else {
+    h += "<div>负责人还没写意见。</div>";
+  }
+  if(state.isLeader){
+    h += '<textarea data-leader-advice placeholder="写跟进意见，队友能看到">'+esc(advice)+"</textarea>";
+    h += '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-leader-save>保存意见</button></div>';
   }
   return h + "</div>";
 }
@@ -1679,6 +1736,19 @@ function topFiveFor(name){
     return fb < fa ? -1 : (fb > fa ? 1 : 0);
   }).slice(0, 5);
 }
+function topFiveForTeam(){
+  return state.leads.filter(function(l){
+    return (parseInt(l.owner_contact_count, 10) || 0) === 0
+      && (parseInt(l.contact_count, 10) || 0) === 0
+      && l.status !== "deal" && l.status !== "ignored"
+      && hasContact(l);
+  }).sort(function(a, b){
+    var d = (parseInt(b.stars, 10) || 0) - (parseInt(a.stars, 10) || 0);
+    if(d) return d;
+    var fa = String(a.found_at || a.created_at || ""), fb = String(b.found_at || b.created_at || "");
+    return fb < fa ? -1 : (fb > fa ? 1 : 0);
+  }).slice(0, 5);
+}
 function topFiveItemHtml(l, idx){
   var h = '<div class="top5-item"><span class="rank">' + ((idx || 0) + 1) + '</span><div class="top5-main"><span class="nm">' + esc(l.company || "（未填公司名）") + "</span> " + starStr(l.stars)
     + '<div class="sub2">' + esc([l.country, l.product, l.variety].filter(Boolean).join(" · ")) + " · 负责人：" + esc(l.assignee || "未分配") + "</div></div><div>";
@@ -1689,6 +1759,7 @@ function topFiveItemHtml(l, idx){
 }
 
 function nextStepText(l){
+  if(state.isLeader) return "你是团队负责人，不用发消息；有意见写在下面「负责人意见」里，队友能看到。";
   if(l.status === "deal") return "已成交，不用再跟了。";
   if(l.has_replied) return "客户回了：看下面「助手建议」，挑一封点「用这封发」。";
   var n = parseInt(l.owner_contact_count, 10) || 0;
@@ -1701,6 +1772,15 @@ function nextStepText(l){
 function renderTop5(){
   var box = $("top5Box"); if(!box) return;
   if(!state.myName){ box.textContent = "还没有找到你的个人档案，暂时排不出来，请联系王烁杉确认账号。"; return; }
+  var hint = $("top5Hint");
+  if(state.isLeader){
+    if(hint) hint.textContent = "全队最值得联系的，5 星在前";
+    var teamList = topFiveForTeam();
+    if(!teamList.length){ box.innerHTML = "全队都联系过了，或者还没有带联系方式的新客户。"; return; }
+    box.innerHTML = teamList.map(topFiveItemHtml).join("");
+    return;
+  }
+  if(hint) hint.textContent = "只显示分给你的，5 星在前";
   var list = topFiveFor(state.myName);
   if(!list.length){ box.innerHTML = "今天分给你的客户都联系过了，或者还没有带联系方式的新客户。"; return; }
   box.innerHTML = list.map(topFiveItemHtml).join("");
@@ -1806,7 +1886,7 @@ function checkReplyPopup(){
     var seen = parseInt(localStorage.getItem(key) || "0", 10) || 0;
     var fresh = today.filter(function(r){ return (r.id || 0) > seen; });
     var byId = {}; state.leads.forEach(function(l){ byId[l.id] = l; });
-    if(!state.isAdmin) fresh = fresh.filter(function(r){ var l = byId[r.lead_id]; return l && l.assignee === state.myName; });
+    if(!state.isAdmin && !state.isLeader) fresh = fresh.filter(function(r){ var l = byId[r.lead_id]; return l && l.assignee === state.myName; });
     if(!fresh.length) return;
     var maxId = Math.max.apply(null, fresh.map(function(r){ return r.id || 0; }));
     localStorage.setItem(key, String(Math.max(seen, maxId)));
