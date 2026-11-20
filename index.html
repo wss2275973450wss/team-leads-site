@@ -216,6 +216,22 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
 .nowa-hint{margin-top:12px;background:var(--amber-bg);color:var(--amber);border:1px solid #ecd9a8;border-radius:10px;padding:9px 12px;font-size:13.5px}
 .next-step{margin-top:14px;background:var(--green-soft);border:1px solid #cfe0d2;border-radius:12px;padding:11px 14px;font-size:14px;color:#2c362d}
 .next-step b{color:var(--green)}
+/* ---------- 可折叠分组 ---------- */
+details.fold{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px;margin:16px 0}
+details.fold>summary{cursor:pointer;list-style:none;display:block;font-family:var(--serif);font-size:20px;color:var(--green);letter-spacing:.03em}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"▸ ";color:var(--gold)}
+details.fold[open]>summary::before{content:"▾ "}
+details.fold>summary::after{content:"";display:block;width:36px;height:2px;background:var(--gold);border-radius:2px;margin-top:7px}
+details.fold>summary .hint{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;font-size:12px;color:var(--muted);font-weight:400;letter-spacing:0}
+details.fold .panel{margin:14px 0 0}
+details.fold .panel:last-child{margin-bottom:0}
+details.fold-in{margin-top:12px;border-top:1px dashed var(--gold-line);padding-top:12px}
+details.fold-in>summary{cursor:pointer;list-style:none;font-weight:700;color:var(--green);font-size:13.5px;min-height:44px;display:flex;align-items:center}
+details.fold-in>summary::-webkit-details-marker{display:none}
+details.fold-in>summary::before{content:"▸ ";color:var(--gold)}
+details.fold-in[open]>summary::before{content:"▾ "}
+details.fold-in .filters{margin-top:10px}
 .hidden{display:none!important}
 .mywa-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .mywa-row input{flex:1;min-width:180px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:44px}
@@ -280,40 +296,44 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
     <div id="top5Box">正在读取…</div>
   </section>
 
-  <!-- 早上报数 -->
-  <section class="panel" aria-label="早上报数">
-    <h2>早上报数 <span class="hint">今天的新线索，现场算出来的</span></h2>
-    <div id="morningBox">正在读取…</div>
-  </section>
+  <!-- 汇总与同步（收起来的折叠区，默认收起） -->
+  <details class="fold" aria-label="汇总与同步">
+    <summary>汇总与同步 <span class="hint">早上报数 · 晚上 8 点汇总 · 每周一汇总 · 同步状态</span></summary>
+    <section class="panel" aria-label="早上报数">
+      <h2>早上报数 <span class="hint">今天的新线索，现场算出来的</span></h2>
+      <div id="morningBox">正在读取…</div>
+    </section>
 
-  <!-- 晚上 8 点汇总 -->
-  <section class="panel" aria-label="晚上 8 点汇总">
-    <h2>晚上 8 点汇总 <span class="hint">全队都看得到</span></h2>
-    <div id="eveningBox">正在读取…</div>
-  </section>
+    <section class="panel" aria-label="晚上 8 点汇总">
+      <h2>晚上 8 点汇总 <span class="hint">全队都看得到</span></h2>
+      <div id="eveningBox">正在读取…</div>
+    </section>
 
-  <!-- 每周一汇总 -->
-  <section class="panel" aria-label="每周一汇总">
-    <h2>每周一汇总 <span class="hint">全队都看得到，现场算出来的</span></h2>
-    <div id="weeklyBox">正在读取…</div>
-  </section>
+    <section class="panel" aria-label="每周一汇总">
+      <h2>每周一汇总 <span class="hint">全队都看得到，现场算出来的</span></h2>
+      <div id="weeklyBox">正在读取…</div>
+    </section>
 
-  <!-- 同步状态 -->
-  <section class="panel" aria-label="同步状态">
-    <h2>同步状态</h2>
-    <div class="sync-line" id="syncBox">正在读取…</div>
-  </section>
+    <section class="panel" aria-label="同步状态">
+      <h2>同步状态</h2>
+      <div class="sync-line" id="syncBox">正在读取…</div>
+    </section>
+  </details>
 
-  <!-- 团队总览 -->
-  <section class="panel" aria-label="团队总览">
-    <h2>团队总览 <span class="hint">只算自动记下来的四项</span></h2>
+  <!-- 团队总览（收起来的折叠区，默认收起） -->
+  <details class="fold" aria-label="团队总览">
+    <summary>团队总览 <span class="hint">只算自动记下来的四项</span></summary>
     <div class="overview-grid" id="overviewBox">正在读取…</div>
-  </section>
+  </details>
 
-  <!-- 筛选 -->
+  <!-- 筛选：搜索框常在外面，更多筛选收起来 -->
   <section class="panel" aria-label="筛选">
     <h2>筛选</h2>
-    <div class="filters">
+    <div class="search-row"><input type="text" id="fSearch" placeholder="搜公司名 / 产品 / 国家…"></div>
+    <div class="count-line" id="countLine"></div>
+    <details class="fold-in">
+      <summary>更多筛选：负责人 · 地区 · 状态 · 导出 CSV</summary>
+      <div class="filters">
       <label>负责人
         <select id="fAssignee"></select>
       </label>
@@ -336,29 +356,30 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
         </select>
       </label>
       <label>&nbsp;<button class="btn btn-outline" id="exportBtn" type="button" style="width:100%">导出 CSV</button></label>
-    </div>
-    <div class="search-row"><input type="text" id="fSearch" placeholder="搜公司名 / 产品 / 国家…"></div>
-    <div class="count-line" id="countLine"></div>
+      </div>
+    </details>
   </section>
 
   <!-- 线索列表 -->
   <main id="listBox"><div class="loading">正在加载线索…</div></main>
 
-  <!-- 我的 WhatsApp -->
-  <section class="panel" aria-label="我的联系方式">
-    <h2>我的 WhatsApp <span class="hint">第一次打开先填，队友能在团队名单里看到</span></h2>
-    <div id="myWaBox" class="sync-line">正在读取…</div>
-  </section>
+  <!-- 我的资料与团队名单（收起来的折叠区，默认收起） -->
+  <details class="fold" aria-label="我的 WhatsApp 与团队名单">
+    <summary>我的 WhatsApp 与团队名单 <span class="hint">没填号先在这里填，队友能看到</span></summary>
+    <section class="panel" aria-label="我的联系方式">
+      <h2>我的 WhatsApp <span class="hint">第一次打开先填，队友能在团队名单里看到</span></h2>
+      <div id="myWaBox" class="sync-line">正在读取…</div>
+    </section>
 
-  <!-- 团队名单 -->
-  <section class="panel" aria-label="团队名单">
-    <h2>团队名单</h2>
-    <div class="team-grid" id="teamBox"></div>
-  </section>
+    <section class="panel" aria-label="团队名单">
+      <h2>团队名单</h2>
+      <div class="team-grid" id="teamBox"></div>
+    </section>
+  </details>
 
-  <!-- 使用教程 -->
-  <section class="panel" aria-label="使用教程">
-    <h2>使用教程</h2>
+  <!-- 使用教程（收起来的折叠区，默认收起） -->
+  <details class="fold" aria-label="使用教程">
+    <summary>使用教程 <span class="hint">每天只用干五下，点开看</span></summary>
     <p class="tut-note"><b>AI 每天替你干了这些：</b>早上 8 点搜新线索、去重、打分、按人分好、写好第一封和跟进信（外语版加中文对照）、盯着同步和邮件回复、算跟进次数、晚上 8 点出汇总。你不用管这些。</p>
     <p class="tut-note"><b>你每天只用干这几下：</b>下面五个决定，每个都是一点就行的选择。</p>
     <ol class="steps">
@@ -388,7 +409,7 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
     </ol>
     <p class="tut-note">没回的时候，点一下「已联系」也算联系过一次，不用写任何字，选渠道（WhatsApp / 邮件 / Telegram）和发的是第一封还是跟进信就行。发进来的记录导进来一次，就自动记了已联系、算了跟进次数、判了客户回没回，档案也会跟着更新。</p>
     <p class="tut-note">「早上报数」「晚上 8 点汇总」「每周一汇总」都在页面上面：早上报数是今天新线索的数字加每人各 5 家；晚上 8 点汇总是当天全队每人一行；每周一汇总是本周最值得联系的 5 家（全队、每人各 5 家）加本周数字。</p>
-  </section>
+  </details>
 
   <p class="foot">团队内部使用 · 数据来自团队数据库，登录后实时读取</p>
 </div>
