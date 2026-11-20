@@ -3568,8 +3568,16 @@ function renderOrderPanel(){
     return '<div class="ask-item"><div><b>' + esc(l.company || "") + '</b> <span class="tag intent">要下单了</span></div>'
       + '<div class="sync-line">负责人：' + esc(displayName(l.assignee || "未分配")) + ' · 标的时间：' + esc(fmtTime(l.order_intent_at)) + (l.country ? ' · ' + esc(l.country) : '') + '</div>'
       + '<div class="sync-line">' + esc([l.product, l.variety, l.quantity].filter(Boolean).join(" · ") || "—") + '</div>'
-      + '<div class="sync-line">下一步：负责人去确认数量、价格、定金；定金到账后在卡片上点「已成交」。</div></div>';
+      + '<div class="sync-line">下一步：负责人去确认数量、价格、定金；定金到账后在卡片上点「已成交」。</div>'
+      + '<div style="margin-top:8px"><button class="btn btn-outline btn-sm" type="button" data-undo-order-list="' + esc(String(l.id)) + '">取消要下单</button></div></div>';
   }).join("");
+  /* 列表里直接取消要下单：和卡片上的「取消要下单」同一个动作——先弹确认框，确认后清掉 order_intent_at、记进流水账，这条随即从列表里消失 */
+  $("orderList").querySelectorAll("[data-undo-order-list]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var lead = findLead(btn.getAttribute("data-undo-order-list"));
+      if(lead) undoOrderIntent(lead, null);
+    });
+  });
 }
 
 /* ---------- 我的统计（本月联系数 / 回复数 / 成交数） ---------- */
