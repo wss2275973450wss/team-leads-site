@@ -74,7 +74,10 @@ button,select,input[type="text"],input[type="email"],input[type="password"]{min-
 .panel-hero .sync-line{color:#ddd6c2}
 .panel-hero .sync-line b{color:#f5edd6}
 .filters{display:grid;grid-template-columns:1fr;gap:10px}
-@media(min-width:640px){.filters{grid-template-columns:1fr 1fr 1fr auto}}
+@media(min-width:640px){.filters{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.filters{grid-template-columns:1fr 1fr 1fr 1fr auto}}
+.msg-flabel{font-size:12px;font-weight:700;color:var(--muted);margin:10px 0 3px;letter-spacing:.03em}
+.msg-block .msg-text.foreign-view{background:#fbf8ef;border:1px dashed var(--gold-line);border-radius:8px;padding:8px 10px;max-height:none}
 .filters label{font-size:12px;font-weight:600;color:var(--green);display:block}
 .filters select{width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:44px}
 .count-line{font-size:13px;color:var(--muted);margin-top:10px}
@@ -464,7 +467,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:10px;pad
     <div class="search-row"><input type="text" id="fSearch" placeholder="搜公司名 / 产品 / 国家，可以一起搜，如：哈萨克斯坦 玫瑰"></div>
     <div class="count-line" id="countLine"></div>
     <details class="fold-in">
-      <summary>更多筛选：负责人 · 地区 · 状态 · 导出 CSV</summary>
+      <summary>更多筛选：负责人 · 地区 · 状态 · 联系方式 · 导出 CSV</summary>
       <div class="filters">
       <label>负责人
         <select id="fAssignee"></select>
@@ -485,6 +488,16 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:10px;pad
           <option value="contacted">已联系</option>
           <option value="ignored">没兴趣</option>
           <option value="deal">已成交</option>
+        </select>
+      </label>
+      <label>联系方式
+        <select id="fContact">
+          <option value="">全部</option>
+          <option value="whatsapp">有 WhatsApp</option>
+          <option value="phone">有电话</option>
+          <option value="email">有邮箱</option>
+          <option value="telegram">有 Telegram</option>
+          <option value="none">无联系方式</option>
         </select>
       </label>
       <label>&nbsp;<button class="btn btn-outline" id="exportBtn" type="button" style="width:100%">导出 CSV</button><button class="btn btn-outline" id="exportMineBtn" type="button" style="width:100%;margin-top:6px">导出我的客户</button></label>
@@ -521,7 +534,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:10px;pad
     <p class="tut-note"><b>你每天只用干这几下：</b>下面五个决定，每个都是一点就行的选择。</p>
     <ol class="steps">
       <li><b>决定一：今天联系哪家。</b>打开页面最上面就是「今天最值得联系的 5 家」，只显示分给你的，5 星的排前面，挑一家点开看卡片。「早上报数」里每人各有 5 家，也可以从那里挑。</li>
-      <li><b>决定二：发哪一封。</b>卡片上有「WhatsApp 第一封」「WhatsApp 跟进信」，发送前框里能直接改内容，按钮旁边有中文大意，先看大意确认了再点发送；点了发送就自动记一次联系，不用再点「已联系」；记得把产品目录一起发过去。Telegram 的客户点「Telegram 第一封」「Telegram 跟进信」；这家没留 Telegram 用户名时，卡片上有「复制消息」，复制了自己去 Telegram 搜到客户再发。想大改点「编辑消息」，改中文就行，外语版跟着变；卡片下面「中文对照，只给你看，不发给客户」就是这封信的中文意思。注意：邮件的跟进信 AI 可以直接发，WhatsApp 没有接口发不出去，只能由你点一键发送——不要等它自己发。</li>
+      <li><b>决定二：发哪一封。</b>卡片上每封信都有一个中文框：就在中文框里改，改完停一下，下面的外语版会自动翻译、跟着变；确认外语版已经更新成你要发的内容，再点发送，实际发出去的就是外语版。翻译时框下面会显示「正在翻译…」，翻不出来会提示「翻译没成功，先用原来的发」，这时发出去的还是原来的外语版。点了发送就自动记一次联系，不用再点「已联系」；记得把产品目录一起发过去。WhatsApp 第一封、WhatsApp 跟进信、Telegram 第一封、Telegram 跟进信都是这样改。Telegram 的客户点「Telegram 第一封」「Telegram 跟进信」；这家没留 Telegram 用户名时，点「复制这封」，复制了自己去 Telegram 搜到客户再发。想大改点「编辑消息」，同样是改中文，外语版自动翻译生成（只读，不用碰）。注意：邮件的跟进信 AI 可以直接发，WhatsApp 没有接口发不出去，只能由你点一键发送——不要等它自己发。</li>
       <li><b>决定三：客户回了怎么回。</b>展开卡片详情，「助手建议」一次给你两三个回复，挑一个点「用这封发」就直接发出去了，不用再等谁点头。客户回了点一下「客户回了」，联系次数从 0 重新数。</li>
       <li><b>决定四：报不报价、报多少。</b>卡片上点「报价」，填每行的单价（美元），自动算小计和总价，有效期 15 天。价目表上的品种按价目表报；价目表上没有的品种自己估一个报，那行会打上「估价」。估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。</li>
       <li><b>决定五：成交还是继续跟。</b>客户说要下单，先点卡片上的「客户要下单了」（不要停跟进），王烁杉会看到；等定金到账再点「成交」，会先弹确认框，确认后出现成交清单，照着做完，再点「马上告诉王烁杉」。没回就等 3 天，卡片上会出现「该跟进了」，点一下就发跟进信；满 5 次没回会自动转「没兴趣」，想接着跟点「继续跟进」，重新算 5 次。</li>
@@ -1045,16 +1058,20 @@ document.addEventListener("click", function(ev){
   if(!lead) return;
   var channel = a.getAttribute("data-channel") || (a.href.indexOf("t.me") >= 0 ? "telegram" : "whatsapp");
   var kind = a.getAttribute("data-kind") || "first";
-  /* 发送前在框里改过第一封：先把改好的存下来，发的就是改过的 */
-  var block = a.closest ? a.closest(".msg-block") : null;
-  var ta = block ? block.querySelector("textarea[data-editfield]") : null;
+  /* 发送前在中文框里改过：先把改好的中文和当前外文一起存下来，发的就是现在这版外文 */
+  var entry = msgFieldFor(channel, kind);
   var pre = Promise.resolve();
-  if(ta){
-    var field = ta.getAttribute("data-editfield");
-    if(ta.value !== (lead[field] || "")){
-      var patch = {}; patch[field] = ta.value;
-      MSG_FIELDS.forEach(function(f){ if(f.foreign === field) patch[f.edited] = 1; });
-      pre = patchLead(lead, patch).catch(function(){});
+  if(entry){
+    var cardEl = card || document.querySelector('.lead[data-id="' + leadId + '"]');
+    var zhTa = cardEl ? cardEl.querySelector('textarea[data-foreignfield="' + entry.foreign + '"]') : null;
+    var foView = cardEl ? cardEl.querySelector('[data-foreignview="' + entry.foreign + '"]') : null;
+    if(zhTa && foView){
+      var zhVal = zhTa.value;
+      var foVal = decodeURIComponent(foView.getAttribute("data-val") || "");
+      if(zhVal !== (lead[entry.zh] || "") || foVal !== (lead[entry.foreign] || "")){
+        var patch = {}; patch[entry.zh] = zhVal; patch[entry.foreign] = foVal; patch[entry.edited] = 1;
+        pre = patchLead(lead, patch).catch(function(){});
+      }
     }
   }
   pre.then(function(){ recordContact(lead, channel, kind, card); });
@@ -1308,8 +1325,9 @@ function buildAssigneeFilter(){
   else sel.value = "";
 }
 function currentFilters(){
-  return { assignee: $("fAssignee").value, region: $("fRegion").value, status: $("fStatus").value, q: $("fSearch").value.trim().toLowerCase() };
+  return { assignee: $("fAssignee").value, region: $("fRegion").value, status: $("fStatus").value, contact: $("fContact") ? $("fContact").value : "", q: $("fSearch").value.trim().toLowerCase() };
 }
+function hasField(v){ return String(v === null || v === undefined ? "" : v).trim() !== ""; }
 function applyFilters(){
   var f = currentFilters();
   state.filtered = state.leads.filter(function(l){
@@ -1319,6 +1337,13 @@ function applyFilters(){
       else if(l.region !== f.region) return false;
     }
     if(f.status && l.status !== f.status) return false;
+    if(f.contact){
+      if(f.contact === "whatsapp" && !hasField(l.whatsapp)) return false;
+      if(f.contact === "phone" && !hasField(l.phone)) return false;
+      if(f.contact === "email" && !hasField(l.email)) return false;
+      if(f.contact === "telegram" && !hasField(l.telegram)) return false;
+      if(f.contact === "none" && (hasField(l.whatsapp) || hasField(l.phone) || hasField(l.email) || hasField(l.telegram))) return false;
+    }
     if(f.q){
       /* 组合搜：空格分开的每个词都要对上，比如「哈萨克斯坦 玫瑰」= 国家 + 产品一起搜 */
       var hay = [l.company,l.country,l.city,l.product,l.variety,l.title_zh,l.contact_name].join(" ").toLowerCase();
@@ -1335,7 +1360,7 @@ function applyFilters(){
   renderWeekly();
   renderOrderPanel();
 }
-["fAssignee","fRegion","fStatus"].forEach(function(id){ $(id).addEventListener("change", applyFilters); });
+["fAssignee","fRegion","fStatus","fContact"].forEach(function(id){ var el = $(id); if(el) el.addEventListener("change", applyFilters); });
 $("fSearch").addEventListener("input", applyFilters);
 
 function renderLeads(){
@@ -1346,19 +1371,46 @@ function renderLeads(){
 }
 function msgBlock(title, text, links, extra){
   extra = extra || {};
-  if(!text && !links.length) return "";
+  var foreign = text || "";
+  var hasEditor = !!extra.zhField;
+  if(!foreign && !hasEditor && !links.length) return "";
+  if(hasEditor && !foreign && !(extra.zhText || "") && !links.length) return "";
   var h = '<div class="msg-block"><div class="msg-title">'+esc(title)+"</div>";
-  if(extra.editField && text){
-    h += '<textarea class="msg-edit" data-editfield="'+esc(extra.editField)+'" aria-label="发送前可以直接改">'+esc(text)+"</textarea>";
-    h += '<div class="tr-status">发送前可以直接在框里改，改完点发送就用新内容发出去。</div>';
-  } else if(text) h += '<div class="msg-text">'+esc(text)+"</div>";
-  if(extra.gist) h += '<div class="zh-gist"><b>中文大意（先看这个，确认了再发）：</b>'+esc(extra.gist)+"</div>";
+  if(hasEditor){
+    h += '<div class="msg-flabel" style="margin-top:0">中文（在这里改，改完停一下，外文版自动跟着变）</div>';
+    h += '<textarea class="msg-edit" data-zhfield="'+esc(extra.zhField)+'" data-foreignfield="'+esc(extra.foreignField)+'" data-editedfield="'+esc(extra.editedField || "")+'" aria-label="中文，在这里改">'+esc(extra.zhText || "")+"</textarea>";
+    h += '<div class="tr-status" data-trstatus="'+esc(extra.foreignField)+'">在上面的中文框里改，停一下就会自动翻译，下面的外文版跟着更新。</div>';
+    h += '<div class="msg-flabel">外文版（实际发给客户的，自动翻译生成，只看不用改）</div>';
+    h += '<div class="msg-text foreign-view" data-foreignview="'+esc(extra.foreignField)+'" data-val="'+encodeURIComponent(foreign)+'">'+(foreign ? esc(foreign) : "（还没有外文版：在上面的中文框里写好，停一下就会自动翻译出来）")+"</div>";
+  } else if(foreign) {
+    h += '<div class="msg-text">'+esc(foreign)+"</div>";
+  }
   if(extra.note) h += '<div class="tr-status">'+esc(extra.note)+"</div>";
   h += '<div class="msg-actions">';
   links.forEach(function(L){ h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="'+esc(L.channel || "")+'" data-kind="'+esc(L.kind || "")+'"'+(L.backup ? ' data-backup="1"' : "")+' href="'+esc(L.href)+'">'+esc(L.label)+"</a>"; });
-  if(text) h += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(text)+'">复制这封</button>';
+  h += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(foreign)+'">复制这封</button>';
   h += "</div></div>";
   return h;
+}
+/* 把卡片里同一封信的所有发送链接都换成当前外文（翻译成功后调用） */
+function syncSendLinks(card, lead, entry, foreignText){
+  if(!card || !entry) return;
+  card.querySelectorAll("a[data-sendlink]").forEach(function(a){
+    var e2 = msgFieldFor(a.getAttribute("data-channel") || "", a.getAttribute("data-kind") || "");
+    if(!e2 || e2.foreign !== entry.foreign) return;
+    var ch = a.getAttribute("data-channel");
+    if(ch === "whatsapp"){
+      var base = a.getAttribute("data-backup") === "1" ? lead.whatsapp_backup : lead.whatsapp;
+      a.href = waUniversal(base, foreignText);
+    } else if(ch === "telegram"){
+      var u = tgUser(lead.telegram);
+      if(u) a.href = "https://t.me/" + u + "?text=" + encodeURIComponent(foreignText);
+    }
+  });
+  document.querySelectorAll('.top5-item a[data-lead="' + lead.id + '"][data-sendlink]').forEach(function(a){
+    var e3 = msgFieldFor(a.getAttribute("data-channel") || "", a.getAttribute("data-kind") || "");
+    if(e3 && e3.foreign === entry.foreign && (a.getAttribute("data-channel") || "") === "whatsapp") a.href = waUniversal(lead.whatsapp, foreignText);
+  });
 }
 /* 客户 3 天没回：算出该不该跟进（联系过 1-4 次、没回、最后一次联系在 3 天前） */
 function followDue(l){
@@ -1409,32 +1461,30 @@ function cardHtml(l){
   if(l.whatsapp){
     var links1 = [{ label:"WhatsApp 第一封", href: waUniversal(l.whatsapp, l.first_message), channel:"whatsapp", kind:"first" }];
     if(l.whatsapp_backup) links1.push({ label:"备用号发第一封", href: waUniversal(l.whatsapp_backup, l.first_message), channel:"whatsapp", kind:"first", backup:true });
-    msgs += msgBlock("第一封（WhatsApp）", l.first_message || "", links1, { gist: l.first_message_zh || "", editField: "first_message" });
+    msgs += msgBlock("第一封（WhatsApp）", l.first_message || "", links1, { zhText: l.first_message_zh || "", zhField: "first_message_zh", foreignField: "first_message", editedField: "first_message_edited" });
     var links2 = [{ label:"WhatsApp 跟进信", href: waUniversal(l.whatsapp, l.followup_message), channel:"whatsapp", kind:"followup" }];
     if(l.whatsapp_backup) links2.push({ label:"备用号发跟进信", href: waUniversal(l.whatsapp_backup, l.followup_message), channel:"whatsapp", kind:"followup", backup:true });
-    msgs += msgBlock("3 天跟进信（WhatsApp）", l.followup_message || "", links2);
+    msgs += msgBlock("3 天跟进信（WhatsApp）", l.followup_message || "", links2, { zhText: l.followup_message_zh || "", zhField: "followup_message_zh", foreignField: "followup_message", editedField: "followup_message_edited" });
   }
   if(tgu){
-    var tgLinks = [];
-    if(l.telegram_first_message) tgLinks.push({ label:"Telegram 第一封", href:"https://t.me/"+tgu+"?text="+encodeURIComponent(l.telegram_first_message), channel:"telegram", kind:"first" });
-    if(l.telegram_followup_message) tgLinks.push({ label:"Telegram 跟进信", href:"https://t.me/"+tgu+"?text="+encodeURIComponent(l.telegram_followup_message), channel:"telegram", kind:"followup" });
-    var tgText = l.telegram_first_message || l.telegram_followup_message || "";
-    msgs += msgBlock("Telegram 消息", tgText, tgLinks, l.telegram_first_message ? { gist: l.telegram_first_message_zh || "", editField: "telegram_first_message" } : {});
-    if(l.telegram_first_message && l.telegram_followup_message && l.telegram_first_message !== tgText){
-      msgs += msgBlock("Telegram 跟进信原文", l.telegram_followup_message, []);
+    if(l.telegram_first_message || l.telegram_first_message_zh){
+      msgs += msgBlock("第一封（Telegram）", l.telegram_first_message || "", [{ label:"Telegram 第一封", href:"https://t.me/"+tgu+"?text="+encodeURIComponent(l.telegram_first_message || ""), channel:"telegram", kind:"first" }], { zhText: l.telegram_first_message_zh || "", zhField: "telegram_first_message_zh", foreignField: "telegram_first_message", editedField: "telegram_first_message_edited" });
+    }
+    if(l.telegram_followup_message || l.telegram_followup_message_zh){
+      msgs += msgBlock("跟进信（Telegram）", l.telegram_followup_message || "", [{ label:"Telegram 跟进信", href:"https://t.me/"+tgu+"?text="+encodeURIComponent(l.telegram_followup_message || ""), channel:"telegram", kind:"followup" }], { zhText: l.telegram_followup_message_zh || "", zhField: "telegram_followup_message_zh", foreignField: "telegram_followup_message", editedField: "telegram_followup_message_edited" });
     }
   }
-  if(!tgu && (l.telegram_first_message || l.telegram_followup_message)){
-    var tgText2 = l.telegram_first_message || l.telegram_followup_message || "";
-    msgs += msgBlock("Telegram 消息（这家没留用户名）", tgText2, [], {
-      note: "没有用户名：点「复制这封」，自己去 Telegram 搜到这个客户，再粘贴发送。",
-      gist: l.telegram_first_message ? (l.telegram_first_message_zh || "") : "",
-      editField: l.telegram_first_message ? "telegram_first_message" : ""
-    });
+  if(!tgu && (l.telegram_first_message || l.telegram_followup_message || l.telegram_first_message_zh || l.telegram_followup_message_zh)){
+    var tgNote = "没有用户名：点「复制这封」，自己去 Telegram 搜到这个客户，再粘贴发送。";
+    if(l.telegram_first_message || l.telegram_first_message_zh){
+      msgs += msgBlock("第一封（Telegram · 这家没留用户名）", l.telegram_first_message || "", [], { note: tgNote, zhText: l.telegram_first_message_zh || "", zhField: "telegram_first_message_zh", foreignField: "telegram_first_message", editedField: "telegram_first_message_edited" });
+    }
+    if(l.telegram_followup_message || l.telegram_followup_message_zh){
+      msgs += msgBlock("跟进信（Telegram · 这家没留用户名）", l.telegram_followup_message || "", [], { note: tgNote, zhText: l.telegram_followup_message_zh || "", zhField: "telegram_followup_message_zh", foreignField: "telegram_followup_message", editedField: "telegram_followup_message_edited" });
+    }
   }
 
   var nowaHint = (!state.isLeader && myWaMissing()) ? '<div class="nowa-hint">' + esc(NO_WA_HINT) + "</div>" : "";
-  msgs += zhBlock(l);
   var suggHtml = suggBlock(l);
   /* 粘贴客户原话：走「这句不会回，帮我写」流程，助手建议就显示在上面 */
   var pasteHtml = state.isLeader ? "" : '<div class="paste-box"><div class="msg-title">粘贴客户原话，让助手帮你写回复</div>'
@@ -1731,29 +1781,30 @@ function bindOneCard(card){
         return logActivity(lead.id, "stars", "星星改成 " + nv + " 星");
       }).then(function(){ toast("星星已改好"); applyFilters(); }).catch(function(e){ toast(e.message, true); });
     });
-    /* 发送前改第一封：改了框里的内容，发送和复制按钮立刻用新内容 */
-    card.querySelectorAll("textarea[data-editfield]").forEach(function(ta){
+    /* 中文框里改：停顿约 800 毫秒后自动翻译，下面的外文版、发送链接和复制按钮一起换成新外文 */
+    card.querySelectorAll("textarea[data-zhfield]").forEach(function(ta){
       ta.addEventListener("input", function(){
-        var field = ta.getAttribute("data-editfield");
-        var val = ta.value;
+        var foreignField = ta.getAttribute("data-foreignfield");
         var block = ta.closest(".msg-block");
-        if(block){
-          block.querySelectorAll("a[data-sendlink]").forEach(function(a){
-            var ch = a.getAttribute("data-channel");
-            if(ch === "whatsapp"){
-              var base = a.getAttribute("data-backup") === "1" ? lead.whatsapp_backup : lead.whatsapp;
-              a.href = waUniversal(base, val);
-            } else if(ch === "telegram"){
-              var u = tgUser(lead.telegram);
-              if(u) a.href = "https://t.me/" + u + "?text=" + encodeURIComponent(val);
-            }
+        var stEl = block ? block.querySelector('[data-trstatus="' + foreignField + '"]') : null;
+        var foView = block ? block.querySelector('[data-foreignview="' + foreignField + '"]') : null;
+        if(ta._trTimer) clearTimeout(ta._trTimer);
+        if(stEl){ stEl.className = "tr-status"; stEl.textContent = "输入完停一下，外文版会自动翻译更新…"; }
+        ta._trTimer = setTimeout(function(){
+          var zhText = ta.value.trim();
+          if(!zhText){ if(stEl) stEl.textContent = "中文框是空的，先写中文，外文版才会跟着变。"; return; }
+          if(stEl){ stEl.className = "tr-status"; stEl.textContent = "正在翻译…"; }
+          translateZhAll(zhText, lead.country).then(function(out){
+            if(foView){ foView.setAttribute("data-val", encodeURIComponent(out)); foView.textContent = out; }
+            var entry = null;
+            MSG_FIELDS.forEach(function(f){ if(f.foreign === foreignField) entry = f; });
+            if(entry) syncSendLinks(card, lead, entry, out);
+            if(block){ var cp = block.querySelector("[data-copy]"); if(cp) cp.setAttribute("data-copy", encodeURIComponent(out)); }
+            if(stEl){ stEl.className = "tr-status"; stEl.textContent = "外文版已更新，就是下面这版，点发送就发这版。"; }
+          }).catch(function(){
+            if(stEl){ stEl.className = "tr-status err"; stEl.textContent = "翻译没成功，先用原来的发"; }
           });
-          var cp = block.querySelector("[data-copy]");
-          if(cp) cp.setAttribute("data-copy", encodeURIComponent(val));
-        }
-        var q = card.querySelector('.quick-actions a[data-kind="first"]');
-        if(q && field === "first_message" && lead.whatsapp) q.href = waUniversal(lead.whatsapp, val);
-        if(q && field === "telegram_first_message"){ var u2 = tgUser(lead.telegram); if(u2) q.href = "https://t.me/" + u2 + "?text=" + encodeURIComponent(val); }
+        }, 800);
       });
     });
     /* 客户要下单了：只标重点，不停跟进 */
@@ -2022,12 +2073,15 @@ var MSG_FIELDS = [
 ];
 var STAGE_ZH = { new:"新线索", contacted:"已联系", replied:"已回", negotiating:"谈判中", quoted:"已报价", deal:"已成交", ignored:"没兴趣" };
 function stageZh(s){ return STAGE_ZH[s] || s || "新线索"; }
-function zhBlock(l){
-  var items = MSG_FIELDS.map(function(f){ return [f.label + "中文", l[f.zh]]; }).filter(function(x){ return x[1]; });
-  if(!items.length) return "";
-  var h = '<div class="msg-block zh-block"><div class="msg-title">中文对照，只给你看，不发给客户</div>';
-  items.forEach(function(x){ h += '<div class="zh-item"><b>'+esc(x[0])+'：</b><span>'+esc(x[1])+"</span></div>"; });
-  return h + "</div>";
+/* 按渠道 + 第几封找到对应的中文字段 / 外文字段 / 已改标记 */
+function msgFieldFor(channel, kind){
+  var want = "";
+  if(channel === "whatsapp") want = kind === "followup" ? "followup_message" : "first_message";
+  else if(channel === "telegram") want = kind === "followup" ? "telegram_followup_message" : "telegram_first_message";
+  else return null;
+  var found = null;
+  MSG_FIELDS.forEach(function(f){ if(f.foreign === want) found = f; });
+  return found;
 }
 function suggBlock(l){
   var list = (state.suggByLead && state.suggByLead[l.id]) || [];
@@ -2187,11 +2241,11 @@ function renderOverview(){
   }).join("");
 }
 
-/* ================= 翻译（词典优先 + 免费接口，失败明确报错） ================= */
-/* 实测结论（2026-11-20）：本机直连出口被拦，curl 连 example.com 都超时，
-   所以两个免费接口在本机上都测不通；页面在用户手机浏览器里跑，接口能不能通
-   要看用户那边的网络。接口调不通时绝不乱翻，只报失败、保留原外语版。 */
-var TRANS_TIMEOUT_MS = 8000;
+/* ================= 翻译（走 Supabase Edge Function 中转，失败明确报错） ================= */
+/* 浏览器不直接调 Google（队友在国内不用梯子打不开）：统一走已部署的
+   Edge Function「translate」中转。翻不出来时绝不乱改，保留原来的外文，
+   并提示「翻译没成功，先用原来的发」。 */
+var TRANS_TIMEOUT_MS = 15000;
 function detectLang(text){
   if(!text) return "en";
   if(/[\u0400-\u04FF]/.test(text)) return "ru";
@@ -2211,36 +2265,55 @@ function applyDictFix(text, to){
   dict.forEach(function(pair){ out = out.split(pair[0]).join(pair[1]); });
   return out;
 }
-function fetchWithTimeout(url, ms){
+/* 目标语言按线索国家来，和生成消息时同一套映射 */
+var COUNTRY_LANGS = [
+  { countries: ["哈萨克斯坦","俄罗斯","乌兹别克斯坦","吉尔吉斯斯坦","塔吉克斯坦","土库曼斯坦","白俄罗斯","乌克兰","摩尔多瓦","格鲁吉亚","亚美尼亚","阿塞拜疆","Kazakhstan","Russia","Uzbekistan","Kyrgyzstan","Tajikistan","Turkmenistan","Belarus","Ukraine","Moldova","Georgia","Armenia","Azerbaijan"], langs: ["ru","en"] },
+  { countries: ["阿联酋","沙特阿拉伯","卡塔尔","科威特","阿曼","伊拉克","约旦","以色列","伊朗","也门","黎巴嫩","叙利亚","巴林","UAE","Saudi Arabia","Qatar","Kuwait","Oman","Iraq","Jordan","Israel","Iran","Yemen","Lebanon","Syria","Bahrain"], langs: ["en","ar"] },
+  { countries: ["智利","秘鲁","哥伦比亚","阿根廷","厄瓜多尔","巴西","委内瑞拉","玻利维亚","巴拉圭","乌拉圭","Chile","Peru","Colombia","Argentina","Ecuador","Brazil","Venezuela","Bolivia","Paraguay","Uruguay"], langs: ["en","es"] },
+  { countries: ["越南","Vietnam"], langs: ["en","vi"] },
+  { countries: ["泰国","Thailand"], langs: ["en","th"] },
+  { countries: ["马来西亚","Malaysia"], langs: ["en","ms"] },
+  { countries: ["印度尼西亚","印尼","Indonesia"], langs: ["en","id"] },
+  { countries: ["柬埔寨","Cambodia"], langs: ["en","km"] },
+  { countries: ["缅甸","Myanmar"], langs: ["en","my"] }
+];
+function targetLangsForCountry(country){
+  var c = String(country || "").trim();
+  if(c){
+    for(var i = 0; i < COUNTRY_LANGS.length; i++){
+      var list = COUNTRY_LANGS[i].countries;
+      for(var j = 0; j < list.length; j++){
+        if(c === list[j] || c.indexOf(list[j]) >= 0 || list[j].indexOf(c) >= 0) return COUNTRY_LANGS[i].langs.slice();
+      }
+    }
+  }
+  return ["en"];
+}
+/* 单种语言翻译：POST 到 Edge Function translate，成功 {translatedText}，失败 {error} */
+function translateViaEdge(text, to){
   var ctrl = new AbortController();
-  var timer = setTimeout(function(){ ctrl.abort(); }, ms);
-  return fetch(url, { signal: ctrl.signal }).then(function(res){
+  var timer = setTimeout(function(){ ctrl.abort(); }, TRANS_TIMEOUT_MS);
+  return fetch(SUPABASE_URL + "/functions/v1/translate", {
+    method: "POST",
+    headers: { "apikey": ANON_KEY, "Content-Type": "application/json" },
+    body: JSON.stringify({ text: text, target: to }),
+    signal: ctrl.signal
+  }).then(function(res){
     clearTimeout(timer);
-    if(!res.ok) throw new Error("HTTP " + res.status);
-    return res.json();
+    return res.json().catch(function(){ return null; }).then(function(data){
+      if(!res.ok || !data || data.error || !data.translatedText) throw new Error((data && data.error) || ("HTTP " + res.status));
+      return data.translatedText;
+    });
   }).catch(function(e){ clearTimeout(timer); throw e; });
 }
-function translateViaGoogle(text, to){
-  var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=" + encodeURIComponent(to) + "&dt=t&q=" + encodeURIComponent(text);
-  return fetchWithTimeout(url, TRANS_TIMEOUT_MS).then(function(data){
-    if(!data || !data[0] || !data[0].length) throw new Error("empty");
-    var out = data[0].map(function(seg){ return seg[0] || ""; }).join("");
-    if(!out || /[\u4e00-\u9fff]/.test(out) && out === text) throw new Error("empty");
-    return out;
-  });
-}
-function translateViaMyMemory(text, to){
-  var url = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(text) + "&langpair=zh-CN|" + encodeURIComponent(to);
-  return fetchWithTimeout(url, TRANS_TIMEOUT_MS).then(function(data){
-    if(!data || !data.responseData || data.responseStatus !== 200) throw new Error("bad");
-    var out = data.responseData.translatedText || "";
-    if(!out || /MYMEMORY WARNING/i.test(out) || /QUERY LENGTH LIMIT/i.test(out)) throw new Error("bad");
-    return out;
-  });
-}
 function translateZh(text, to){
-  return translateViaGoogle(text, to).catch(function(){ return translateViaMyMemory(text, to); })
-    .then(function(out){ return applyDictFix(out, to); });
+  return translateViaEdge(text, to).then(function(out){ return applyDictFix(out, to); });
+}
+/* 中文翻成这个国家要用的每种语言，用空行连起来（保持双语消息的格式）；任何一种翻不出来，整封算失败 */
+function translateZhAll(text, country){
+  var langs = targetLangsForCountry(country);
+  return Promise.all(langs.map(function(to){ return translateZh(text, to); }))
+    .then(function(parts){ return parts.join("\n\n"); });
 }
 
 /* ================= 编辑消息 ================= */
@@ -2254,30 +2327,31 @@ function openEditor(lead){
   wrap.innerHTML = MSG_FIELDS.map(function(f){
     var zh = lead[f.zh] || "";
     var fo = lead[f.foreign] || "";
-    return '<div class="edit-field"><label>'+esc(f.label)+'（中文）</label>'
+    return '<div class="edit-field"><label>'+esc(f.label)+'（中文，在这里改）</label>'
       + '<textarea data-zh="'+f.zh+'" data-foreign="'+f.foreign+'" data-edited="'+f.edited+'">'+esc(zh)+"</textarea>"
-      + '<label style="margin-top:6px">外语版（自动翻译生成，也可以直接改）</label>'
-      + '<textarea class="foreign" data-fo="'+f.foreign+'">'+esc(fo)+"</textarea>"
+      + '<label style="margin-top:6px">外语版（自动翻译生成，只读）</label>'
+      + '<textarea class="foreign" data-fo="'+f.foreign+'" readonly>'+esc(fo)+"</textarea>"
       + '<div class="tr-status" data-st="'+f.foreign+'"></div></div>';
   }).join("");
+  function runModalTranslate(ta, foEl, stEl){
+    var zhText = ta.value.trim();
+    if(!zhText){ if(stEl) stEl.textContent = ""; return; }
+    if(stEl){ stEl.className = "tr-status"; stEl.textContent = "正在翻译…"; }
+    translateZhAll(zhText, lead.country).then(function(out){
+      foEl.value = out;
+      if(stEl){ stEl.className = "tr-status"; stEl.textContent = "外文版已更新，保存后一键发送就用这版。"; }
+    }).catch(function(){
+      if(stEl){ stEl.className = "tr-status err"; stEl.textContent = "翻译没成功，先用原来的发"; }
+    });
+  }
   wrap.querySelectorAll("textarea[data-zh]").forEach(function(ta){
     ta.addEventListener("input", function(){
       var foKey = ta.getAttribute("data-foreign");
       var stEl = wrap.querySelector('[data-st="'+foKey+'"]');
       var foEl = wrap.querySelector('[data-fo="'+foKey+'"]');
       if(editTimers[foKey]) clearTimeout(editTimers[foKey]);
-      if(stEl) stEl.textContent = "等一下，正在翻译…";
-      editTimers[foKey] = setTimeout(function(){
-        var zhText = ta.value.trim();
-        if(!zhText){ if(stEl) stEl.textContent = ""; return; }
-        var to = detectLang(foEl.value || lead[foKey] || "");
-        translateZh(zhText, to).then(function(out){
-          foEl.value = out;
-          if(stEl){ stEl.className = "tr-status"; stEl.textContent = "已翻译成外语版，保存后一键发送就用这版。"; }
-        }).catch(function(){
-          if(stEl){ stEl.className = "tr-status err"; stEl.textContent = "翻译没连上，外语版没改。请检查网络后点「重新翻译」，或者直接在外语框里改。"; }
-        });
-      }, 800);
+      if(stEl){ stEl.className = "tr-status"; stEl.textContent = "输入完停一下，外文版会自动翻译更新…"; }
+      editTimers[foKey] = setTimeout(function(){ runModalTranslate(ta, foEl, stEl); }, 800);
     });
   });
   wrap.querySelectorAll(".tr-status").forEach(function(st){
@@ -2288,13 +2362,7 @@ function openEditor(lead){
       var foKey = st.getAttribute("data-st");
       var ta = wrap.querySelector('textarea[data-foreign="'+foKey+'"]');
       var foEl = wrap.querySelector('[data-fo="'+foKey+'"]');
-      st.className = "tr-status"; st.textContent = "等一下，正在翻译…";
-      var to = detectLang(foEl.value || lead[foKey] || "");
-      translateZh(ta.value.trim(), to).then(function(out){
-        foEl.value = out; st.textContent = "已翻译成外语版，保存后一键发送就用这版。";
-      }).catch(function(){
-        st.className = "tr-status err"; st.textContent = "翻译没连上，外语版没改。请检查网络后重试，或者直接在外语框里改。";
-      });
+      runModalTranslate(ta, foEl, st);
     });
     st.parentNode.insertBefore(btn, st.nextSibling);
   });
