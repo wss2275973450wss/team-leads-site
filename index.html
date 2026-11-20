@@ -213,6 +213,7 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
   .guide-bar .g-step{border-top:none;border-left:1px solid rgba(217,196,140,.28);padding:0 0 0 22px}
   .guide-bar .g-step:first-child{border-left:none;padding-left:0}
 }
+.nowa-hint{margin-top:12px;background:var(--amber-bg);color:var(--amber);border:1px solid #ecd9a8;border-radius:10px;padding:9px 12px;font-size:13.5px}
 .next-step{margin-top:14px;background:var(--green-soft);border:1px solid #cfe0d2;border-radius:12px;padding:11px 14px;font-size:14px;color:#2c362d}
 .next-step b{color:var(--green)}
 .hidden{display:none!important}
@@ -703,6 +704,20 @@ function tgUser(raw){
   return u;
 }
 
+/* 没填自己的 WhatsApp 号时，一键发送拦截 */
+var NO_WA_MSG = "你还没填自己的 WhatsApp 号，先在「我的 WhatsApp」里填好号再发。";
+var NO_WA_HINT = "你还没填自己的 WhatsApp 号：先在下方「我的 WhatsApp」里填好号才能一键发。";
+function myWaMissing(){
+  if(!state.myProfile) return false;
+  return !String(state.myProfile.whatsapp || "").trim();
+}
+document.addEventListener("click", function(ev){
+  var t = ev.target;
+  var a = t && t.closest ? t.closest("[data-sendlink]") : null;
+  if(!a) return;
+  if(myWaMissing()){ ev.preventDefault(); toast(NO_WA_MSG, true); }
+});
+
 /* ================= Supabase fetch ================= */
 function api(path, opts){
   opts = opts || {};
@@ -882,7 +897,7 @@ function renderMyWa(){
   $("myWaSave").addEventListener("click", function(){
     var v = $("myWaInput").value.trim();
     api("profiles?id=eq." + encodeURIComponent(state.myProfile.id), { method:"PATCH", headers:{ "Prefer":"return=minimal" }, body:{ whatsapp: v } })
-      .then(function(){ state.myProfile.whatsapp = v; renderTeam(); toast("已保存"); })
+      .then(function(){ state.myProfile.whatsapp = v; renderTeam(); applyFilters(); toast("已保存"); })
       .catch(function(e){ toast(e.message || "保存失败", true); });
   });
 }
@@ -966,7 +981,7 @@ function msgBlock(title, text, links){
   var h = '<div class="msg-block"><div class="msg-title">'+esc(title)+"</div>";
   if(text) h += '<div class="msg-text">'+esc(text)+"</div>";
   h += '<div class="msg-actions">';
-  links.forEach(function(L){ h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" href="'+esc(L.href)+'">'+esc(L.label)+"</a>"; });
+  links.forEach(function(L){ h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" href="'+esc(L.href)+'">'+esc(L.label)+"</a>"; });
   if(text) h += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(text)+'">复制这封</button>';
   h += "</div></div>";
   return h;
@@ -1019,6 +1034,7 @@ function cardHtml(l){
     }
   }
 
+  var nowaHint = (!state.isLeader && myWaMissing()) ? '<div class="nowa-hint">' + esc(NO_WA_HINT) + "</div>" : "";
   msgs += zhBlock(l);
   var suggHtml = suggBlock(l);
   var profHtml = profBlock(l);
@@ -1044,7 +1060,7 @@ function cardHtml(l){
     + (prod ? '<div class="kv">产品：<b>'+esc(prod)+"</b></div>" : "")
     + (detail ? '<div class="kv">'+detail+"</div>" : "")
     + '<div class="kv">已跟进：<b>'+esc(l.owner_contact_count || 0)+"</b> 次 / 最多 5 次"+(l.found_at ? " · 找到于 "+esc(fmtTime(l.found_at)) : "")+"</div>"
-    + contacts + msgs + suggHtml + profHtml + chatHtml
+    + contacts + nowaHint + msgs + suggHtml + profHtml + chatHtml
     + '<div class="next-step">下一步：<b>' + esc(nextStepText(l)) + '</b></div>'
     + (state.isLeader ? "" : '<div class="actions">'
     + '<button class="btn btn-primary btn-sm" type="button" data-act="contacted" style="width:auto">已联系</button>'
@@ -1109,7 +1125,10 @@ function bindCards(){
     card.querySelectorAll("[data-sugg-send]").forEach(function(btn){
       btn.addEventListener("click", function(){
         var text = decodeURIComponent(btn.getAttribute("data-text"));
-        if(lead.whatsapp){ window.open(waLink(lead.whatsapp, text), "_blank"); }
+        if(lead.whatsapp){
+          if(myWaMissing()){ toast(NO_WA_MSG, true); return; }
+          window.open(waLink(lead.whatsapp, text), "_blank");
+        }
         else if(lead.email){ window.open("https://mail.google.com/mail/?view=cm&to="+encodeURIComponent(lead.email)+"&su="+encodeURIComponent("回复 - "+(lead.company||""))+"&body="+encodeURIComponent(text), "_blank"); }
         else if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){ toast("已复制，粘贴到聊天里发出去"); }, function(){ toast("复制失败，请长按文字复制", true); }); }
         else { toast("这家没留 WhatsApp 也没留邮箱，复制文字自己发", true); }
@@ -1752,7 +1771,7 @@ function topFiveForTeam(){
 function topFiveItemHtml(l, idx){
   var h = '<div class="top5-item"><span class="rank">' + ((idx || 0) + 1) + '</span><div class="top5-main"><span class="nm">' + esc(l.company || "（未填公司名）") + "</span> " + starStr(l.stars)
     + '<div class="sub2">' + esc([l.country, l.product, l.variety].filter(Boolean).join(" · ")) + " · 负责人：" + esc(l.assignee || "未分配") + "</div></div><div>";
-  if(l.whatsapp) h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" href="' + esc(waLink(l.whatsapp, l.first_message)) + '">WhatsApp 第一封</a>';
+  if(l.whatsapp) h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" href="' + esc(waLink(l.whatsapp, l.first_message)) + '">WhatsApp 第一封</a>';
   else if(l.email) h += '<a class="btn btn-outline btn-sm" href="mailto:' + esc(l.email) + '">发邮件</a>';
   else h += '<span class="sub2">没留 WhatsApp / 邮箱</span>';
   return h + "</div></div>";
