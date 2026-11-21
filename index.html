@@ -1397,6 +1397,7 @@ $("loginForm").addEventListener("submit", function(ev){
     rememberLogin = $("rememberMe") ? $("rememberMe").checked : true;
     state.token = r.data.access_token;
     state.user = r.data.user || null;
+    if(state.user && state.user.user_metadata && state.user.user_metadata.password_changed_at) LS.set("leads_pwd_done", "1", true);
     LS.set("leads_token", state.token, rememberLogin);
     LS.set("leads_user", JSON.stringify(state.user), rememberLogin);
     if(r.data.refresh_token) LS.set("leads_refresh", r.data.refresh_token, rememberLogin);
@@ -1480,6 +1481,8 @@ $("pwdConfirm").addEventListener("click", function(){
         body: JSON.stringify({ data: { password_changed_at: new Date().toISOString() } })
       }).catch(function(){});
     }).then(function(){
+      /* 改成功就在这台设备上记一笔：下次登录哪怕账号里的标记没存上，也不再反复弹改密码框挡住全屏 */
+      LS.set("leads_pwd_done", "1", true);
       $("pwdModal").classList.remove("open");
       pwdForced = false;
       $("pwdCancel").style.display = "";
@@ -1513,6 +1516,9 @@ function enterApp(){
 function checkFirstLogin(){
   var md = (state.user && state.user.user_metadata) || {};
   if(md.password_changed_at) return;
+  /* 这台设备上已经改过密码就不再拦：改密码时往账号里记的 password_changed_at 万一没存上，
+     不能每次登录都把改密码框盖满全屏、把客户卡片上的按钮全挡死（关不掉、点不动就是这么来的） */
+  if(LS.get("leads_pwd_done")) return;
   pwdForced = true;
   $("oldPwd").value = ""; $("newPwd").value = ""; $("newPwd2").value = "";
   var e = $("pwdErr"); e.textContent = "你是第一次用初始密码登录，先改掉密码才能进首页。"; e.className = "err show";
@@ -2176,7 +2182,10 @@ function patchLead(l, patch){
     .then(function(){ for(var k in patch) l[k] = patch[k]; });
 }
 function bindCards(){
-  document.querySelectorAll(".lead").forEach(function(card){ bindOneCard(card); });
+  /* 一张一张绑：一张卡绑出错也不能连累其他卡（以前一张出错，后面所有卡的按钮都没绑上、全点不动） */
+  document.querySelectorAll(".lead").forEach(function(card){
+    try{ bindOneCard(card); }catch(e){ /* 没绑上的卡由下面的总处理兜底接住 */ }
+  });
 }
 /* 发送后原地刷新这一张卡（详情展开状态保留） */
 function refreshCard(cardEl, lead){
@@ -2188,7 +2197,7 @@ function refreshCard(cardEl, lead){
   var fresh = tmp.firstChild;
   if(!fresh) return;
   cardEl.replaceWith(fresh);
-  bindOneCard(fresh);
+  try{ bindOneCard(fresh); }catch(e){ /* 没绑上的卡由总处理兜底接住 */ }
   if(wasOpen){
     var b2 = fresh.querySelector(".lead-body"); if(b2) b2.classList.remove("hidden");
     var tb = fresh.querySelector('[data-act="toggle"]');
@@ -2664,7 +2673,52 @@ function bindOneCard(card){
         reassignLead(lead, nv, old, card);
       }, function(){ asSel.value = old; });
     });
+    card.setAttribute("data-bound", "1");
 }
+/* 卡片按钮兜底：正常情况下每张卡渲染后单独绑按钮（bindOneCard），绑成功会打上 data-bound。
+   万一某张卡绑到一半出错、或者列表重渲染的间隙点到了还没绑好的卡，下面的总处理接住卡面上
+   最要紧的几个按钮（展开详情 / 已联系 / 客户回了 / 复制），保证每个客户的按钮都点得动。
+   已绑好的卡（data-bound）不走这里，不会重复触发。 */
+document.addEventListener("click", function(ev){
+  var t = ev.target;
+  if(!t || !t.closest) return;
+  var card = t.closest(".lead");
+  if(!card || card.getAttribute("data-bound")) return;
+  var lead = findLead(card.getAttribute("data-id")); if(!lead) return;
+  var copyBtn = t.closest("[data-copy]");
+  if(copyBtn){
+    var text = decodeURIComponent(copyBtn.getAttribute("data-copy"));
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ toast("已复制"); }, function(){ toast("复制失败，请长按文字复制", true); });
+    } else { toast("这个浏览器不支持一键复制，请长按文字复制", true); }
+    return;
+  }
+  var actBtn = t.closest("[data-act]"); if(!actBtn) return;
+  var act = actBtn.getAttribute("data-act");
+  if(act === "toggle"){
+    var body = card.querySelector(".lead-body"); if(!body) return;
+    if(body.classList.contains("hidden")){
+      body.classList.remove("hidden");
+      actBtn.textContent = "收起详情 ▴"; actBtn.setAttribute("aria-expanded", "true");
+    } else {
+      body.classList.add("hidden");
+      actBtn.textContent = "展开详情 ▾"; actBtn.setAttribute("aria-expanded", "false");
+    }
+  }
+  else if(act === "contacted"){
+    state.pendingContactLead = lead;
+    $("contactModalTitle").textContent = "记录已联系 · " + (lead.company || "");
+    $("contactModal").classList.add("open");
+  }
+  else if(act === "replied"){ markReplied(lead); }
+  else if(act === "quote"){ openQuote(lead); }
+  else if(act === "deal"){ markDeal(lead); }
+  else if(act === "editmsg"){ openEditor(lead); }
+  else if(act === "helpwrite" || act === "importchat-top"){ openImport(lead); }
+  else if(act === "editinfo"){ openEditInfo(lead); }
+  else if(act === "findvar"){ openFindVar(lead); }
+  else if(act === "ask"){ openAsk(lead); }
+});
 
 /* ================= 已联系 / 客户回了 ================= */
 $("cCancel").addEventListener("click", function(){ $("contactModal").classList.remove("open"); state.pendingContactLead = null; });
@@ -3924,7 +3978,12 @@ function openLeadCard(leadId){
     if(ab0 && unseenAnsweredCount(lead) + unseenAdviceCount(lead) === 0){ ab0.className = "btn btn-sm btn-outline"; ab0.textContent = "问柯哥"; }
   }
 }
-$("replyClose").addEventListener("click", function(){ $("replyModal").classList.remove("open"); });
+$("replyClose").addEventListener("click", function(){
+  $("replyModal").classList.remove("open");
+  /* 点了「知道了」就把现在这些回复都记成已看：不然这个弹窗每次打开网站都盖满全屏，
+     卡片上的按钮全被它挡住、怎么点都没反应 */
+  Object.keys(state.reByLead || {}).forEach(function(k){ markReplySeen(k); });
+});
 
 /* ---------- 18. 报价 ---------- */
 var quoteLead = null;
@@ -4936,7 +4995,20 @@ function findSkusByName(name){
     return s.keys.some(function(k){ return text.indexOf(k) >= 0; });
   });
 }
+/* ================= 弹窗兜底：点弹窗外面的空白处就能关 =================
+   任何一个弹窗（客户回了提醒、确认框、已联系……）只要开着，它的遮罩就盖满全屏，
+   底下客户卡片上的按钮全都点不动。以前只能点弹窗里的按钮关，按钮一旦找不到就彻底卡死；
+   现在点遮罩空白处就能关（强制改密码那个除外，那个必须改完才能进）。 */
+document.querySelectorAll(".modal-mask").forEach(function(mask){
+  mask.addEventListener("click", function(ev){
+    if(ev.target !== mask) return;
+    if(mask.id === "pwdModal" && pwdForced){ toast("先改掉初始密码才能进首页", true); return; }
+    mask.classList.remove("open");
+  });
+});
 /* ================= 启动 ================= */
+/* 进页面先把所有弹窗都关一遍，免得上次没关掉的弹窗还盖着、按钮点不动 */
+document.querySelectorAll(".modal-mask.open").forEach(function(m){ m.classList.remove("open"); });
 if(state.token){ enterApp(); }
 </script>
 </body>
