@@ -246,8 +246,19 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
 .next-step{margin-top:14px;background:var(--green-soft);border:1px solid var(--line);border-radius:0;padding:11px 14px;font-size:14px;color:#2C362D}
 .next-step b{color:var(--green)}
 /* ---------- 卡片收起：卡面只留关键信息，详情点开看 ---------- */
-.quick-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.quick-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center;scroll-margin-top:96px}
 .quick-actions .btn-primary{width:auto}
+.quick-actions.flash{animation:qaFlash 1.4s ease-out}
+@keyframes qaFlash{0%{background:rgba(184,151,58,.30)}100%{background:transparent}}
+/* ---------- 回到按钮：小节底部链接 + 右下角浮动按钮 ---------- */
+.back-btns-row{text-align:right;margin:12px 0 4px}
+.back-btns-link{background:transparent;border:none;border-bottom:1px solid var(--gold-line);color:var(--green2);font-size:13.5px;font-weight:700;letter-spacing:.03em;padding:6px 2px;cursor:pointer}
+.back-btns-link:hover{color:var(--green);border-bottom-color:var(--gold)}
+#fabBackBtns{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:45;display:none;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);padding:0 20px;min-height:52px;font-size:15px;font-weight:700;letter-spacing:.03em;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
+#fabBackBtns.show{display:block}
+@media (prefers-reduced-motion: reduce){
+  .quick-actions.flash{animation:none;box-shadow:inset 0 0 0 2px var(--gold)}
+}
 .lead-body{margin-top:12px;border-top:1px solid var(--line);padding-top:2px}
 .lead-body .meta{margin-top:10px}
 .lead-body .section-label{font-size:13px;font-weight:700;color:var(--green);letter-spacing:.04em;margin:14px 0 2px}
@@ -983,6 +994,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
 
 <div class="toast" id="toast"></div>
 <div class="pending-bar" id="pendingBar"><span id="pendingText"></span><button type="button" id="pendingUndo">撤销</button></div>
+<button type="button" id="fabBackBtns" aria-label="回到这张卡片的按钮区">↑ 回到按钮</button>
 
 <script>
 "use strict";
@@ -2098,6 +2110,9 @@ function cardHtml(l){
     + '<label>分错了转给</label><select data-field="assignee">'+assigneeOpts+"</select></div>"
     + '<div class="tr-status">分错了转给：转错了再选回原来的人就行，会记进流水账；请假回来点上面「请假转回来」，会按记录把转出去的客户一次转回来。</div>');
 
+  /* 长小节底部统一放一个“回到按钮”链接，点一下滚回这张卡顶部的按钮区，不用自己往上翻 */
+  var backBtnsLink = '<div class="back-btns-row"><button type="button" class="back-btns-link" data-backbtns>↑ 回到按钮</button></div>';
+
   return '<article class="lead' + (hasContact(l) ? "" : " no-contact") + '" data-id="'+esc(l.id)+'">'
     + '<div class="lead-top"><div><h3>'+esc(l.company || "（未填公司名）")+"</h3>"
     + (l.title_zh ? '<p class="title-zh">'+esc(l.title_zh)+"</p>" : "")
@@ -2128,9 +2143,10 @@ function cardHtml(l){
     + '<li>导完会显示「已导入，算 1 次联系，客户回了」，看到这句就是导成功了。</li></ol></details>')
     + (contacts ? '<div class="section-label">联系方式</div>' + contacts : "")
     + nowaHint
-    + (msgs ? '<div class="section-label">要发的消息</div>' + msgs : "")
-    + suggHtml + pasteHtml + qaBlock(l) + profHtml + chatHtml
-    + '<div class="section-label">联系记录（联系过几次、每次啥时候、发了啥）</div>' + historyBlock(l)
+    + (msgs ? '<div class="section-label">要发的消息</div>' + msgs + backBtnsLink : "")
+    + suggHtml + pasteHtml + qaBlock(l) + backBtnsLink
+    + profHtml + chatHtml + backBtnsLink
+    + '<div class="section-label">联系记录（联系过几次、每次啥时候、发了啥）</div>' + historyBlock(l) + backBtnsLink
     + (l.notes ? '<div class="notes-old">'+esc(l.notes)+"</div>" : "")
     + '<div class="activity" data-activity></div>'
     + "</div>"
@@ -2718,6 +2734,55 @@ document.addEventListener("click", function(ev){
   else if(act === "editinfo"){ openEditInfo(lead); }
   else if(act === "findvar"){ openFindVar(lead); }
   else if(act === "ask"){ openAsk(lead); }
+});
+
+/* ================= 回到按钮：浮动按钮 + 小节底部链接 =================
+   卡片展开后往下翻，只要这张卡的按钮区被翻到屏幕上方去了，右下角就出现浮动按钮；
+   点浮动按钮或任一小节底部的“回到按钮”链接，直接滚回这张卡的按钮区，并闪一下金色提示落点。 */
+var fabBackBtns = $("fabBackBtns");
+var fabTargetCard = null;
+function scrollToCardBtns(card){
+  if(!card) return;
+  var qa = card.querySelector(".quick-actions"); if(!qa) return;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  qa.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  qa.classList.remove("flash");
+  void qa.offsetWidth;
+  qa.classList.add("flash");
+  setTimeout(function(){ qa.classList.remove("flash"); }, 1700);
+}
+function updateFabBackBtns(){
+  if(!fabBackBtns) return;
+  var best = null, bestBottom = -Infinity;
+  document.querySelectorAll(".lead").forEach(function(card){
+    var body = card.querySelector(".lead-body");
+    if(!body || body.classList.contains("hidden")) return;
+    var qa = card.querySelector(".quick-actions"); if(!qa) return;
+    var r = qa.getBoundingClientRect();
+    /* 按钮区已经翻到屏幕上方：在所有展开的卡里选离当前视口最近的那张 */
+    if(r.bottom <= 0 && r.bottom > bestBottom){ bestBottom = r.bottom; best = card; }
+  });
+  fabTargetCard = best;
+  if(best) fabBackBtns.classList.add("show"); else fabBackBtns.classList.remove("show");
+}
+var fabTicking = false;
+function scheduleFabUpdate(){
+  if(fabTicking) return;
+  fabTicking = true;
+  requestAnimationFrame(function(){ fabTicking = false; updateFabBackBtns(); });
+}
+window.addEventListener("scroll", scheduleFabUpdate, { passive: true });
+window.addEventListener("resize", scheduleFabUpdate);
+document.addEventListener("click", function(){ setTimeout(updateFabBackBtns, 80); });
+if(fabBackBtns) fabBackBtns.addEventListener("click", function(){
+  if(!fabTargetCard || !document.contains(fabTargetCard)) updateFabBackBtns();
+  scrollToCardBtns(fabTargetCard);
+});
+document.addEventListener("click", function(ev){
+  var t = ev.target;
+  if(!t || !t.closest) return;
+  var link = t.closest("[data-backbtns]"); if(!link) return;
+  scrollToCardBtns(link.closest(".lead"));
 });
 
 /* ================= 已联系 / 客户回了 ================= */
