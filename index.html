@@ -250,6 +250,14 @@ details.fold-in>summary::-webkit-details-marker{display:none}
 details.fold-in>summary::before{content:"▸ ";color:var(--gold)}
 details.fold-in[open]>summary::before{content:"▾ "}
 details.fold-in .filters{margin-top:10px}
+/* 要发的消息：每封信单独折起来，默认都收起，想看哪封点哪封 */
+details.msg-block{padding:0}
+details.msg-block>summary.msg-summary{cursor:pointer;list-style:none;font-size:13px;font-weight:700;color:var(--green);letter-spacing:.04em;min-height:48px;display:flex;align-items:center;gap:6px;padding:10px 14px}
+details.msg-block>summary.msg-summary::-webkit-details-marker{display:none}
+details.msg-block>summary.msg-summary::before{content:"▸ ";color:var(--gold);flex:none}
+details.msg-block[open]>summary.msg-summary::before{content:"▾ "}
+details.msg-block>summary .msg-fold-hint{font-weight:400;color:var(--muted);font-size:12.5px;letter-spacing:0;margin-left:auto;flex:none}
+details.msg-block .msg-fold-body{padding:0 14px 12px}
 .hidden{display:none!important}
 /* ---------- 问柯哥 ---------- */
 .qa-box{margin-top:12px;border:1px solid #ecd9a8;border-radius:12px;padding:12px 14px;background:var(--amber-bg);font-size:13.5px}
@@ -1392,7 +1400,7 @@ function msgBlock(title, text, links, extra){
   var hasEditor = !!extra.zhField;
   if(!foreign && !hasEditor && !links.length) return "";
   if(hasEditor && !foreign && !(extra.zhText || "") && !links.length) return "";
-  var h = '<div class="msg-block"><div class="msg-title">'+esc(title)+"</div>";
+  var h = '<details class="msg-block msg-fold-one"><summary class="msg-summary">'+esc(title)+'<span class="msg-fold-hint">点开看</span></summary><div class="msg-fold-body">';
   if(hasEditor){
     h += '<div class="msg-flabel" style="margin-top:0">中文（在这里改，改完停一下，外文版自动跟着变）</div>';
     h += '<textarea class="msg-edit" data-zhfield="'+esc(extra.zhField)+'" data-foreignfield="'+esc(extra.foreignField)+'" data-editedfield="'+esc(extra.editedField || "")+'" aria-label="中文，在这里改">'+esc(extra.zhText || "")+"</textarea>";
@@ -1406,7 +1414,7 @@ function msgBlock(title, text, links, extra){
   h += '<div class="msg-actions">';
   links.forEach(function(L){ h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="'+esc(L.channel || "")+'" data-kind="'+esc(L.kind || "")+'"'+(L.backup ? ' data-backup="1"' : "")+' href="'+esc(L.href)+'">'+esc(L.label)+"</a>"; });
   h += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(foreign)+'">复制这封</button>';
-  h += "</div></div>";
+  h += "</div></div></details>";
   return h;
 }
 /* 把卡片里同一封信的所有发送链接都换成当前外文（翻译成功后调用） */
