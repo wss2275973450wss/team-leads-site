@@ -205,6 +205,9 @@ ol.steps li::marker{color:var(--gold);font-weight:700}
 .quote-row .qr-head{display:flex;align-items:center;gap:8px}
 .quote-row .qr-match{font-size:13px;color:var(--green2)}
 .quote-row .est-tag{display:inline-block;background:var(--amber-bg);color:var(--amber);border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700}
+.qstep{font-weight:700;color:var(--green);font-size:15px;margin:10px 0 12px}
+.qhint{font-size:13.5px;color:var(--muted);margin:-6px 0 12px}
+.qterms{font-size:13.5px;color:var(--muted);margin:8px 0 0}
 .reply-item{border:1px solid var(--gold-line);border-radius:12px;padding:12px 14px;background:#fbf6e7;margin-bottom:8px;font-size:14px}
 .sugg-item{border-top:1px dashed var(--line);padding-top:9px;margin-top:9px}
 .sugg-item:first-child{border-top:none;padding-top:0;margin-top:0}
@@ -283,7 +286,7 @@ details.fold-in .filters{margin-top:10px}
   .imp-preview{max-height:480px}
   /* 弹窗留足边距，内容在弹窗内部滚动，上下不再被切 */
   .modal{max-height:calc(100dvh - 56px)}
-  #editModal .modal,#importModal .modal,#quoteModal .modal,#quotePlModal .modal,#replyModal .modal{max-width:680px!important}
+  #editModal .modal,#importModal .modal,#quoteModal .modal,#replyModal .modal{max-width:680px!important}
   .team-grid{grid-template-columns:1fr 1fr 1fr}
   .overview-grid{grid-template-columns:1fr 1fr 1fr}
   .kv{overflow-wrap:anywhere}
@@ -539,11 +542,11 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:10px;pad
       <li><b>决定一：今天联系哪家。</b>打开页面最上面就是「今天最值得联系的 5 家」，只显示分给你的，5 星的排前面，挑一家点开看卡片。「早上报数」里每人各有 5 家，也可以从那里挑。</li>
       <li><b>决定二：发哪一封。</b>卡片上每封信都有一个中文框：就在中文框里改，改完停一下，下面的外语版会自动翻译、跟着变；确认外语版已经更新成你要发的内容，再点发送，实际发出去的就是外语版。翻译时框下面会显示「正在翻译…」，翻不出来会提示「翻译没成功，先用原来的发」，这时发出去的还是原来的外语版。点了发送就自动记一次联系，不用再点「已联系」；记得把产品目录一起发过去。点错了也不用慌：卡片上有「撤销上次联系」，点一下那次就不算数、联系次数减 1；如果那是这家唯一一次联系，「已联系」会一起取消、变回「未处理」，就像没点过一样。WhatsApp 第一封、WhatsApp 跟进信、Telegram 第一封、Telegram 跟进信都是这样改。Telegram 的客户点「Telegram 第一封」「Telegram 跟进信」；这家没留 Telegram 用户名时，点「复制这封」，复制了自己去 Telegram 搜到客户再发。想大改点「编辑消息」，同样是改中文，外语版自动翻译生成（只读，不用碰）。注意：邮件的跟进信 AI 可以直接发，WhatsApp 没有接口发不出去，只能由你点一键发送——不要等它自己发。</li>
       <li><b>决定三：客户回了怎么回。</b>展开卡片详情，「助手建议」一次给你两三个回复，挑一个点「用这封发」就直接发出去了，不用再等谁点头。客户回了点一下「客户回了」，联系次数从 0 重新数。</li>
-      <li><b>决定四：报不报价、报多少。</b>卡片上点「报价」，按客户实际要的东西一行一行填：先给 3 行空行，不够点「+ 加一行」往下加（最多 20 行），空行不算钱。每行 7 个栏：品种填空（客户要什么填什么，填完自动查价目表，表上有就显示价区间、自动填低价，单价能在区间里改；表上没有那行打「估价」自己估）、规格填空、数量、根部形式（裸根 / 带土球 / 容器苗，选带土球再填土球直径）、包装方式填空、单价（美元），小计自动算。报价单上写明有效期 15 天、贸易条款 FCA 中国口岸、定金 50%；交货期留空，客户问了让王烁杉定，别自己填。客户还没说要什么品种、规格的，先问客户，别急着报。估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。发报价和发第一封一样：弹窗最上面会写清这家的<b>主联系方式</b>到底是哪个——有 WhatsApp 就往 WhatsApp 发，没有 WhatsApp 看邮箱，再没有才看 Telegram，具体号码 / 邮箱 / 用户名都写出来了，发送按钮上也写了走哪个渠道，不会发错地方。话术也在弹窗里改：中文框里改，停一下外文版自动翻译跟着变，价格明细行是按你填的单价数量自动生成的、翻译不会动它；确认外文版对了，点「发出报价」一键发出去。这家要是没留能一键发送的联系方式，弹窗里会写明，点发送只会存成草稿、不会假装发出去，复制外文报价自己发就行。</li>
+      <li><b>决定四：报不报价、报多少。</b>卡片上点「报价」（只有一个报价入口），分两步：先填货、再看单发出去。第 1 步先给 1 行空行，不够点「+ 加一行」往下加（最多 20 行），没填品种的空行不算钱、也不进报价单。每行 7 个栏，能选的都用下拉：①品种——下拉里是价目表那 36 个品种，选了自动带价；下拉里没有的选「其他（自己填）」打字填，那行会标「估价」、单价自己估。②规格——选了品种，下拉里就是这个品种在价目表里的规格，选了价格跟着走；没有的选「其他（自己填）」。③数量。④根部形式——裸根 / 带土球 / 容器苗，选带土球再填土球直径。⑤包装方式——下拉里选，没有的选「其他（自己填）」。⑥单价——表里的自动带低价、显示价区间，能在区间里改。⑦小计——自动算，不用管。报价单上写明有效期 15 天、贸易条款 FCA 中国口岸、定金 50%；交货期留空，客户问了让王烁杉定，别自己填。客户还没说要什么品种、规格的，先问客户，别急着报。估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。第 2 步看单：最上面会写清这家的<b>发给</b>到底是哪个——有 WhatsApp 就往 WhatsApp 发，没有 WhatsApp 看邮箱，再没有才看 Telegram，具体号码 / 邮箱 / 用户名都写出来了，不会发错地方。话术也在弹窗里改：中文框里改，停一下外文版自动翻译跟着变，价格明细行是按你填的单价数量自动生成的、翻译不会动它；确认外文版对了，点「发送报价」一键发出去。这家要是没留能一键发送的联系方式，弹窗里会写明，点发送只会存成草稿、不会假装发出去，外文版长按文字复制自己发就行。</li>
       <li><b>决定五：成交还是继续跟。</b>客户说要下单，先点卡片上的「客户要下单了」（不要停跟进），王烁杉会看到；等定金到账再点「成交」，会先弹确认框，确认后出现成交清单，照着做完，再点「马上告诉王烁杉」。没回就等 3 天，卡片上会出现「该跟进了」，点一下就发跟进信；满 5 次没回会自动转「没兴趣」，想接着跟点「继续跟进」，重新算 5 次。点错了都能取消，所有状态都行：卡片上有「取消要下单」「取消客户回了」「取消已成交」「取消没兴趣」（手动标的和联系满 5 次自动标的都能取消）「取消重点跟进」；「已联系」有「撤销上次联系」，要是没有联系记录（下拉手动改的、点错试出来的、以前的老数据）也有「取消已联系」，不会卡死；转交错了，展开详情在「更多操作」里点「取消转交」，会转回上一个负责人。点之前都会先弹确认框、写清楚取消后会变成什么，取消了也会记进流水账。只是试功能点错了，照着取消就行，不用怕。</li>
     </ol>
     <p class="tut-note"><b>核心一句话：客户没回，只点一下「已联系」就行，不用发聊天记录；客户回了，平时按卡片上助手建议直接回，不会回的时候才把客户那句话发进来。</b></p>
-    <p class="tut-note"><b>其他功能：</b>卡片上「按价目表算报价」也是品种填空、填完自动查价目表，价格只能选价目表给的低价或高价，网站不会自己编价；价目表里没有的品种这个框报不了，保存时会提示你去「报价」里估价；目录里没有的品种点「找品种」，王烁杉和柯哥会去查能不能找到、多少钱，再回你。信息填错了点卡片上「改信息」自己改，星星也能自己改；分错了在卡片下面「分错了转给」选对的人（会先弹确认框）；请假点上面「我的 WhatsApp 与团队名单」里的「请假转交」，回来再点转回来；自己的客户表点筛选里的「导出我的客户」。想提意见点页面上面「提建议」，写好直接发给王烁杉；自己的成绩在「我的统计」里看。页面上方有「网站状态」：绿点是正常，红点是连不上数据库，多半是你的网络问题，检查一下再刷新。成交、标没兴趣、转交这些重要操作都会先弹确认框，确认了才执行；取消这些状态也一样，都会先弹确认框、写清楚取消后会变成什么，取消了也会记进流水账。</p>
+    <p class="tut-note"><b>其他功能：</b>目录里没有的品种点「找品种」，王烁杉和柯哥会去查能不能找到、多少钱，再回你。信息填错了点卡片上「改信息」自己改，星星也能自己改；分错了在卡片下面「分错了转给」选对的人（会先弹确认框）；请假点上面「我的 WhatsApp 与团队名单」里的「请假转交」，回来再点转回来；自己的客户表点筛选里的「导出我的客户」。想提意见点页面上面「提建议」，写好直接发给王烁杉；自己的成绩在「我的统计」里看。页面上方有「网站状态」：绿点是正常，红点是连不上数据库，多半是你的网络问题，检查一下再刷新。成交、标没兴趣、转交这些重要操作都会先弹确认框，确认了才执行；取消这些状态也一样，都会先弹确认框、写清楚取消后会变成什么，取消了也会记进流水账。</p>
     <p class="tut-note"><b>不会回的问题就问柯哥：</b>客户问交货期、嫌贵、说货损坏、老客户要复购优惠，点卡片上的「问柯哥」，选个话题、把客户原话粘贴进去发给他；他回了，你这张卡片上会亮红点「柯哥回你了」，点开照着回就行，问答记录会一直留在这家的客户档案里。客户嫌贵时，问柯哥的框里先有几条讲品质的话术，挑一条就能直接发给客户，都不合适再问柯哥。只想让助手帮你写回复，点「这句不会回，帮我写」。</p>
     <p class="tut-note"><b>怎么把聊天记录发进来（只有不会回的时候才用）：</b>点卡片顶部的「发聊天记录」或者页面顶部的「发聊天记录」，默认就是粘贴框：粘贴聊天文字，点「发进来」，两下点完。上传文件和转发说明收在「其他方式」里。</p>
     <ol class="steps">
@@ -693,32 +696,44 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:10px;pad
   </div>
 </div>
 
-<!-- 报价弹窗 -->
+<!-- 报价弹窗：两步——第 1 步填货，第 2 步看单发出去 -->
 <div class="modal-mask" id="quoteModal" role="dialog" aria-modal="true" aria-label="报价">
   <div class="modal" style="max-width:560px">
-    <h3 id="quoteModalTitle">报价</h3>
-    <p class="sync-line" style="margin:0 0 4px"><b>规则：</b>按客户实际要的东西一行一行填，品种填空、不预设。填完品种自动查价目表：表上有就按表报（行里显示价区间、自动填低价，单价可在区间内改）；表上没有，那行打上「估价」，自己估一个报。客户还没说要什么品种、规格的，先问客户，别急着报。</p>
-    <p class="sync-line" style="margin:0 0 4px">报价单上写明：有效期 15 天（到 <b id="quoteExpiry"></b>）、贸易条款 FCA 中国口岸、定金 50%。交货期留空不填，客户问了让王烁杉定。</p>
-    <p class="sync-line" style="margin:0 0 12px">估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。</p>
-    <p class="sync-line" id="quoteMainContact" style="margin:0 0 12px;font-size:15px"></p>
-    <div id="quoteRows"></div>
-    <button class="btn btn-outline btn-sm" type="button" id="quoteAddRow">+ 加一行</button>
-    <div class="sync-line" style="font-size:16px;margin:6px 0 0">总价：<b id="quoteTotal">$0.00</b></div>
-    <div class="msg-block" style="margin-top:12px">
-      <div class="msg-title">发给客户的报价（先改中文，再点发送）</div>
-      <div class="msg-flabel" style="margin-top:0">中文（在这里改，改完停一下，外文版自动跟着变；价格、编号、规格那几行不用改，上面改了单价数量它们会自动跟着变）</div>
-      <textarea class="msg-edit" id="quoteZh" aria-label="中文，在这里改"></textarea>
-      <div class="tr-status" id="quoteTrStatus"></div>
-      <div class="msg-flabel">外文版（实际发给客户的，只看不用改；价格、编号、规格由系统按上面填好的生成，翻译不会动它们）</div>
-      <div class="msg-text foreign-view" id="quoteFo"></div>
-      <div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" id="quoteCopy">复制外文报价</button></div>
-      <div class="tr-status" id="quoteChannelHint"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+      <h3 id="quoteModalTitle" style="margin:0">报价</h3>
+      <button class="btn btn-outline btn-sm" type="button" id="quoteCancelTop" aria-label="关闭">✕</button>
     </div>
-    <div class="err" id="quoteErr"></div>
-    <div class="modal-btns">
-      <button class="btn btn-outline" type="button" id="quoteCancel">取消</button>
-      <button class="btn btn-outline" type="button" id="quoteSave">保存草稿</button>
-      <button class="btn btn-green" type="button" id="quoteSend">发出报价</button>
+    <!-- 第 1 步：填货 -->
+    <div id="quoteStep1">
+      <p class="qstep">第 1 步：填货</p>
+      <p class="qhint">一行填一个品种，一共 7 个栏。能选的都点下拉选；下拉里没有的，选「其他（自己填）」再打字填。</p>
+      <span id="quoteExpiry" style="display:none"></span>
+      <div id="quoteRows"></div>
+      <button class="btn btn-outline btn-sm" type="button" id="quoteAddRow">+ 加一行</button>
+      <div class="sync-line" style="font-size:16px;margin:6px 0 0">总价：<b id="quoteTotal">$0.00</b></div>
+      <p class="qterms">报价单上会写明：有效期 15 天 · FCA 中国口岸 · 定金 50% · 交货期留空（客户问了让王烁杉定，别自己填）</p>
+      <div class="modal-btns">
+        <button class="btn btn-green" type="button" id="quoteNext">下一步</button>
+      </div>
+    </div>
+    <!-- 第 2 步：看单，发送报价 -->
+    <div id="quoteStep2" style="display:none">
+      <p class="qstep">第 2 步：看单，发出报价</p>
+      <p class="sync-line" id="quoteMainContact" style="margin:0 0 12px;font-size:15px"></p>
+      <div class="msg-block" style="margin-top:12px">
+        <div class="msg-title">报价单</div>
+        <div class="msg-flabel" style="margin-top:0">中文</div>
+        <textarea class="msg-edit" id="quoteZh" aria-label="中文，在这里改"></textarea>
+        <div class="tr-status" id="quoteTrStatus"></div>
+        <div class="msg-flabel">外文版</div>
+        <div class="msg-text foreign-view" id="quoteFo"></div>
+      </div>
+      <div class="err" id="quoteErr"></div>
+      <div class="modal-btns">
+        <button class="btn btn-outline" type="button" id="quoteBack">返回改货</button>
+        <button class="btn btn-outline" type="button" id="quoteCancel">取消</button>
+        <button class="btn btn-green" type="button" id="quoteSend">发送报价</button>
+      </div>
     </div>
   </div>
 </div>
@@ -853,35 +868,6 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:10px;pad
       <button class="btn btn-outline" type="button" id="dealClose">关闭</button>
       <a class="btn btn-green" id="dealNotifyBtn" target="_blank" rel="noopener" href="#">马上告诉王烁杉</a>
       <span id="dealNotifyOff" style="display:none;align-self:center">（王烁杉的 WhatsApp 还没填）</span>
-    </div>
-  </div>
-</div>
-
-<!-- 按价目表算报价弹窗 -->
-<div class="modal-mask" id="quotePlModal" role="dialog" aria-modal="true" aria-label="按价目表算报价">
-  <div class="modal" style="max-width:560px">
-    <h3 id="quotePlTitle">按价目表算报价</h3>
-    <p class="sync-line" style="margin:0 0 4px">价格只按现有价目表（编号 <b>LP-EXP-CA-2026-0918</b>）算，网站不会自己编价。品种填空，填完自动查价目表：表上有，单价只能选价目表给的低价或高价；表上没有，这个框报不了，去卡片上的「报价」里估价。</p>
-    <p class="sync-line" style="margin:0 0 12px">报价单上写明：有效期 15 天（到 <b id="quotePlExpiry"></b>）、贸易条款 FCA 中国口岸、定金 50%。交货期留空不填，客户问了让王烁杉定。</p>
-    <p class="sync-line" id="qplMainContact" style="margin:0 0 12px;font-size:15px"></p>
-    <div id="quotePlRows"></div>
-    <button class="btn btn-outline btn-sm" type="button" id="qplAddRow">+ 加一行</button>
-    <div class="sync-line" style="font-size:16px;margin:6px 0 0">总价：<b id="qplTotal">$0.00</b></div>
-    <div class="msg-block" style="margin-top:12px">
-      <div class="msg-title">发给客户的报价（先改中文，再点发送）</div>
-      <div class="msg-flabel" style="margin-top:0">中文（在这里改，改完停一下，外文版自动跟着变；价格、编号、规格那几行不用改，上面改了品种单价数量它们会自动跟着变）</div>
-      <textarea class="msg-edit" id="qplZh" aria-label="中文，在这里改"></textarea>
-      <div class="tr-status" id="qplTrStatus"></div>
-      <div class="msg-flabel">外文版（实际发给客户的，只看不用改；价格、编号、规格由系统按上面填好的生成，翻译不会动它们）</div>
-      <div class="msg-text foreign-view" id="qplFo"></div>
-      <div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" id="qplCopy">复制外文报价</button></div>
-      <div class="tr-status" id="qplChannelHint"></div>
-    </div>
-    <div class="err" id="quotePlErr"></div>
-    <div class="modal-btns">
-      <button class="btn btn-outline" type="button" id="qplCancel">取消</button>
-      <button class="btn btn-outline" type="button" id="qplSave">保存草稿</button>
-      <button class="btn btn-green" type="button" id="qplSend">发出报价</button>
     </div>
   </div>
 </div>
@@ -1627,7 +1613,6 @@ function cardHtml(l){
     + '<button class="btn btn-outline btn-sm" type="button" data-act="activity">全部记录</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="editmsg">编辑消息</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="quote">报价</button>'
-    + '<button class="btn btn-outline btn-sm" type="button" data-act="quotepl">按价目表算报价</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="findvar">找品种（目录里没有的）</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="editinfo">改信息</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="deal">成交</button>'
@@ -2149,13 +2134,11 @@ function bindOneCard(card){
     /* 卡片详情里的「请假转回来」：和上面「请假转交」区里的按钮同一个动作 */
     var hbBtn = card.querySelector('[data-act="handover-back"]');
     if(hbBtn) hbBtn.addEventListener("click", function(){ handoverBack(); });
-    /* 改信息 / 找品种 / 按价目表算报价 */
+    /* 改信息 / 找品种 / 报价 */
     var eiBtn = card.querySelector('[data-act="editinfo"]');
     if(eiBtn) eiBtn.addEventListener("click", function(){ openEditInfo(lead); });
     var fvBtn = card.querySelector('[data-act="findvar"]');
     if(fvBtn) fvBtn.addEventListener("click", function(){ openFindVar(lead); });
-    var qplBtn = card.querySelector('[data-act="quotepl"]');
-    if(qplBtn) qplBtn.addEventListener("click", function(){ openQuotePl(lead); });
     /* 粘贴客户原话：走「这句不会回，帮我写」的导入流程 */
     var phBtn = card.querySelector('[data-act="pastehelp"]');
     if(phBtn) phBtn.addEventListener("click", function(){
@@ -3163,17 +3146,10 @@ function quoteChannel(lead){
 function quoteMainContactText(lead){
   var c = quoteChannel(lead);
   if(!c.channel){
-    if(lead.telegram) return "主联系方式：这家 Telegram 只留了号码、没留用户名，WhatsApp 和邮箱也没留，没法一键发送，报价只能先存草稿，再复制外文报价自己想办法发。";
-    return "主联系方式：这家没留 WhatsApp、邮箱和 Telegram，没法一键发送，报价只能先存草稿，再复制外文报价自己想办法发。";
+    if(lead.telegram) return "发给：这家 Telegram 只留了号码、没留用户名，WhatsApp 和邮箱也没留，点发送只存草稿。";
+    return "发给：这家没留 WhatsApp、邮箱和 Telegram，点发送只存草稿。";
   }
-  return "主联系方式：" + c.label + " " + c.value + (lead.contact_name ? "（联系人：" + lead.contact_name + "）" : "") + " —— 发出报价就往这里发。";
-}
-function quoteChannelHintText(lead){
-  var c = quoteChannel(lead);
-  if(c.channel === "whatsapp") return "点「发出报价（WhatsApp）」，就往上面写的主联系方式这个号发";
-  if(c.channel === "email") return "这家没有 WhatsApp，点「发出报价（邮箱）」会打开 Gmail，往上面写的主联系方式这个邮箱发";
-  if(c.channel === "telegram") return "这家没有 WhatsApp 和邮箱，点「发出报价（Telegram）」，就往上面写的主联系方式这个 Telegram 发";
-  return "这家没有能一键发送的主联系方式，点「发出报价」只会存成草稿、不会真发出去；存好后复制上面的外文报价自己发";
+  return "发给：" + c.label + " " + c.value + (lead.contact_name ? "（联系人：" + lead.contact_name + "）" : "");
 }
 /* 按主联系方式发出去；走 WhatsApp 时没填自己号的照样拦住（和第一封一样，别绕过去） */
 function openQuoteChannel(lead, text){
@@ -3194,13 +3170,14 @@ function openQuoteChannel(lead, text){
   toast("已保存报价，但这家没留 WhatsApp、邮箱和 Telegram，发不出去", true);
   return false;
 }
-/* 报价明细行不进翻译机：以“报价单（”/“报价（按价目表”开头、“总价”开头、
+/* 报价明细行不进翻译机：以“报价单（”开头、“总价”开头、
    “- …$…”开头的行，翻之前摘掉，翻完由系统按填好的价格原样接回去，价格数字翻不坏 */
 function isQuotePriceLine(ln){
   var t = String(ln || "").replace(/^\s+/, "");
-  if(t.indexOf("报价单（") === 0 || t.indexOf("报价（按价目表") === 0) return true;
+  if(t.indexOf("报价单（") === 0) return true;
   if(t.indexOf("总价") === 0) return true;
   if(t.indexOf("贸易条款") === 0) return true;
+  if(t.indexOf("交货期") === 0) return true;
   if(t.indexOf("- ") === 0 && t.indexOf("$") >= 0) return true;
   return false;
 }
@@ -3231,21 +3208,8 @@ function quoteManualBlocks(q, company, expiry){
   var zhLines = q.items.map(quoteLineZh);
   var foLines = q.items.map(quoteLineFo);
   return {
-    zh: "报价单（" + (company || "") + "，有效期至 " + expiry + "）：" + (zhLines.length ? "\n" + zhLines.join("\n") : "") + "\n总价：$" + q.total.toFixed(2) + "\n贸易条款：FCA 中国口岸；定金 50%",
-    fo: "Quotation (" + (company || "") + ", valid until " + expiry + "):" + (foLines.length ? "\n" + foLines.join("\n") : "") + "\nTotal: $" + q.total.toFixed(2) + "\nTerms: FCA China border; 50% deposit"
-  };
-}
-/* 按价目表算的明细行：同上，品名、编号、价目表规格原样保留 */
-function quotePlBlocks(q, company, expiry){
-  var zhLines = q.items.map(function(it){
-    return "- " + it.name + "（" + it.sku.code + "，" + it.sku.size + "）｜规格：" + (it.spec || "—") + "｜数量：" + it.qty + " 棵｜" + rootZh(it) + "｜包装：" + (it.pack || "—") + "｜单价 $" + it.unit_price.toFixed(2) + "｜小计 $" + it.line_total.toFixed(2);
-  });
-  var foLines = q.items.map(function(it){
-    return "- " + it.sku.en + " (" + it.sku.code + ", " + it.sku.size + ") | Spec: " + (it.spec || "-") + " | Qty: " + it.qty + " pcs | " + rootEn(it) + " | Packing: " + (it.pack || "-") + " | Unit price: $" + it.unit_price.toFixed(2) + " | Subtotal: $" + it.line_total.toFixed(2);
-  });
-  return {
-    zh: "报价（按价目表 " + PRICE_LIST_NO + "，有效期至 " + expiry + "）：" + (zhLines.length ? "\n" + zhLines.join("\n") : "") + "\n总价：$" + q.total.toFixed(2) + "\n贸易条款：FCA 中国口岸；定金 50%",
-    fo: "Quotation (price list " + PRICE_LIST_NO + ", valid until " + expiry + "):" + (foLines.length ? "\n" + foLines.join("\n") : "") + "\nTotal: $" + q.total.toFixed(2) + "\nTerms: FCA China border; 50% deposit"
+    zh: "报价单（" + (company || "") + "，有效期至 " + expiry + "）：" + (zhLines.length ? "\n" + zhLines.join("\n") : "") + "\n总价：$" + q.total.toFixed(2) + "\n贸易条款：FCA 中国口岸；定金 50%\n交货期：",
+    fo: "Quotation (" + (company || "") + ", valid until " + expiry + "):" + (foLines.length ? "\n" + foLines.join("\n") : "") + "\nTotal: $" + q.total.toFixed(2) + "\nTerms: FCA China border; 50% deposit\nDelivery time: "
   };
 }
 function makeQuoteCtx(ids){
@@ -3256,10 +3220,10 @@ function makeQuoteCtx(ids){
   };
   ctx.zhEl.addEventListener("input", function(){
     if(ctx.trTimer) clearTimeout(ctx.trTimer);
-    if(ctx.stEl){ ctx.stEl.className = "tr-status"; ctx.stEl.textContent = "输入完停一下，外文版会自动翻译更新…"; }
+    if(ctx.stEl){ ctx.stEl.className = "tr-status"; ctx.stEl.textContent = "改完停一下，外文版跟着变…"; }
     ctx.trTimer = setTimeout(function(){ translateQuoteGreeting(ctx); }, 800);
   });
-  ctx.copyBtn.addEventListener("click", function(){
+  if(ctx.copyBtn) ctx.copyBtn.addEventListener("click", function(){
     var text = decodeURIComponent(ctx.copyBtn.getAttribute("data-copy") || "");
     if(!text){ toast("外文版还没翻好，等一下再复制", true); return; }
     if(navigator.clipboard && navigator.clipboard.writeText){
@@ -3272,24 +3236,23 @@ function setQuoteForeign(ctx){
   var fo = ctx.foGreeting ? (ctx.foGreeting + "\n\n" + ctx.priceFo) : ctx.priceFo;
   ctx.foEl.textContent = fo;
   ctx.foEl.setAttribute("data-val", encodeURIComponent(fo));
-  ctx.copyBtn.setAttribute("data-copy", encodeURIComponent(fo));
+  if(ctx.copyBtn) ctx.copyBtn.setAttribute("data-copy", encodeURIComponent(fo));
 }
 function updateQuoteChannel(ctx, lead){
-  ctx.hintEl.textContent = quoteChannelHintText(lead);
+  if(ctx.hintEl) ctx.hintEl.textContent = "";
   if(ctx.mainEl) ctx.mainEl.textContent = quoteMainContactText(lead);
-  var c = quoteChannel(lead);
-  ctx.sendBtn.textContent = c.channel ? ("发出报价（" + c.label + "）") : "发出报价";
+  ctx.sendBtn.textContent = "发送报价";
 }
 function translateQuoteGreeting(ctx){
   if(!ctx.lead) return;
   var split = splitQuoteText(ctx.zhEl.value);
   var zhText = split.body;
-  if(!zhText){ if(ctx.stEl) ctx.stEl.textContent = "中文框是空的，先写中文，外文版才会跟着变。"; return; }
+  if(!zhText){ if(ctx.stEl) ctx.stEl.textContent = "中文框是空的，先写中文。"; return; }
   if(ctx.stEl){ ctx.stEl.className = "tr-status"; ctx.stEl.textContent = "正在翻译…"; }
   translateZhAll(zhText, ctx.lead.country).then(function(out){
     ctx.foGreeting = out;
     setQuoteForeign(ctx);
-    if(ctx.stEl){ ctx.stEl.className = "tr-status"; ctx.stEl.textContent = "外文版已更新，就是下面这版，点「发出报价」就发这版。报价明细行是按上面填好的价格生成的，翻译没动过。"; }
+    if(ctx.stEl){ ctx.stEl.className = "tr-status"; ctx.stEl.textContent = "外文版已更新。"; }
   }).catch(function(){
     if(ctx.stEl){ ctx.stEl.className = "tr-status err"; ctx.stEl.textContent = "翻译没成功，先用原来的发"; }
   });
@@ -3310,41 +3273,45 @@ function refreshQuotePrice(ctx, blocks){
   ctx.zhEl.value = (cur.body ? cur.body + "\n" : "") + blocks.zh;
   setQuoteForeign(ctx);
 }
-/* 点「发出报价」时用的外文：优先用已翻好的那版；还没翻好就用中文问候 + 已生成的英文明细行，绝不发空的 */
+/* 点「发送报价」时用的外文：优先用已翻好的那版；还没翻好就用中文问候 + 已生成的英文明细行，绝不发空的 */
 function quoteSendText(ctx){
   if(!ctx) return "";
-  var fo = decodeURIComponent(ctx.copyBtn.getAttribute("data-copy") || "");
+  var fo = ctx.copyBtn ? decodeURIComponent(ctx.copyBtn.getAttribute("data-copy") || "") : "";
   if(fo) return fo;
   var split = splitQuoteText(ctx.zhEl.value);
   return (split.body ? split.body + "\n\n" : "") + ctx.priceFo;
 }
-var quoteCtx = null, quotePlCtx = null;
+var quoteCtx = null;
 quoteCtx = makeQuoteCtx({ zh: "quoteZh", fo: "quoteFo", st: "quoteTrStatus", copy: "quoteCopy", hint: "quoteChannelHint", send: "quoteSend", main: "quoteMainContact" });
-quotePlCtx = makeQuoteCtx({ zh: "qplZh", fo: "qplFo", st: "qplTrStatus", copy: "qplCopy", hint: "qplChannelHint", send: "qplSend", main: "qplMainContact" });
 
-/* ---------- 报价行：一行一个品种、7 个栏，两个报价弹窗共用 ---------- */
+/* ---------- 报价行：一行一个品种，7 个栏全摆在行里（品种、规格、数量、根部形式、包装方式、单价、小计自动算）；
+   能下拉的都用下拉，每个下拉都留「其他（自己填）」：品种下拉是价目表 36 个 SKU 的品种，选了品种，
+   规格下拉就出这个品种在价目表里的规格，选了规格自动带价；表外品种选「其他」打字填、单价自己估、标估价 ---------- */
+/* 价目表里的品种名（36 个 SKU 去重后的中文名，顺序按价目表） */
+function varietyNames(){
+  var out = [];
+  PRICE_SKUS.forEach(function(s){ if(out.indexOf(s.zh) < 0) out.push(s.zh); });
+  return out;
+}
 function quoteRowHTML(mode, n){
-  var pricePart;
-  if(mode === "pl"){
-    pricePart = '<label>单价（美元，只能选价目表给的低价或高价）</label><select data-price-sel disabled><option value="">先填品种</option></select>'
-      + '<div class="nowa-hint" data-nomatch style="display:none;margin-top:6px">价目表里没有这个品种，这个框里报不了；保存时会提示你去卡片上的「报价」里估价。</div>';
-  } else {
-    pricePart = '<label>单价（美元）</label><input type="number" data-price min="0" step="0.01" placeholder="填单价，美元">';
-  }
+  var vOpts = '<option value="">选品种</option>'
+    + varietyNames().map(function(zh){ return '<option value="' + esc(zh) + '">' + esc(zh) + '</option>'; }).join("")
+    + '<option value="__other">其他（自己填）</option>';
   return '<div class="qr-head"><b>第 ' + n + ' 行</b><span class="est-tag" data-esttag style="display:none">估价</span></div>'
-    + '<label>品种（客户要什么填什么）</label><input type="text" data-v placeholder="例如：樟子松">'
-    + '<div data-skuwrap style="display:none"><label>价目表对上的品种和规格（价格按这个算）</label><select data-sku></select></div>'
+    + '<label>品种</label><select data-vsel>' + vOpts + '</select>'
+    + '<input type="text" data-vcustom placeholder="自己填品种名" style="display:none">'
     + '<div class="qr-match" data-match></div>'
-    + '<label>规格</label><input type="text" data-spec placeholder="高 1.5–2 米、地径 3–4cm；盆栽填盆径">'
+    + '<label>规格</label><select data-spec-sel style="display:none"></select><input type="text" data-spec placeholder="先选品种，规格从下拉里选；没有就自己填">'
     + '<label>数量（棵）</label><input type="number" data-qty min="0" step="1" placeholder="多少棵">'
     + '<label>根部形式</label><select data-root><option value="裸根">裸根</option><option value="带土球">带土球</option><option value="容器苗">容器苗</option></select>'
     + '<div data-ballwrap style="display:none"><label>土球直径（cm）</label><input type="number" data-ball min="0" step="1" placeholder="例如：40"></div>'
-    + '<label>包装方式</label><input type="text" data-pack placeholder="土球包无纺布、裸根打捆保湿、纸箱">'
-    + pricePart
+    + '<label>包装方式</label><select data-pack><option value="">选包装方式</option><option value="土球包无纺布">土球包无纺布</option><option value="裸根打捆保湿">裸根打捆保湿</option><option value="纸箱">纸箱</option><option value="木箱">木箱</option><option value="托盘">托盘</option><option value="__other">其他（自己填）</option></select>'
+    + '<input type="text" data-pack-other placeholder="自己填包装方式" style="display:none">'
+    + '<label>单价（美元）</label><input type="number" data-price min="0" step="0.01" placeholder="选了品种和规格自动带价，可改">'
     + '<div class="sync-line">小计：<b data-line>$0.00</b></div>';
 }
 function addQuoteRow(mode){
-  var box = $(mode === "pl" ? "quotePlRows" : "quoteRows");
+  var box = $("quoteRows");
   var n = box.querySelectorAll(".quote-row").length;
   if(n >= 20){ toast("最多 20 行，一单报这么多够用了", true); return; }
   var div = document.createElement("div");
@@ -3352,73 +3319,110 @@ function addQuoteRow(mode){
   div.innerHTML = quoteRowHTML(mode, n + 1);
   box.appendChild(div);
 }
-/* 品种填完自动查价目表：对上了在行里显示价区间；手动报价自动填低价（可在区间内改），价目表报价只能选低价或高价 */
-function updateRowMatch(r, mode){
-  var name = r.querySelector("[data-v]").value.replace(/^\s+|\s+$/g, "");
-  var matches = name ? findSkusByName(name) : [];
-  var sel = r.querySelector("[data-sku]");
-  var cur = sel.value;
-  sel.innerHTML = matches.map(function(s){
-    return '<option value="' + esc(s.code) + '">' + esc(s.zh + " " + s.en + " · " + s.size + " · $" + s.lo.toFixed(2) + "–$" + s.hi.toFixed(2)) + "</option>";
-  }).join("");
-  if(matches.some(function(s){ return s.code === cur; })) sel.value = cur;
-  var sku = matches.length ? skuByCode(sel.value) : null;
-  r.querySelector("[data-skuwrap]").style.display = matches.length ? "block" : "none";
+/* 当前行选的品种名：下拉选的读下拉；选了「其他（自己填）」读自己填的框 */
+function readVarietyName(r){
+  var sel = r.querySelector("[data-vsel]");
+  if(!sel) return "";
+  if(sel.value === "__other") return (r.querySelector("[data-vcustom]").value || "").replace(/^\s+|\s+$/g, "");
+  return sel.value || "";
+}
+/* 价目表里这个品种的全部 SKU（按中文名精确对，同名多规格都算） */
+function skusOfVariety(zh){
+  if(!zh) return [];
+  return PRICE_SKUS.filter(function(s){ return s.zh === zh; });
+}
+/* 品种 + 规格精确对上的那一个 SKU（自动带价就靠它）；对不上返回 null，那行按估价 */
+function matchSku(zh, spec){
+  var list = skusOfVariety(zh);
+  for(var i = 0; i < list.length; i++) if(list[i].size === spec) return list[i];
+  return null;
+}
+/* 选了品种：规格下拉换成这个品种在价目表里的规格，自动选第一个规格并带出它的低价；
+   选「其他（自己填）」：露出品种填空框，规格也改成自己填，单价自己填、这行标估价 */
+function onVarietyChange(r){
+  var sel = r.querySelector("[data-vsel]");
+  var custom = r.querySelector("[data-vcustom]");
+  var specSel = r.querySelector("[data-spec-sel]");
+  var specInput = r.querySelector("[data-spec]");
   var matchEl = r.querySelector("[data-match]");
-  if(mode === "pl"){
-    var psel = r.querySelector("[data-price-sel]");
-    var nomatch = r.querySelector("[data-nomatch]");
-    if(sku){
-      nomatch.style.display = "none";
-      psel.disabled = false;
-      var prevUnit = psel.value;
-      psel.innerHTML = '<option value="' + sku.lo + '">按低价 $' + sku.lo.toFixed(2) + '</option><option value="' + sku.hi + '">按高价 $' + sku.hi.toFixed(2) + "</option>";
-      if(prevUnit === String(sku.hi)) psel.value = String(sku.hi);
-      matchEl.textContent = "价目表价：$" + sku.lo.toFixed(2) + "–$" + sku.hi.toFixed(2) + " / 棵（" + sku.code + "，" + sku.size + "）";
-    } else {
-      psel.innerHTML = '<option value="">' + (name ? "价目表里没有这个品种" : "先填品种") + "</option>";
-      psel.disabled = true;
-      nomatch.style.display = name ? "block" : "none";
-      matchEl.textContent = "";
+  custom.style.display = sel.value === "__other" ? "" : "none";
+  var skus = (sel.value && sel.value !== "__other") ? skusOfVariety(sel.value) : [];
+  if(skus.length){
+    var sizes = [];
+    skus.forEach(function(s){ if(sizes.indexOf(s.size) < 0) sizes.push(s.size); });
+    specSel.innerHTML = sizes.map(function(sz){ return '<option value="' + esc(sz) + '">' + esc(sz) + '</option>'; }).join("")
+      + '<option value="__other">其他（自己填）</option>';
+    specSel.value = sizes[0];
+    specSel.style.display = "";
+    specInput.style.display = "none";
+    specInput.value = "";
+    var sku0 = matchSku(sel.value, sizes[0]);
+    if(sku0){
+      r.querySelector("[data-price]").value = sku0.lo;
+      matchEl.textContent = "价目表价：$" + sku0.lo.toFixed(2) + "–$" + sku0.hi.toFixed(2) + " / 棵，已填低价，可改。";
     }
   } else {
-    if(sku){
-      matchEl.textContent = "价目表价：$" + sku.lo.toFixed(2) + "–$" + sku.hi.toFixed(2) + " / 棵（" + sku.code + "，" + sku.size + "），已自动填低价，单价可以在这个区间里改。";
-      if(r.getAttribute("data-autosku") !== sku.code){
-        r.querySelector("[data-price]").value = sku.lo;
-        r.setAttribute("data-autosku", sku.code);
-      }
-    } else {
-      r.setAttribute("data-autosku", "");
-      matchEl.textContent = name ? "价目表里没有这个品种，这一行按估价报，自己填一个单价。" : "";
-    }
+    specSel.style.display = "none";
+    specSel.innerHTML = "";
+    specInput.style.display = "";
+    matchEl.textContent = sel.value === "__other" ? "表外品种，按估价报，自己填单价。" : "";
   }
 }
+/* 规格下拉换了规格：单价跟着换成这个规格的低价；选「其他（自己填）」露出填空框，单价自己填、这行按估价 */
+function onSpecChange(r){
+  var specSel = r.querySelector("[data-spec-sel]");
+  var specInput = r.querySelector("[data-spec]");
+  var matchEl = r.querySelector("[data-match]");
+  if(specSel.value === "__other"){
+    specInput.style.display = "";
+    matchEl.textContent = "这个规格价目表里没有，单价自己填，这行按估价。";
+    return;
+  }
+  specInput.style.display = "none";
+  specInput.value = "";
+  var sku = matchSku(readVarietyName(r), specSel.value);
+  if(sku){
+    r.querySelector("[data-price]").value = sku.lo;
+    matchEl.textContent = "价目表价：$" + sku.lo.toFixed(2) + "–$" + sku.hi.toFixed(2) + " / 棵，已填低价，可改。";
+  }
+}
+/* 规格：下拉露着就读下拉（价目表里的品种），选了“其他”或填空框露着就读填空（自填规格、表外品种） */
+function readSpec(r){
+  var sel = r.querySelector("[data-spec-sel]");
+  if(sel && sel.style.display !== "none" && sel.value && sel.value !== "__other") return sel.value;
+  return r.querySelector("[data-spec]").value.replace(/^\s+|\s+$/g, "");
+}
+/* 包装方式：下拉选了「其他（自己填）」才读自己填的框，否则读下拉 */
+function readPack(r){
+  var sel = r.querySelector("[data-pack]");
+  if(!sel) return "";
+  if(sel.value === "__other") return (r.querySelector("[data-pack-other]").value || "").replace(/^\s+|\s+$/g, "");
+  return sel.value;
+}
 function readQuoteRow(r, mode){
-  var name = r.querySelector("[data-v]").value.replace(/^\s+|\s+$/g, "");
-  var skuSel = r.querySelector("[data-sku]");
-  var sku = skuSel && skuSel.value ? skuByCode(skuSel.value) : null;
+  var name = readVarietyName(r);
+  var spec = readSpec(r);
+  var sku = matchSku(name, spec);
   var root = r.querySelector("[data-root]").value;
   var unit;
-  if(mode === "pl"){ var ps = r.querySelector("[data-price-sel]"); unit = ps ? (parseFloat(ps.value) || 0) : 0; }
-  else unit = parseFloat(r.querySelector("[data-price]").value) || 0;
+  unit = parseFloat(r.querySelector("[data-price]").value) || 0;
   var qty = parseFloat(r.querySelector("[data-qty]").value) || 0;
   var it = {
     name: name,
     enName: sku ? sku.en : "",
-    spec: r.querySelector("[data-spec]").value.replace(/^\s+|\s+$/g, ""),
+    spec: spec,
     qty: qty,
     root: root,
     ball: root === "带土球" ? r.querySelector("[data-ball]").value.replace(/^\s+|\s+$/g, "") : "",
-    pack: r.querySelector("[data-pack]").value.replace(/^\s+|\s+$/g, ""),
+    pack: readPack(r),
     sku: sku,
     unit_price: unit,
-    estimate: mode === "manual" ? (!!name && !sku) : false,
+    estimate: !!name && !sku,
     line_total: Math.round(unit * qty * 100) / 100,
     filled: !!name,
     complete: false
   };
-  it.complete = it.filled && it.qty > 0 && it.unit_price > 0 && (mode !== "pl" || !!it.sku);
+  it.complete = it.filled && it.qty > 0 && it.unit_price > 0;
   return it;
 }
 /* 收集一个弹窗里的行：filled = 填了品种的行；items = 填全了、能进报价单的行；没填品种的空行忽略 */
@@ -3436,15 +3440,37 @@ function quoteRowEvent(e, mode){
   var t = e.target;
   var r = t && t.closest ? t.closest(".quote-row") : null;
   if(!r) return;
-  if(t.hasAttribute("data-v") || t.hasAttribute("data-sku")) updateRowMatch(r, mode);
+  if(t.hasAttribute("data-vsel")) onVarietyChange(r);
+  if(t.hasAttribute("data-spec-sel")) onSpecChange(r);
+  if(t.hasAttribute("data-pack")){
+    r.querySelector("[data-pack-other]").style.display = t.value === "__other" ? "" : "none";
+  }
   if(t.hasAttribute("data-root")){
     r.querySelector("[data-ballwrap]").style.display = t.value === "带土球" ? "block" : "none";
   }
-  if(mode === "manual") recalcQuote(); else recalcPl();
+  recalcQuote();
 }
 $("quoteRows").addEventListener("input", function(e){ quoteRowEvent(e, "manual"); });
 $("quoteRows").addEventListener("change", function(e){ quoteRowEvent(e, "manual"); });
 $("quoteAddRow").addEventListener("click", function(){ addQuoteRow("manual"); });
+
+/* ---------- 报价两步：先填货（第 1 步），再看单发出去（第 2 步） ----------
+   行是直接读 DOM 的，回来改货再进第 2 步，填好的货、改过的中文问候都在，
+   不会丢；第 2 步的报价单全文由 recalcQuote 按当前行重算 */
+function quoteGotoStep2(){
+  var q = collectQuoteItems();
+  if(!q.items.length){
+    toast("先填好至少一行：品种、数量、单价都要填（没填品种的空行不算）。", true);
+    return;
+  }
+  recalcQuote();
+  $("quoteStep1").style.display = "none"; $("quoteStep2").style.display = "";
+}
+function quoteGotoStep1(){
+  $("quoteStep2").style.display = "none"; $("quoteStep1").style.display = "";
+}
+$("quoteNext").addEventListener("click", function(){ quoteGotoStep2(); });
+$("quoteBack").addEventListener("click", function(){ quoteGotoStep1(); });
 
 function openQuote(lead){
   quoteLead = lead;
@@ -3452,9 +3478,10 @@ function openQuote(lead){
   var exp = new Date(Date.now() + 15 * 86400000);
   function p2(n){ return (n < 10 ? "0" : "") + n; }
   $("quoteExpiry").textContent = exp.getFullYear() + "-" + p2(exp.getMonth() + 1) + "-" + p2(exp.getDate());
-  /* 不预设任何产品行：打开就是 3 行空行，按客户实际要的东西一行一行填 */
+  /* 不预设任何产品行：打开就是 1 行空行，按客户实际要的东西一行一行填；每次打开都回到第 1 步 */
+  $("quoteStep1").style.display = ""; $("quoteStep2").style.display = "none";
   $("quoteRows").innerHTML = "";
-  addQuoteRow("manual"); addQuoteRow("manual"); addQuoteRow("manual");
+  addQuoteRow("manual");
   $("quoteErr").className = "err";
   recalcQuote();
   initQuoteMsg(quoteCtx, lead, "您好！这是给贵公司的报价，价格是美元，有效期到 " + $("quoteExpiry").textContent + "（15 天内有效）。\n数量、规格如需调整，请告诉我，我再重新算一份。", quoteManualBlocks(collectQuoteItems(), lead.company, $("quoteExpiry").textContent));
@@ -3489,11 +3516,11 @@ function saveQuote(status){
   }
   /* 走 WhatsApp 发、但自己还没填 WhatsApp 号：拦住，别把“已发出”存进去（和第一封一样） */
   if(status === "sent" && quoteChannel(lead).channel === "whatsapp" && myWaMissing()){ toast(NO_WA_MSG, true); return; }
-  /* 没有能一键发送的主联系方式时，点「发出报价」也不能存成“已发出”：只存草稿，并说清没发出去 */
+  /* 没有能一键发送的主联系方式时，点「发送报价」也不能存成“已发出”：只存草稿，并说清没发出去 */
   var noChannel = status === "sent" && !quoteChannel(lead).channel;
   var effStatus = noChannel ? "draft" : status;
   var btn = status === "sent" ? $("quoteSend") : $("quoteSave");
-  btn.disabled = true;
+  if(btn) btn.disabled = true;
   var saveItems = q.items.map(function(it){
     return { name: it.name, spec: it.spec, quantity: String(it.qty), qty: it.qty, root: it.root, ball_cm: it.ball, pack: it.pack, unit_price: it.unit_price, estimate: it.estimate, code: it.sku ? it.sku.code : null, price_range: it.sku ? [it.sku.lo, it.sku.hi] : null, line_total: it.line_total };
   });
@@ -3507,7 +3534,7 @@ function saveQuote(status){
     var sendText = quoteSendText(quoteCtx);
     if(quoteCtx) quoteCtx.lead = null;
     if(noChannel){
-      toast("这家没有能一键发送的主联系方式，报价只存成草稿、没有发出去；复制外文报价自己发", true);
+      toast("这家没有能一键发送的主联系方式，报价只存成草稿、没有发出去；外文版在上面，长按文字复制自己发", true);
     } else if(effStatus === "sent"){
       openQuoteChannel(lead, sendText);
       toast("报价已发出，估价不用单独告诉王烁杉，晚上 8 点汇总里会记一笔");
@@ -3516,10 +3543,10 @@ function saveQuote(status){
     }
   })
   .catch(function(e){ errEl.textContent = "保存失败：" + (e.message || "请重试"); errEl.className = "err show"; })
-  .then(function(){ btn.disabled = false; });
+  .then(function(){ if(btn) btn.disabled = false; });
 }
 $("quoteCancel").addEventListener("click", function(){ $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null; });
-$("quoteSave").addEventListener("click", function(){ saveQuote("draft"); });
+$("quoteCancelTop").addEventListener("click", function(){ $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null; });
 $("quoteSend").addEventListener("click", function(){ saveQuote("sent"); });
 
 /* ---------- 19. 成交：先确认，成交后出清单 ---------- */
@@ -3792,8 +3819,7 @@ function handoverBack(){
   });
 }
 
-/* ================= 第三批：按价目表算报价（价格只来自现有价目表 LP-EXP-CA-2026-0918） ================= */
-var PRICE_LIST_NO = "LP-EXP-CA-2026-0918";
+/* ================= 价目表 LP-EXP-CA-2026-0918：36 个 SKU，报价弹窗查价用 ================= */
 var PRICE_SKUS = [
   { code:"LP-PIN-001", zh:"樟子松", en:"Mongolian Scots Pine", lo:7.45, hi:8.94, size:"H 100–110 cm", keys:["樟子松"] },
   { code:"LP-PIN-002", zh:"樟子松", en:"Mongolian Scots Pine", lo:11.92, hi:15.64, size:"H 140–150 cm", keys:["樟子松"] },
@@ -3833,7 +3859,7 @@ var PRICE_SKUS = [
   { code:"LP-ROS-004", zh:"树状月季", en:"Standard Rose", lo:29.80, hi:38.74, size:"H 130–150 cm", keys:["树状月季","标准月季","月季树","月季","玫瑰"] }
 ];
 function skuByCode(code){ for(var i=0;i<PRICE_SKUS.length;i++) if(PRICE_SKUS[i].code === code) return PRICE_SKUS[i]; return null; }
-/* 品种填空后按 keys 查价目表：填的品种名里含某个 SKU 的关键词就算对上（一个品种可能对上多个规格） */
+/* 品种点下拉选或打字填后按 keys 查价目表：填的品种名里含某个 SKU 的关键词就算对上（一个品种可能对上多个规格） */
 function findSkusByName(name){
   var text = String(name || "");
   if(!text) return [];
@@ -3841,83 +3867,6 @@ function findSkusByName(name){
     return s.keys.some(function(k){ return text.indexOf(k) >= 0; });
   });
 }
-var quotePlLead = null;
-function collectPlItems(){ return collectRows("quotePlRows", "pl"); }
-function recalcPl(){
-  var q = collectPlItems();
-  $("qplTotal").textContent = money(q.total);
-  document.querySelectorAll("#quotePlRows .quote-row").forEach(function(r){
-    var it = readQuoteRow(r, "pl");
-    r.querySelector("[data-line]").textContent = money(it.line_total);
-  });
-  if(quotePlCtx && quotePlCtx.lead && $("quotePlModal").classList.contains("open")){
-    refreshQuotePrice(quotePlCtx, quotePlBlocks(q, quotePlCtx.lead.company, $("quotePlExpiry").textContent));
-  }
-}
-$("quotePlRows").addEventListener("input", function(e){ quoteRowEvent(e, "pl"); });
-$("quotePlRows").addEventListener("change", function(e){ quoteRowEvent(e, "pl"); });
-$("qplAddRow").addEventListener("click", function(){ addQuoteRow("pl"); });
-function openQuotePl(lead){
-  quotePlLead = lead;
-  $("quotePlTitle").textContent = "按价目表算报价 · " + (lead.company || "");
-  var exp = new Date(Date.now() + 15 * 86400000);
-  function p2(n){ return (n < 10 ? "0" : "") + n; }
-  $("quotePlExpiry").textContent = exp.getFullYear() + "-" + p2(exp.getMonth() + 1) + "-" + p2(exp.getDate());
-  $("quotePlErr").className = "err";
-  /* 不预设任何产品行、不按线索的产品自动对品种：打开就是 3 行空行，品种填空、填完自动查表 */
-  $("quotePlRows").innerHTML = "";
-  addQuoteRow("pl"); addQuoteRow("pl"); addQuoteRow("pl");
-  recalcPl();
-  initQuoteMsg(quotePlCtx, lead, "您好！这是按价目表给贵公司算的报价，价格是美元，有效期到 " + $("quotePlExpiry").textContent + "（15 天内有效）。\n数量、规格如需调整，请告诉我，我再重新算一份。", quotePlBlocks(collectPlItems(), lead.company, $("quotePlExpiry").textContent));
-  $("quotePlModal").classList.add("open");
-}
-function saveQuotePl(status){
-  var lead = quotePlLead; if(!lead) return;
-  var q = collectPlItems();
-  var errEl = $("quotePlErr"); errEl.className = "err";
-  /* 填了品种的行：价目表里没有的这个框报不了，指明第几行、去「报价」里估价；有的话缺数量也指明 */
-  var problems = [];
-  q.rows.forEach(function(it){
-    if(!it.sku) problems.push("第 " + it.rowNo + " 行「" + it.name + "」价目表里没有这个品种，这个框里不能报，去卡片上的「报价」里估价");
-    else if(it.qty <= 0) problems.push("第 " + it.rowNo + " 行缺数量");
-  });
-  if(problems.length){ errEl.textContent = problems.join("；") + "。"; errEl.className = "err show"; return; }
-  if(!q.items.length){ errEl.textContent = "先填好至少一行：品种填客户要的、价目表里有的，再填数量（没填品种的空行不算）。"; errEl.className = "err show"; return; }
-  /* 走 WhatsApp 发、但自己还没填 WhatsApp 号：拦住，别把“已发出”存进去（和第一封一样） */
-  if(status === "sent" && quoteChannel(lead).channel === "whatsapp" && myWaMissing()){ toast(NO_WA_MSG, true); return; }
-  /* 同手动报价：没有能一键发送的主联系方式时只存草稿，不能存成“已发出” */
-  var noChannelPl = status === "sent" && !quoteChannel(lead).channel;
-  var effStatusPl = noChannelPl ? "draft" : status;
-  var btn = status === "sent" ? $("qplSend") : $("qplSave");
-  btn.disabled = true;
-  var items = q.items.map(function(it){
-    return { name: it.name, en: it.sku.en, code: it.sku.code, size: it.sku.size, spec: it.spec, quantity: String(it.qty), qty: it.qty, root: it.root, ball_cm: it.ball, pack: it.pack, unit_price: it.unit_price, price_list: PRICE_LIST_NO, price_range: [it.sku.lo, it.sku.hi], estimate: false, line_total: it.line_total };
-  });
-  api("quote_drafts", { method:"POST", headers:{ "Prefer":"return=minimal" },
-    body:{ lead_id: lead.id, items: items, total_usd: q.total, is_estimate: false, status: effStatusPl, created_by: state.myName || "" } })
-  .then(function(){
-    return logActivity(lead.id, "quote", "按价目表 " + PRICE_LIST_NO + " 报价：" + q.items.map(function(it){ return it.name + "（" + it.sku.code + "，" + it.sku.size + "）$" + it.unit_price.toFixed(2) + " × " + it.qty; }).join("；") + " = " + money(q.total) + "，状态：" + (effStatusPl === "sent" ? "已发出（" + quoteChannel(lead).label + " " + quoteChannel(lead).value + "）" : "草稿") + (noChannelPl ? "；这家没有能一键发送的主联系方式，没发出去" : ""));
-  })
-  .then(function(){
-    $("quotePlModal").classList.remove("open"); quotePlLead = null;
-    var sendTextPl = quoteSendText(quotePlCtx);
-    if(quotePlCtx) quotePlCtx.lead = null;
-    if(noChannelPl){
-      toast("这家没有能一键发送的主联系方式，报价只存成草稿、没有发出去；复制外文报价自己发", true);
-    } else if(effStatusPl === "sent"){
-      openQuoteChannel(lead, sendTextPl);
-      toast("报价已发出，价格按价目表 " + PRICE_LIST_NO);
-    } else {
-      toast("报价草稿已保存（按价目表算的）");
-    }
-  })
-  .catch(function(e){ errEl.textContent = "保存失败：" + (e.message || "请重试"); errEl.className = "err show"; })
-  .then(function(){ btn.disabled = false; });
-}
-$("qplCancel").addEventListener("click", function(){ $("quotePlModal").classList.remove("open"); quotePlLead = null; if(quotePlCtx) quotePlCtx.lead = null; });
-$("qplSave").addEventListener("click", function(){ saveQuotePl("draft"); });
-$("qplSend").addEventListener("click", function(){ saveQuotePl("sent"); });
-
 /* ================= 启动 ================= */
 if(state.token){ enterApp(); }
 </script>
