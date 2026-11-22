@@ -55,7 +55,7 @@ button,select,input[type="text"],input[type="email"],input[type="password"]{min-
 .btn-danger{border-color:var(--red);background:var(--red-bg);color:var(--red)}
 .btn-danger:hover{border-color:var(--red);background:#F3DFD9}
 .trash-banner{border:1px solid var(--gold-line);background:var(--amber-bg);color:var(--green);padding:12px 14px;margin-top:10px;font-size:14px;line-height:1.6}
-.hide-reason{width:100%;margin-top:8px;padding:9px 10px;border:1px solid var(--line);background:#fff;min-height:44px;font-size:14px}
+.hide-reason{flex:1 1 44%;width:auto;margin-top:8px;padding:9px 10px;border:1px solid var(--line);background:#fff;min-height:44px;font-size:14px}
 .quote-trash-item{border:1px solid var(--line);background:#fff;padding:10px 12px;margin-top:8px;font-size:14px;line-height:1.6}
 .quote-trash-item .btn{margin:6px 8px 0 0}
 .btn-green{background:linear-gradient(180deg,#1C4732,#143527);border-color:#0D291D;color:#FAFAF8;box-shadow:0 2px 6px rgba(20,53,39,.24),inset 0 1px 0 rgba(255,255,255,.10)}
@@ -115,12 +115,12 @@ button,select,input[type="text"],input[type="email"],input[type="password"]{min-
 .img-search-btns .btn[aria-disabled="true"], .img-search-btns .btn:disabled{opacity:.45;cursor:not-allowed;pointer-events:none;box-shadow:none;background:#EFEDE4;color:#8A877A;border-color:var(--line)}
 .img-note-list{margin-top:14px;border-top:1px solid var(--gold-line);padding-top:10px}
 .img-note-list .img-note-title{font-size:13px;font-weight:700;color:var(--green);letter-spacing:.03em;margin-bottom:2px}
-.img-note-list a{display:block;padding:9px 2px;border-bottom:1px solid var(--line);font-size:14px;overflow-wrap:anywhere}
+.img-note-list a{display:flex;align-items:center;min-height:44px;padding:9px 2px;border-bottom:1px solid var(--line);font-size:14px;overflow-wrap:anywhere}
 .img-note-list a:last-child{border-bottom:none}
 .img-xhs-waiting{margin-top:14px;border:1px solid var(--gold-line);background:var(--bg2);color:var(--green);padding:12px 14px;font-size:14px;line-height:1.7;overflow-wrap:break-word}
 .img-note-item{padding:9px 2px;border-bottom:1px solid var(--line)}
 .img-note-item:last-child{border-bottom:none}
-.img-note-list .img-note-item a{display:block;font-size:14px;overflow-wrap:anywhere;padding:0;border-bottom:none}
+.img-note-list .img-note-item a{display:flex;align-items:center;min-height:44px;font-size:14px;overflow-wrap:anywhere;padding:0;border-bottom:none}
 .img-note-list .img-note-time{font-size:12.5px;color:var(--muted);margin-top:2px}
 details.img-wm{margin-top:14px;border:1px solid var(--line);border-radius:0;padding:12px 14px;background:#fff;font-size:14px}
 details.img-wm>summary{cursor:pointer;list-style:none;font-weight:700;color:var(--green);font-size:14px;min-height:48px;display:flex;align-items:center}
@@ -137,7 +137,7 @@ details.img-wm p{margin:6px 0 2px;color:#3D443E}
 .photos-box .msg-actions{margin-top:10px}
 .img-wm-title{font-weight:700;color:var(--green);font-size:15px;margin-bottom:6px}
 .img-wm-steps{margin:0 0 8px;color:#3D443E;font-size:14px;line-height:1.75}
-.img-wm-note{margin:0 0 12px;font-size:12.5px;color:var(--muted);line-height:1.6}
+.img-wm-note{margin:0 0 12px;font-size:14px;color:#3D443E;line-height:1.6}
 .img-wm-btns .btn-wm-clear{flex:0 0 auto}
 /* ---------- lead cards ---------- */
 .cards{display:flex;flex-direction:column;gap:24px;margin-top:16px}
@@ -167,8 +167,8 @@ details.img-wm p{margin:6px 0 2px;color:#3D443E}
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .actions .btn-primary{width:auto}
 .edit-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-size:13px}
-.edit-row select{padding:6px 8px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:48px}
-.edit-row label{font-weight:600;color:var(--green)}
+.edit-row select{flex:1 1 auto;padding:6px 8px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:48px}
+.edit-row label{flex:0 0 92px;font-weight:600;color:var(--green)}
 .note-area{width:100%;border:1px solid var(--line);border-radius:0;padding:9px 11px;background:#fff;min-height:64px;margin-top:6px}
 .notes-old{font-size:13.5px;color:#33332E;white-space:pre-wrap;word-break:break-word;margin-top:6px;max-height:none;overflow:visible}
 .activity{margin-top:12px;border-top:1px solid var(--line);padding-top:8px;font-size:13px;display:none}
@@ -197,8 +197,8 @@ ol.steps li::marker{color:var(--gold);font-weight:700}
 .leader-box{margin-top:10px;border-top:1px solid var(--line);padding-top:9px}
 .leader-box .msg-title{font-size:13px;font-weight:700;color:var(--green);margin-bottom:5px;letter-spacing:.04em}
 .leader-box textarea{width:100%;border:1px solid var(--line);border-radius:0;padding:9px 11px;background:#fff;min-height:56px;margin-top:6px}
-.profile-box{margin-top:12px;border:1px solid var(--line);border-radius:0;padding:12px 14px;background:#fff;font-size:13.5px}
-.profile-box summary{cursor:pointer;font-weight:700;color:var(--green);font-size:13px;min-height:48px;display:flex;align-items:center}
+.profile-box{margin-top:12px;border:1px solid var(--line);border-radius:0;padding:12px 14px;background:#fff;font-size:14.5px}
+.profile-box summary{cursor:pointer;font-weight:700;color:var(--green);font-size:15px;min-height:48px;display:flex;align-items:center}
 .profile-box .kv2{margin-top:6px}
 .chat-log{margin-top:12px;border:1px solid var(--line);border-radius:0;padding:12px 14px;background:#fff;font-size:13px}
 .chat-log summary{cursor:pointer;font-weight:700;color:var(--green);font-size:13px;min-height:48px;display:flex;align-items:center}
@@ -207,6 +207,7 @@ ol.steps li::marker{color:var(--gold);font-weight:700}
 .chat-line .who-me{color:var(--green2);font-weight:700}
 .chat-line .who-cu{color:var(--amber);font-weight:700}
 .chat-line .ct{color:var(--muted);font-size:13px}
+.prof-chat-early{display:none}
 .overview-grid{display:grid;grid-template-columns:1fr;gap:10px}
 @media(min-width:640px){.overview-grid{grid-template-columns:1fr 1fr}}
 .ov-item{border:1px solid var(--line);border-radius:0;padding:12px 14px;background:#fff;font-size:13.5px}
@@ -235,15 +236,38 @@ details>summary{overflow-wrap:break-word}
 .modal .field select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:48px}
 .modal-btns{display:flex;gap:8px;margin-top:14px}
 .modal-btns .btn{flex:1}
-/* 报价弹窗：下一步固定在弹窗底部 */
-#quoteStep1 .modal-btns,#quoteStep2 .modal-btns{position:sticky;bottom:0;background:var(--card);padding:12px 0 0;z-index:2}
+/* 全部弹窗：按钮行吸底（原来只有报价弹窗吸底，现扩到全站弹窗） */
+.modal-btns{position:sticky;bottom:0;background:var(--card);padding:12px 0 0;z-index:2}
+/* 640px 以下：弹窗按钮改竖排，每钮独占一行、最小 48px；报价第 1/2 步保持横排 */
+@media(max-width:640px){
+  .modal-btns{flex-direction:column}
+  .modal-btns .btn{flex:none;width:100%;min-height:48px}
+  #quoteStep1 .modal-btns,#quoteStep2 .modal-btns{flex-direction:row;flex-wrap:wrap}
+  #quoteStep1 .modal-btns .btn{flex:1;width:auto}
+  #quoteStep2 .modal-btns .btn{flex:1 1 44%;width:auto}
+  #quoteStep2 .modal-btns .btn:last-child{flex-basis:100%}
+}
+/* 编辑消息页签：一次只改一封 */
+.edit-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.edit-tabs .edit-tab{flex:1 1 44%;min-height:48px;padding:8px 10px;border:1px solid var(--line);background:#fff;color:var(--green);font-size:13.5px;font-weight:600;cursor:pointer}
+.edit-tabs .edit-tab.on{background:var(--green);color:#FAFAF8;border-color:var(--green)}
+/* 提醒横幅：关闭键与展开 */
+.notice-banner{position:relative;padding-right:46px}
+.notice-close{position:absolute;top:8px;right:8px;width:40px;height:40px;min-height:40px;border:1px solid var(--gold-line);background:transparent;color:#FAFAF8;font-size:20px;line-height:1;cursor:pointer}
+.notice-line{margin:2px 0}
+.notice-ok{margin-left:10px;min-height:40px;padding:4px 12px;border:1px solid var(--gold-line);background:transparent;color:#FAFAF8;font-size:13px;cursor:pointer}
+.notice-more{margin-top:6px}
+.notice-more>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600}
+.assignee-hint{font-size:13px;color:var(--muted);font-weight:400;margin-top:6px;line-height:1.5}
+.price-script details.ps-en-fold{margin-top:4px}
+.price-script details.ps-en-fold>summary{cursor:pointer;font-size:13px;color:var(--green);font-weight:600;min-height:36px;display:flex;align-items:center}
 /* 自定义下拉：代替手机原生 select 的全屏深色弹窗；面板四周留边、上下都有取消、点空白/Esc 关；选项文字完整换行显示 */
 .cs-hidden-sel{position:absolute!important;left:0!important;top:0!important;width:1px!important;height:1px!important;min-width:0!important;min-height:0!important;max-width:1px!important;opacity:0;pointer-events:none;margin:0!important;padding:0!important;border:0;overflow:hidden}
 .cs-trigger{width:100%;text-align:left;background:#fff;border:1px solid var(--line);min-height:48px;padding:10px 34px 10px 12px;font-size:15px;line-height:1.5;color:var(--ink);cursor:pointer;position:relative;white-space:normal;word-break:break-word}
 .cs-trigger:after{content:"▾";position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--green);font-size:16px;pointer-events:none}
 .cs-trigger.cs-empty{color:#8a8578}
 .cs-trigger:disabled{opacity:.55;cursor:default}
-.edit-row .cs-trigger{flex:1 1 160px;width:auto}
+.edit-row .cs-trigger{flex:1 1 auto;width:auto}
 .mywa-row .cs-trigger{flex:1;min-width:160px;width:auto}
 .modal .field .cs-trigger{width:100%}
 .cs-mask{position:fixed;inset:0;background:rgba(16,32,24,.5);z-index:90;display:none;align-items:center;justify-content:center;padding:20px 16px}
@@ -315,9 +339,7 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
 .quick-actions .btn-primary{width:auto}
 .quick-actions.flash{animation:qaFlash 1.4s ease-out}
 @keyframes qaFlash{0%{background:rgba(184,151,58,.30)}100%{background:transparent}}
-/* ---------- 回到按钮：右下角浮动按钮（收起当前区块用浮动的 #fabCollapse，各区块底部不再放静态按钮） ---------- */
-#fabBackBtns{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:45;display:none;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);padding:0 20px;min-height:52px;font-size:15px;font-weight:700;letter-spacing:.03em;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
-#fabBackBtns.show{display:block}
+/* ---------- 浮动按钮：右下角浮动按钮（收起当前区块用浮动的 #fabCollapse，各区块底部不再放静态按钮） ---------- */
 /* ---------- 客户列表分页：每页 3 个 + 卡片排序号 + 全局回到顶部 ---------- */
 .lead-seq{display:inline-block;background:var(--green);color:#F5CF8A;border:1px solid var(--gold-line);font-size:13px;font-weight:700;letter-spacing:.06em;padding:3px 10px;margin:0 0 8px;line-height:1.5}
 .lead-seq b{font-size:16px;color:#FAFAF8;font-variant-numeric:tabular-nums;margin:0 1px}
@@ -332,9 +354,13 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
 .pager-jump-input{width:76px;min-height:48px;padding:8px 6px;font-size:16px;text-align:center;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:0;font-variant-numeric:tabular-nums}
 .pager-jump-input:focus{outline:2px solid var(--gold-line);outline-offset:1px}
 .pager-jump .btn{flex:0 0 auto;min-height:48px;padding:8px 22px;max-width:none}
-#fabTop{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:44;width:48px;height:48px;min-height:48px;border-radius:50%;padding:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);font-size:20px;font-weight:700;line-height:1;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
-#fabCollapse{position:fixed;right:16px;bottom:calc(148px + env(safe-area-inset-bottom));z-index:44;min-height:48px;padding:0 18px;border-radius:24px;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);font-size:15px;font-weight:700;letter-spacing:.03em;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
+#fabTop{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:44;width:48px;height:48px;min-height:48px;border-radius:50%;padding:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);font-size:13px;font-weight:700;line-height:1;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
+#fabCollapse{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:44;min-height:48px;padding:0 18px;border-radius:24px;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);font-size:15px;font-weight:700;letter-spacing:.03em;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
 #fabCollapse.show{display:flex}
+.transfer-pick[hidden]{display:none}
+.transfer-pick{margin:10px 0 0}
+.transfer-pick-title{font-size:14px;margin:2px 0 4px}
+.transfer-pick .btn{display:block;width:100%;min-height:48px;margin:6px 0}
 /* 页面底部多留空隙：最后一张卡的按钮不被右下角悬浮按钮压住 */
 #appView{padding-bottom:132px}
 /* ---------- Top 5 折叠：默认收起，只显示标题行，点标题展开 ---------- */
@@ -363,7 +389,7 @@ details.fold .panel:last-child{margin-bottom:0}
 details.fold-in{margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
 details.fold-in>summary{cursor:pointer;list-style:none;font-weight:700;color:var(--green);font-size:13.5px;min-height:48px;display:flex;align-items:center}
 details.fold-in.more-ops{border:1px solid var(--gold);border-top:2px solid var(--gold);background:#FBF7EC;border-radius:3px;padding:12px 12px 0}
-details.fold-in.more-ops .actions .btn{flex:1 1 44%;white-space:normal}
+details.fold-in.more-ops .actions .btn{flex:1 1 44%;white-space:nowrap}
 details.fold-in.more-ops>summary{font-size:16px}
 details.fold-in>summary::-webkit-details-marker{display:none}
 details.fold-in>summary::before{content:"▸ ";color:var(--gold)}
@@ -414,11 +440,18 @@ details.undo-fold>summary::-webkit-details-marker{display:none}
 details.undo-fold>summary::before{content:"▸ ";color:var(--gold)}
 details.undo-fold[open]>summary::before{content:"▾ "}
 .undo-links{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:6px}
-.undo-links .undo-link{background:none;border:none;padding:4px 0;min-height:44px;font-size:14px;color:var(--muted);text-decoration:underline;cursor:pointer}
+.undo-links .undo-link{background:none;border:none;padding:10px 4px;min-width:72px;white-space:nowrap;flex:none;min-height:44px;font-size:14px;color:var(--muted);text-decoration:underline;cursor:pointer}
 .undo-links .undo-link:hover{color:var(--green)}
+#quoteCancelTop{min-width:48px}
+#quoteZh{min-height:260px}
+#quoteAskDelivery,#quoteNoDelivery{flex:1 1 100%}
+.stats-grid{grid-template-columns:1fr 1fr}
+@media(min-width:640px){.stats-grid{grid-template-columns:1fr 1fr 1fr}}
+.stats-grid .num-cell small{font-size:12px;color:var(--muted)}
+#hoList input[type=checkbox]{width:22px;height:22px;accent-color:#143527;flex:none}
 /* 翻译失败：这封的发送入口置灰，等确认发旧版或重试翻译 */
 .msg-block.tr-stale a[data-sendlink]{opacity:.65;pointer-events:none}
-.msg-block.tr-stale .btn[data-copy]{opacity:.65}
+.msg-block.tr-stale .btn[data-copy]{opacity:1}
 .collision-banner{margin-top:12px;border:1px solid var(--red);color:var(--red);border-radius:0;padding:10px 12px;font-size:13.5px;background:transparent}
 .no-contact-note{margin-top:12px;color:var(--muted);font-size:13.5px}
 .lead.no-contact{opacity:1}
@@ -698,6 +731,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <p class="img-wm-steps">① 在小红书打开挑中的笔记，点分享 → 复制链接<br>② 把链接粘贴到下面输入框<br>③ 点「去 xiazaitu.com 解析」<br>④ 在打开的 xiazaitu.com 输入框里粘贴（链接已自动复制好）、点解析、下载保存无水印成品</p>
       <p class="img-wm-note">提醒：链接本身在小红书打不开（笔记被删或暂时看不了）时，解析也会失败，换一条能打开的笔记再试。</p>
       <input type="text" id="wmLink" class="img-variety-input" placeholder="粘贴小红书笔记链接，如 https://www.xiaohongshu.com/explore/……" autocomplete="off">
+      <p class="sync-line" id="wmHint" style="margin:6px 0 0"></p>
       <div class="img-search-btns img-wm-btns">
         <button class="btn btn-green" type="button" id="wmGoBtn" disabled>去 xiazaitu.com 解析 ↗</button>
         <button class="btn btn-outline btn-wm-clear" type="button" id="wmClearBtn">清空</button>
@@ -782,6 +816,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <details class="fold-in">
       <summary>第三步 · 点查</summary>
       <button class="btn btn-green" type="button" id="bgStartBtn" style="width:100%;margin-top:10px" disabled aria-label="开始背调">开始背调</button>
+      <p class="sync-line" id="bgEchoLine" style="margin:8px 0 0"></p>
       <p class="sync-line" id="bgStartHint" style="margin:8px 0 0">先在第二步填上品种名，这个按钮才能点。</p>
     </details>
     <div id="bgToolList" style="margin-top:14px">还没有价格背调记录。</div>
@@ -862,7 +897,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <button class="btn btn-outline" type="button" id="pageNextTop">下一页 →</button>
     <div class="pager-jump">
       <label class="pager-jump-label" for="pageJumpTop">跳到第</label>
-      <input class="pager-jump-input" type="number" id="pageJumpTop" inputmode="numeric" min="1" step="1" aria-label="输入要跳到的页码">
+      <input class="pager-jump-input" type="number" id="pageJumpTop" inputmode="numeric" min="1" step="1" placeholder="1" aria-label="输入要跳到的页码">
       <span class="pager-jump-label">页</span>
       <button class="btn btn-outline" type="button" id="pageJumpBtnTop">跳转</button>
     </div>
@@ -878,7 +913,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <button class="btn btn-outline" type="button" id="pageNext">下一页 →</button>
     <div class="pager-jump">
       <label class="pager-jump-label" for="pageJump">跳到第</label>
-      <input class="pager-jump-input" type="number" id="pageJump" inputmode="numeric" min="1" step="1" aria-label="输入要跳到的页码">
+      <input class="pager-jump-input" type="number" id="pageJump" inputmode="numeric" min="1" step="1" placeholder="1" aria-label="输入要跳到的页码">
       <span class="pager-jump-label">页</span>
       <button class="btn btn-outline" type="button" id="pageJumpBtn">跳转</button>
     </div>
@@ -912,7 +947,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <li><b>决定一：今天联系哪家。</b>打开页面最上面就是「今天最值得联系的 5 家」，只显示分给你的，5 星的排前面，挑一家点开看卡片。「早上报数」里每人各有 5 家，也可以从那里挑。</li>
       <li><b>决定二：发哪一封。</b>卡片上每封信都有一个中文框：就在中文框里改，改完停一下，下面的外语版会自动翻译、跟着变；确认外语版已经更新成你要发的内容，再点发送，实际发出去的就是外语版。翻译时框下面会显示「正在翻译…」，翻不出来会提示「翻译没成功」，这时发送按钮会变灰，点「重试翻译」或确认「发旧版」才能发。发完 5 秒自动记 1 次，5 秒内没发出去点「撤销」就不记。自己在手机上直接发的（没点网站上的发送链接），回来点「已联系」，弹框里点「确认记下」才算 1 次。记得把产品目录一起发过去。点错了也不用慌：卡片上有「撤销」小字链接，点一下那次就不算数、联系次数减 1；如果那是这家唯一一次联系，「已联系」会一起取消、变回「未处理」，就像没点过一样。WhatsApp 第一封、WhatsApp 跟进信、Telegram 第一封、Telegram 跟进信都是这样改。Telegram 的客户点「Telegram 第一封」「Telegram 跟进信」；这家没留 Telegram 用户名时，点「复制这封」，复制了自己去 Telegram 搜到客户再发。想大改点「编辑消息」，同样是改中文，外语版自动翻译生成（只读，不用碰）。<span id="tutEmailLine">注意：邮件的跟进信要你自己发，AI 只帮王烁杉发他名下的。</span></li>
       <li><b>决定三：客户回了怎么回。</b>展开卡片详情，「助手建议」一次给你两三个回复，挑一个点「用这封发」就直接发出去了，不用再等谁点头。客户回了点一下「客户回了」，联系次数从 0 重新数。</li>
-      <li><b>决定四：报不报价、报多少。</b>卡片上点「报价」（只有一个报价入口），分两步：先填货、再看单发出去。第 1 步先给 1 行空行，不够点「+ 加一行」往下加（最多 20 行），没填品种的空行不算钱、也不进报价单。每行 7 个栏，能选的都用下拉：①品种——下拉里是价目表那 36 个品种，选了自动带价；下拉里没有的选「其他（自己填）」打字填，那行会标「估价」、单价自己估。②规格——选了品种，下拉里就是这个品种在价目表里的规格，选了价格跟着走；没有的选「其他（自己填）」。③数量。④根部形式——裸根 / 带土球 / 容器苗，选带土球再填土球直径。⑤包装方式——下拉里选，没有的选「其他（自己填）」。⑥单价——表里的自动带低价、显示价区间，能在区间里改。⑦小计——自动算，不用管。报价单上写明有效期 15 天、贸易条款 FCA 中国口岸、定金 50%。客户还没说要什么品种、规格的，先问客户，别急着报。估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。第 2 步看单：最上面会写清这家的<b>发给</b>到底是哪个——默认是这家上次实际联系用的渠道（和第一封同一个地方），想换渠道手动选，具体号码 / 邮箱 / 用户名都写出来了，不会发错地方。交货期那栏有两个按钮：客户问了交货期，点「先问王烁杉定交货期」，报价先存草稿、等他定了再发；客户没问，点「客户没问交货期，先发」，报价单上写「交货期：确认中，3 天内回复你」，不留空白行。话术也在弹窗里改：中文框里改，停一下外文版自动翻译跟着变，价格明细行是按你填的单价数量自动生成的、翻译不会动它；确认外文版对了，点「发送报价」一键发出去。报价太长发不出去时，会提示你分两段发。这家要是没留能一键发送的联系方式，弹窗里会写明，点发送只会存成草稿、不会假装发出去，外文版长按文字复制自己发就行。</li>
+      <li><b>决定四：报不报价、报多少。</b>卡片上点「报价」（只有一个报价入口），分两步：先填货、再看单发出去。第 1 步先给 1 行空行，不够点「+ 加一行」往下加（最多 20 行），没填品种的空行不算钱、也不进报价单。每行 7 个栏，能选的都用下拉：①品种——下拉里是价目表那 36 个品种，选了自动带价；下拉里没有的选「其他（自己填）」打字填，那行会标「估价」、单价自己估。②规格——选了品种，下拉里就是这个品种在价目表里的规格，选了价格跟着走；没有的选「其他（自己填）」。③数量。④根部形式——裸根 / 带土球 / 容器苗，选带土球再填土球直径。⑤包装方式——下拉里选，没有的选「其他（自己填）」。⑥单价——表里的自动带低价、显示价区间，能在区间里改。⑦小计——自动算，不用管。报价单上写明有效期 15 天、贸易条款 FCA 中国口岸、定金 50%。客户还没说要什么品种、规格的，先问客户，别急着报。估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。第 2 步看单：最上面会写清这家的<b>发给</b>到底是哪个——默认是这家上次实际联系用的渠道（和第一封同一个地方），想换渠道手动选，具体号码 / 邮箱 / 用户名都写出来了，不会发错地方。交货期那栏有两个按钮：客户问了交货期，点「问王烁杉定交货期」，报价先存草稿、等他定了再发；客户没问，点「客户没问，先发」，报价单上写「交货期：确认中，3 天内回复你」，不留空白行。话术也在弹窗里改：中文框里改，停一下外文版自动翻译跟着变，价格明细行是按你填的单价数量自动生成的、翻译不会动它；确认外文版对了，点「发送报价」一键发出去。报价太长发不出去时，会提示你分两段发。这家要是没留能一键发送的联系方式，弹窗里会写明，点发送只会存成草稿、不会假装发出去，外文版长按文字复制自己发就行。</li>
       <li><b>决定五：成交还是继续跟。</b>客户说要下单，先点卡片上的「客户要下单了」（不要停跟进），王烁杉会看到；等定金到账再点「成交」，会先弹确认框，确认后出现成交清单，照着做完，再点「马上告诉王烁杉」。没回就等 3 天，卡片上会出现「该跟进了」，点一下就发跟进信；满 5 次没回会自动转「没兴趣」，想接着跟点「继续跟进」，重新算 5 次。点错了都能取消，所有状态都行：卡片上有「取消要下单」「取消客户回了」「取消已成交」「取消没兴趣」（手动标的和联系满 5 次自动标的都能取消）「取消重点跟进」；「已联系」有「撤销上次联系」，要是没有联系记录（下拉手动改的、点错试出来的、以前的老数据）也有「取消已联系」，不会卡死；转交错了，展开详情在「更多操作」里点「取消转交」，会转回上一个负责人。点之前都会先弹确认框、写清楚取消后会变成什么，取消了也会记进流水账。只是试功能点错了，照着取消就行，不用怕。</li>
     </ol>
     <p class="tut-note"><b>核心一句话：客户没回，只点一下「已联系」就行，不用发聊天记录；客户回了，平时按卡片上助手建议直接回，不会回的时候才把客户那句话发进来。</b></p>
@@ -989,6 +1024,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <button class="btn btn-outline" type="button" id="pwdCancel">取消</button>
       <button class="btn btn-green" type="button" id="pwdConfirm">确认修改</button>
     </div>
+    <p class="sync-line" style="margin:12px 0 0;font-size:13.5px">不知道初始密码？<a href="https://wa.me/8613085516503?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%98%AF%C3%97%C3%97%EF%BC%8C%E5%88%9D%E5%A7%8B%E5%AF%86%E7%A0%81%E4%B8%8D%E7%9F%A5%E9%81%93%E4%BA%86%EF%BC%8C%E9%BA%BB%E7%83%A6%E5%B8%AE%E6%88%91%E9%87%8D%E7%BD%AE%E4%B8%80%E4%B8%8B%E3%80%82" target="_blank" rel="noopener">找王烁杉重置</a></p>
   </div>
 </div>
 
@@ -996,7 +1032,8 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
 <div class="modal-mask" id="editModal" role="dialog" aria-modal="true" aria-label="编辑消息">
   <div class="modal" style="max-width:560px">
     <h3 id="editModalTitle">编辑消息</h3>
-    <p class="sync-line" style="margin:0 0 12px">改中文，外语版跟着变。翻译没连上时会明确告诉你，外语版不会乱改。</p>
+    <p class="sync-line" style="margin:0 0 12px">改中文，外语版跟着变。翻译没连上时会明确告诉你，外语版不会乱改。一次只改一封，点上面的页签切换。</p>
+    <div class="edit-tabs" id="editTabs" role="tablist" aria-label="选要改哪一封"></div>
     <div id="editFields"></div>
     <div class="err" id="editErr"></div>
     <div class="modal-btns">
@@ -1011,10 +1048,10 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
 <div class="modal-mask" id="importModal" role="dialog" aria-modal="true" aria-label="导入聊天记录">
   <div class="modal" style="max-width:560px">
     <h3 id="importModalTitle">导入聊天记录</h3>
-    <p class="sync-line" style="margin:0 0 12px">只有不会回的时候才用这个。客户没回只点「已联系」就行，不用发记录；客户回了平时按卡片上助手建议直接回；只有不会回的时候，才把客户那句话发进来。助手看不到你手机里的 WhatsApp / Telegram，没有自动抓取的办法，想让助手帮忙总得发一次。</p>
+    <details class="imp-intro"><summary>什么时候才用导入？</summary><p class="sync-line" style="margin:8px 0 12px">只有不会回的时候才用这个。客户没回只点「已联系」就行，不用发记录；客户回了平时按卡片上助手建议直接回；只有不会回的时候，才把客户那句话发进来。助手看不到你手机里的 WhatsApp / Telegram，没有自动抓取的办法，想让助手帮忙总得发一次。</p></details>
     <div class="field">
       <label for="impPaste">直接粘贴聊天文字（手机上最方便）</label>
-      <textarea id="impPaste" class="note-area" style="min-height:180px" placeholder="粘贴聊天文字，每行一条，例如：18:00 王烁杉：你好……"></textarea>
+      <textarea id="impPaste" class="note-area" style="min-height:140px" placeholder="粘贴聊天文字，每行一条，例如：18:00 王烁杉：你好……"></textarea>
     </div>
     <div class="field">
       <label for="impChannel">这是在哪个渠道聊的</label>
@@ -1033,15 +1070,6 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <div class="field" style="margin-top:10px">
         <label for="impFile">上传文件（WhatsApp 导出的 .txt，Telegram 桌面端导出的 .json）</label>
         <input type="file" id="impFile" accept=".txt,.json" style="width:100%">
-      </div>
-      <div class="field">
-        <label for="impSource">记录来源</label>
-        <select id="impSource" style="width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fffdf8;min-height:44px">
-          <option value="whatsapp">WhatsApp 导出</option>
-          <option value="telegram">Telegram 导出/复制</option>
-          <option value="email">邮件正文</option>
-          <option value="paste">粘贴的文字</option>
-        </select>
       </div>
       <div class="modal-btns">
         <button class="btn btn-outline" type="button" id="impParse">解析看看</button>
@@ -1094,19 +1122,19 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <div class="msg-block" style="margin-top:12px">
         <div class="msg-title">报价单</div>
         <div class="msg-flabel" style="margin-top:0">中文</div>
-        <textarea class="msg-edit" id="quoteZh" aria-label="中文，在这里改"></textarea>
+        <textarea class="msg-edit" id="quoteZh" rows="10" aria-label="中文，在这里改"></textarea>
         <div class="tr-status" id="quoteTrStatus"></div>
         <div class="msg-flabel">外文版</div>
-        <div class="msg-text foreign-view" id="quoteFo"></div>
+        <div class="msg-text foreign-view" id="quoteFo" contenteditable="true" aria-label="外文版，可以直接改"></div>
       </div>
       <div style="margin-top:12px;border:1px solid var(--line);padding:12px 14px">
         <div class="msg-title" style="font-size:13px;font-weight:700;color:var(--green)">交货期</div>
         <div class="sync-line" style="font-size:13.5px">交货期由王烁杉定，你不用自己填。</div>
         <div class="msg-actions">
-          <button class="btn btn-outline btn-sm" type="button" id="quoteAskDelivery">先问王烁杉定交货期（存草稿等他定）</button>
-          <button class="btn btn-outline btn-sm" type="button" id="quoteNoDelivery">客户没问交货期，先发</button>
+          <button class="btn btn-outline btn-sm" type="button" id="quoteAskDelivery">问王烁杉定交货期</button>
+          <button class="btn btn-outline btn-sm" type="button" id="quoteNoDelivery">客户没问，先发</button>
         </div>
-        <div class="tr-status" id="quoteDeliveryNote">没选时报价单上写「交货期：确认中，3 天内回复你」，不留空白行。</div>
+        <div class="tr-status" id="quoteDeliveryNote">点「问王烁杉定交货期」会先存草稿等他定；没选时报价单上写「交货期：确认中，3 天内回复你」，不留空白行。</div>
       </div>
       <div class="err" id="quoteErr"></div>
       <div class="modal-btns">
@@ -1264,9 +1292,8 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <div class="cs-panel-foot"><button class="btn btn-outline" type="button" id="csCancelBottom">取消</button></div>
   </div>
 </div>
-<button type="button" id="fabBackBtns" aria-label="回到这张卡片的按钮区">↑ 回到按钮</button>
-<button type="button" id="fabTop" aria-label="回到页面最顶部">↑</button>
-<button type="button" id="fabCollapse" aria-label="收起当前区块">↑ 收起</button>
+<button type="button" id="fabTop" aria-label="回到页面最顶部">顶部</button>
+<button type="button" id="fabCollapse" aria-label="收起当前区块">收起</button>
 
 <script>
 "use strict";
@@ -1276,6 +1303,7 @@ var ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 var REST = SUPABASE_URL + "/rest/v1/";
 var TEAM = ["艾孜买提","叶尔扎提","阿仁","陈阳","于傲雪","王思甜","王烁杉"];
 var TEAM_ALL = TEAM.concat(["柯赛"]);
+var SEARCH_PAUSED = true; /* 新线索搜索开关：2026-11-20 王烁杉叫停；恢复要跟助手说一声“开始”，网站自己恢复不了 */
 var STATUS_ZH = { new:"未处理", focus:"重点跟进", contacted:"已联系", ignored:"没兴趣", deal:"已成交" };
 var REGIONS = ["中亚","中东","东南亚","俄罗斯及周边","南亚","东亚","南美","大洋洲"];
 var TYPE_ZH = { inquiry:"求购", demand:"求购", purchase:"求购", tender:"招标", expo:"展会", exhibition:"展会", fair:"展会", import:"进口数据", import_data:"进口数据", trade:"进口数据" };
@@ -1413,6 +1441,15 @@ function fmtTime(iso){
   if(hh.length < 2) hh = "0" + hh;
   return o.year + "-" + o.month + "-" + o.day + " " + hh + ":" + o.minute + "（北京时间）";
 }
+function fmtDateTimeShort(iso){
+  if(!iso) return "";
+  var d = new Date(iso); if(isNaN(d.getTime())) return "";
+  var o = {};
+  new Intl.DateTimeFormat("en-GB", { timeZone:"Asia/Shanghai", month:"numeric", day:"numeric", hour:"2-digit", minute:"2-digit", hour12:false }).formatToParts(d).forEach(function(x){ o[x.type] = x.value; });
+  var hh = String(parseInt(o.hour, 10) % 24);
+  if(hh.length < 2) hh = "0" + hh;
+  return parseInt(o.month, 10) + "月" + parseInt(o.day, 10) + "日 " + hh + ":" + o.minute;
+}
 function fmtDateShort(iso){
   if(!iso) return "";
   var d = new Date(iso); if(isNaN(d.getTime())) return "";
@@ -1535,6 +1572,13 @@ function myWaMissing(){
 /* 同一家公司分给了另一个队友：撞单。返回对方负责人的名字，没撞单返回 null */
 /* 这家有没有点过“客户要下单了”并记下“已通知王烁杉”（本地记的已通知标记） */
 function orderNotified(l){ try{ return !!localStorage.getItem("order_notified_" + l.id); }catch(e){ return false; } }
+function findContactKey(id){ return "findcontact_req_" + id; }
+function findContactDate(id){ try{ return localStorage.getItem(findContactKey(id)) || ""; }catch(e){ return ""; } }
+function findContactLabel(l){
+  var iso = findContactDate(l.id);
+  if(!iso) return "找联系方式";
+  return "已请王烁杉找（" + fmtDateShort(iso) + "）";
+}
 function collisionInfo(l){
   if(!l || !l.company) return null;
   var c = String(l.company).trim();
@@ -1552,30 +1596,64 @@ function rotatedAway(l){
 }
 /* 发完默认记 + 5 秒可撤销：点了发送链接先不记，等 5 秒；点了“撤销”就不记 */
 var pendingSend = null;
+/* #56: 切走时只亮条子不启动倒计时，切回才启动 5 秒。armPendingOnReturn 等页面先切走（hidden/blur）再切回（visible/focus）才调 startFn */
+function armPendingOnReturn(pending, startFn){
+  if(!pending || typeof startFn !== "function") return;
+  var sawHidden = !!document.hidden;
+  var started = false;
+  function cleanup(){
+    document.removeEventListener("visibilitychange", onVis);
+    window.removeEventListener("focus", onFocus);
+    window.removeEventListener("blur", onBlur);
+    if(pending._armCleanup === cleanup) pending._armCleanup = null;
+  }
+  function tryStart(){
+    if(started) return;
+    if(!sawHidden) return;
+    if(document.hidden) return;
+    if(pendingSend !== pending){ cleanup(); return; }
+    started = true;
+    cleanup();
+    startFn();
+  }
+  function onVis(){ if(document.hidden){ sawHidden = true; } else { tryStart(); } }
+  function onBlur(){ sawHidden = true; }
+  function onFocus(){ tryStart(); }
+  pending._armCleanup = cleanup;
+  document.addEventListener("visibilitychange", onVis);
+  window.addEventListener("blur", onBlur);
+  window.addEventListener("focus", onFocus);
+}
 function showPendingContact(lead, channel, kind, card){
   hidePendingContact(true);
   var bar = $("pendingBar");
-  var chZh = channel === "whatsapp" ? "WhatsApp" : (channel === "email" ? "邮件" : "Telegram");
-  var left = 5;
-  $("pendingText").textContent = "5 秒后自动记 1 次 · 点撤销取消";
+  $("pendingText").textContent = "回到网站后开始算 5 秒 · 点撤销取消";
   bar.classList.add("show");
-  var cd = setInterval(function(){
-    left -= 1;
-    if(left <= 0 || !pendingSend || pendingSend.countdown !== cd){ clearInterval(cd); return; }
-    $("pendingText").textContent = left + " 秒后自动记 1 次 · 点撤销取消";
-  }, 1000);
-  pendingSend = { lead: lead, channel: channel, kind: kind, card: card || null, countdown: cd,
-    timer: setTimeout(function(){
+  var pending = { lead: lead, channel: channel, kind: kind, card: card || null, countdown: null, timer: null };
+  pendingSend = pending;
+  armPendingOnReturn(pending, function(){
+    if(pendingSend !== pending) return;
+    var left = 5;
+    $("pendingText").textContent = "5 秒后自动记 1 次 · 点撤销取消";
+    var cd = setInterval(function(){
+      left -= 1;
+      if(left <= 0 || !pendingSend || pendingSend.countdown !== cd){ clearInterval(cd); return; }
+      $("pendingText").textContent = left + " 秒后自动记 1 次 · 点撤销取消";
+    }, 1000);
+    pending.countdown = cd;
+    pending.timer = setTimeout(function(){
       var p = pendingSend; pendingSend = null;
       clearInterval(cd);
       bar.classList.remove("show");
       if(p) recordContact(p.lead, p.channel, p.kind, p.card);
-    }, 5000) };
+    }, 5000);
+  });
 }
 function hidePendingContact(keepTimer){
   var bar = $("pendingBar");
   if(bar) bar.classList.remove("show");
   if(pendingSend){
+    if(pendingSend._armCleanup) pendingSend._armCleanup();
     if(pendingSend.timer) clearTimeout(pendingSend.timer);
     if(pendingSend.quoteTimer) clearTimeout(pendingSend.quoteTimer);
     if(pendingSend.countdown) clearInterval(pendingSend.countdown);
@@ -1603,14 +1681,22 @@ document.addEventListener("click", function(ev){
   var lead0 = leadId0 ? findLead(leadId0) : null;
   if(lead0){
     var other0 = collisionInfo(lead0);
-    if(other0){ ev.preventDefault(); toast("这家公司队里还有 " + displayName(other0) + " 在跟，别碰，等王烁杉定下留谁再动", true); return; }
+    if(other0){ ev.preventDefault(); toast("这家公司队里还有 " + displayName(other0) + " 也在跟（撞单），发送已停用，等王烁杉定下留谁再发", true); return; }
     if(rotatedAway(lead0)){ ev.preventDefault(); toast("这家已转给 " + displayName(lead0.assignee) + "，你只能看", true); return; }
   }
-  /* 翻译失败、外文版还是旧的：先问一句，确认发旧版才能发 */
+  /* 翻译失败、外文版还是旧的：先问一句，确认发旧版才能发；确认框里附上旧版外文前 100 字，让人看清要发的是哪一版 */
   var staleBlock = a.closest ? a.closest(".msg-block.tr-stale") : null;
   if(staleBlock){
     ev.preventDefault();
-    askConfirm("外文版还是旧的（翻译没成功），确认发旧版吗？想发新版先点「重试翻译」。", function(){
+    var oldFo = "";
+    var foView0 = staleBlock.querySelector("[data-foreignview]");
+    if(foView0) oldFo = decodeURIComponent(foView0.getAttribute("data-val") || "");
+    if(!oldFo && lead0){
+      var entry0 = msgFieldFor(a.getAttribute("data-channel") || "", a.getAttribute("data-kind") || "");
+      if(entry0) oldFo = lead0[entry0.foreign] || "";
+    }
+    var oldPreview = oldFo ? ("\n旧版外文开头：" + oldFo.slice(0, 100) + (oldFo.length > 100 ? "…" : "")) : "";
+    askConfirm("外文版还是旧的（翻译没成功），确认发旧版吗？想发新版先点「重试翻译」。" + oldPreview, function(){
       staleBlock.classList.remove("tr-stale");
       staleBlock.removeAttribute("data-tr-stale");
       window.open(a.href, "_blank");
@@ -1628,7 +1714,7 @@ function scheduleSendFromLink(a){
   var lead = leadId ? findLead(leadId) : null;
   if(!lead) return;
   var other = collisionInfo(lead);
-  if(other){ toast("这家公司队里还有 " + displayName(other) + " 在跟，别碰，等王烁杉定下留谁再动", true); return; }
+  if(other){ toast("这家公司队里还有 " + displayName(other) + " 也在跟（撞单），发送已停用，等王烁杉定下留谁再发", true); return; }
   if(rotatedAway(lead)){ toast("这家已转给 " + displayName(lead.assignee) + "，你只能看", true); return; }
   var channel = a.getAttribute("data-channel") || (a.href.indexOf("t.me") >= 0 ? "telegram" : "whatsapp");
   var kind = a.getAttribute("data-kind") || "first";
@@ -1878,20 +1964,59 @@ function loadProfiles(){
 /* 首页置顶横幅：待开发不够 20 的提醒 + 要下单了还没人去成交（王烁杉/柯哥看）+ 转交来的客户 */
 function updateNoticeBanner(){
   var nb = $("noticeBanner"); if(!nb) return;
-  var lines = [];
+  /* 按北京日期记：某条点了「知道了」当天不再显示这一条；点右上角 × 当天整条横幅隐藏；第二天自动恢复 */
+  var todayKey = "";
+  try{ todayKey = bjDateStr(new Date()); }catch(e){ todayKey = new Date().toISOString().slice(0, 10); }
+  var closedKey = "notice_closed_" + todayKey;
+  var dismissedKey = "notice_dismissed_" + todayKey;
+  var closedToday = false, dismissed = [];
+  try{
+    closedToday = !!localStorage.getItem(closedKey);
+    dismissed = JSON.parse(localStorage.getItem(dismissedKey) || "[]");
+    if(!Array.isArray(dismissed)) dismissed = [];
+  }catch(e){}
+  if(closedToday){ nb.style.display = "none"; nb.innerHTML = ""; return; }
+  var items = [];
   if(!state.isLeader && state.myName){
     var un = uncontactedCount(state.myName);
-    if(20 - un > 0) lines.push("你只剩 " + un + " 家待开发（底线 20，差 " + (20 - un) + " 家），新线索会先补给你。");
+    if(20 - un > 0) items.push({ key: "lowstock", html: "你只剩 " + un + " 家待开发（底线 20，差 " + (20 - un) + " 家），新线索会先补给你。" });
   }
   if(state.isAdmin || state.isLeader){
     var orders = state.leads.filter(function(l){ return isActiveLead(l) && l.order_intent_at && l.status !== "deal"; });
-    if(orders.length) lines.push("今天有 " + orders.length + " 家要下单还没人去成交，点下面「要下单了」去确认数量、价格、定金。");
+    if(orders.length) items.push({ key: "orders", html: "今天有 " + orders.length + " 家要下单还没人去成交，点下面「要下单了」去确认数量、价格、定金。" });
     var collisions = collisionCompanies().length;
-    if(collisions) lines.push("今天有 " + collisions + " 家撞单待定（同一家公司分给了两个人），等你定下留谁再动。");
+    if(collisions) items.push({ key: "collisions", html: "今天有 " + collisions + " 家撞单待定（同一家公司分给了两个人），等你定下留谁再动。" });
   }
-  if(!lines.length && !nb.dataset.extra){ nb.style.display = "none"; nb.innerHTML = ""; return; }
+  if(nb.dataset.extra) items.push({ key: "extra", html: nb.dataset.extra });
+  items = items.filter(function(it){ return dismissed.indexOf(it.key) < 0; });
+  if(!items.length){ nb.style.display = "none"; nb.innerHTML = ""; return; }
   nb.style.display = "block";
-  nb.innerHTML = lines.join("<br>") + (nb.dataset.extra ? (lines.length ? "<br>" : "") + nb.dataset.extra : "");
+  function lineHtml(it){
+    return '<div class="notice-line">' + it.html + '<button class="notice-ok" type="button" data-notice-ok="' + esc(it.key) + '">知道了</button></div>';
+  }
+  var h = '<button class="notice-close" type="button" id="noticeClose" aria-label="关闭提醒横幅">×</button>';
+  h += lineHtml(items[0]);
+  if(items.length > 1){
+    h += '<details class="notice-more"><summary>还有 ' + (items.length - 1) + ' 条提醒</summary>' + items.slice(1).map(lineHtml).join("") + "</details>";
+  }
+  nb.innerHTML = h;
+  var closeBtn = $("noticeClose");
+  if(closeBtn) closeBtn.addEventListener("click", function(){
+    try{ localStorage.setItem(closedKey, "1"); }catch(e){}
+    nb.style.display = "none"; nb.innerHTML = "";
+  });
+  nb.querySelectorAll("[data-notice-ok]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var k = btn.getAttribute("data-notice-ok");
+      try{
+        var cur = JSON.parse(localStorage.getItem(dismissedKey) || "[]");
+        if(!Array.isArray(cur)) cur = [];
+        if(cur.indexOf(k) < 0) cur.push(k);
+        localStorage.setItem(dismissedKey, JSON.stringify(cur));
+      }catch(e){}
+      updateNoticeBanner();
+    });
+  });
 }
 /* 撞单的公司有几家（去重后的公司名数） */
 function collisionCompanies(){
@@ -1924,6 +2049,19 @@ function renderWho(){
     var t5i = $("top5Intro");
     if(t5i) t5i.textContent = "下面是全队最值得联系的 5 家：点开卡片，在「负责人意见」里写跟进意见，队友能看到；你不用自己发消息。";
   }
+  /* 暂停横幅：开关关掉就不显示；管理员看到的是自己叫停的那句加「恢复搜索」按钮，
+     点了只提示去跟助手说，不假装网站能自己恢复；其他人仍看原来那句 */
+  var pb = $("pausedBanner");
+  if(pb){
+    if(!SEARCH_PAUSED){ pb.style.display = "none"; }
+    else if(state.isAdmin){
+      pb.innerHTML = "你 2026-11-20 叫停了新线索搜索，先联系手里的客户，等你说开始再恢复。";
+      var rsb = document.createElement("button");
+      rsb.className = "btn btn-outline btn-sm"; rsb.type = "button"; rsb.textContent = "恢复搜索"; rsb.style.marginLeft = "8px";
+      rsb.addEventListener("click", function(){ toast("恢复搜索要跟助手说一声“开始”，他帮你打开"); });
+      pb.appendChild(rsb);
+    }
+  }
 }
 /* 待开发 = 分给你、还没联系过、没成交也没标没兴趣 */
 function uncontactedCount(name){
@@ -1954,8 +2092,9 @@ function renderTeam(){
   state.profiles.forEach(function(p){ if(p && p.name) byName[p.name] = p; });
   $("teamBox").innerHTML = TEAM_ALL.map(function(name){
     var p = byName[name];
-    var wa = p && p.whatsapp ? p.whatsapp : "未填";
-    var roleTag = name==="王烁杉" ? ' <span style="color:var(--gold);font-size:13px">管理员</span>' : (name==="柯赛" ? ' <span style="color:var(--gold);font-size:13px">团队负责人</span>' : "");
+    /* 阿仁没有 WhatsApp 显示“没有”，其他人没填显示“未填”；profiles 以后最好加一个“没有 WhatsApp”标记，就不用按名字写死 */
+    var wa = p && p.whatsapp ? p.whatsapp : (name === "阿仁" ? "没有" : "未填");
+    var roleTag = name==="王烁杉" ? ' <span style="color:var(--green);font-size:13px">管理员</span>' : (name==="柯赛" ? ' <span style="color:var(--green);font-size:13px">团队负责人</span>' : "");
     return '<div class="team-item"><span class="nm">'+esc(displayName(name))+roleTag+'</span><span class="wa">WhatsApp：'+esc(wa)+"</span></div>";
   }).join("");
   if(state.isAdmin){
@@ -1964,8 +2103,8 @@ function renderTeam(){
     note.className = "sync-line";
     note.style.marginTop = "10px";
     note.textContent = withField > 0
-      ? "已改初始密码：" + withField + " / " + TEAM_ALL.length + " 人（只算 profiles 表里有 password_changed_at 的人）。"
-      : "改密码统计：profiles 表还没有 password_changed_at 字段，补上字段后这里会显示“几人已改、还剩几人没改”。";
+      ? "改过初始密码的：" + withField + " / " + TEAM_ALL.length + " 人，剩下 " + (TEAM_ALL.length - withField) + " 人还没改。"
+      : "谁改没改初始密码暂时还统计不出来，等后台把记录补好，这里会显示几人已改、几人没改。";
     $("teamBox").appendChild(note);
   }
 }
@@ -1975,12 +2114,13 @@ function renderMyWa(){
     box.textContent = "你的个人档案还没建好，暂时填不了。档案建好后这里就能填自己的 WhatsApp 号。";
     return;
   }
-  box.innerHTML = '<div class="mywa-row"><input type="text" id="myWaInput" placeholder="例如 +86 138…"><button class="btn btn-green btn-sm" id="myWaSave" type="button">保存</button></div>';
+  var waWarn = state.myProfile.whatsapp ? "" : '<div style="color:var(--red);font-weight:700;margin-bottom:8px">你还没填 WhatsApp：没有它，队友转客户给你你也联系不上，客户也加不到你。填了保存就行。</div>';
+  box.innerHTML = waWarn + '<div class="mywa-row"><input type="text" id="myWaInput" placeholder="例如 +86 138…"><button class="btn btn-green btn-sm" id="myWaSave" type="button">保存</button></div>';
   $("myWaInput").value = state.myProfile.whatsapp || "";
   $("myWaSave").addEventListener("click", function(){
     var v = $("myWaInput").value.trim();
     api("profiles?id=eq." + encodeURIComponent(state.myProfile.id), { method:"PATCH", headers:{ "Prefer":"return=minimal" }, body:{ whatsapp: v } })
-      .then(function(){ state.myProfile.whatsapp = v; renderTeam(); applyFilters(); toast("已保存"); })
+      .then(function(){ state.myProfile.whatsapp = v; renderTeam(); renderMyWa(); applyFilters(); toast("已保存"); })
       .catch(function(e){ toast(e.message || "保存失败", true); });
   });
 }
@@ -1997,11 +2137,11 @@ function loadSync(){
     var total = map.push_last_space_total || state.leads.length || "";
     var wbRun = fmtRel(map.wb_last_run);
     var err = (map.wb_last_error || "").trim();
-    var status = err ? "出错了：" + err : "正常";
+    var statusHtml = err ? '<span style="color:var(--red);font-weight:700">出错了：' + esc(err) + "</span>" : "正常";
     box.innerHTML = "上次来新客户：<b>" + esc(pushRun) + "</b><br>"
       + "新来了：<b>" + esc(pushNew) + "</b> 家<br>"
       + "一共：<b>" + esc(total) + "</b> 家客户<br>"
-      + "上次把你在网站上的改动存回去：<b>" + esc(wbRun) + "</b> · " + esc(status);
+      + "上次把你在网站上的改动存回去：<b>" + esc(wbRun) + "</b> · " + statusHtml;
   }).catch(function(){ $("syncBox").textContent = "还没有数据更新记录"; });
 }
 
@@ -2041,9 +2181,21 @@ function buildAssigneeFilter(){
     sel.innerHTML = '<option value="'+esc(state.myName)+'">'+esc(displayName(state.myName))+"</option>";
     sel.value = state.myName;
     sel.disabled = true;
+    /* 队员：负责人筛不了，下面加一行小字说清（管理员/负责人登录时不显示） */
+    var hintEl = document.getElementById("assigneeHint");
+    if(!hintEl){
+      hintEl = document.createElement("div");
+      hintEl.id = "assigneeHint";
+      hintEl.className = "assignee-hint";
+      hintEl.textContent = "只能看分给你的客户，负责人筛不了。";
+      if(sel.parentNode) sel.parentNode.appendChild(hintEl);
+    }
+    hintEl.style.display = "";
     return;
   }
   sel.disabled = false;
+  var hintEl2 = document.getElementById("assigneeHint");
+  if(hintEl2) hintEl2.style.display = "none";
   var opts = ['<option value="">全部负责人</option>'];
   TEAM_ALL.forEach(function(n){ opts.push('<option value="'+esc(n)+'">'+esc(displayName(n))+"</option>"); });
   var extra = {};
@@ -2170,7 +2322,7 @@ function applyFilters(){
   var tc = $("trashCount"), hc = $("hiddenCount");
   if(tc) tc.textContent = trashN;
   if(hc) hc.textContent = hiddenN;
-  $("countLine").textContent = "现在看到 " + state.filtered.length + " 家（一共 " + scope.length + " 家，其中回收站 " + trashN + " 家、已藏起 " + hiddenN + " 家）。" + (f.view === "trash" ? (state.isAdmin ? "正在看回收站：删掉的线索都在这里，能恢复，也能彻底删。" : "正在看回收站：删掉的线索都在这里，能恢复；想彻底删找管理员。") : f.view === "hidden" ? "正在看已藏起：不靠谱的线索都在这里，确认是真实需求就恢复回列表。" : sortRule);
+  $("countLine").textContent = "现在看到 " + state.filtered.length + " 家（一共 " + scope.length + " 家，其中回收站 " + trashN + " 家、已藏起 " + hiddenN + " 家）。" + (f.view === "trash" ? (state.isAdmin ? "正在看回收站：删掉的线索都在这里，能恢复，也能彻底删。" : "正在看回收站：删掉的线索都在这里，能恢复；想彻底删找管理员。") : f.view === "hidden" ? "正在看已藏起：不靠谱的线索都在这里，确认是真实需求就恢复回列表。" : (state.filtered.length === 0 ? "" : sortRule));
   updateMineCount();
   updateKegeBadge();
   renderLeads();
@@ -2208,8 +2360,8 @@ $("fabTop").addEventListener("click", function(){
 });
 $("fabCollapse").addEventListener("click", collapseCurrentSection);
 
-/* 客户列表分页：每页只显示 3 个，排序号按筛选后的全局顺序走（在 cardHtml 里算） */
-var PAGE_SIZE = 3;
+/* 客户列表分页：每页显示 8 个，排序号按筛选后的全局顺序走（在 cardHtml 里算） */
+var PAGE_SIZE = 8;
 function totalPages(){ return Math.max(1, Math.ceil(state.filtered.length / PAGE_SIZE)); }
 function renderLeads(){
   var box = $("listBox");
@@ -2218,7 +2370,25 @@ function renderLeads(){
     renderPager();
     return;
   }
-  if(!state.filtered.length){ box.innerHTML = '<div class="panel empty">' + (state.view === "trash" ? "回收站是空的。删掉的线索会先放到这里，随时能恢复，不会真丢。" : state.view === "hidden" ? "没有藏起来的线索。不靠谱的新线索（比如只要 1 株、预算只有几美元）会直接藏起来，在这里能看到、能恢复。" : "这个筛选下暂时没有线索。") + "</div>"; renderPager(); return; }
+  if(!state.filtered.length){
+    var isDefaultView = state.view !== "trash" && state.view !== "hidden";
+    box.innerHTML = '<div class="panel empty">' + (state.view === "trash" ? "回收站是空的。删掉的线索会先放到这里，随时能恢复，不会真丢。" : state.view === "hidden" ? "没有藏起来的线索。不靠谱的新线索（比如只要 1 株、预算只有几美元）会直接藏起来，在这里能看到、能恢复。" : "这个筛选下暂时没有线索。") + (isDefaultView ? '<br><br><button class="btn btn-outline" type="button" id="clearFiltersBtn">清除全部筛选</button>' : "") + "</div>";
+    var cfBtn = document.getElementById("clearFiltersBtn");
+    if(cfBtn) cfBtn.addEventListener("click", function(){
+      var fs = $("fSearch"); if(fs) fs.value = "";
+      var fr = $("fRegion"); if(fr) fr.value = "";
+      buildCountryFilter();
+      var fc = $("fCountry"); if(fc) fc.value = "";
+      var fst = $("fStatus"); if(fst) fst.value = "";
+      var fct = $("fContact"); if(fct) fct.value = "";
+      state.catFilter = "";
+      document.querySelectorAll("[data-cat-chip]").forEach(function(b){ b.classList.remove("on"); });
+      if(typeof enhanceAllSelects === "function") enhanceAllSelects();
+      state.page = 1;
+      applyFilters();
+    });
+    renderPager(); return;
+  }
   var pages = totalPages();
   if(!state.page || state.page < 1) state.page = 1;
   if(state.page > pages) state.page = pages;
@@ -2241,14 +2411,28 @@ function renderLeads(){
 function renderPager(){
   var show = !!state.filtered.length;
   var pages = totalPages();
-  [["pagerBar","pageInfo","pagePrev","pageNext","pageJump"],["pagerBarTop","pageInfoTop","pagePrevTop","pageNextTop","pageJumpTop"]].forEach(function(ids){
+  /* 总页数只有 1 页时，两套翻页器整个不显示 */
+  if(!show || pages <= 1){
+    ["pagerBar","pagerBarTop"].forEach(function(id){ var b = $(id); if(b) b.style.display = "none"; });
+    return;
+  }
+  [["pagerBar","pageInfo","pagePrev","pageNext","pageJump",false],["pagerBarTop","pageInfoTop","pagePrevTop","pageNextTop","pageJumpTop",true]].forEach(function(ids){
     var bar = $(ids[0]); if(!bar) return;
-    if(!show){ bar.style.display = "none"; return; }
+    var isTop = ids[5];
     bar.style.display = "";
     $(ids[1]).textContent = "第 " + state.page + " / " + pages + " 页";
-    $(ids[2]).disabled = state.page <= 1;
-    $(ids[3]).disabled = state.page >= pages;
+    var prevBtn = $(ids[2]), nextBtn = $(ids[3]);
+    /* 多页时上面那套只留「第 × / × 页」一行小字：上一页/下一页和跳页行都藏掉 */
+    if(prevBtn) prevBtn.style.display = isTop ? "none" : "";
+    if(nextBtn) nextBtn.style.display = isTop ? "none" : "";
+    if(prevBtn) prevBtn.disabled = state.page <= 1;
+    if(nextBtn) nextBtn.disabled = state.page >= pages;
     var inp = $(ids[4]); if(inp) inp.max = pages;
+    var jumpRow = bar.querySelector(".pager-jump");
+    /* 总页数 ≤5 时「跳到第 × 页」那行也藏掉；上面那套本来就不显示跳页行 */
+    if(jumpRow) jumpRow.style.display = (isTop || pages <= 5) ? "none" : "";
+    if(isTop) bar.style.justifyContent = "center";
+    else bar.style.justifyContent = "";
   });
 }
 /* 平滑滚到客户列表顶部（列表上方的翻页器就是列表顶，滚到它能同时看到翻页器和新一页） */
@@ -2268,16 +2452,22 @@ function gotoPage(p){
   renderLeads();
   scrollToListTop();
 }
-/* 跳到第 N 页：不是数字就忽略；超出范围夹到 1 ~ 总页数；跳完滚到列表顶部 */
+/* 跳到第 N 页：空输入先提示填页码；超出范围提示只有几页并跳到最后一页；跳完滚到列表顶部 */
 function jumpToPage(input){
   if(!input) return;
   var raw = (input.value || "").replace(/^\s+|\s+$/g, "");
-  if(!raw) return;
+  if(!raw){ toast("先填要跳到的页码", true); return; }
   var n = parseInt(raw, 10);
-  if(isNaN(n)) return;
+  if(isNaN(n)){ toast("先填要跳到的页码", true); return; }
   var pages = totalPages();
   if(n < 1) n = 1;
-  if(n > pages) n = pages;
+  if(n > pages){
+    toast("只有 " + pages + " 页，已跳到最后一页", true);
+    input.value = "";
+    if(state.page === pages){ scrollToListTop(); return; }
+    gotoPage(pages);
+    return;
+  }
   input.value = "";
   if(n === state.page){ scrollToListTop(); return; }
   gotoPage(n);
@@ -2299,13 +2489,15 @@ function msgBlock(title, text, links, extra){
     h += '<div class="msg-text">'+esc(foreign)+"</div>";
   }
   if(extra.note) h += '<div class="tr-status">'+esc(extra.note)+"</div>";
+  var isEmailBlock = links.some(function(L){ return !!L.copyOnly; });
   h += '<div class="msg-actions">';
   links.forEach(function(L){
-    if(L.copyOnly){ h += '<button class="btn btn-outline btn-sm" type="button" data-copy-email="' + esc(L.kind || "first") + '">复制全文</button>'; return; }
+    if(L.copyOnly){ h += '<button class="btn btn-outline btn-sm" type="button" data-copy-email="' + esc(L.kind || "first") + '">复制全文（含主题）</button>'; return; }
     if(L.channel === "whatsapp" && !state.isLeader && myWaMissing()){ h += '<button class="btn btn-green btn-sm" type="button" disabled style="opacity:.55">先填你的 WhatsApp 号才能发</button>'; return; }
     h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="'+esc(L.channel || "")+'" data-kind="'+esc(L.kind || "")+'"'+(L.backup ? ' data-backup="1"' : "")+' href="'+esc(L.href)+'">'+esc(L.label)+"</a>";
   });
-  h += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(foreign)+'">复制这封</button>';
+  /* 邮件块只留一个复制按钮「复制全文（含主题）」，不再加第二个「复制这封」；WhatsApp/Telegram 块的「复制这封」保留 */
+  if(!isEmailBlock) h += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(foreign)+'">复制这封</button>';
   h += "</div>" + COLLAPSE_BTN + "</div></details>";
   return h;
 }
@@ -2499,7 +2691,8 @@ function cardHtml(l){
   var dueHtml = "";
   if(due){
     dueHtml = '<div class="follow-banner"><span><b>该跟进了：</b>上次联系是 ' + due.days + ' 天前（' + esc(fmtDateShort(due.last)) + '），客户还没回。' + (l.status === "focus" ? "重点客户，别拖。" : "") + '</span>';
-    if(l.whatsapp) dueHtml += (!state.isLeader && myWaMissing()) ? '<button class="btn btn-green btn-sm" type="button" disabled style="opacity:.55">先填你的号</button>' : '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="followup" href="'+esc(waUniversal(l.whatsapp, l.followup_message))+'">发跟进信</a>';
+    if(collideWith){ /* 撞单：跟进信发送入口不渲染，只留提醒文字，定下留谁再发 */ }
+    else if(l.whatsapp) dueHtml += (!state.isLeader && myWaMissing()) ? '<button class="btn btn-green btn-sm" type="button" disabled style="opacity:.55">先填你的号</button>' : '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="followup" href="'+esc(waUniversal(l.whatsapp, l.followup_message))+'">发跟进信</a>';
     else if(tgu && l.telegram_followup_message) dueHtml += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="telegram" data-kind="followup" href="https://t.me/'+esc(tgu)+"?text="+encodeURIComponent(l.telegram_followup_message)+'">发跟进信</a>';
     else if(l.email) dueHtml += '<a class="btn btn-outline btn-sm" data-sendlink="1" data-channel="email" data-kind="followup" href="'+esc(gmailUrl(l.email, "跟进 - " + (l.company || ""), l.followup_message || ""))+'">发跟进信（邮件）</a>';
     else if(l.followup_message) dueHtml += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(l.followup_message)+'">复制跟进信</button>';
@@ -2521,13 +2714,13 @@ function cardHtml(l){
   var undoLinks = "";
   function addUndo(html){ undoLinks += html; }
   if(collideWith){
-    quick += '<span class="tag" style="background:transparent;border-color:var(--red);color:var(--red);font-weight:700">撞单：队里还有 ' + esc(displayName(collideWith)) + ' 在跟这家，别碰</span>';
+    quick += '<span class="tag" style="background:transparent;border-color:var(--red);color:var(--red);font-weight:700">撞单：队里还有 ' + esc(displayName(collideWith)) + ' 也在跟这家，发送已停用，找王烁杉定留谁</span>';
   } else if(isRotated){
-    quick += '<span class="no-contact-note">这家已转给 ' + esc(displayName(l.assignee)) + '，你只能看，不能再联系。</span>'
-      + '<button class="btn btn-outline btn-sm" type="button" data-act="undo-transfer">取消转交（转回给我）</button>';
+    quick += '<button class="btn btn-outline btn-sm" type="button" data-act="undo-transfer">取消转交</button>';
   } else if(!hasContact(l)){
+    var fcIso = findContactDate(l.id);
     quick += '<span class="no-contact-note">这家没留联系方式，先放着，等搜到联系方式再联系。</span>'
-      + (state.isLeader ? "" : '<button class="btn btn-outline btn-sm" type="button" data-act="findcontact">找联系方式</button>');
+      + (state.isLeader ? "" : (fcIso ? '<button class="btn btn-outline btn-sm" type="button" data-act="findcontact" disabled style="opacity:.55">' + esc(findContactLabel(l)) + '</button>' : '<button class="btn btn-outline btn-sm" type="button" data-act="findcontact">找联系方式</button>'));
   } else if(state.isLeader){
     quick += '<span class="no-contact-note">你是团队负责人，不用发消息；点「展开详情」，在「负责人意见」里写跟进意见，队友能看到。</span>';
   } else {
@@ -2543,10 +2736,13 @@ function cardHtml(l){
     else if(l.email) quick += '<a class="btn btn-green btn-sm" data-sendlink="1" data-channel="email" data-kind="first" href="'+esc(gmailUrl(l.email, "联系 - " + (l.company || ""), fmFo))+'">发邮件</a>';
     if(!tgu && l.telegram_first_message) quick += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(tgFmFo)+'">复制消息（去 Telegram 发）</button>';
   }
-  if(!state.isLeader && !isRotated && hasContact(l) && !collideWith){
-    /* 卡面只留 3 个主按钮：发第一封（上面那个深绿实心）+ 已联系 + 客户回了（描边次按钮） */
+  if(!state.isLeader && !isRotated && hasContact(l)){
+    /* 卡面只留 3 个主按钮：发第一封（上面那个深绿实心）+ 已联系 + 客户回了（描边次按钮）。
+       撞单时这一组照常保留：只拦发送类按钮（发第一封/发跟进信在上面那组不渲染），已联系/客户回了/问柯哥/要下单都能用 */
     quick += '<button class="btn btn-outline btn-sm" type="button" data-act="contacted">已联系</button>'
-      + '<button class="btn btn-outline btn-sm" type="button" data-act="replied">' + (l.has_replied ? "已记回信 · " + esc(fmtDateShort(l.replied_at)) : "客户回了") + '</button>';
+      + '<button class="btn btn-outline btn-sm" type="button" data-act="importchat-top">发聊天记录</button>'
+      + '<button class="btn btn-outline btn-sm" type="button" data-act="replied">' + (l.has_replied ? "已记回信 · " + esc(fmtDateShort(l.replied_at)) : "客户回了") + '</button>'
+      + '<button class="btn btn-outline btn-sm" type="button" data-act="quote">报价</button>';
     if(l.order_intent_at){
       quick += '<span class="tag intent">客户要下单了 · 等定金到账再点已成交</span>';
     }
@@ -2562,7 +2758,7 @@ function cardHtml(l){
     }
     /* 取消类统一收进一个“撤销”小字链接：只收起来，撤销本身还能点 */
     var undoEvId = latestUndoableEventId(l);
-    if(undoEvId !== null && (parseInt(l.owner_contact_count, 10) || 0) > 0)
+    if(undoEvId !== null)
       addUndo('<button class="undo-link" type="button" data-undo-quick="'+esc(String(undoEvId))+'">撤销上次联系</button>');
     else if(l.status === "contacted" && canCancelLead)
       addUndo('<button class="undo-link" type="button" data-act="undo-contacted-status">取消已联系</button>');
@@ -2582,6 +2778,21 @@ function cardHtml(l){
   var rotateNextBtn = (!isRotated && l.assignee === state.myName)
     ? '<button class="btn btn-outline btn-sm" type="button" data-act="rotate-next">转给下一个人</button>'
     : "";
+  var transferBtn = (!isRotated && (l.assignee === state.myName || state.isAdmin))
+    ? '<button class="btn btn-outline btn-sm" type="button" data-act="transfer">转交</button>'
+    : "";
+  var undoTransferBtn = (l.rotated_from
+    ? '<button class="btn btn-outline btn-sm" type="button" data-act="undo-transfer">取消转交</button>'
+    : "");
+  var transferPick = "";
+  if(!isRotated && (l.assignee === state.myName || state.isAdmin)){
+    transferPick = '<div class="transfer-pick" data-transfer-pick hidden><div class="transfer-pick-title">转给谁？</div>';
+    TEAM.forEach(function(n){
+      if(n === state.myName || n === l.assignee) return;
+      transferPick += '<button class="btn btn-outline" type="button" data-transfer-to="' + esc(n) + '">' + esc(displayName(n)) + '</button>';
+    });
+    transferPick += '<button class="btn btn-outline" type="button" data-transfer-cancel>取消</button></div>';
+  }
   var moreOps = (state.isLeader || isRotated ? "" : '<details class="fold-in more-ops"><summary>更多操作</summary><div class="actions">'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="activity">全部记录</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="editmsg">编辑消息</button>'
@@ -2594,9 +2805,11 @@ function cardHtml(l){
     + (inTrash || isHidden || !canCancelLead ? "" : '<button class="btn btn-outline btn-sm" type="button" data-act="trash-delete">移到回收站</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="hide-lead">藏起</button>'
     + '<input type="text" class="hide-reason" data-hide-reason placeholder="藏起的原因（比如：只要 1 株，不靠谱），不填就写“不靠谱”">')
-    + '<button class="btn btn-outline btn-sm" type="button" data-act="undo-transfer">取消转交（转回上一个负责人）</button>'
+    + transferBtn
+    + undoTransferBtn
     + rotateNextBtn
     + "</div>"
+    + transferPick
     + '<details class="fold-in"><summary>评分 · 负责人</summary><div class="edit-row"><label>状态</label><select data-field="status">'+statusOpts+'</select>'
     + '<label>星星</label><select data-field="stars">'+starOpts+'</select>'
     + '<label>分错了转给</label><select data-field="assignee">'+assigneeOpts+"</select></div>"
@@ -2617,6 +2830,19 @@ function cardHtml(l){
       + '<button class="btn btn-outline btn-sm" type="button" data-act="undophotos">撤销这次已发实拍</button></div>'
       + '<div class="tr-status" data-photos-line>' + esc(phLine) + "</div></div>" + COLLAPSE_BTN + "</details>";
   }
+  var phoneDigits = String(l.phone || "").replace(/\D/g, "");
+  var waDigits = String(l.whatsapp || "").replace(/\D/g, "");
+  var phoneLine = "";
+  if(phoneDigits || waDigits){
+    if(phoneDigits && waDigits && phoneDigits === waDigits){
+      phoneLine = '<div class="kv">电话：<a href="tel:+' + esc(phoneDigits) + '">' + esc(l.phone || l.whatsapp) + '</a></div>';
+    } else {
+      var phParts = [];
+      if(phoneDigits) phParts.push('电话：<a href="tel:+' + esc(phoneDigits) + '">' + esc(l.phone) + '</a>');
+      if(waDigits) phParts.push('WhatsApp：<a href="https://wa.me/' + esc(waDigits) + '" target="_blank" rel="noopener">' + esc(l.whatsapp) + '</a>');
+      if(phParts.length) phoneLine = '<div class="kv">' + phParts.join(" / ") + '</div>';
+    }
+  }
   return '<article class="lead' + (hasContact(l) ? "" : " no-contact") + '" data-id="'+esc(l.id)+'">'
     + '<div class="lead-top"><div>' + seqHtml + '<h3>'+esc(l.company || "（未填公司名）")+"</h3>"
     + (l.title_zh ? '<p class="title-zh">'+esc(l.title_zh)+"</p>" : "")
@@ -2630,11 +2856,12 @@ function cardHtml(l){
     + tags + "</div>"
     + (prod ? '<div class="kv">产品：<b>'+esc(prod)+"</b></div>" : "")
     + (detail ? '<div class="kv">'+detail+"</div>" : "")
+    + phoneLine
     + '<div class="kv">联系过：<b>'+esc(l.owner_contact_count || 0)+"</b> 次（最多联系 5 次）"+(l.found_at ? " · 找到于 <span style=\"white-space:nowrap\">"+esc(fmtTime(l.found_at))+"</span>" : "")+"</div>"
     + '<div class="next-step">下一步：<b>' + esc(nextStepText(l)) + '</b></div>'
     + dueHtml
     + trashBanner + hiddenBanner
-    + (collideWith ? '<div class="collision-banner">这家公司队里还有 ' + esc(displayName(collideWith)) + ' 在跟，别碰，等王烁杉定下留谁再动。发送按钮已经拦住了。</div>' : "")
+    + (collideWith ? '<div class="collision-banner">这家公司队里还有 ' + esc(displayName(collideWith)) + ' 也在跟（撞单）：两个人同时联系会乱，所以发送类按钮已停用，详情里的发送链接点了也会拦住；「客户回了」「已联系」「问柯哥」还能照常用。留谁跟，<a href="https://wa.me/8613085516503?text=' + encodeURIComponent("你好，这家公司撞单了：" + (l.company || "") + "，现在 " + (l.assignee || "未分配") + " 和 " + collideWith + " 都在跟，麻烦定一下留谁跟。") + '" target="_blank" rel="noopener">找王烁杉定留谁</a>。</div>' : "")
     + (isRotated ? '<div class="collision-banner" style="border-color:var(--gold);color:var(--green)">这家已转给 ' + esc(displayName(l.assignee)) + '，你只能看。</div>' : "")
     + quick
     + '<div class="lead-body hidden">'
@@ -2659,13 +2886,12 @@ function cardHtml(l){
     + "</div>"
     + "</article>";
 }
-/* 最近一次可以撤销的联系记录 id：算跟进次数、且在最后一次客户回复之后的那次联系；没有就返回 null。卡面「撤销上次联系」和联系记录里的「撤销这次」共用这个判断 */
+/* 最近一次可以撤销的联系记录 id：算跟进次数的那次联系；回信前的联系也能撤销（#55 去掉只认回复之后的过滤）。没有就返回 null。卡面「撤销上次联系」和联系记录里的「撤销这次」共用这个判断 */
 function latestUndoableEventId(l){
   var best = null, bestT = "";
   (state.ceByLead[l.id] || []).forEach(function(r){
     if(r.counts_toward_followup !== true) return;
     if(r.id === undefined || r.id === null) return;
-    if(l.replied_at && String(r.created_at || "") <= String(l.replied_at)) return;
     if(best === null || String(r.created_at || "") > bestT){ best = r.id; bestT = String(r.created_at || ""); }
   });
   return best;
@@ -2681,7 +2907,7 @@ function historyBlock(l){
   });
   (state.reByLead[l.id] || []).forEach(function(r){ evs.push({ t: r.created_at, txt: "客户回了消息", isContact: false, isReply: true, id: r.id }); });
   evs.sort(function(a, b){ return String(b.t || "") < String(a.t || "") ? -1 : 1; });
-  /* 撤销入口：只给最近一次符合条件的联系记录加“撤销这次”按钮——是联系记录（不是客户回了）、算跟进次数、且在最后一次客户回复之后 */
+  /* 撤销入口：只给最近一次符合条件的联系记录加“撤销这次”按钮——是联系记录（不是客户回了）、算跟进次数；回信前的联系也能撤销 */
   var undoId = latestUndoableEventId(l);
   var cnt = parseInt(l.owner_contact_count, 10) || 0;
   var h = '<div class="history"><div class="hist-head">你联系过这家 <b>' + cnt + '</b> 次 · ' + (l.has_replied ? "客户回过" : "客户还没回") + "</div>";
@@ -2824,16 +3050,22 @@ function undoContact(lead, eventId, cardEl){
   var newOwnerCount = Math.max(0, oldCount - 1);
   var newTotalCount = Math.max(0, (parseInt(lead.contact_count, 10) || 0) - 1);
   var restored = (lead.status === "ignored" && oldCount >= 5 && newOwnerCount < 5 && !lead.has_replied);
-  var backToNew = (lead.status === "contacted" && newOwnerCount === 0 && !lead.has_replied);
+  var backToNew = (lead.status === "contacted" && newOwnerCount === 0 && !lead.has_replied && oldCount > 0);
+  var zeroReplied = (oldCount === 0 && !!lead.has_replied);
   var ev = null;
   (state.ceByLead[lead.id] || []).forEach(function(r){ if(String(r.id) === String(eventId)) ev = r; });
-  var confirmMsg = "确定要撤销这次联系吗？联系次数会从 " + oldCount + " 变成 " + newOwnerCount + " 次。";
-  if(backToNew) confirmMsg += "这是这家唯一一次联系，撤销后「已联系」也会取消，变回「未处理」，就像没点过一样。";
-  else if(restored) confirmMsg += "撤销后次数不到 5 次，这家会恢复成可以继续跟进。";
+  var confirmMsg = "";
+  if(zeroReplied) confirmMsg = "客户回过，联系次数已经是 0，这次只删掉这条联系记录，次数和状态不变。确定要撤销这条联系记录吗？";
+  else {
+    confirmMsg = "确定要撤销这次联系吗？联系次数会从 " + oldCount + " 变成 " + newOwnerCount + " 次。";
+    if(backToNew) confirmMsg += "这是这家唯一一次联系，撤销后「已联系」也会取消，变回「未处理」，就像没点过一样。";
+    else if(restored) confirmMsg += "撤销后次数不到 5 次，这家会恢复成可以继续跟进。";
+  }
   askConfirm(confirmMsg, function(){
     api("contact_events?id=eq." + encodeURIComponent(eventId), { method: "DELETE" })
     .then(function(){
       state.ceByLead[lead.id] = (state.ceByLead[lead.id] || []).filter(function(r){ return String(r.id) !== String(eventId); });
+      if(zeroReplied) return null;
       var patch = { owner_contact_count: newOwnerCount, contact_count: newTotalCount };
       if(restored) patch.status = "contacted";
       else if(backToNew) patch.status = "new";
@@ -2844,10 +3076,12 @@ function undoContact(lead, eventId, cardEl){
       var kdZh = !ev ? "" : (ev.kind === "first" ? "第一封" : "跟进信");
       var when = ev && ev.created_at ? fmtRel(ev.created_at) : "";
       var what = ev ? "（" + chZh + kdZh + "，" + when + "）" : "";
+      if(zeroReplied) return logActivity(lead.id, "undo_contact", "撤销了一条回信前的联系记录" + what + "；客户回过，联系次数已经是 0，只删记录，次数和状态不变");
       return logActivity(lead.id, "undo_contact", "撤销了一次联系" + what + "，联系次数从 " + oldCount + " 变成 " + newOwnerCount + (restored ? "；次数不到 5 次，恢复成可跟进" : "") + (backToNew ? "；这是唯一一次联系，「已联系」已取消，状态改回「未处理」" : ""));
     })
     .then(function(){
-      toast("已撤销这次联系，联系次数变成 " + newOwnerCount + " 次" + (restored ? "，已恢复成可跟进" : "") + (backToNew ? "，「已联系」已取消，变回「未处理」" : ""));
+      if(zeroReplied) toast("已删掉这条联系记录，联系次数还是 0 次，状态不变");
+      else toast("已撤销这次联系，联系次数变成 " + newOwnerCount + " 次" + (restored ? "，已恢复成可跟进" : "") + (backToNew ? "，「已联系」已取消，变回「未处理」" : ""));
       if(cardEl) refreshCard(cardEl, lead);
       else renderTop5();
     })
@@ -3054,11 +3288,12 @@ function bindOneCard(card){
         toggleBtn.setAttribute("aria-expanded", "false");
       }
     });
-    var contactedBtn = card.querySelector('[data-act="contacted"]');
-    if(contactedBtn) contactedBtn.addEventListener("click", function(){
-      state.pendingContactLead = lead;
-      $("contactModalTitle").textContent = "记录已联系 · " + (lead.company || "");
-      $("contactModal").classList.add("open");
+    card.querySelectorAll('[data-act="contacted"]').forEach(function(contactedBtn){
+      contactedBtn.addEventListener("click", function(){
+        state.pendingContactLead = lead;
+        $("contactModalTitle").textContent = "记录已联系 · " + (lead.company || "");
+        $("contactModal").classList.add("open");
+      });
     });
     /* 撤销上次联系：卡面快捷区的按钮 + 联系记录里最近一条旁边的“撤销这次”按钮 */
     card.querySelectorAll("[data-undo-event],[data-undo-quick]").forEach(function(btn){
@@ -3097,10 +3332,20 @@ function bindOneCard(card){
     });
     var editmsgBtn = card.querySelector('[data-act="editmsg"]');
     if(editmsgBtn) editmsgBtn.addEventListener("click", function(){ openEditor(lead); });
-    var importTopBtn = card.querySelector('[data-act="importchat-top"]');
-    if(importTopBtn) importTopBtn.addEventListener("click", function(){ openImport(lead); });
-    var quoteBtn = card.querySelector('[data-act="quote"]');
-    if(quoteBtn) quoteBtn.addEventListener("click", function(){ openQuote(lead); });
+    card.querySelectorAll('[data-act="importchat-top"]').forEach(function(importTopBtn){
+      importTopBtn.addEventListener("click", function(){ openImport(lead); });
+    });
+    /* 档案里「查看更早的」：展开早于最近 10 条的聊天，按钮自己藏掉 */
+    card.querySelectorAll("[data-prof-more]").forEach(function(pmBtn){
+      pmBtn.addEventListener("click", function(){
+        var early = card.querySelector(".prof-chat-early");
+        if(early) early.style.display = "block";
+        pmBtn.style.display = "none";
+      });
+    });
+    card.querySelectorAll('[data-act="quote"]').forEach(function(quoteBtn){
+      quoteBtn.addEventListener("click", function(){ openQuote(lead); });
+    });
     var dealBtn = card.querySelector('[data-act="deal"]');
     if(dealBtn) dealBtn.addEventListener("click", function(){ markDeal(lead); });
     card.querySelectorAll("[data-sugg-send]").forEach(function(btn){
@@ -3195,23 +3440,32 @@ function bindOneCard(card){
     /* 没留联系方式：记一笔待办给王烁杉，让他去找联系方式 */
     var fcBtn = card.querySelector('[data-act="findcontact"]');
     if(fcBtn) fcBtn.addEventListener("click", function(){
+      if(fcBtn.disabled) return;
+      var iso = new Date().toISOString();
+      try{ localStorage.setItem(findContactKey(lead.id), iso); }catch(e){}
+      fcBtn.disabled = true;
+      fcBtn.style.opacity = ".55";
+      fcBtn.textContent = "已请王烁杉找（" + fmtDateShort(iso) + "）";
       logActivity(lead.id, "findcontact", "这家没留联系方式，请王烁杉帮忙找联系方式").then(function(){
         toast("已记给王烁杉，让他帮忙找这家的联系方式");
       }).catch(function(){ toast("记下了，但没存进去，过一会儿再试", true); });
     });
-    /* 客户要下单了：只标重点，不停跟进；点一下就真记一笔“已通知王烁杉”，不是只开个聊天框 */
+    /* 客户要下单了：先弹确认框（和「客户回了」一样），确认才记；这只是标记，定金到账再点「已成交」。
+       记完原地刷新这张卡（refreshCard，展开态保留），不再整列表重渲染 */
     var oiBtn = card.querySelector('[data-act="orderintent"]');
     if(oiBtn) oiBtn.addEventListener("click", function(){
-      patchLead(lead, { order_intent_at: new Date().toISOString() }).then(function(){
-        return logActivity(lead.id, "orderintent", "客户说要下单了，已标重点；先确认数量、价格、定金，定金到账再点已成交");
-      }).then(function(){
-        return logActivity(lead.id, "order_notify", "已通知王烁杉：客户要下单了（" + nowStamp() + "）");
-      }).then(function(){
-        try{ localStorage.setItem("order_notified_" + lead.id, new Date().toISOString()); }catch(e){}
-        toast("已标上「客户要下单了」，已通知王烁杉。先别停跟进，定金到账再点已成交");
-        updateNoticeBanner();
-        applyFilters();
-      }).catch(function(e){ toast(e.message || "标记失败", true); });
+      askConfirm("确定要记下「客户要下单了」吗？这只是标记，不算成交：先去确认数量、价格、定金，定金到账再点「已成交」。记下后王烁杉晚上看汇总能看到，跟进先别停。", function(){
+        patchLead(lead, { order_intent_at: new Date().toISOString() }).then(function(){
+          return logActivity(lead.id, "orderintent", "客户说要下单了，已标重点；先确认数量、价格、定金，定金到账再点已成交");
+        }).then(function(){
+          return logActivity(lead.id, "order_notify", "已通知王烁杉：客户要下单了（" + nowStamp() + "）");
+        }).then(function(){
+          try{ localStorage.setItem("order_notified_" + lead.id, new Date().toISOString()); }catch(e){}
+          toast("已记下：客户要下单了，王烁杉晚上看汇总能看到。先别停跟进，定金到账再点已成交");
+          updateNoticeBanner();
+          refreshCard(card, lead);
+        }).catch(function(e){ toast(e.message || "标记失败", true); });
+      });
     });
     /* 继续跟进：没兴趣之后重新算 5 次 */
     var contBtn = card.querySelector('[data-act="continue"]');
@@ -3247,6 +3501,44 @@ function bindOneCard(card){
     /* 转给下一个人（Q195 手动轮转）：和上面「取消转交」成对，转出去靠它、转回来靠取消转交 */
     var rnBtn = card.querySelector('[data-act="rotate-next"]');
     if(rnBtn) rnBtn.addEventListener("click", function(){ rotateNext(lead, card); });
+    var trBtn = card.querySelector('[data-act="transfer"]');
+    if(trBtn) trBtn.addEventListener("click", function(){
+      var pick = card.querySelector("[data-transfer-pick]");
+      if(pick) pick.hidden = !pick.hidden;
+    });
+    var trCancelBtn = card.querySelector("[data-transfer-cancel]");
+    if(trCancelBtn) trCancelBtn.addEventListener("click", function(){
+      var pick = card.querySelector("[data-transfer-pick]");
+      if(pick) pick.hidden = true;
+    });
+    card.querySelectorAll("[data-transfer-to]").forEach(function(tBtn){
+      tBtn.addEventListener("click", function(){
+        var nv = tBtn.getAttribute("data-transfer-to") || "";
+        var old = lead.assignee || "";
+        if(!nv || nv === old) return;
+        if(rotatedAway(lead)){ toast("这家已经转出去了，你只能看", true); return; }
+        askConfirm("把「" + (lead.company || "") + "」从 " + (displayName(old) || "未分配") + " 转给 " + displayName(nv) + "？转过去跟进次数从 0 开始算，" + (displayName(old) || "原来的人") + "就不能再联系这家了。" + waTransferWarn(nv, lead), function(){
+          reassignLead(lead, nv, old, card);
+        });
+      });
+    });
+    /* 转交选人区：点外面关闭（整个页面只绑一次，不随每张卡重复绑） */
+    if(!window.__transferOutsideBound){
+      window.__transferOutsideBound = true;
+      document.addEventListener("click", function(ev){
+        var t = ev.target;
+        if(!t) return;
+        document.querySelectorAll("[data-transfer-pick]:not([hidden])").forEach(function(pick){
+          if(pick.contains(t)) return;
+          var cardEl = pick.closest ? pick.closest(".lead") : null;
+          if(cardEl){
+            var trToggle = cardEl.querySelector('[data-act="transfer"]');
+            if(trToggle && trToggle.contains(t)) return;
+          }
+          pick.hidden = true;
+        });
+      });
+    }
     /* 联系记录里每条「客户回了」旁边的“撤销这次” */
     card.querySelectorAll("[data-undo-reply]").forEach(function(btn){
       btn.addEventListener("click", function(){ undoReply(lead, btn.getAttribute("data-undo-reply"), card); });
@@ -3282,7 +3574,7 @@ function bindOneCard(card){
     if(asSel) asSel.addEventListener("change", function(){
       var nv = asSel.value; var old = lead.assignee || "";
       if(nv === old) return;
-      askConfirm("把「" + (lead.company || "") + "」从 " + (displayName(old) || "未分配") + " 转给 " + displayName(nv) + "？转过去跟进次数从 0 开始算，" + (displayName(old) || "原来的人") + "就不能再联系这家了。", function(){
+      askConfirm("把「" + (lead.company || "") + "」从 " + (displayName(old) || "未分配") + " 转给 " + displayName(nv) + "？转过去跟进次数从 0 开始算，" + (displayName(old) || "原来的人") + "就不能再联系这家了。" + waTransferWarn(nv, lead), function(){
         reassignLead(lead, nv, old, card);
       }, function(){ asSel.value = old; });
     });
@@ -3353,49 +3645,18 @@ document.addEventListener("click", function(ev){
   else if(act === "ask"){ openAsk(lead); }
 });
 
-/* ================= 回到按钮：右下角浮动按钮 =================
-   卡片展开后往下翻，只要这张卡的按钮区被翻到屏幕上方去了，右下角就出现浮动按钮；
-   点浮动按钮，直接滚回这张卡的按钮区，并闪一下金色提示落点。
-   收起当前区块用浮动的 #fabCollapse，各区块底部不再放静态按钮。 */
-var fabBackBtns = $("fabBackBtns");
-var fabTargetCard = null;
-function scrollToCardBtns(card){
-  if(!card) return;
-  var qa = card.querySelector(".quick-actions"); if(!qa) return;
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  qa.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-  qa.classList.remove("flash");
-  void qa.offsetWidth;
-  qa.classList.add("flash");
-  setTimeout(function(){ qa.classList.remove("flash"); }, 1700);
-}
-function updateFabBackBtns(){
-  if(!fabBackBtns) return;
-  var best = null, bestBottom = -Infinity;
-  document.querySelectorAll(".lead").forEach(function(card){
-    var body = card.querySelector(".lead-body");
-    if(!body || body.classList.contains("hidden")) return;
-    var qa = card.querySelector(".quick-actions"); if(!qa) return;
-    var r = qa.getBoundingClientRect();
-    /* 按钮区已经翻到屏幕上方：在所有展开的卡里选离当前视口最近的那张 */
-    if(r.bottom <= 0 && r.bottom > bestBottom){ bestBottom = r.bottom; best = card; }
-  });
-  fabTargetCard = best;
-  if(best) fabBackBtns.classList.add("show"); else fabBackBtns.classList.remove("show");
-}
+/* ================= 浮动按钮：#fabCollapse（折叠）和 #fabTop（回顶部） =================
+   收起当前区块用浮动的 #fabCollapse，各区块底部不再放静态按钮；
+   回到页面最顶部用圆形的 #fabTop。两个浮动按钮上下错开、互不遮挡。 */
 var fabTicking = false;
 function scheduleFabUpdate(){
   if(fabTicking) return;
   fabTicking = true;
-  requestAnimationFrame(function(){ fabTicking = false; updateFabBackBtns(); updateFabTopVisibility(); updateFabCollapse(); });
+  requestAnimationFrame(function(){ fabTicking = false; updateFabTopVisibility(); updateFabCollapse(); });
 }
 window.addEventListener("scroll", scheduleFabUpdate, { passive: true });
 window.addEventListener("resize", scheduleFabUpdate);
-document.addEventListener("click", function(){ setTimeout(function(){ updateFabBackBtns(); updateFabTopVisibility(); updateFabCollapse(); }, 80); });
-if(fabBackBtns) fabBackBtns.addEventListener("click", function(){
-  if(!fabTargetCard || !document.contains(fabTargetCard)) updateFabBackBtns();
-  scrollToCardBtns(fabTargetCard);
-});
+document.addEventListener("click", function(){ setTimeout(function(){ updateFabTopVisibility(); updateFabCollapse(); }, 80); });
 /* ================= 已联系 / 客户回了 ================= */
 $("cCancel").addEventListener("click", function(){ $("contactModal").classList.remove("open"); state.pendingContactLead = null; });
 $("cConfirm").addEventListener("click", function(){
@@ -3411,7 +3672,7 @@ $("cConfirm").addEventListener("click", function(){
 });
 function markReplied(lead){
   var cnt = parseInt(lead.owner_contact_count, 10) || 0;
-  var msg = "点了「客户回了」，跟进次数会从 " + cnt + " 次清零重计。";
+  var msg = cnt === 0 ? "点了「客户回了」，这次回了，跟进次数重新从 0 数。" : "点了「客户回了」，跟进次数会从 " + cnt + " 次清零重计。";
   if(lead.has_replied) msg += "这家已经记过一次回信了（" + fmtDateShort(lead.replied_at) + "），还要再记一次吗？";
   msg += "确认后可以顺手把客户原话粘贴进来存档（点卡片上的「发聊天记录」）。";
   askConfirm(msg, function(){
@@ -3453,8 +3714,29 @@ function rotateLoad(name){
   });
   return n;
 }
-function pickNextAssignee(me){
+/* 谁确定没有 WhatsApp：阿仁确定没有；profiles 里填了号的算有；没填不等于没有，只有确定没有的才算没有 */
+function personHasWhatsApp(name){
+  if(name === "阿仁") return false;
+  var profs = state.profiles || [];
+  for(var i = 0; i < profs.length; i++){
+    if(profs[i] && profs[i].name === name && String(profs[i].whatsapp || "").trim()) return true;
+  }
+  return true;
+}
+/* 转给一个确定没有 WhatsApp 的人、而这家主要靠 WhatsApp 联系时，确认框里的文字警告（确认框是纯文字，做不到标红） */
+function waTransferWarn(name, lead){
+  if(lead && lead.whatsapp && !personHasWhatsApp(name)){
+    return "\n⚠ 注意：" + displayName(name) + "没有 WhatsApp，这家客户主要靠 WhatsApp 联系，转过去他发不出去，只能靠电话/邮件跟";
+  }
+  return "";
+}
+function pickNextAssignee(me, lead){
   var others = TEAM.filter(function(n){ return n !== me; });
+  /* 这家有 WhatsApp 时，只从有 WhatsApp 的人里挑（确定没有的跳过） */
+  if(lead && lead.whatsapp){
+    var withWa = others.filter(function(n){ return personHasWhatsApp(n); });
+    if(withWa.length) others = withWa;
+  }
   if(!others.length) return "";
   var best = others[0], bestLoad = rotateLoad(best);
   others.forEach(function(n){
@@ -3464,25 +3746,25 @@ function pickNextAssignee(me){
   return best;
 }
 /* 手动轮转：跟进不下去，转给下一个人。和「取消转交」成对：转出去靠它，转回来靠取消转交。
-   只转跟进记录（几次、最后一次什么时候、有没有回），不含聊天内容；新接手的人跟进次数从 0 重算。
+   跟进记录和聊天记录都会一起转过去；新接手的人跟进次数从 0 重算。
    流水记 action="rotate"（和空间里 rotateLead 同名；不用 handover_out，那个是请假转交的，
    记混了会污染「我回来了，转回来」的配对计数）。 */
 function rotateNext(lead, cardEl){
   if(rotatedAway(lead)){ toast("这家已经转出去了，你只能看", true); return; }
   if(!lead.assignee || lead.assignee !== state.myName){ toast("这家不是分给你的，转不了", true); return; }
-  var next = pickNextAssignee(state.myName);
+  var next = pickNextAssignee(state.myName, lead);
   if(!next){ toast("没有可转的人：团队里除了你没有别人能接", true); return; }
   var n = parseInt(lead.owner_contact_count, 10) || 0;
   var evs = state.ceByLead[lead.id] || [];
   var last = "";
   evs.forEach(function(r){ if(r.created_at && (!last || String(r.created_at) > last)) last = r.created_at; });
-  var handover = "之前 " + state.myName + " 联系了 " + n + " 次" + (last ? "，最后一次 " + fmtTime(last) : "") + "，" + (lead.has_replied ? "客户回过" : "客户没回");
-  askConfirm("把「" + (lead.company || "") + "」转给下一个人 " + displayName(next) + " 吗？\n只转跟进记录（" + handover + "），不含聊天内容。\n转走后你还能看到这家，但发不出去、也不能再记联系；" + displayName(next) + " 接手后跟进次数从 0 重算，首页会看到「新转给你」。", function(){
+  var handover = "之前 " + state.myName + " 联系了 " + n + " 次" + (last ? "，最后一次 " + fmtDateTimeShort(last) : "") + "，" + (lead.has_replied ? "客户回过" : "客户没回");
+  askConfirm("把「" + (lead.company || "") + "」转给下一个人 " + displayName(next) + " 吗？\n跟进记录和聊天记录都会一起转过去（" + handover + "）。\n转走后你还能看到这家，但发不出去、也不能再记联系；" + displayName(next) + " 接手后跟进次数从 0 重算，首页会看到「新转给你」。" + waTransferWarn(next, lead), function(){
     var from = lead.assignee;
     var patch = { assignee: next, owner_contact_count: 0, rotated_from: from, rotated_at: new Date().toISOString() };
     function doPatch(p){
       return patchLead(lead, p).then(function(){
-        return logActivity(lead.id, "rotate", "手动轮转：原负责人 " + from + " → 下一个人 " + next + "；" + handover + "。只转跟进记录（几次、最后一次什么时候、有没有回），不含聊天内容。");
+        return logActivity(lead.id, "rotate", "手动轮转：原负责人 " + from + " → 下一个人 " + next + "；" + handover + "。跟进记录和聊天记录都会一起转过去。");
       });
     }
     doPatch(patch).catch(function(){
@@ -3810,12 +4092,36 @@ function setBgSpecStd(std){
   var cn = $("bgSpecCn"), it = $("bgSpecIntl");
   if(cn) cn.style.display = std === "cn" ? "" : "none";
   if(it) it.style.display = std === "intl" ? "" : "none";
+  if(typeof updateBgEcho === "function") updateBgEcho();
+}
+function updateBgEcho(){
+  var el = $("bgEchoLine"); if(!el) return;
+  var v = $("bgVariety") ? $("bgVariety").value.trim() : "";
+  if(!v){ el.textContent = ""; return; }
+  var parts = [v];
+  var h = $("bgHeight") ? $("bgHeight").value.trim() : "";
+  if(h) parts.push("高 " + h);
+  if(bgSpecStd === "cn"){
+    var g1 = $("bgGround") ? $("bgGround").value.trim() : "";
+    var g2 = $("bgPot") ? $("bgPot").value.trim() : "";
+    if(g1) parts.push("地径 " + g1);
+    if(g2) parts.push("盆径 " + g2);
+  } else {
+    var g3 = $("bgGirth") ? $("bgGirth").value.trim() : "";
+    var g4 = $("bgContainer") ? $("bgContainer").value.trim() : "";
+    if(g3) parts.push("胸径/干围 " + g3);
+    if(g4) parts.push("容器 " + g4);
+  }
+  var q = $("bgQuantity") ? $("bgQuantity").value.trim() : "";
+  if(q) parts.push(q);
+  el.textContent = "正在查：" + parts.join("，");
 }
 function updateBgStartHint(){
   var v = $("bgVariety") ? $("bgVariety").value.trim() : "";
   var btn = $("bgStartBtn"), hint = $("bgStartHint");
   if(btn) btn.disabled = !v;
   if(hint) hint.textContent = v ? "点上面开始查，几分钟后结果出现在这里。" : "先在第二步填上品种名，这个按钮才能点。";
+  updateBgEcho();
 }
 function renderBgList(){
   var box = $("bgToolList"); if(!box) return;
@@ -3928,6 +4234,7 @@ $("bgCompany").addEventListener("change", renderBgCompanyInfo);
 $("bgStdCn").addEventListener("click", function(){ setBgSpecStd("cn"); });
 $("bgStdIntl").addEventListener("click", function(){ setBgSpecStd("intl"); });
 $("bgVariety").addEventListener("input", updateBgStartHint);
+["bgHeight","bgGround","bgPot","bgGirth","bgContainer","bgQuantity"].forEach(function(bid){ var bel = $(bid); if(bel) bel.addEventListener("input", updateBgEcho); });
 $("bgStartBtn").addEventListener("click", startStandaloneBg);
 $("bgRefreshBtn").addEventListener("click", function(){ loadBgData(true); });
 $("bgToolList").addEventListener("click", function(ev){
@@ -4039,7 +4346,7 @@ function renderPriceScripts(){
   box.classList.remove("hidden");
   box.innerHTML = '<div class="sync-line" style="margin-bottom:6px">客户嫌贵，先挑一条讲品质的话术直接发给客户；都不合适，再在下面问' + leaderName() + '。</div>'
     + PRICE_SCRIPTS.map(function(s, i){
-        return '<div class="price-script"><div class="ps-zh">' + esc(s.zh) + '</div><div class="ps-en">' + esc(s.en) + '</div>'
+        return '<div class="price-script"><div class="ps-zh">' + esc(s.zh) + '</div><details class="ps-en-fold"><summary>看英文</summary><div class="ps-en">' + esc(s.en) + '</div></details>'
           + '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-psend="' + i + '">用这条发给客户</button></div></div>';
       }).join("");
 }
@@ -4090,7 +4397,7 @@ function renderAskPanel(){
   var done = state.questions.filter(function(q){ return q.status === "answered"; }).slice().sort(function(a, b){
     return String(b.answered_at || b.created_at || "") < String(a.answered_at || a.created_at || "") ? -1 : 1;
   }).slice(0, 8);
-  $("askPanelTitle").innerHTML = (state.isLeader ? "待我回答" : "问柯哥 · 待回答")
+  $("askPanelTitle").innerHTML = (state.isLeader ? "待我回答" : "队友的问题 · 待回答")
     + ' <span class="hint">' + (open.length ? ("还有 " + open.length + " 条没回，先问的先回") : "都回完了") + '</span>';
   var h = "";
   if(!open.length) h += '<div class="sync-line">暂时没有队友问的问题。</div>';
@@ -4250,6 +4557,9 @@ function profBlock(l){
   var h = '<details class="profile-box"><summary>客户档案' + (chats.length ? ' · 聊天 ' + chats.length + ' 条' : '') + '</summary>';
   if(!p){
     h += '<div class="kv2">档案还没生成，导入一次聊天记录或联系一次后自动生成。</div>';
+    if(!state.isLeader && !rotatedAway(l)){
+      h += '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-act="importchat-top">发聊天记录</button><button class="btn btn-outline btn-sm" type="button" data-act="contacted">点一下已联系</button></div>';
+    }
   } else {
     h += '<div class="kv2">公司：<b>'+esc(l.company || "")+"</b></div>";
     h += '<div class="kv2">国家：'+esc([l.country, l.city].filter(Boolean).join(" · "))+"</div>";
@@ -4264,11 +4574,18 @@ function profBlock(l){
   }
   if(chats.length){
     h += '<div class="section-label">聊天记录（' + chats.length + ' 条）</div>';
-    chats.slice(-10).forEach(function(m){
+    var chatLineHtml = function(m){
       var who = m.speaker === "me" ? '<span class="who-me">我方</span>' : '<span class="who-cu">客户</span>';
       var t = m.msg_time ? fmtTime(m.msg_time) : fmtTime(m.created_at);
-      h += '<div class="chat-line"><span class="ct">'+esc(t)+"</span> · "+who+(m.sender_name ? "（"+esc(m.sender_name)+"）" : "")+"<br>"+esc(m.body)+"</div>";
-    });
+      return '<div class="chat-line"><span class="ct">'+esc(t)+"</span> · "+who+(m.sender_name ? "（"+esc(m.sender_name)+"）" : "")+"<br>"+esc(m.body)+"</div>";
+    };
+    if(chats.length > 10){
+      h += '<div class="prof-chat-early" style="display:none">' + chats.slice(0, chats.length - 10).map(chatLineHtml).join("") + '</div>';
+    }
+    chats.slice(-10).forEach(function(m){ h += chatLineHtml(m); });
+    if(chats.length > 10){
+      h += '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-prof-more>查看更早的 ' + (chats.length - 10) + ' 条</button></div>';
+    }
   }
   return h + COLLAPSE_BTN + "</details>";
 }
@@ -4326,7 +4643,7 @@ function renderOverview(){
   state.leads.forEach(function(l){
     var name = l.assignee || "未分配";
     if(!isActiveLead(l)) return;
-    var g = byPerson[name] || (byPerson[name] = { leads:0, contacts:0, replied:0, contacted:0, last:null, dueNow:0, nextDue:null });
+    var g = byPerson[name] || (byPerson[name] = { leads:0, contacts:0, replied:0, contacted:0, last:null, dueNow:0, nextDue:null, nextCompany:null });
     g.leads++;
     g.contacts += parseInt(l.owner_contact_count, 10) || 0;
     if(l.has_replied) g.replied++;
@@ -4339,7 +4656,7 @@ function renderOverview(){
     if(l.status === "contacted" && !l.has_replied){
       var due = last ? last + 3*86400000 : null;
       if(!due || due <= Date.now()) g.dueNow++;
-      else if(!g.nextDue || due < g.nextDue) g.nextDue = due;
+      else if(!g.nextDue || due < g.nextDue){ g.nextDue = due; g.nextCompany = l.company || ""; }
     }
   });
   var names = Object.keys(byPerson);
@@ -4359,7 +4676,7 @@ function renderOverview(){
     else lastTxt = "还没联系过";
     var nextTxt;
     if(g.dueNow > 0) nextTxt = "今天要跟进 <b>" + g.dueNow + "</b> 家";
-    else if(g.nextDue) nextTxt = "下一家 " + fmtRel(new Date(g.nextDue).toISOString());
+    else if(g.nextDue) nextTxt = g.nextCompany ? esc(fmtDateTimeShort(new Date(g.nextDue).toISOString())) + " 跟进 " + esc(g.nextCompany) : "下一家 " + fmtRel(new Date(g.nextDue).toISOString());
     else nextTxt = "暂时没有要跟进的";
     var un = uncontactedCount(name);
     var focusN = 0;
@@ -4479,11 +4796,11 @@ function openEditor(lead){
   $("editModalTitle").textContent = "编辑消息 · " + (lead.company || "");
   $("editErr").className = "err";
   var wrap = $("editFields");
-  wrap.innerHTML = MSG_FIELDS.map(function(f){
+  wrap.innerHTML = MSG_FIELDS.map(function(f, idx){
     var zh = lead[f.zh] || "";
     var fo = lead[f.foreign] || "";
     if(isFirstMsgField(f.foreign)){ zh = withCatalogLine(zh, "zh"); fo = withCatalogLine(fo, firstMsgLang(lead)); }
-    return '<div class="edit-field"><label>'+esc(f.label)+'（中文，在这里改）</label>'
+    return '<div class="edit-field" data-edit-field="' + idx + '"><label>'+esc(f.label)+'（中文，在这里改）</label>'
       + '<textarea data-zh="'+f.zh+'" data-foreign="'+f.foreign+'" data-edited="'+f.edited+'">'+esc(zh)+"</textarea>"
       + '<label style="margin-top:6px">外语版（自动翻译生成，只读）</label>'
       + '<textarea class="foreign" data-fo="'+f.foreign+'" readonly>'+esc(fo)+"</textarea>"
@@ -4497,7 +4814,7 @@ function openEditor(lead){
     if(stEl){ stEl.className = "tr-status"; stEl.textContent = "正在翻译…"; }
     translateZhAll(zhText, lead.country).then(function(out){
       foEl.value = (isFirst && stripped.had) ? withCatalogLine(out, firstMsgLang(lead)) : out;
-      if(stEl){ stEl.className = "tr-status"; stEl.textContent = "外文版已更新，点「发送这封」直接发这版（会先存下来）。"; }
+      if(stEl){ stEl.className = "tr-status"; stEl.textContent = "外文版已更新，点「发送这封」会先保存、再弹确认，确认后才发这版。"; }
     }).catch(function(){
       if(stEl){ stEl.className = "tr-status err"; stEl.textContent = "翻译没成功，先用原来的发"; }
     });
@@ -4544,24 +4861,49 @@ function openEditor(lead){
         if(!tgUser(lead.telegram)){ toast("这家没留 Telegram 用户名，发不出去", true); return; }
       }
       var other = collisionInfo(lead);
-      if(other){ toast("这家公司队里还有 " + displayName(other) + " 在跟，别碰，等王烁杉定下留谁再动", true); return; }
+      if(other){ toast("这家公司队里还有 " + displayName(other) + " 也在跟（撞单），发送已停用，等王烁杉定下留谁再发", true); return; }
       if(rotatedAway(lead)){ toast("这家已转给 " + displayName(lead.assignee) + "，你只能看", true); return; }
       var href = channel === "whatsapp" ? waUniversal(lead.whatsapp, text) : "https://t.me/" + tgUser(lead.telegram) + "?text=" + encodeURIComponent(text);
-      /* 先把当前改好的版本存下来，发的就是现在这版（不用先点保存） */
+      /* 编辑态不直接发：先把当前改好的版本保存下来，再弹确认，确认后才真正打开发送 */
       var zhV = ta ? ta.value : (lead[f.zh] || "");
       var foV = text;
       if(isFirstMsgField(f.foreign)){ zhV = stripCatalogLine(zhV).body; foV = stripCatalogLine(foV).body; }
+      var saveP = Promise.resolve();
       if(zhV !== (lead[f.zh] || "") || foV !== (lead[f.foreign] || "")){
         var patch = {}; patch[f.zh] = zhV; patch[f.foreign] = foV; patch[f.edited] = 1;
-        patchLead(lead, patch).catch(function(){});
+        saveP = patchLead(lead, patch).catch(function(){});
       }
-      window.open(href, "_blank");
-      showPendingContact(lead, channel, kind, null);
+      saveP.then(function(){
+        askConfirm("这封已经保存好了，确认现在就发给客户吗？发出去的是现在这版外文，确认后才会打开发送。", function(){
+          window.open(href, "_blank");
+          showPendingContact(lead, channel, kind, null);
+        });
+      });
     });
     row.appendChild(btn);
     row.appendChild(sendBtn);
     st.parentNode.insertBefore(row, st.nextSibling);
   });
+  /* 顶部页签：WhatsApp 第一封/跟进信、Telegram 第一封/跟进信，一次只显示一封 */
+  var tabsBox = $("editTabs");
+  if(tabsBox){
+    tabsBox.innerHTML = MSG_FIELDS.map(function(f, idx){
+      return '<button class="edit-tab" type="button" role="tab" data-edit-tab="' + idx + '">' + esc(f.label) + "</button>";
+    }).join("");
+    var selectEditTab = function(idx){
+      tabsBox.querySelectorAll("[data-edit-tab]").forEach(function(b){
+        b.classList.toggle("on", parseInt(b.getAttribute("data-edit-tab"), 10) === idx);
+        b.setAttribute("aria-selected", parseInt(b.getAttribute("data-edit-tab"), 10) === idx ? "true" : "false");
+      });
+      wrap.querySelectorAll("[data-edit-field]").forEach(function(el){
+        el.style.display = parseInt(el.getAttribute("data-edit-field"), 10) === idx ? "" : "none";
+      });
+    };
+    tabsBox.querySelectorAll("[data-edit-tab]").forEach(function(b){
+      b.addEventListener("click", function(){ selectEditTab(parseInt(b.getAttribute("data-edit-tab"), 10)); });
+    });
+    selectEditTab(0);
+  }
   $("editModal").classList.add("open");
   editOrig = {};
   MSG_FIELDS.forEach(function(f){
@@ -4631,15 +4973,33 @@ function openImport(lead){
   importParsed = [];
   $("importModalTitle").textContent = "导入聊天记录 · " + (lead.company || "");
   $("impFile").value = ""; $("impPaste").value = ""; $("impPreview").innerHTML = ""; $("impErr").className = "err";
+  var qsBtn = $("impQuickSend"); if(qsBtn) qsBtn.textContent = "发进来";
   var dn = $("impDone"); if(dn){ dn.className = "done-box"; dn.innerHTML = ""; }
   $("importModal").classList.add("open");
 }
 $("impCancel").addEventListener("click", function(){ $("importModal").classList.remove("open"); importLead = null; importParsed = []; });
 function isMeName(name){
   if(!name) return false;
-  var n = String(name).trim();
+  var raw = String(name).trim();
+  var parenM = raw.match(/[\(（]([^\)）]*)[\)）]/);
+  var paren = parenM ? parenM[1] : "";
+  var n = raw.replace(/[\(（][^\)）]*[\)）]/g, "").trim();
   if(n === "我" || n === state.myName || n === "王烁杉") return true;
   if(/^quinn/i.test(n)) return true;
+  if(n && TEAM_ALL.indexOf(n) >= 0) return true;
+  if(paren){
+    var digits = paren.replace(/\D/g, "");
+    if(digits.length >= 9){
+      var last9 = digits.slice(-9);
+      var mine = state.myProfile && state.myProfile.whatsapp ? String(state.myProfile.whatsapp).replace(/\D/g, "").slice(-9) : "";
+      if(mine && mine === last9) return true;
+      var profs = state.profiles || [];
+      for(var pi = 0; pi < profs.length; pi++){
+        var pw = profs[pi].whatsapp ? String(profs[pi].whatsapp).replace(/\D/g, "").slice(-9) : "";
+        if(pw && pw === last9) return true;
+      }
+    }
+  }
   return false;
 }
 function parseWhatsAppTxt(text){
@@ -4656,9 +5016,10 @@ function parseWhatsAppTxt(text){
       var t = new Date(y, parseInt(m[2], 10) - 1, parseInt(m[1], 10), parseInt(m[4], 10), parseInt(m[5], 10));
       var sender = (m[7] || "").trim();
       out.push({ speaker: isMeName(sender) ? "me" : "customer", sender_name: sender, body: body, time: isNaN(t.getTime()) ? null : t.toISOString() });
-    } else if(out.length && line.trim()){
+    } else if(line.trim()){
       if(/<Media omitted>|<媒体已省略>/i.test(line)){ skippedMedia++; return; }
-      out[out.length - 1].body += "\n" + line.trim();
+      if(out.length) out[out.length - 1].body += "\n" + line.trim();
+      else out.push({ speaker: "customer", sender_name: "客户", body: line.trim(), time: null, fallback: true });
     }
   });
   return { msgs: out, skippedMedia: skippedMedia };
@@ -4695,8 +5056,9 @@ function parsePasteText(text){
       var t = null;
       if(m[1]){ var now = new Date(); t = new Date(now.getFullYear(), now.getMonth(), now.getDate(), parseInt(m[1], 10), parseInt(m[2], 10)).toISOString(); }
       out.push({ speaker: (sender === "客户" ? "customer" : (isMeName(sender) ? "me" : "customer")), sender_name: sender, body: body, time: t });
-    } else if(out.length && line.trim()){
-      out[out.length - 1].body += "\n" + line.trim();
+    } else if(line.trim()){
+      /* #77: 没写谁说的行按客户说的兜底解析，并标注 fallback，预览里会写明 */
+      out.push({ speaker: "customer", sender_name: "客户", body: line.trim(), time: null, fallback: true });
     }
   });
   return { msgs: out, skippedMedia: 0 };
@@ -4704,10 +5066,11 @@ function parsePasteText(text){
 function renderImportPreview(){
   var box = $("impPreview");
   if(!importParsed.length){ box.innerHTML = ""; return; }
-  box.innerHTML = '<div style="font-weight:700;color:var(--green);margin-bottom:4px">解析出 ' + importParsed.length + ' 条，点一下可以改“我方/客户”：</div>'
+  box.innerHTML = '<div style="font-weight:700;color:var(--green);margin-bottom:4px">先核对下面解析得对不对，核对完再点「确认导入」。解析出 ' + importParsed.length + ' 条，点一下可以改“我方/客户”：</div>'
     + importParsed.map(function(m, i){
         var tag = m.speaker === "me" ? "我方" : "客户";
-        return '<div class="imp-line" data-idx="'+i+'"><b>['+tag+"]</b> "+(m.sender_name ? esc(m.sender_name)+"：" : "")+esc(m.body)+"</div>";
+        var fb = m.fallback ? "（没写谁说的，按客户算）" : "";
+        return '<div class="imp-line" data-idx="'+i+'"><b>['+tag+"]</b> "+(m.sender_name ? esc(m.sender_name)+"：" : "")+esc(m.body)+esc(fb)+"</div>";
       }).join("");
   box.querySelectorAll(".imp-line").forEach(function(el){
     el.addEventListener("click", function(){
@@ -4723,13 +5086,13 @@ $("impParse").addEventListener("click", function(){
   var paste = $("impPaste").value.trim();
   function done(res){
     importParsed = res.msgs;
-    if(!importParsed.length){ errEl.textContent = "没解析出聊天内容，请检查文件或粘贴的文字格式。"; errEl.className = "err show"; return; }
+    if(!importParsed.length){ errEl.textContent = "没看懂这个格式，没解析出聊天内容。请像这样粘贴，每行一条、写清谁说的，例如：客户：你们有橄榄树吗？ / 王烁杉：有的，我给你报价。"; errEl.className = "err show"; return; }
     renderImportPreview();
     if(res.skippedMedia) toast("解析出 " + importParsed.length + " 条，跳过了 " + res.skippedMedia + " 条只有图片/语音的记录");
     else toast("解析出 " + importParsed.length + " 条");
   }
   function fail(e){
-    errEl.textContent = "解析失败：" + (e.message || "文件格式不对"); errEl.className = "err show";
+    errEl.textContent = "没看懂这个文件或文字的格式，解析不了。请改成直接粘贴聊天文字，每行一条、写清谁说的，例如：客户：你们有橄榄树吗？ / 王烁杉：有的，我给你报价。"; errEl.className = "err show";
   }
   if(file){
     var reader = new FileReader();
@@ -4745,7 +5108,7 @@ $("impParse").addEventListener("click", function(){
   } else if(paste){
     try{ done(parsePasteText(paste)); }catch(e){ fail(e); }
   } else {
-    errEl.textContent = "先上传文件，或者粘贴聊天文字。"; errEl.className = "err show";
+    errEl.textContent = "先上传文件，或者粘贴聊天文字。每行一条、写清谁说的，例如：客户：你们有橄榄树吗？"; errEl.className = "err show";
   }
 });
 $("impConfirm").addEventListener("click", function(){
@@ -4760,7 +5123,7 @@ $("impConfirm").addEventListener("click", function(){
   }
   if(!importParsed.length){ errEl.textContent = "先点「解析看看」，解析出内容再导入。"; errEl.className = "err show"; return; }
   var channel = $("impChannel").value;
-  var source = $("impSource").value;
+  var source = channel;
   var btn = $("impConfirm"); btn.disabled = true; btn.textContent = "导入中…";
   var rows = importParsed.map(function(m){
     return { lead_id: lead.id, speaker: m.speaker, sender_name: m.sender_name || "", source: source, body: m.body, msg_time: m.time || null };
@@ -4833,7 +5196,10 @@ $("impConfirm").addEventListener("click", function(){
     }
     done.innerHTML += '<div class="modal-btns"><button class="btn btn-green" type="button" id="impDoneBtn">完成</button></div>';
     done.classList.add("show");
-    $("impDoneBtn").addEventListener("click", function(){ $("importModal").classList.remove("open"); done.classList.remove("show"); });
+    /* 导入成功后把弹窗内容滚到成功提示处，不用再手动往下翻找（跟随减动效偏好） */
+    var reduceImp = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    requestAnimationFrame(function(){ done.scrollIntoView({ behavior: reduceImp ? "auto" : "smooth", block: "nearest" }); });
+    $("impDoneBtn").addEventListener("click", function(){ $("importModal").classList.remove("open"); done.classList.remove("show"); openLeadCard(lead.id); });
     loadTeamData();
   })
   .catch(function(e){
@@ -4960,9 +5326,9 @@ function nextStepText(l){
   if(l.order_intent_at) return "客户说要下单了：抓紧确认数量、价格、定金，先别停跟进；定金到账后再点「成交」。";
   if(l.has_replied) return "客户回了：点「展开详情」看「助手建议」，挑一封点「用这封发」。";
   var n = parseInt(l.owner_contact_count, 10) || 0;
-  if(n === 0) return "点「发第一封」发出去，记得附上产品目录，发完 5 秒自动记 1 次，5 秒内点「撤销」就不记。";
+  if(n === 0) return "点「发第一封」发出去，记得附上产品目录。";
   if(n >= 5) return "联系了 5 次都没回，不用再跟了。";
-  return "已经联系过 " + n + " 次：3 天没回就点「跟进信」，发完 5 秒自动记 1 次，5 秒内点「撤销」就不记。";
+  return "已经联系过 " + n + " 次：3 天没回就点「跟进信」。";
 }
 
 /* ---------- 13. 今天最值得联系的 5 家（只看自己的） ---------- */
@@ -5094,7 +5460,7 @@ function renderMorning(){
     + '<div class="num-cell"><b>' + withContact + '</b>有联系方式</div>'
     + '<div class="num-cell"><b>' + withWA + '</b>有 WhatsApp</div>'
     + '<div class="num-cell"><b>' + dup + '</b>重复公司</div></div>';
-  if(!today.length) h += '<div class="sync-line">今天 0 条新的（新线索搜索已暂停，王烁杉 2026-11-20 叫停，先联系手里的客户，等他说开始再恢复）。</div>';
+  if(!today.length) h += '<div class="sync-line">今天 0 条新的（' + (SEARCH_PAUSED ? "新线索搜索已暂停，王烁杉 2026-11-20 叫停，先联系手里的客户，等他说开始再恢复" : "今天还没有新线索进来，先联系手里的客户") + '）。</div>';
   else h += '<div class="sync-line">按地区：' + esc(regionTxt) + '</div>';
   h += '<div style="margin-top:12px"><b style="color:var(--green)">每人今天最值得联系的 5 家</b></div>';
   var privileged = state.isAdmin || state.isLeader;
@@ -5375,7 +5741,7 @@ function quoteLineZh(it){
   return "- " + it.name + "｜规格：" + (it.spec || "—") + "｜数量：" + it.qty + " 棵｜" + rootZh(it) + "｜包装：" + (it.pack || "—") + "｜单价 " + fmtUSD(it.unit_price) + "｜小计 " + fmtUSD(it.line_total) + (it.estimate ? "（估价）" : "");
 }
 function quoteLineFo(it){
-  return "- " + (it.enName || it.name) + " | Spec: " + (it.spec || "-") + " | Qty: " + it.qty + " pcs | " + rootEn(it) + " | Packing: " + (it.pack || "-") + " | Unit price: " + fmtUSD(it.unit_price) + " | Subtotal: " + fmtUSD(it.line_total) + (it.estimate ? " (estimate)" : "");
+  return "- " + (it.enName ? it.enName : it.name + "（英文名待补）") + " | Spec: " + (it.spec || "-") + " | Qty: " + it.qty + " pcs | " + rootEn(it) + " | Packing: " + (it.pack || "-") + " | Unit price: " + fmtUSD(it.unit_price) + " | Subtotal: " + fmtUSD(it.line_total) + (it.estimate ? " (estimate)" : "");
 }
 /* 手动报价的明细行：中文版进中文框，外文版（英文）直接按算好的数字生成，不经过翻译 */
 function quoteManualBlocks(q, company, expiry){
@@ -5388,10 +5754,15 @@ function quoteManualBlocks(q, company, expiry){
 }
 function makeQuoteCtx(ids){
   var ctx = {
-    lead: null, priceZh: "", priceFo: "", foGreeting: "", trTimer: null,
+    lead: null, priceZh: "", priceFo: "", foGreeting: "", trTimer: null, foManual: false,
     zhEl: $(ids.zh), foEl: $(ids.fo), stEl: $(ids.st), copyBtn: $(ids.copy),
     hintEl: $(ids.hint), sendBtn: $(ids.send), mainEl: ids.main ? $(ids.main) : null
   };
+  if(ctx.foEl) ctx.foEl.addEventListener("input", function(){
+    ctx.foManual = true;
+    if(ctx.stEl){ ctx.stEl.className = "tr-status"; ctx.stEl.textContent = "已手动改过，不再自动翻"; }
+    if(ctx.copyBtn) ctx.copyBtn.setAttribute("data-copy", encodeURIComponent(ctx.foEl.textContent || ""));
+  });
   ctx.zhEl.addEventListener("input", function(){
     if(ctx.trTimer) clearTimeout(ctx.trTimer);
     if(ctx.stEl){ ctx.stEl.className = "tr-status"; ctx.stEl.textContent = "改完停一下，外文版跟着变…"; }
@@ -5407,6 +5778,7 @@ function makeQuoteCtx(ids){
   return ctx;
 }
 function setQuoteForeign(ctx){
+  if(ctx.foManual) return;
   var fo = ctx.foGreeting ? (ctx.foGreeting + "\n\n" + ctx.priceFo) : ctx.priceFo;
   ctx.foEl.textContent = fo;
   ctx.foEl.setAttribute("data-val", encodeURIComponent(fo));
@@ -5415,10 +5787,11 @@ function setQuoteForeign(ctx){
 function updateQuoteChannel(ctx, lead){
   if(ctx.hintEl) ctx.hintEl.textContent = "";
   if(ctx.mainEl) ctx.mainEl.textContent = quoteMainContactText(lead);
-  ctx.sendBtn.textContent = (lead && quoteChannel(lead).channel === "whatsapp" && !state.isLeader && myWaMissing()) ? "先存草稿（没填 WhatsApp 号）" : "发送报价";
+  ctx.sendBtn.textContent = (lead && quoteChannel(lead).channel === "whatsapp" && !state.isLeader && myWaMissing()) ? "保存后自己复制发" : "发送报价";
 }
 function translateQuoteGreeting(ctx){
   if(!ctx.lead) return;
+  if(ctx.foManual){ if(ctx.stEl){ ctx.stEl.className = "tr-status"; ctx.stEl.textContent = "已手动改过，不再自动翻"; } return; }
   var split = splitQuoteText(ctx.zhEl.value);
   var zhText = split.body;
   if(!zhText){ if(ctx.stEl) ctx.stEl.textContent = "中文框是空的，先写中文。"; return; }
@@ -5432,7 +5805,7 @@ function translateQuoteGreeting(ctx){
   });
 }
 function initQuoteMsg(ctx, lead, greetingZh, blocks){
-  ctx.lead = lead; ctx.priceZh = blocks.zh; ctx.priceFo = blocks.fo; ctx.foGreeting = "";
+  ctx.lead = lead; ctx.priceZh = blocks.zh; ctx.priceFo = blocks.fo; ctx.foGreeting = ""; ctx.foManual = false;
   ctx.zhEl.value = greetingZh + "\n" + blocks.zh;
   setQuoteForeign(ctx);
   if(ctx.stEl){ ctx.stEl.className = "tr-status"; ctx.stEl.textContent = "正在翻译…"; }
@@ -5450,6 +5823,8 @@ function refreshQuotePrice(ctx, blocks){
 /* 点「发送报价」时用的外文：优先用已翻好的那版；还没翻好就用中文问候 + 已生成的英文明细行，绝不发空的 */
 function quoteSendText(ctx){
   if(!ctx) return "";
+  // #64: 外文版手动改过就发改过的那版，不发自动翻的旧版
+  if(ctx.foManual && ctx.foEl) return ctx.foEl.textContent;
   var fo = ctx.copyBtn ? decodeURIComponent(ctx.copyBtn.getAttribute("data-copy") || "") : "";
   if(fo) return fo;
   var split = splitQuoteText(ctx.zhEl.value);
@@ -5631,6 +6006,11 @@ $("quoteAddRow").addEventListener("click", function(){ addQuoteRow("manual"); })
 /* ---------- 报价两步：先填货（第 1 步），再看单发出去（第 2 步） ----------
    行是直接读 DOM 的，回来改货再进第 2 步，填好的货、改过的中文问候都在，
    不会丢；第 2 步的报价单全文由 recalcQuote 按当前行重算 */
+function growQuoteZh(){
+  var ta = $("quoteZh"); if(!ta) return;
+  ta.style.height = "auto";
+  ta.style.height = Math.max(260, ta.scrollHeight) + "px";
+}
 function quoteGotoStep2(){
   var q = collectQuoteItems();
   if(!q.items.length){
@@ -5639,11 +6019,13 @@ function quoteGotoStep2(){
   }
   recalcQuote();
   $("quoteStep1").style.display = "none"; $("quoteStep2").style.display = "";
+  growQuoteZh();
 }
 function quoteGotoStep1(){
   $("quoteStep2").style.display = "none"; $("quoteStep1").style.display = "";
 }
 $("quoteNext").addEventListener("click", function(){ quoteGotoStep2(); });
+$("quoteZh").addEventListener("input", function(){ growQuoteZh(); });
 $("quoteBack").addEventListener("click", function(){ quoteGotoStep1(); });
 
 function openQuote(lead){
@@ -5739,7 +6121,7 @@ function openQuoteChannelLong(lead, text){
   }
   return openQuoteChannel(lead, text);
 }
-function saveQuote(status){
+function saveQuote(status, quiet){
   var lead = quoteLead; if(!lead) return;
   var q = collectQuoteItems();
   var errEl = $("quoteErr"); errEl.className = "err";
@@ -5771,7 +6153,7 @@ function saveQuote(status){
     return logActivity(lead.id, "quote", "报价 " + money(q.total) + (q.anyEst ? "（含估价）" : "") + "：" + q.items.map(function(it){ return it.name + " ×" + it.qty; }).join("、") + "，先存成草稿");
   })
   .then(function(){
-    if(status === "draft"){ $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null; toast("报价草稿已保存"); return; }
+    if(status === "draft"){ $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null; if(!quiet) toast("报价草稿已保存"); return; }
     if(blocked){
       var note = $("quoteDeliveryNote");
       if(note) note.textContent = "这单只能复制发：草稿已存好，点「复制外文报价」复制全文，自己发过去。";
@@ -5786,31 +6168,40 @@ function saveQuote(status){
     var sendText = quoteSendText(quoteCtx);
     var opened = openQuoteChannelLong(lead, sendText);
     if(!opened) return;
-    /* 点“发送报价”先存草稿、打开渠道，回来 5 秒内没点撤销才记“已发出”，点了撤销就还是草稿 */
+    /* 点“发送报价”先存草稿、打开渠道；#56 切走时只亮条子不启动倒计时，回到网站后开始算 5 秒，5 秒内没点撤销才记“已发出”，点了撤销就还是草稿 */
     hidePendingContact(false);
     var bar = $("pendingBar");
-    var qLeft = 5;
-    $("pendingText").textContent = "5 秒后自动记已发出 · 点撤销取消";
+    $("pendingText").textContent = "回到网站后开始算 5 秒 · 点撤销取消";
     bar.classList.add("show");
-    var qCd = setInterval(function(){
-      qLeft -= 1;
-      if(qLeft <= 0 || !pendingSend || pendingSend.quoteCd !== qCd){ clearInterval(qCd); return; }
-      $("pendingText").textContent = qLeft + " 秒后自动记已发出 · 点撤销取消";
-    }, 1000);
-    var timer = setTimeout(function(){
-      clearInterval(qCd);
-      bar.classList.remove("show");
-      var done = function(){
-        return logActivity(lead.id, "quote", "报价已发出（" + quoteChannel(lead).label + " " + quoteChannel(lead).value + "），" + money(q.total)).then(function(){
-          $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null;
-          toast("报价已发出，估价不用单独告诉王烁杉，晚上 8 点汇总里会记一笔");
-        });
-      };
-      if(draftId !== null && draftId !== undefined){
-        api("quote_drafts?id=eq." + encodeURIComponent(draftId), { method:"PATCH", headers:{ "Prefer":"return=minimal" }, body:{ status: "sent" } }).then(done, done);
-      } else done();
-    }, 5000);
-    pendingSend = { quoteTimer: timer, quoteCd: qCd, isQuote: true };
+    var pendingQ = { quoteTimer: null, quoteCd: null, isQuote: true };
+    pendingSend = pendingQ;
+    armPendingOnReturn(pendingQ, function(){
+      if(pendingSend !== pendingQ) return;
+      var qLeft = 5;
+      $("pendingText").textContent = "5 秒后自动记已发出 · 点撤销取消";
+      var qCd = setInterval(function(){
+        qLeft -= 1;
+        if(qLeft <= 0 || !pendingSend || pendingSend.quoteCd !== qCd){ clearInterval(qCd); return; }
+        $("pendingText").textContent = qLeft + " 秒后自动记已发出 · 点撤销取消";
+      }, 1000);
+      pendingQ.quoteCd = qCd;
+      var timer = setTimeout(function(){
+        clearInterval(qCd);
+        bar.classList.remove("show");
+        if(pendingSend === pendingQ) pendingSend = null;
+        var done = function(){
+          return logActivity(lead.id, "quote", "报价已发出（" + quoteChannel(lead).label + " " + quoteChannel(lead).value + "），" + money(q.total)).then(function(){
+            $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null;
+            toast("报价已发出，估价不用单独告诉王烁杉，晚上 8 点汇总里会记一笔");
+          });
+        };
+        if(draftId !== null && draftId !== undefined){
+          api("quote_drafts?id=eq." + encodeURIComponent(draftId), { method:"PATCH", headers:{ "Prefer":"return=minimal" }, body:{ status: "sent" } }).then(done, done);
+        } else done();
+      }, 5000);
+      pendingQ.quoteTimer = timer;
+      pendingQ.timer = timer;
+    });
   })
   .catch(function(e){ errEl.textContent = "保存失败：" + (e.message || "请重试"); errEl.className = "err show"; })
   .then(function(){ if(btn) btn.disabled = false; });
@@ -5826,7 +6217,7 @@ $("quoteCopyBtn").addEventListener("click", function(){
 /* 交货期两个按钮：问王烁杉定 → 存草稿 + 记到“待我回答”里等他定；客户没问 → 先发，报价单写“确认中” */
 $("quoteAskDelivery").addEventListener("click", function(){
   var lead = quoteLead; if(!lead) return;
-  saveQuote("draft");
+  saveQuote("draft", true);
   var q = collectQuoteItems();
   api("leader_questions", { method:"POST", headers:{ "Prefer":"return=minimal" },
     body:{ lead_id: lead.id, asker_id: state.user ? state.user.id : null, asker_name: state.myName || "", topic: "交货期", question: "客户问交货期，报价已存草稿（" + money(q.total) + "），请定天数。客户：" + (lead.company || ""), status: "open" } })
@@ -5836,7 +6227,7 @@ $("quoteAskDelivery").addEventListener("click", function(){
 $("quoteNoDelivery").addEventListener("click", function(){
   var note = $("quoteDeliveryNote");
   if(note) note.textContent = "报价单上写「交货期：确认中，3 天内回复你」，不留空白行。点「发送报价」发出。";
-  toast("已选：客户没问交货期，先发");
+  toast("已选：客户没问，先发");
 });
 $("quoteCancel").addEventListener("click", function(){ $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null; });
 $("quoteCancelTop").addEventListener("click", function(){ $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null; });
@@ -6032,9 +6423,14 @@ $("topImportBtn").addEventListener("click", function(){
   var sel = $("pickLeadSel");
   var mine = state.leads.filter(function(l){ return state.isAdmin || l.assignee === state.myName; });
   if(!mine.length){ toast("还没有分给你的客户", true); return; }
-  sel.innerHTML = mine.map(function(l){
-    return '<option value="' + esc(l.id) + '">' + esc((l.company || "（未填公司名）") + " · " + (l.assignee || "未分配")) + "</option>";
-  }).join("");
+  var pickOpt = function(l){
+    var st = l.has_replied ? "已回" : (STATUS_ZH[l.status] || l.status || "未处理");
+    return '<option value="' + esc(l.id) + '">' + esc((l.company || "（未填公司名）") + " · " + (l.country || "—") + " · " + st) + "</option>";
+  };
+  var pickNormal = mine.filter(function(l){ return l.status !== "deal" && l.status !== "ignored"; });
+  var pickDone = mine.filter(function(l){ return l.status === "deal" || l.status === "ignored"; });
+  sel.innerHTML = pickNormal.map(pickOpt).join("")
+    + (pickDone.length ? '<optgroup label="已成交 / 没兴趣（导入只存档，不改状态）">' + pickDone.map(pickOpt).join("") + "</optgroup>" : "");
   $("pickLeadModal").classList.add("open");
 });
 $("pickLeadCancel").addEventListener("click", function(){ $("pickLeadModal").classList.remove("open"); });
@@ -6045,18 +6441,38 @@ $("pickLeadGo").addEventListener("click", function(){
 });
 
 /* ---------- 21. 导入默认走粘贴：「发进来」两下点完 ---------- */
+$("impFile").addEventListener("change", function(){
+  var qsBtn = $("impQuickSend"); if(!qsBtn) return;
+  var hasFile = $("impFile").files && $("impFile").files[0];
+  qsBtn.textContent = hasFile ? "解析这个文件" : "发进来";
+  /* 按文件扩展名自动选渠道：.json 是 Telegram 导出、.txt 是 WhatsApp 导出，来源就跟着渠道走，不再单独选 */
+  if(hasFile){
+    var chEl = $("impChannel");
+    if(chEl){
+      if(/\.json$/i.test(hasFile.name)) chEl.value = "telegram";
+      else if(/\.txt$/i.test(hasFile.name)) chEl.value = "whatsapp";
+      if(typeof csSyncTrigger === "function") csSyncTrigger(chEl);
+    }
+  }
+});
 $("impQuickSend").addEventListener("click", function(){
   var errEl = $("impErr"); errEl.className = "err";
+  /* #76: 选了文件就走文件解析，不走粘贴解析 */
+  var file0 = $("impFile").files && $("impFile").files[0];
+  if(file0){ $("impParse").click(); return; }
   var paste = $("impPaste").value.trim();
-  if(!paste){ errEl.textContent = "先粘贴聊天文字。"; errEl.className = "err show"; return; }
+  if(!paste){ errEl.textContent = "先粘贴聊天文字。每行一条、写清谁说的，例如：客户：你们有橄榄树吗？ / 王烁杉：有的，我给你报价。"; errEl.className = "err show"; return; }
   try{
     var res = parsePasteText(paste);
     importParsed = res.msgs;
-    if(!importParsed.length){ errEl.textContent = "没解析出聊天内容，请检查粘贴的文字格式。"; errEl.className = "err show"; return; }
+    if(!importParsed.length){ errEl.textContent = "没看懂这个格式，没解析出聊天内容。请像这样粘贴，每行一条、写清谁说的，例如：客户：你们有橄榄树吗？ / 王烁杉：有的，我给你报价。"; errEl.className = "err show"; return; }
+    /* #74: 只解析+出预览，不自动确认导入；打开「其他方式」让确认按钮可见 */
     renderImportPreview();
-    $("impConfirm").click();
+    var ow = document.querySelector("#importModal .other-ways");
+    if(ow) ow.open = true;
+    toast("已解析，先核对预览，核对完再点「确认导入」");
   }catch(e){
-    errEl.textContent = "解析失败：" + (e.message || "格式不对"); errEl.className = "err show";
+    errEl.textContent = "没看懂这个格式，解析不了。请像这样粘贴，每行一条、写清谁说的，例如：客户：你们有橄榄树吗？ / 王烁杉：有的，我给你报价。"; errEl.className = "err show";
   }
 });
 
@@ -6077,8 +6493,20 @@ $("confirmNo").addEventListener("click", function(){
 });
 
 /* ---------- 登录页：忘了密码，找王烁杉重置 ---------- */
-$("forgotBtn").addEventListener("click", function(){
+/* 点「忘了密码」/「发邮件重置」之前先判邮箱框空不空：空就红字提示先填邮箱，两个入口都不打开 */
+function forgotEmailOrWarn(){
   var email = $("email").value.trim();
+  if(email) return email;
+  var errBox = $("loginErr");
+  errBox.textContent = "先填你的登录邮箱，再点忘了密码";
+  errBox.className = "err show";
+  $("loginOk").className = "ok";
+  var em = $("email"); if(em) em.focus();
+  return "";
+}
+$("forgotBtn").addEventListener("click", function(){
+  var email = forgotEmailOrWarn();
+  if(!email) return;
   var okBox = $("loginOk");
   /* 王烁杉自己忘了密码：走 Supabase 密码重置邮件，不用等别人 */
   if(email === "wss2275973450wss@gmail.com"){
@@ -6103,7 +6531,8 @@ $("forgotBtn").addEventListener("click", function(){
   okBox.className = "ok show";
 });
 $("forgotMailBtn").addEventListener("click", function(){
-  var email = $("email").value.trim();
+  var email = forgotEmailOrWarn();
+  if(!email) return;
   var who = email ? email : "团队成员";
   var text = "你好，我是 " + who + "（" + email + "），我忘了线索网站的密码，麻烦帮我重置一下。";
   var mailLink = document.createElement("a");
@@ -6237,10 +6666,10 @@ function loadStats(){
   ]).then(function(res){
     var ym = bjDateStr(new Date()).slice(0, 7);
     function cnt(rows){ return (rows || []).filter(function(r){ return r.created_at && bjDateStr(new Date(r.created_at)).slice(0, 7) === ym; }).length; }
-    box.innerHTML = '<div class="num-grid" style="grid-template-columns:1fr 1fr 1fr">'
-      + '<div class="num-cell"><b>' + cnt(res[0]) + '</b>本月联系（次）</div>'
-      + '<div class="num-cell"><b>' + cnt(res[1]) + '</b>本月客户回复（次）</div>'
-      + '<div class="num-cell"><b>' + cnt(res[2]) + '</b>本月成交（家）</div></div>'
+    box.innerHTML = '<div class="num-grid stats-grid">'
+      + '<div class="num-cell"><b>' + cnt(res[0]) + '</b><small>次</small>本月联系</div>'
+      + '<div class="num-cell"><b>' + cnt(res[1]) + '</b><small>次</small>本月回复</div>'
+      + '<div class="num-cell"><b>' + cnt(res[2]) + '</b><small>家</small>本月成交</div></div>'
       + '<div class="sync-line">只算网站上记下来的：点发送、点「已联系」、导入聊天记录都会记。</div>';
   });
 }
@@ -6262,6 +6691,18 @@ function renderHandover(){
   if(state.isLeader){ box.textContent = "你是团队负责人，不跟具体客户，不用转交。"; return; }
   if(!state.myName){ box.textContent = "还没有找到你的个人档案，暂时用不了转交。"; return; }
   var mine = state.leads.filter(function(l){ return isActiveLead(l) && l.assignee === state.myName && l.status !== "deal"; });
+  if(mine.length === 0){
+    var hEmpty = '<div class="sync-line">你手里没有要转交的客户</div>';
+    var pending0 = null;
+    try{ pending0 = JSON.parse(localStorage.getItem("handover_pending_" + state.myName) || "null"); }catch(e){}
+    if(pending0 && pending0.remaining && pending0.remaining.length){
+      hEmpty += '<div class="tr-status" style="color:var(--red)">上次转交断了：已转 ' + pending0.done + " 家、剩 " + pending0.remaining.length + ' 家没转。<button class="btn btn-outline btn-sm" type="button" id="hoResume">点继续转完</button></div>';
+    }
+    box.innerHTML = hEmpty;
+    var rs0 = $("hoResume");
+    if(rs0) rs0.addEventListener("click", function(){ handoverRun(JSON.parse(localStorage.getItem("handover_pending_" + state.myName) || "{}")); });
+    return;
+  }
   var cands = mine.filter(handoverCandidate);
   var others = TEAM.filter(function(n){ return n !== state.myName; });
   /* 几号回来：从明天起往后 30 天（按北京时间算），值用 ISO 日期，显示如“11月23日 周一”；默认不预选 */
@@ -6274,6 +6715,7 @@ function renderHandover(){
     hoDateOpts += '<option value="' + hoIso + '">' + (hoDd.getUTCMonth() + 1) + "月" + hoDd.getUTCDate() + "日 " + hoWeekdays[hoDd.getUTCDay()] + "</option>";
   }
   var h = '<div class="mywa-row"><label style="min-width:80px">转给谁：</label><select id="hoSel" style="flex:1;min-width:160px;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:44px">'
+    + '<option value="">请选择</option>'
     + others.map(function(n){
         var uc = uncontactedCount(n);
         return '<option value="' + esc(n) + '">' + esc(displayName(n)) + "（手里待开发 " + uc + " 家" + (uc > 40 ? "，太多了，换个人" : "") + "）</option>";
@@ -6284,7 +6726,7 @@ function renderHandover(){
     + '<div id="hoList" style="margin:8px 0">'
     + mine.map(function(l){
         var cand = handoverCandidate(l);
-        return '<label style="display:block;padding:6px 0;font-size:13px;color:var(--muted)"><input type="checkbox" data-ho="' + esc(String(l.id)) + '"' + (cand ? " checked" : "") + "> " + handoverSummaryLine(l) + "</label>";
+        return '<label style="display:flex;align-items:center;gap:8px;min-height:56px;font-size:14.5px;color:var(--muted)"><input type="checkbox" data-ho="' + esc(String(l.id)) + '"' + (cand ? ' data-ho-cand="1" checked' : "") + "> " + handoverSummaryLine(l) + "</label>";
       }).join("") + "</div>"
     + '<div class="mywa-row"><button class="btn btn-green btn-sm" type="button" id="hoOut">请假转交</button>'
     + '<button class="btn btn-outline btn-sm" type="button" id="hoBack">我回来了，转回来</button></div>'
@@ -6298,7 +6740,7 @@ function renderHandover(){
   /* 全选 / 全不选：一键全勾或全取消；单个勾变化时同步按钮文案（全勾了显示「全不选」，否则显示「全选」） */
   function syncHoSelectAllBtn(){
     var btn = $("hoSelectAll"); if(!btn) return;
-    var boxes = document.querySelectorAll("#hoList input[data-ho]");
+    var boxes = document.querySelectorAll('#hoList input[data-ho][data-ho-cand="1"]');
     if(!boxes.length){ btn.textContent = "全选"; btn.disabled = true; return; }
     var all = true;
     boxes.forEach(function(cb){ if(!cb.checked) all = false; });
@@ -6306,7 +6748,7 @@ function renderHandover(){
   }
   var hoAllBtn = $("hoSelectAll");
   if(hoAllBtn) hoAllBtn.addEventListener("click", function(){
-    var boxes = document.querySelectorAll("#hoList input[data-ho]");
+    var boxes = document.querySelectorAll('#hoList input[data-ho][data-ho-cand="1"]');
     var all = boxes.length > 0 && Array.prototype.every.call(boxes, function(cb){ return cb.checked; });
     boxes.forEach(function(cb){ cb.checked = !all; });
     syncHoSelectAllBtn();
@@ -6351,20 +6793,32 @@ function handoverRun(job){
 }
 function handoverOut(){
   var temp = $("hoSel").value;
+  if(!temp){ toast("先选转给谁", true); return; }
   var date = $("hoDate") ? $("hoDate").value : "";
-  var ids = [];
-  document.querySelectorAll("#hoList input[data-ho]:checked").forEach(function(cb){ ids.push(cb.getAttribute("data-ho")); });
-  if(!ids.length){ toast("先勾要转交的客户", true); return; }
-  /* 超过 40 家待开发的人，提醒换个人 */
-  if(uncontactedCount(temp) > 40){
-    askConfirm(displayName(temp) + " 手里已经有 " + uncontactedCount(temp) + " 家待开发（超过 40 家），转过去他可能跟不过来，确定还转给他吗？", function(){ handoverOutGo(temp, ids, date); });
+  if(!date){ toast("选一下几号回来，到了那天提醒你转回来", true); return; }
+  var ids = [], skipped = 0;
+  document.querySelectorAll("#hoList input[data-ho]:checked").forEach(function(cb){
+    if(cb.getAttribute("data-ho-cand") === "1") ids.push(cb.getAttribute("data-ho"));
+    else skipped++;
+  });
+  if(!ids.length){
+    if(skipped) toast("勾的这 " + skipped + " 家都是没兴趣的，不用转（只转要跟进的），先勾要跟进的客户", true);
+    else toast("先勾要转交的客户", true);
     return;
   }
-  handoverOutGo(temp, ids, date);
+  /* 超过 40 家待开发的人，提醒换个人 */
+  if(uncontactedCount(temp) > 40){
+    askConfirm(displayName(temp) + " 手里已经有 " + uncontactedCount(temp) + " 家待开发（超过 40 家），转过去他可能跟不过来，确定还转给他吗？", function(){ handoverOutGo(temp, ids, date, skipped); });
+    return;
+  }
+  handoverOutGo(temp, ids, date, skipped);
 }
-function handoverOutGo(temp, ids, date){
+function handoverOutGo(temp, ids, date, skipped){
   var lines = ids.map(function(id){ var l = findLead(id); return l ? handoverSummaryLine(l) : ""; }).filter(Boolean);
-  askConfirm("转交清单（共 " + ids.length + " 家）给 " + displayName(temp) + "：\n" + lines.join("\n") + "\n\n转过去之后对方能看到你之前跟了几次、最后一次什么时候、回没回。确定转吗？", function(){
+  var extra = "";
+  if(skipped) extra += "\n其中没兴趣的 " + skipped + " 家没转（只转要跟进的）。";
+  if(date) extra += "\n你 " + fmtDateShort(date) + "回来，到了那天首页会提醒你转回来。";
+  askConfirm("转交清单（共 " + ids.length + " 家）给 " + displayName(temp) + "：\n" + lines.join("\n") + extra + "\n\n转过去之后对方能看到你之前跟了几次、最后一次什么时候、回没回。确定转吗？", function(){
     handoverRun({ temp: temp, done: 0, total: ids.length, remaining: ids, returnDate: date });
   });
 }
@@ -6651,7 +7105,7 @@ function xhsRenderResults(v, rows, waiting){
   if(rows && rows.length){
     html += '<div class="img-note-list"><div class="img-note-title">「' + esc(v) + '」小红书现搜结果（' + rows.length + '条，' + esc(fmtTime(rows[0].searched_at)) + '搜到）：</div>';
     rows.forEach(function(n){
-      html += '<div class="img-note-item"><a href="' + esc(n.link) + '" target="_blank" rel="noopener">' + esc(n.title || n.link) + ' ↗</a><div class="img-note-time">搜于 ' + esc(fmtTime(n.searched_at)) + '</div></div>';
+      html += '<div class="img-note-item"><a href="' + esc(n.link) + '" target="_blank" rel="noopener">' + esc(n.title || n.link) + ' ↗</a><div class="img-note-time">搜于 ' + esc(fmtTime(n.searched_at)) + '</div><div style="margin-top:6px"><button class="btn btn-outline btn-sm" type="button" data-wm-this="' + esc(n.link) + '">这条去水印</button></div></div>';
     });
     html += "</div>";
     if(waiting) html += '<div class="img-xhs-waiting">已记需求，正在重新搜，搜到了上面会更新，不用等，先去忙别的。</div>';
@@ -6661,6 +7115,15 @@ function xhsRenderResults(v, rows, waiting){
     html = '<div class="img-xhs-waiting">「' + esc(v) + '」正在找，助手每半小时现搜一次小红书，搜到了显示在这里。还没点过上面搜按钮的，先点一次记下需求。</div>';
   }
   list.innerHTML = html;
+  list.querySelectorAll("[data-wm-this]").forEach(function(wb){
+    wb.addEventListener("click", function(){
+      var link = wb.getAttribute("data-wm-this") || "";
+      var inp = $("wmLink"); if(inp) inp.value = link;
+      var wm = document.querySelector(".img-wm-tool"); if(wm) wm.open = true;
+      if(typeof updateWmBtn === "function") updateWmBtn();
+      if(inp) inp.scrollIntoView({ block: "nearest" });
+    });
+  });
 }
 function loadXhsResults(v){
   if(!v){ var list = $("imgNoteList"); if(list) list.innerHTML = ""; xhsLoadedVariety = ""; xhsLastRows = null; return; }
@@ -6739,9 +7202,14 @@ $("imgXhsBtn").addEventListener("click", function(){
   recordXhsRequest(v);
 });
 /* 去水印通道：粘贴小红书笔记链接，点按钮先把链接复制好、再打开 xiazaitu.com，过去粘贴解析即可 */
+function isXhsLink(v){ v = String(v || ""); return v.indexOf("xiaohongshu.com/explore") >= 0 || v.indexOf("xhslink.com") >= 0; }
 function updateWmBtn(){
   var inp = $("wmLink"), btn = $("wmGoBtn"); if(!inp || !btn) return;
-  btn.disabled = !inp.value.trim();
+  var v = inp.value.trim();
+  var ok = isXhsLink(v);
+  btn.disabled = !ok;
+  var hint = $("wmHint");
+  if(hint) hint.textContent = (!v || ok) ? "" : "这不是小红书笔记链接，请在小红书里打开笔记，点分享 → 复制链接，再粘贴过来。";
 }
 $("wmLink").addEventListener("input", updateWmBtn);
 $("wmClearBtn").addEventListener("click", function(){
@@ -6750,6 +7218,7 @@ $("wmClearBtn").addEventListener("click", function(){
 });
 $("wmGoBtn").addEventListener("click", function(){
   var link = $("wmLink").value.trim(); if(!link) return;
+  if(!isXhsLink(link)){ var wh = $("wmHint"); if(wh) wh.textContent = "这不是小红书笔记链接，请在小红书里打开笔记，点分享 → 复制链接，再粘贴过来。"; toast("这不是小红书笔记链接，换一条小红书笔记链接再试", true); return; }
   if(navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(link).then(function(){ toast("链接已复制，去 xiazaitu.com 粘贴解析"); }, function(){ toast("复制失败，请手动复制链接再去粘贴", true); });
   } else {
@@ -6775,15 +7244,16 @@ function updateFabTopVisibility(){
   var fab = $("fabTop"); if(!fab) return;
   var fr = fab.getBoundingClientRect();
   var hide = false;
-  var cards = document.querySelectorAll(".lead");
-  for(var i = 0; i < cards.length; i++){
-    var cr = cards[i].getBoundingClientRect();
+  /* 只在压到卡片里的按钮区（.quick-actions / .msg-actions）时才藏：压到卡片文字不藏，不然列表里全是卡片、按钮永远按不到 */
+  var zones = document.querySelectorAll(".lead .quick-actions, .lead .msg-actions");
+  for(var i = 0; i < zones.length; i++){
+    var cr = zones[i].getBoundingClientRect();
     if(fr.bottom > cr.top && fr.top < cr.bottom && fr.right > cr.left && fr.left < cr.right){ hide = true; break; }
   }
   fab.style.visibility = hide ? "hidden" : "visible";
 }
 /* 浮动「收起」按钮（#fabCollapse）：跟着页面滑动、始终停在右手拇指够得着的高度（屏幕右侧）。
-   点一下就收起当前正看着的那个区块、回到那个区块自己的标题。位置在圆形 ↑ 按钮上方，两个浮动按钮错开、互不遮挡。 */
+   点一下就收起当前正看着的那个区块、回到那个区块自己的标题。位置在圆形 ↑ 按钮下方（最顺手的位置），两个浮动按钮上下错开、互不遮挡。 */
 var lastOpenedDetails = null;
 function detailsDepth(d){
   var depth = 0, p = d.parentElement;
@@ -6802,7 +7272,18 @@ function openDetailsInView(){
 }
 function updateFabCollapse(){
   var btn = $("fabCollapse"); if(!btn) return;
-  btn.classList.toggle("show", openDetailsInView().length > 0);
+  var show = openDetailsInView().length > 0;
+  btn.classList.toggle("show", show);
+  if(!show){ btn.style.visibility = ""; return; }
+  /* #49: 和 #fabTop 一样的避让——压到卡片按钮区/更多操作/团队名单/Top5/页脚就藏，不压才显示；位置 bottom 18px 不动 */
+  var fr = btn.getBoundingClientRect();
+  var hide = false;
+  var zones = document.querySelectorAll(".lead .quick-actions, .lead .msg-actions, .lead .more-ops, .lead .actions, .team-grid, #teamBox, .top5-item, .foot");
+  for(var i = 0; i < zones.length; i++){
+    var cr = zones[i].getBoundingClientRect();
+    if(fr.bottom > cr.top && fr.top < cr.bottom && fr.right > cr.left && fr.left < cr.right){ hide = true; break; }
+  }
+  btn.style.visibility = hide ? "hidden" : "visible";
 }
 function collapseCurrentSection(){
   var cy = (window.innerHeight || 0) * 0.5;
@@ -6842,8 +7323,10 @@ document.addEventListener("toggle", function(ev){
   if(d.open){ lastOpenedDetails = d; }
   updateFabCollapse();
   if(d.open){
+    /* 顶层折叠（details.fold：汇总与同步 / 团队总览 / 我的统计 / 团队名单 / 教程等）不再收兄弟，可以同时开着对照看；
+       同区块内的子折叠（fold-in）仍一次只开一个 */
     var parent = d.parentNode;
-    if(parent){
+    if(parent && !d.classList.contains("fold")){
       var isMsg = d.classList.contains("msg-block");
       var kids = parent.children;
       for(var i = 0; i < kids.length; i++){
