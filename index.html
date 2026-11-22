@@ -118,6 +118,7 @@ button,select,input[type="text"],input[type="email"],input[type="password"]{min-
 .img-xhs-hint{margin-top:12px;border:1px solid var(--gold-line);background:var(--bg2);color:var(--green);padding:12px 14px;font-size:14px;line-height:1.7}
 .img-xhs-hint p{margin:0 0 10px}
 .img-xhs-hint .btn{width:100%}
+.img-xhs-tip{margin:10px 0 0;font-size:13px;line-height:1.7;color:var(--muted);overflow-wrap:break-word}
 details.img-wm{margin-top:14px;border:1px solid var(--line);border-radius:0;padding:12px 14px;background:#fff;font-size:14px}
 details.img-wm>summary{cursor:pointer;list-style:none;font-weight:700;color:var(--green);font-size:14px;min-height:48px;display:flex;align-items:center}
 details.img-wm>summary::-webkit-details-marker{display:none}
@@ -670,6 +671,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <button class="btn btn-green" type="button" id="imgGoogleBtn" disabled>找图片（谷歌图片）↗</button>
       <a class="btn btn-outline" id="imgXhsBtn" href="#" aria-disabled="true">在小红书 App 里搜 ↗</a>
     </div>
+    <p class="img-xhs-tip">在 Chrome 里打开本站，点搜能直接跳小红书 App；在 Muse 里打开时跳不出去，点搜会先把关键词复制好，自己打开小红书 App 粘贴搜就行。</p>
     <div id="imgXhsHint" class="img-xhs-hint" hidden>
       <p>如果没跳到小红书 App，点浏览器里的「在 App 内打开」，或复制关键词去 App 里搜。</p>
       <button class="btn btn-outline" type="button" id="imgXhsCopyBtn">复制关键词</button>
@@ -6544,20 +6546,42 @@ $("imgGoogleBtn").addEventListener("click", function(){
   var v = $("imgVariety").value.trim(); if(!v) return;
   window.open("https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(v), "_blank");
 });
+/* 复制关键词：主办法是 navigator.clipboard.writeText（在用户手势里同步调用），回退是 textarea + execCommand("copy")（同步，WebView 里 clipboard 不可用时也能用）；复制失败只走 onFail，不抛错、不挡后面的跳转 */
+function copyKwSync(kw){
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = kw; ta.setAttribute("readonly", "");
+    ta.style.position = "fixed"; ta.style.top = "0"; ta.style.left = "0"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch(e){ ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  } catch(e){ return false; }
+}
+function copyKw(kw, onOk, onFail){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    try {
+      navigator.clipboard.writeText(kw).then(function(){ if(onOk) onOk(); }, function(){
+        if(copyKwSync(kw)){ if(onOk) onOk(); } else if(onFail) onFail();
+      });
+      return;
+    } catch(e){ /* 掉到同步回退 */ }
+  }
+  if(copyKwSync(kw)){ if(onOk) onOk(); } else if(onFail) onFail();
+}
 $("imgXhsBtn").addEventListener("click", function(e){
   var v = $("imgVariety").value.trim();
   if(!v){ e.preventDefault(); return; }
   /* 不再用 JS 造链接点——程序点的不是用户手势，安卓 intent / iOS Universal Link 拦截不到，只会掉进没登录的浏览器 404；现在点的是真链接，href 在 updateImgPanel 里已随品种设好 */
+  /* 点下去先在用户手势里把关键词（品种名 + 苗）复制好，再让真链接自己跳 App：Muse 的 WebView 接不住 intent / 通用链接、跳不出去时，用户也能自己打开小红书 App 粘贴搜；复制失败不报错、不挡跳转 */
+  copyKw(v + "苗", function(){ toast("关键词已复制"); });
   var hint = $("imgXhsHint"); if(hint) hint.hidden = false;
 });
 $("imgXhsCopyBtn").addEventListener("click", function(){
   var v = $("imgVariety").value.trim(); if(!v) return;
   var kw = v + "苗";
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(kw).then(function(){ toast("关键词已复制，去小红书 App 里粘贴搜"); }, function(){ toast("复制失败，请手动输入关键词：" + kw, true); });
-  } else {
-    toast("复制失败，请手动输入关键词：" + kw, true);
-  }
+  copyKw(kw, function(){ toast("关键词已复制，去小红书 App 里粘贴搜"); }, function(){ toast("复制失败，请手动输入关键词：" + kw, true); });
 });
 /* 去水印通道：粘贴小红书笔记链接，点按钮先把链接复制好、再打开 xiazaitu.com，过去粘贴解析即可 */
 function updateWmBtn(){
