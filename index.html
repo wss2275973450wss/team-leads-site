@@ -110,15 +110,16 @@ button,select,input[type="text"],input[type="email"],input[type="password"]{min-
 .img-search-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .img-search-btns .btn{flex:1 1 220px}
 .img-search-btns .btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;background:#EFEDE4;color:#8A877A;border-color:var(--line)}
-.img-search-btns .btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed;pointer-events:none;box-shadow:none;background:#EFEDE4;color:#8A877A;border-color:var(--line)}
+.img-search-btns .btn[aria-disabled="true"], .img-search-btns .btn:disabled{opacity:.45;cursor:not-allowed;pointer-events:none;box-shadow:none;background:#EFEDE4;color:#8A877A;border-color:var(--line)}
 .img-note-list{margin-top:14px;border-top:1px solid var(--gold-line);padding-top:10px}
 .img-note-list .img-note-title{font-size:13px;font-weight:700;color:var(--green);letter-spacing:.03em;margin-bottom:2px}
 .img-note-list a{display:block;padding:9px 2px;border-bottom:1px solid var(--line);font-size:14px;overflow-wrap:anywhere}
 .img-note-list a:last-child{border-bottom:none}
-.img-xhs-hint{margin-top:12px;border:1px solid var(--gold-line);background:var(--bg2);color:var(--green);padding:12px 14px;font-size:14px;line-height:1.7}
-.img-xhs-hint p{margin:0 0 10px}
-.img-xhs-hint .btn{width:100%}
-.img-xhs-tip{margin:10px 0 0;font-size:13px;line-height:1.7;color:var(--muted);overflow-wrap:break-word}
+.img-xhs-waiting{margin-top:14px;border:1px solid var(--gold-line);background:var(--bg2);color:var(--green);padding:12px 14px;font-size:14px;line-height:1.7;overflow-wrap:break-word}
+.img-note-item{padding:9px 2px;border-bottom:1px solid var(--line)}
+.img-note-item:last-child{border-bottom:none}
+.img-note-list .img-note-item a{display:block;font-size:14px;overflow-wrap:anywhere;padding:0;border-bottom:none}
+.img-note-list .img-note-time{font-size:12.5px;color:var(--muted);margin-top:2px}
 details.img-wm{margin-top:14px;border:1px solid var(--line);border-radius:0;padding:12px 14px;background:#fff;font-size:14px}
 details.img-wm>summary{cursor:pointer;list-style:none;font-weight:700;color:var(--green);font-size:14px;min-height:48px;display:flex;align-items:center}
 details.img-wm>summary::-webkit-details-marker{display:none}
@@ -662,19 +663,14 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <div id="statsBox">正在读取…</div>
   </details>
 
-  <!-- 找图片：输品种名，谷歌图片和小红书两个通道；小红书图去水印自取 -->
+  <!-- 找图片：输品种名，谷歌图片直接搜，小红书由助手现搜；小红书图去水印自取 -->
   <details class="fold" id="imgPanel" aria-label="找图片">
     <summary>找图片 <span class="hint">输入品种名，谷歌图片和小红书都能搜</span></summary>
-    <p class="sync-line" style="margin:0 0 12px">输入品种名，谷歌图片和小红书都能搜；小红书上的图想要无水印的，按下面「去水印」自己取，不用等助手。</p>
+    <p class="sync-line" style="margin:0 0 12px">输入品种名，谷歌图片直接搜；小红书点下面「搜小红书」，助手每半小时现搜一次，搜到了显示在这里；小红书上的图想要无水印的，按下面「去水印」自己取，不用等助手。</p>
     <input type="text" id="imgVariety" class="img-variety-input" placeholder="输入品种名，如：蓝云杉" autocomplete="off">
     <div class="img-search-btns">
       <button class="btn btn-green" type="button" id="imgGoogleBtn" disabled>找图片（谷歌图片）↗</button>
-      <a class="btn btn-outline" id="imgXhsBtn" href="#" aria-disabled="true">在小红书 App 里搜 ↗</a>
-    </div>
-    <p class="img-xhs-tip">在 Chrome 里打开本站，点搜能直接跳小红书 App；在 Muse 里打开时跳不出去，点搜会先把关键词复制好，自己打开小红书 App 粘贴搜就行。</p>
-    <div id="imgXhsHint" class="img-xhs-hint" hidden>
-      <p>如果没跳到小红书 App，点浏览器里的「在 App 内打开」，或复制关键词去 App 里搜。</p>
-      <button class="btn btn-outline" type="button" id="imgXhsCopyBtn">复制关键词</button>
+      <button class="btn btn-outline" type="button" id="imgXhsBtn" disabled>搜小红书（助手现搜）</button>
     </div>
     <div id="imgNoteList"></div>
     <details class="fold-in img-wm-tool">
@@ -6488,100 +6484,107 @@ new MutationObserver(function(muts){
 enhanceAllSelects();
 
 /* ================= 找图片面板 =================
-   输中文品种名：谷歌图片按原名搜；小红书按「品种名+苗」搜。
-   樟子松、龙须树另外列了现成的笔记链接，点开直接跳小红书；去水印队友自取，网站不代办。 */
-var XHS_NOTES = {
-  "樟子松": [
-    ["毛乌素日记🪴樟子松幼儿园", "https://www.xiaohongshu.com/explore/6a685775000000001303e029"],
-    ["出售樟子松树苗，几十万颗，40-80公分", "https://www.xiaohongshu.com/explore/69b8cc7f0000000022025c0d"],
-    ["就在土左旗！2米大樟松", "https://www.xiaohongshu.com/explore/69abe5af000000001503aa3f"],
-    ["樟子松油松树苗基地", "https://www.xiaohongshu.com/explore/696b632a000000001a031f0a"],
-    ["现内蒙古兴安盟乌兰浩特有樟子松树苗预出售", "https://www.xiaohongshu.com/explore/69b2bd9f000000000b034e1d"]
-  ],
-  "龙须树": [
-    ["龙须树", "https://www.xiaohongshu.com/explore/6afea8d2000000002b00197e"],
-    ["龙须树太香了！客厅氛围感拉满", "https://www.xiaohongshu.com/explore/690572a10000000005031948"],
-    ["龙须枣树苗 土球发货", "https://www.xiaohongshu.com/explore/6ac4b9dd000000000200f8bd"],
-    ["龙枣树基地", "https://www.xiaohongshu.com/explore/690f16c90000000005033127"],
-    ["山东省滨州市沾化区春武百亩龙须枣树基地", "https://www.xiaohongshu.com/explore/6afb1427000000001802bf90"]
-  ]
-};
+   输中文品种名：谷歌图片按原名搜；小红书按「品种名+苗」由助手现搜。
+   点「搜小红书」只往 xhs_search_requests 记一条需求（每次都要重新搜，不复用旧帖子）；
+   助手每半小时用盒子浏览器现搜小红书，新结果写进 xhs_search_results（先删该品种旧行再插新行）；
+   这里只读最新一次的结果显示，带搜到的时间。没有结果时显示“正在找”，不白屏。 */
+var xhsLoadedVariety = "";
+var xhsLoadedAt = 0;
+var xhsLoadTimer = null;
+var xhsWaitingVariety = "";
+var xhsLastRows = null;
+function xhsRenderResults(v, rows, waiting){
+  var list = $("imgNoteList"); if(!list) return;
+  var html = "";
+  if(rows && rows.length){
+    html += '<div class="img-note-list"><div class="img-note-title">「' + esc(v) + '」小红书现搜结果（' + rows.length + '条，' + esc(fmtTime(rows[0].searched_at)) + '搜到）：</div>';
+    rows.forEach(function(n){
+      html += '<div class="img-note-item"><a href="' + esc(n.link) + '" target="_blank" rel="noopener">' + esc(n.title || n.link) + ' ↗</a><div class="img-note-time">搜于 ' + esc(fmtTime(n.searched_at)) + '</div></div>';
+    });
+    html += "</div>";
+    if(waiting) html += '<div class="img-xhs-waiting">已记需求，正在重新搜，搜到了上面会更新，不用等，先去忙别的。</div>';
+  } else if(waiting){
+    html = '<div class="img-xhs-waiting">「' + esc(v) + '」正在找，助手每半小时现搜一次小红书，搜到了显示在这里，不用等，先去忙别的。</div>';
+  } else {
+    html = '<div class="img-xhs-waiting">「' + esc(v) + '」正在找，助手每半小时现搜一次小红书，搜到了显示在这里。还没点过上面搜按钮的，先点一次记下需求。</div>';
+  }
+  list.innerHTML = html;
+}
+function loadXhsResults(v){
+  if(!v){ var list = $("imgNoteList"); if(list) list.innerHTML = ""; xhsLoadedVariety = ""; xhsLastRows = null; return; }
+  /* 同一个品种 60 秒内不重复读，免得每敲一个字都查一次数据库 */
+  if(v === xhsLoadedVariety && Date.now() - xhsLoadedAt < 60000) return;
+  xhsLoadedVariety = v; xhsLoadedAt = Date.now();
+  /* 结果和“有没有没搜完的需求”一起读：之前记过、还没搜完的，打开就显示“正在找”，不用再点一次 */
+  Promise.all([
+    api("xhs_search_results?select=title,link,searched_at&variety=eq." + encodeURIComponent(v) + "&order=searched_at.desc&limit=8"),
+    api("xhs_search_requests?select=id&variety=eq." + encodeURIComponent(v) + "&status=eq.waiting&limit=1").catch(function(){ return []; })
+  ]).then(function(pair){
+    if($("imgVariety").value.trim() !== v) return; /* 输入已变，这次结果作废 */
+    xhsLastRows = pair[0] || [];
+    var waiting = xhsWaitingVariety === v || !!(pair[1] && pair[1].length);
+    if(pair[1] && pair[1].length) xhsWaitingVariety = v;
+    xhsRenderResults(v, xhsLastRows, waiting);
+  }).catch(function(){
+    if($("imgVariety").value.trim() !== v) return;
+    /* 读不到结果也按“正在找”显示，不白屏、不报错页 */
+    xhsRenderResults(v, [], xhsWaitingVariety === v);
+  });
+}
+function recordXhsRequest(v){
+  var x = $("imgXhsBtn"); if(x) x.disabled = true;
+  var who = state.myName || (state.user && state.user.email) || "";
+  /* 同一个品种已有没搜完的需求就不重复记，免得助手搜两遍 */
+  api("xhs_search_requests?select=id&variety=eq." + encodeURIComponent(v) + "&status=eq.waiting&limit=1").then(function(rows){
+    if(rows && rows.length){
+      xhsWaitingVariety = v;
+      xhsRenderResults(v, xhsLastRows, true);
+      toast("已经记过了，正在找，搜到了显示在这里");
+      return;
+    }
+    return api("xhs_search_requests", { method:"POST", headers:{ "Prefer":"return=minimal" },
+      body:{ variety: v, requested_by: who, status: "waiting" } }).then(function(){
+        xhsWaitingVariety = v;
+        xhsLoadedVariety = ""; /* 下次打开重新读结果 */
+        xhsRenderResults(v, xhsLastRows, true);
+        toast("已记下，助手现搜小红书后显示在这里");
+      });
+  }).catch(function(){
+    toast("没记上，请再点一次", true);
+  }).then(function(){ if(x) x.disabled = false; });
+}
 function updateImgPanel(){
   var input = $("imgVariety"); if(!input) return;
   var v = input.value.trim();
   var g = $("imgGoogleBtn"), x = $("imgXhsBtn"), list = $("imgNoteList");
   if(v){
     g.disabled = false;
-    /* 小红书按钮本身就是真链接，href 随品种实时换：点的是用户真点，安卓 intent / iOS Universal Link 才能拉起 App */
-    var kw = v + "苗";
-    var webUrl = "https://www.xiaohongshu.com/search_result?keyword=" + encodeURIComponent(kw) + "&type=51";
-    if(/android/i.test(navigator.userAgent)){
-      x.href = "intent://www.xiaohongshu.com/search_result?keyword=" + encodeURIComponent(kw) + "&type=51#Intent;scheme=https;package=com.xingin.xhs;S.browser_fallback_url=" + encodeURIComponent(webUrl) + ";end";
-      x.removeAttribute("target"); x.removeAttribute("rel");
-    } else {
-      x.href = webUrl; x.target = "_blank"; x.rel = "noopener";
-    }
-    x.setAttribute("aria-disabled", "false");
+    x.disabled = false;
     g.textContent = "找「" + v + "」的图片（谷歌图片）↗";
-    x.textContent = "在小红书 App 里搜「" + v + "」↗";
+    x.textContent = "搜「" + v + "」小红书（助手现搜）";
   } else {
     g.disabled = true;
-    x.href = "#"; x.setAttribute("aria-disabled", "true");
+    x.disabled = true;
     g.textContent = "找图片（谷歌图片）↗";
-    x.textContent = "在小红书 App 里搜 ↗";
+    x.textContent = "搜小红书（助手现搜）";
+    if(list) list.innerHTML = "";
+    xhsLoadedVariety = ""; xhsLastRows = null;
   }
-  var html = "";
-  for(var key in XHS_NOTES){
-    if(v.indexOf(key) < 0) continue;
-    html += '<div class="img-note-list"><div class="img-note-title">「' + esc(key) + '」现成的小红书笔记，点开直接看：</div>';
-    XHS_NOTES[key].forEach(function(n){
-      html += '<a href="' + esc(n[1]) + '" target="_blank" rel="noopener">' + esc(n[0]) + " ↗</a>";
-    });
-    html += "</div>";
+  if(v){
+    if(xhsLoadTimer) clearTimeout(xhsLoadTimer);
+    xhsLoadTimer = setTimeout(function(){ loadXhsResults(v); }, 500);
   }
-  list.innerHTML = html;
 }
 $("imgVariety").addEventListener("input", updateImgPanel);
 $("imgGoogleBtn").addEventListener("click", function(){
   var v = $("imgVariety").value.trim(); if(!v) return;
   window.open("https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(v), "_blank");
 });
-/* 复制关键词：主办法是 navigator.clipboard.writeText（在用户手势里同步调用），回退是 textarea + execCommand("copy")（同步，WebView 里 clipboard 不可用时也能用）；复制失败只走 onFail，不抛错、不挡后面的跳转 */
-function copyKwSync(kw){
-  try {
-    var ta = document.createElement("textarea");
-    ta.value = kw; ta.setAttribute("readonly", "");
-    ta.style.position = "fixed"; ta.style.top = "0"; ta.style.left = "0"; ta.style.opacity = "0";
-    document.body.appendChild(ta); ta.select();
-    var ok = false;
-    try { ok = document.execCommand("copy"); } catch(e){ ok = false; }
-    document.body.removeChild(ta);
-    return ok;
-  } catch(e){ return false; }
-}
-function copyKw(kw, onOk, onFail){
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    try {
-      navigator.clipboard.writeText(kw).then(function(){ if(onOk) onOk(); }, function(){
-        if(copyKwSync(kw)){ if(onOk) onOk(); } else if(onFail) onFail();
-      });
-      return;
-    } catch(e){ /* 掉到同步回退 */ }
-  }
-  if(copyKwSync(kw)){ if(onOk) onOk(); } else if(onFail) onFail();
-}
-$("imgXhsBtn").addEventListener("click", function(e){
+$("imgXhsBtn").addEventListener("click", function(){
   var v = $("imgVariety").value.trim();
-  if(!v){ e.preventDefault(); return; }
-  /* 不再用 JS 造链接点——程序点的不是用户手势，安卓 intent / iOS Universal Link 拦截不到，只会掉进没登录的浏览器 404；现在点的是真链接，href 在 updateImgPanel 里已随品种设好 */
-  /* 点下去先在用户手势里把关键词（品种名 + 苗）复制好，再让真链接自己跳 App：Muse 的 WebView 接不住 intent / 通用链接、跳不出去时，用户也能自己打开小红书 App 粘贴搜；复制失败不报错、不挡跳转 */
-  copyKw(v + "苗", function(){ toast("关键词已复制"); });
-  var hint = $("imgXhsHint"); if(hint) hint.hidden = false;
-});
-$("imgXhsCopyBtn").addEventListener("click", function(){
-  var v = $("imgVariety").value.trim(); if(!v) return;
-  var kw = v + "苗";
-  copyKw(kw, function(){ toast("关键词已复制，去小红书 App 里粘贴搜"); }, function(){ toast("复制失败，请手动输入关键词：" + kw, true); });
+  if(!v) return;
+  /* 只记需求、不跳转、不复制关键词：助手每半小时用盒子浏览器现搜，搜到了显示在这里 */
+  recordXhsRequest(v);
 });
 /* 去水印通道：粘贴小红书笔记链接，点按钮先把链接复制好、再打开 xiazaitu.com，过去粘贴解析即可 */
 function updateWmBtn(){
