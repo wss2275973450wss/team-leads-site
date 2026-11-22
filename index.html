@@ -286,7 +286,7 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
 .quick-actions .btn-primary{width:auto}
 .quick-actions.flash{animation:qaFlash 1.4s ease-out}
 @keyframes qaFlash{0%{background:rgba(184,151,58,.30)}100%{background:transparent}}
-/* ---------- 回到按钮：右下角浮动按钮（各小节底部已改成「回到顶部并折叠」） ---------- */
+/* ---------- 回到按钮：右下角浮动按钮（收起当前区块用浮动的 #fabCollapse，各区块底部不再放静态按钮） ---------- */
 #fabBackBtns{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:45;display:none;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);padding:0 20px;min-height:52px;font-size:15px;font-weight:700;letter-spacing:.03em;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
 #fabBackBtns.show{display:block}
 /* ---------- 客户列表分页：每页 3 个 + 卡片排序号 + 全局回到顶部 ---------- */
@@ -304,6 +304,8 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
 .pager-jump-input:focus{outline:2px solid var(--gold-line);outline-offset:1px}
 .pager-jump .btn{flex:0 0 auto;min-height:48px;padding:8px 22px;max-width:none}
 #fabTop{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:44;width:48px;height:48px;min-height:48px;border-radius:50%;padding:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);font-size:20px;font-weight:700;line-height:1;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
+#fabCollapse{position:fixed;right:16px;bottom:calc(148px + env(safe-area-inset-bottom));z-index:44;min-height:48px;padding:0 18px;border-radius:24px;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);font-size:15px;font-weight:700;letter-spacing:.03em;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
+#fabCollapse.show{display:flex}
 /* 页面底部多留空隙：最后一张卡的按钮不被右下角悬浮按钮压住 */
 #appView{padding-bottom:132px}
 /* ---------- Top 5 折叠：默认收起，只显示标题行，点标题展开 ---------- */
@@ -331,6 +333,8 @@ details.fold .panel{margin:14px 0 0}
 details.fold .panel:last-child{margin-bottom:0}
 details.fold-in{margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
 details.fold-in>summary{cursor:pointer;list-style:none;font-weight:700;color:var(--green);font-size:13.5px;min-height:48px;display:flex;align-items:center}
+details.fold-in.more-ops{border:1px solid var(--gold);border-top:2px solid var(--gold);background:#FBF7EC;border-radius:3px;padding:12px 12px 0}
+details.fold-in.more-ops>summary{font-size:16px}
 details.fold-in>summary::-webkit-details-marker{display:none}
 details.fold-in>summary::before{content:"▸ ";color:var(--gold)}
 /* 背调（客户背调 / 查品种背调 / 首页价格背调）：只用现有的浅色变量，米白底、深绿、细金线 */
@@ -564,12 +568,11 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
   <!-- 今天最值得联系的 5 家：默认收起，只显示标题行，点标题展开 -->
   <details class="panel panel-hero top5-fold" aria-label="今天最值得联系的 5 家">
     <summary><h2>今天最值得联系的 5 家 <span class="hint" id="top5Hint">只显示分给你的 · 星越多越值得先联系</span></h2></summary>
-    <p class="sync-line" id="top5Intro" style="margin:12px 0 10px">先从这里挑一家，点「WhatsApp 第一封」发出去。发完回来，5 秒内没点撤销就自动记 1 次联系，不用再点「已联系」。</p>
+    <p class="sync-line" id="top5Intro" style="margin:12px 0 10px">先从这里挑一家，点「WhatsApp 第一封」发出去。发完回来点「已联系」，弹框里点「确认记下」才算 1 次联系。</p>
     <div id="collisionLine" style="margin:0 0 10px;font-size:13.5px"></div>
     <div id="top5Box">正在读取…</div>
     <div id="top5Progress" class="sync-line" style="margin-top:10px"></div>
     <button class="btn btn-outline btn-sm" id="top5Next" type="button" style="margin-top:10px">继续下一批</button>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 成交后马上告诉王烁杉 -->
@@ -581,9 +584,8 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <div class="guide-bar" id="guideBar" aria-label="今天三步">
       <span class="g-step"><b>第一步</b>　从上面「今天最值得联系的 5 家」挑一家，点开卡片。</span>
       <span class="g-step"><b>第二步</b>　点「WhatsApp 第一封」发出去，记得附上产品目录。</span>
-      <span class="g-step"><b>第三步</b>　发完回网站，5 秒内没点撤销就自动记 1 次联系，不用再点。客户回了：展开卡片详情看「助手建议」，挑一封点「用这封发」。</span>
+      <span class="g-step"><b>第三步</b>　发完回网站点「已联系」，弹框里点「确认记下」才算 1 次联系。客户回了：展开卡片详情看「助手建议」，挑一封点「用这封发」。</span>
     </div>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 待我回答（只有团队负责人和管理员能看到，JS 控制显隐） -->
@@ -620,21 +622,18 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <h2>数据更新情况</h2>
       <div class="sync-line" id="syncBox">正在读取…</div>
     </section>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 团队总览（收起来的折叠区，默认收起） -->
   <details class="fold" aria-label="团队总览">
     <summary>团队总览 <span class="hint">只算自动记下来的四项</span></summary>
     <div class="overview-grid" id="overviewBox">正在读取…</div>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 我的统计（收起来的折叠区，默认收起） -->
   <details class="fold" id="statsFold" aria-label="我的统计">
     <summary>我的统计 <span class="hint">这个月你联系了几家、回了几家、成交了几家</span></summary>
     <div id="statsBox">正在读取…</div>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 找图片：输品种名，谷歌图片和小红书两个通道；小红书图去水印自取 -->
@@ -656,14 +655,11 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
         <button class="btn btn-green" type="button" id="wmGoBtn" disabled>去 xiazaitu.com 解析 ↗</button>
         <button class="btn btn-outline btn-wm-clear" type="button" id="wmClearBtn">清空</button>
       </div>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <details class="img-wm">
       <summary>备用：微信小程序去水印</summary>
       <p>海龟去水印（免费、不限量、不用登录）、解析酱（批量下整套图）、小氧去水印（保原画质）。用法：微信搜小程序名打开，粘贴笔记链接，解析后保存。</p>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 价格背调：首页工具，默认折叠；三步：选公司 → 填品种规格 → 点查 -->
@@ -696,7 +692,6 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
           <p class="sync-line" style="margin:8px 0 0">不选公司就按地区/国家查通用市场价：不选国家时，助手按这个品种的主要出口市场查，并在小结里写清查的是哪个市场。</p>
         </div>
       </div>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <details class="fold-in">
       <summary>第二步 · 填品种、规格、数量</summary>
@@ -736,17 +731,14 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
         </div>
         <p class="sync-line" style="margin:8px 0 0">规格和数量都是选填：填得越准，查到的价越对得上；客户没说规格、或者不知道按哪个标准，就全空着点查——助手按这个品种最常见的两三个规格查，给一个区间价、每个规格多少钱都列出来，并附一句问客户要规格的话，问清了再报准价。</p>
       </div>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <details class="fold-in">
       <summary>第三步 · 点查</summary>
       <button class="btn btn-green" type="button" id="bgStartBtn" style="width:100%;margin-top:10px" disabled aria-label="开始背调">开始背调</button>
       <p class="sync-line" id="bgStartHint" style="margin:8px 0 0">先在第二步填上品种名，这个按钮才能点。</p>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <div id="bgToolList" style="margin-top:14px">还没有价格背调记录。</div>
     <div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" id="bgRefreshBtn">刷新结果</button></div>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
   <!-- 筛选：搜索框常在外面，更多筛选收起来 -->
   <section class="panel" aria-label="筛选">
@@ -813,7 +805,6 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       </label>
       <label>&nbsp;<button class="btn btn-outline" id="exportBtn" type="button" style="width:100%">导出 CSV</button><button class="btn btn-outline" id="exportMineBtn" type="button" style="width:100%;margin-top:6px">导出我的客户</button></label>
       </div>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
   </section>
 
@@ -863,7 +854,6 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <h2>请假转交 <span class="hint">请假时把你的客户临时转给队友，回来再转回来</span></h2>
       <div class="sync-line" id="hoBox">正在读取…</div>
     </section>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 使用教程（收起来的折叠区，默认收起） -->
@@ -873,7 +863,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <p class="tut-note"><b>你每天只用干这几下：</b>下面五个决定，每个都是一点就行的选择。</p>
     <ol class="steps">
       <li><b>决定一：今天联系哪家。</b>打开页面最上面就是「今天最值得联系的 5 家」，只显示分给你的，5 星的排前面，挑一家点开看卡片。「早上报数」里每人各有 5 家，也可以从那里挑。</li>
-      <li><b>决定二：发哪一封。</b>卡片上每封信都有一个中文框：就在中文框里改，改完停一下，下面的外语版会自动翻译、跟着变；确认外语版已经更新成你要发的内容，再点发送，实际发出去的就是外语版。翻译时框下面会显示「正在翻译…」，翻不出来会提示「翻译没成功」，这时发送按钮会变灰，点「重试翻译」或确认「发旧版」才能发。发完回网站，5 秒内没点撤销就自动记 1 次联系，不用再点「已联系」；只点开链接、没发出去不算。记得把产品目录一起发过去。点错了也不用慌：卡片上有「撤销」小字链接，点一下那次就不算数、联系次数减 1；如果那是这家唯一一次联系，「已联系」会一起取消、变回「未处理」，就像没点过一样。WhatsApp 第一封、WhatsApp 跟进信、Telegram 第一封、Telegram 跟进信都是这样改。Telegram 的客户点「Telegram 第一封」「Telegram 跟进信」；这家没留 Telegram 用户名时，点「复制这封」，复制了自己去 Telegram 搜到客户再发。想大改点「编辑消息」，同样是改中文，外语版自动翻译生成（只读，不用碰）。<span id="tutEmailLine">注意：邮件的跟进信要你自己发，AI 只帮王烁杉发他名下的。</span></li>
+      <li><b>决定二：发哪一封。</b>卡片上每封信都有一个中文框：就在中文框里改，改完停一下，下面的外语版会自动翻译、跟着变；确认外语版已经更新成你要发的内容，再点发送，实际发出去的就是外语版。翻译时框下面会显示「正在翻译…」，翻不出来会提示「翻译没成功」，这时发送按钮会变灰，点「重试翻译」或确认「发旧版」才能发。发完回网站点「已联系」，弹框里点「确认记下」才算 1 次联系；只点开链接、没发出去不算。记得把产品目录一起发过去。点错了也不用慌：卡片上有「撤销」小字链接，点一下那次就不算数、联系次数减 1；如果那是这家唯一一次联系，「已联系」会一起取消、变回「未处理」，就像没点过一样。WhatsApp 第一封、WhatsApp 跟进信、Telegram 第一封、Telegram 跟进信都是这样改。Telegram 的客户点「Telegram 第一封」「Telegram 跟进信」；这家没留 Telegram 用户名时，点「复制这封」，复制了自己去 Telegram 搜到客户再发。想大改点「编辑消息」，同样是改中文，外语版自动翻译生成（只读，不用碰）。<span id="tutEmailLine">注意：邮件的跟进信要你自己发，AI 只帮王烁杉发他名下的。</span></li>
       <li><b>决定三：客户回了怎么回。</b>展开卡片详情，「助手建议」一次给你两三个回复，挑一个点「用这封发」就直接发出去了，不用再等谁点头。客户回了点一下「客户回了」，联系次数从 0 重新数。</li>
       <li><b>决定四：报不报价、报多少。</b>卡片上点「报价」（只有一个报价入口），分两步：先填货、再看单发出去。第 1 步先给 1 行空行，不够点「+ 加一行」往下加（最多 20 行），没填品种的空行不算钱、也不进报价单。每行 7 个栏，能选的都用下拉：①品种——下拉里是价目表那 36 个品种，选了自动带价；下拉里没有的选「其他（自己填）」打字填，那行会标「估价」、单价自己估。②规格——选了品种，下拉里就是这个品种在价目表里的规格，选了价格跟着走；没有的选「其他（自己填）」。③数量。④根部形式——裸根 / 带土球 / 容器苗，选带土球再填土球直径。⑤包装方式——下拉里选，没有的选「其他（自己填）」。⑥单价——表里的自动带低价、显示价区间，能在区间里改。⑦小计——自动算，不用管。报价单上写明有效期 15 天、贸易条款 FCA 中国口岸、定金 50%。客户还没说要什么品种、规格的，先问客户，别急着报。估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。第 2 步看单：最上面会写清这家的<b>发给</b>到底是哪个——默认是这家上次实际联系用的渠道（和第一封同一个地方），想换渠道手动选，具体号码 / 邮箱 / 用户名都写出来了，不会发错地方。交货期那栏有两个按钮：客户问了交货期，点「先问王烁杉定交货期」，报价先存草稿、等他定了再发；客户没问，点「客户没问交货期，先发」，报价单上写「交货期：确认中，3 天内回复你」，不留空白行。话术也在弹窗里改：中文框里改，停一下外文版自动翻译跟着变，价格明细行是按你填的单价数量自动生成的、翻译不会动它；确认外文版对了，点「发送报价」一键发出去。报价太长发不出去时，会提示你分两段发。这家要是没留能一键发送的联系方式，弹窗里会写明，点发送只会存成草稿、不会假装发出去，外文版长按文字复制自己发就行。</li>
       <li><b>决定五：成交还是继续跟。</b>客户说要下单，先点卡片上的「客户要下单了」（不要停跟进），王烁杉会看到；等定金到账再点「成交」，会先弹确认框，确认后出现成交清单，照着做完，再点「马上告诉王烁杉」。没回就等 3 天，卡片上会出现「该跟进了」，点一下就发跟进信；满 5 次没回会自动转「没兴趣」，想接着跟点「继续跟进」，重新算 5 次。点错了都能取消，所有状态都行：卡片上有「取消要下单」「取消客户回了」「取消已成交」「取消没兴趣」（手动标的和联系满 5 次自动标的都能取消）「取消重点跟进」；「已联系」有「撤销上次联系」，要是没有联系记录（下拉手动改的、点错试出来的、以前的老数据）也有「取消已联系」，不会卡死；转交错了，展开详情在「更多操作」里点「取消转交」，会转回上一个负责人。点之前都会先弹确认框、写清楚取消后会变成什么，取消了也会记进流水账。只是试功能点错了，照着取消就行，不用怕。</li>
@@ -900,7 +890,6 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     </ol>
     <p class="tut-note">没回的时候，点一下「已联系」也算联系过一次，不用写任何字，选渠道（WhatsApp / 邮件 / Telegram）和发的是第一封还是跟进信就行。发进来的记录导进来一次，就自动记了已联系、数了联系次数、判了客户回没回，档案也会跟着更新。</p>
     <p class="tut-note">「早上报数」「晚上 8 点汇总」「每周一汇总」都在页面上面：早上报数是今天新线索的数字加每人各 5 家；晚上 8 点汇总是当天全队每人一行；每周一汇总是本周最值得联系的 5 家（全队、每人各 5 家）加本周数字。</p>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <p class="foot">团队内部使用 · 数据来自团队数据库，登录后实时读取</p>
@@ -1012,7 +1001,6 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
         <button class="btn btn-green" type="button" id="impConfirm">确认导入</button>
       </div>
       <p class="sync-line" style="margin:12px 0 0">转发给王烁杉、再由他转给助手也行；截图直接发给助手，不用上传到网站。语音、图片导进来只有文字部分能分析。</p>
-    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <div id="impPreview"></div>
     <div class="done-box" id="impDone"></div>
@@ -1224,6 +1212,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
 <div class="pending-bar" id="pendingBar"><span id="pendingText"></span><button type="button" id="pendingUndo">撤销</button></div>
 <button type="button" id="fabBackBtns" aria-label="回到这张卡片的按钮区">↑ 回到按钮</button>
 <button type="button" id="fabTop" aria-label="回到页面最顶部">↑</button>
+<button type="button" id="fabCollapse" aria-label="收起当前区块">↑ 收起</button>
 
 <script>
 "use strict";
@@ -2115,6 +2104,7 @@ $("fabTop").addEventListener("click", function(){
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
 });
+$("fabCollapse").addEventListener("click", collapseCurrentSection);
 
 /* 客户列表分页：每页只显示 3 个，排序号按筛选后的全局顺序走（在 cardHtml 里算） */
 var PAGE_SIZE = 3;
@@ -2139,6 +2129,7 @@ function renderLeads(){
   bindCards();
   renderPager();
   updateFabTopVisibility();
+  updateFabCollapse();
 }
 function renderPager(){
   var show = !!state.filtered.length;
@@ -2450,7 +2441,7 @@ function cardHtml(l){
     if(l.status === "ignored"){
       quick += '<button class="btn btn-outline btn-sm" type="button" data-act="continue">继续跟进</button>';
     }
-    if(l.assignee === state.myName){
+    if(l.assignee === state.myName || state.isAdmin){
       var unseenQ = unseenAnsweredCount(l) + unseenAdviceCount(l);
       var ansBy = latestAnswerBy(l);
       var askLabel = unseenQ ? ((ansBy === "王烁杉" ? "王烁杉回你了" : "柯哥回你了") + " ●") : "问柯哥";
@@ -2478,7 +2469,7 @@ function cardHtml(l){
   var rotateNextBtn = (!isRotated && l.assignee === state.myName)
     ? '<button class="btn btn-outline btn-sm" type="button" data-act="rotate-next">转给下一个人</button>'
     : "";
-  var moreOps = (state.isLeader || isRotated ? "" : '<details class="fold-in"><summary>更多操作</summary><div class="actions">'
+  var moreOps = (state.isLeader || isRotated ? "" : '<details class="fold-in more-ops"><summary>更多操作</summary><div class="actions">'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="activity">全部记录</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="editmsg">编辑消息</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="quote">报价</button>'
@@ -3252,7 +3243,7 @@ document.addEventListener("click", function(ev){
 /* ================= 回到按钮：右下角浮动按钮 =================
    卡片展开后往下翻，只要这张卡的按钮区被翻到屏幕上方去了，右下角就出现浮动按钮；
    点浮动按钮，直接滚回这张卡的按钮区，并闪一下金色提示落点。
-   各小节底部的旧“回到按钮”链接已取消，改成每个折叠区块底部自己的「回到顶部并折叠」。 */
+   收起当前区块用浮动的 #fabCollapse，各区块底部不再放静态按钮。 */
 var fabBackBtns = $("fabBackBtns");
 var fabTargetCard = null;
 function scrollToCardBtns(card){
@@ -3283,11 +3274,11 @@ var fabTicking = false;
 function scheduleFabUpdate(){
   if(fabTicking) return;
   fabTicking = true;
-  requestAnimationFrame(function(){ fabTicking = false; updateFabBackBtns(); updateFabTopVisibility(); });
+  requestAnimationFrame(function(){ fabTicking = false; updateFabBackBtns(); updateFabTopVisibility(); updateFabCollapse(); });
 }
 window.addEventListener("scroll", scheduleFabUpdate, { passive: true });
 window.addEventListener("resize", scheduleFabUpdate);
-document.addEventListener("click", function(){ setTimeout(function(){ updateFabBackBtns(); updateFabTopVisibility(); }, 80); });
+document.addEventListener("click", function(){ setTimeout(function(){ updateFabBackBtns(); updateFabTopVisibility(); updateFabCollapse(); }, 80); });
 if(fabBackBtns) fabBackBtns.addEventListener("click", function(){
   if(!fabTargetCard || !document.contains(fabTargetCard)) updateFabBackBtns();
   scrollToCardBtns(fabTargetCard);
@@ -4808,9 +4799,9 @@ function nextStepText(l){
   if(l.order_intent_at) return "客户说要下单了：抓紧确认数量、价格、定金，先别停跟进；定金到账后再点「成交」。";
   if(l.has_replied) return "客户回了：点「展开详情」看「助手建议」，挑一封点「用这封发」。";
   var n = parseInt(l.owner_contact_count, 10) || 0;
-  if(n === 0) return "点「发第一封」发出去，记得附上产品目录，发完回网站，5 秒内没点撤销就自动记 1 次。";
+  if(n === 0) return "点「发第一封」发出去，记得附上产品目录，发完回网站点「已联系」，弹框里点「确认记下」才算 1 次。";
   if(n >= 5) return "联系了 5 次都没回，不用再跟了。";
-  return "已经联系过 " + n + " 次：3 天没回就点「跟进信」，发完回网站等 5 秒自动记 1 次。";
+  return "已经联系过 " + n + " 次：3 天没回就点「跟进信」，发完回网站点「已联系」，弹框里点「确认记下」才算 1 次。";
 }
 
 /* ---------- 13. 今天最值得联系的 5 家（只看自己的） ---------- */
@@ -6349,29 +6340,8 @@ function firstVarietyName(lead){
   for(var i = 0; i < parts.length; i++){ if(parts[i].trim()){ first = parts[i].trim(); break; } }
   return first.split(/\s+/)[0] || "";
 }
-/* 回到顶部并折叠：先把这个区块收起，再把它的标题滚到屏幕正中间（回本区块顶部，不是页面最顶）。
-   全站通用：首页各区块、卡片里每个区块、消息折叠、报价区块、所有 details 折叠都用它。
-   不是 details 的流水账（div.activity）也用它：收起后滚到卡片上「全部记录」按钮。 */
-var COLLAPSE_BTN = '<div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>';
-function collapseSectionAndCenter(btn){
-  var d = btn ? btn.closest("details") : null;
-  if(d){
-    d.open = false;
-    var s = d.querySelector("summary");
-    if(!s) return;
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    requestAnimationFrame(function(){ s.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); });
-    return;
-  }
-  var act = btn ? btn.closest("[data-activity]") : null;
-  if(!act) return;
-  act.classList.remove("open");
-  var card = act.closest(".lead");
-  var t = card ? card.querySelector('[data-act="activity"]') : null;
-  if(!t) return;
-  var reduce2 = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  requestAnimationFrame(function(){ t.scrollIntoView({ behavior: reduce2 ? "auto" : "smooth", block: "center" }); });
-}
+/* 静态「回到顶部并折叠」按钮已取消，改成浮动的 #fabCollapse（见下面）：各区块底部不再放静态按钮，点浮动按钮收起当前正看着的区块。 */
+var COLLAPSE_BTN = '';
 /* 浮动圆按钮（#fabTop）绝不盖住卡片：只要它的位置压到任何一张客户卡片，就藏起来；没压到才显示。
    在滚动/改大小/点按/翻页后都重算一次，390px 手机上卡片展开到任意位置都不会被它挡住。 */
 function updateFabTopVisibility(){
@@ -6385,6 +6355,55 @@ function updateFabTopVisibility(){
   }
   fab.style.visibility = hide ? "hidden" : "visible";
 }
+/* 浮动「收起」按钮（#fabCollapse）：跟着页面滑动、始终停在右手拇指够得着的高度（屏幕右侧）。
+   点一下就收起当前正看着的那个区块、回到那个区块自己的标题。位置在圆形 ↑ 按钮上方，两个浮动按钮错开、互不遮挡。 */
+var lastOpenedDetails = null;
+function detailsDepth(d){
+  var depth = 0, p = d.parentElement;
+  while(p){ if(p.tagName === "DETAILS") depth++; p = p.parentElement; }
+  return depth;
+}
+function openDetailsInView(){
+  var res = [];
+  var list = document.querySelectorAll("details[open]");
+  var vh = window.innerHeight || 0;
+  for(var i=0;i<list.length;i++){
+    var r = list[i].getBoundingClientRect();
+    if(r.bottom > 0 && r.top < vh) res.push(list[i]);
+  }
+  return res;
+}
+function updateFabCollapse(){
+  var btn = $("fabCollapse"); if(!btn) return;
+  btn.classList.toggle("show", openDetailsInView().length > 0);
+}
+function collapseCurrentSection(){
+  var cy = (window.innerHeight || 0) * 0.5;
+  var inView = openDetailsInView();
+  var best = null, bestDepth = -1;
+  inView.forEach(function(d){
+    var r = d.getBoundingClientRect();
+    if(r.top <= cy && r.bottom >= cy){
+      var dep = detailsDepth(d);
+      if(dep >= bestDepth){ best = d; bestDepth = dep; }
+    }
+  });
+  if(!best){
+    inView.forEach(function(d){
+      var dep = detailsDepth(d);
+      if(dep >= bestDepth){ best = d; bestDepth = dep; }
+    });
+  }
+  if(!best && lastOpenedDetails && document.contains(lastOpenedDetails) && lastOpenedDetails.open) best = lastOpenedDetails;
+  if(!best) return;
+  best.open = false;
+  var sm = best.querySelector("summary");
+  if(sm){
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    requestAnimationFrame(function(){ sm.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); });
+  }
+  setTimeout(updateFabCollapse, 350);
+}
 /* 全站手风琴：任何一个折叠（details）点开，就把同一组里其他打开的收起来，一次只开一个。
    组 = 同一个父元素下的折叠；消息折叠（.msg-block）和卡片区块是两组，互不干扰（点开一封信不会关掉卡片区块，反过来也不会）。
    嵌套的折叠（比如背调三步在「价格背调」里、去水印在「找图片」里）只跟同级比，不会关掉自己的父级。
@@ -6393,6 +6412,8 @@ function updateFabTopVisibility(){
 document.addEventListener("toggle", function(ev){
   var d = ev.target;
   if(!d || d.tagName !== "DETAILS") return;
+  if(d.open){ lastOpenedDetails = d; }
+  updateFabCollapse();
   if(d.open){
     var parent = d.parentNode;
     if(parent){
