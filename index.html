@@ -392,9 +392,9 @@ details.undo-fold[open]>summary::before{content:"▾ "}
 .collision-banner{margin-top:12px;border:1px solid var(--red);color:var(--red);border-radius:0;padding:10px 12px;font-size:13.5px;background:transparent}
 .no-contact-note{margin-top:12px;color:var(--muted);font-size:13.5px}
 .lead.no-contact{opacity:1}
-.pending-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom));background:var(--green);color:#FAFAF8;border:1px solid var(--gold-line);padding:11px 16px;font-size:14px;z-index:70;max-width:92vw;text-align:center;display:none}
+.pending-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom));background:var(--green);color:#FAFAF8;border:3px solid var(--gold);border-radius:10px;box-shadow:0 10px 32px rgba(0,0,0,.45);padding:14px 18px;font-size:15.5px;font-weight:700;z-index:70;max-width:92vw;text-align:center;display:none}
 .pending-bar.show{display:block}
-.pending-bar button{background:none;border:none;color:#E8CF8F;text-decoration:underline;font-size:14px;cursor:pointer;padding:0 0 0 10px}
+.pending-bar button{background:#E8CF8F;border:none;color:#173C2B;font-weight:700;font-size:15px;cursor:pointer;padding:7px 16px;margin-left:12px;border-radius:6px}
 /* ---------- 电脑版优化：文字完整显示，不再被小框、窄栏、弹窗截断 ---------- */
 @media(min-width:1024px){
   body{font-size:16px}
@@ -568,7 +568,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
   <!-- 今天最值得联系的 5 家：默认收起，只显示标题行，点标题展开 -->
   <details class="panel panel-hero top5-fold" aria-label="今天最值得联系的 5 家">
     <summary><h2>今天最值得联系的 5 家 <span class="hint" id="top5Hint">只显示分给你的 · 星越多越值得先联系</span></h2></summary>
-    <p class="sync-line" id="top5Intro" style="margin:12px 0 10px">先从这里挑一家，点「WhatsApp 第一封」发出去。发完回来点「已联系」，弹框里点「确认记下」才算 1 次联系。</p>
+    <p class="sync-line" id="top5Intro" style="margin:12px 0 10px">先从这里挑一家，点「WhatsApp 第一封」发出去。发完 5 秒自动记 1 次，5 秒内点「撤销」就不记。</p>
     <div id="collisionLine" style="margin:0 0 10px;font-size:13.5px"></div>
     <div id="top5Box">正在读取…</div>
     <div id="top5Progress" class="sync-line" style="margin-top:10px"></div>
@@ -584,7 +584,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <div class="guide-bar" id="guideBar" aria-label="今天三步">
       <span class="g-step"><b>第一步</b>　从上面「今天最值得联系的 5 家」挑一家，点开卡片。</span>
       <span class="g-step"><b>第二步</b>　点「WhatsApp 第一封」发出去，记得附上产品目录。</span>
-      <span class="g-step"><b>第三步</b>　发完回网站点「已联系」，弹框里点「确认记下」才算 1 次联系。客户回了：展开卡片详情看「助手建议」，挑一封点「用这封发」。</span>
+      <span class="g-step"><b>第三步</b>　发完 5 秒自动记 1 次，5 秒内点「撤销」就不记。客户回了：展开卡片详情看「助手建议」，挑一封点「用这封发」。</span>
     </div>
   </details>
 
@@ -863,7 +863,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <p class="tut-note"><b>你每天只用干这几下：</b>下面五个决定，每个都是一点就行的选择。</p>
     <ol class="steps">
       <li><b>决定一：今天联系哪家。</b>打开页面最上面就是「今天最值得联系的 5 家」，只显示分给你的，5 星的排前面，挑一家点开看卡片。「早上报数」里每人各有 5 家，也可以从那里挑。</li>
-      <li><b>决定二：发哪一封。</b>卡片上每封信都有一个中文框：就在中文框里改，改完停一下，下面的外语版会自动翻译、跟着变；确认外语版已经更新成你要发的内容，再点发送，实际发出去的就是外语版。翻译时框下面会显示「正在翻译…」，翻不出来会提示「翻译没成功」，这时发送按钮会变灰，点「重试翻译」或确认「发旧版」才能发。发完回网站点「已联系」，弹框里点「确认记下」才算 1 次联系；只点开链接、没发出去不算。记得把产品目录一起发过去。点错了也不用慌：卡片上有「撤销」小字链接，点一下那次就不算数、联系次数减 1；如果那是这家唯一一次联系，「已联系」会一起取消、变回「未处理」，就像没点过一样。WhatsApp 第一封、WhatsApp 跟进信、Telegram 第一封、Telegram 跟进信都是这样改。Telegram 的客户点「Telegram 第一封」「Telegram 跟进信」；这家没留 Telegram 用户名时，点「复制这封」，复制了自己去 Telegram 搜到客户再发。想大改点「编辑消息」，同样是改中文，外语版自动翻译生成（只读，不用碰）。<span id="tutEmailLine">注意：邮件的跟进信要你自己发，AI 只帮王烁杉发他名下的。</span></li>
+      <li><b>决定二：发哪一封。</b>卡片上每封信都有一个中文框：就在中文框里改，改完停一下，下面的外语版会自动翻译、跟着变；确认外语版已经更新成你要发的内容，再点发送，实际发出去的就是外语版。翻译时框下面会显示「正在翻译…」，翻不出来会提示「翻译没成功」，这时发送按钮会变灰，点「重试翻译」或确认「发旧版」才能发。发完 5 秒自动记 1 次，5 秒内没发出去点「撤销」就不记。自己在手机上直接发的（没点网站上的发送链接），回来点「已联系」，弹框里点「确认记下」才算 1 次。记得把产品目录一起发过去。点错了也不用慌：卡片上有「撤销」小字链接，点一下那次就不算数、联系次数减 1；如果那是这家唯一一次联系，「已联系」会一起取消、变回「未处理」，就像没点过一样。WhatsApp 第一封、WhatsApp 跟进信、Telegram 第一封、Telegram 跟进信都是这样改。Telegram 的客户点「Telegram 第一封」「Telegram 跟进信」；这家没留 Telegram 用户名时，点「复制这封」，复制了自己去 Telegram 搜到客户再发。想大改点「编辑消息」，同样是改中文，外语版自动翻译生成（只读，不用碰）。<span id="tutEmailLine">注意：邮件的跟进信要你自己发，AI 只帮王烁杉发他名下的。</span></li>
       <li><b>决定三：客户回了怎么回。</b>展开卡片详情，「助手建议」一次给你两三个回复，挑一个点「用这封发」就直接发出去了，不用再等谁点头。客户回了点一下「客户回了」，联系次数从 0 重新数。</li>
       <li><b>决定四：报不报价、报多少。</b>卡片上点「报价」（只有一个报价入口），分两步：先填货、再看单发出去。第 1 步先给 1 行空行，不够点「+ 加一行」往下加（最多 20 行），没填品种的空行不算钱、也不进报价单。每行 7 个栏，能选的都用下拉：①品种——下拉里是价目表那 36 个品种，选了自动带价；下拉里没有的选「其他（自己填）」打字填，那行会标「估价」、单价自己估。②规格——选了品种，下拉里就是这个品种在价目表里的规格，选了价格跟着走；没有的选「其他（自己填）」。③数量。④根部形式——裸根 / 带土球 / 容器苗，选带土球再填土球直径。⑤包装方式——下拉里选，没有的选「其他（自己填）」。⑥单价——表里的自动带低价、显示价区间，能在区间里改。⑦小计——自动算，不用管。报价单上写明有效期 15 天、贸易条款 FCA 中国口岸、定金 50%。客户还没说要什么品种、规格的，先问客户，别急着报。估价报完不用单独告诉王烁杉，晚上 8 点汇总里会记一笔。第 2 步看单：最上面会写清这家的<b>发给</b>到底是哪个——默认是这家上次实际联系用的渠道（和第一封同一个地方），想换渠道手动选，具体号码 / 邮箱 / 用户名都写出来了，不会发错地方。交货期那栏有两个按钮：客户问了交货期，点「先问王烁杉定交货期」，报价先存草稿、等他定了再发；客户没问，点「客户没问交货期，先发」，报价单上写「交货期：确认中，3 天内回复你」，不留空白行。话术也在弹窗里改：中文框里改，停一下外文版自动翻译跟着变，价格明细行是按你填的单价数量自动生成的、翻译不会动它；确认外文版对了，点「发送报价」一键发出去。报价太长发不出去时，会提示你分两段发。这家要是没留能一键发送的联系方式，弹窗里会写明，点发送只会存成草稿、不会假装发出去，外文版长按文字复制自己发就行。</li>
       <li><b>决定五：成交还是继续跟。</b>客户说要下单，先点卡片上的「客户要下单了」（不要停跟进），王烁杉会看到；等定金到账再点「成交」，会先弹确认框，确认后出现成交清单，照着做完，再点「马上告诉王烁杉」。没回就等 3 天，卡片上会出现「该跟进了」，点一下就发跟进信；满 5 次没回会自动转「没兴趣」，想接着跟点「继续跟进」，重新算 5 次。点错了都能取消，所有状态都行：卡片上有「取消要下单」「取消客户回了」「取消已成交」「取消没兴趣」（手动标的和联系满 5 次自动标的都能取消）「取消重点跟进」；「已联系」有「撤销上次联系」，要是没有联系记录（下拉手动改的、点错试出来的、以前的老数据）也有「取消已联系」，不会卡死；转交错了，展开详情在「更多操作」里点「取消转交」，会转回上一个负责人。点之前都会先弹确认框、写清楚取消后会变成什么，取消了也会记进流水账。只是试功能点错了，照着取消就行，不用怕。</li>
@@ -1500,11 +1500,18 @@ function showPendingContact(lead, channel, kind, card){
   hidePendingContact(true);
   var bar = $("pendingBar");
   var chZh = channel === "whatsapp" ? "WhatsApp" : (channel === "email" ? "邮件" : "Telegram");
-  $("pendingText").textContent = "已记 1 次，没发出去点这里撤销";
+  var left = 5;
+  $("pendingText").textContent = "5 秒后自动记 1 次，没发出去点「撤销」";
   bar.classList.add("show");
-  pendingSend = { lead: lead, channel: channel, kind: kind, card: card || null,
+  var cd = setInterval(function(){
+    left -= 1;
+    if(left <= 0 || !pendingSend || pendingSend.countdown !== cd){ clearInterval(cd); return; }
+    $("pendingText").textContent = left + " 秒后自动记 1 次，没发出去点「撤销」";
+  }, 1000);
+  pendingSend = { lead: lead, channel: channel, kind: kind, card: card || null, countdown: cd,
     timer: setTimeout(function(){
       var p = pendingSend; pendingSend = null;
+      clearInterval(cd);
       bar.classList.remove("show");
       if(p) recordContact(p.lead, p.channel, p.kind, p.card);
     }, 5000) };
@@ -1515,6 +1522,8 @@ function hidePendingContact(keepTimer){
   if(pendingSend){
     if(pendingSend.timer) clearTimeout(pendingSend.timer);
     if(pendingSend.quoteTimer) clearTimeout(pendingSend.quoteTimer);
+    if(pendingSend.countdown) clearInterval(pendingSend.countdown);
+    if(pendingSend.quoteCd) clearInterval(pendingSend.quoteCd);
     pendingSend = null;
   }
 }
@@ -4799,9 +4808,9 @@ function nextStepText(l){
   if(l.order_intent_at) return "客户说要下单了：抓紧确认数量、价格、定金，先别停跟进；定金到账后再点「成交」。";
   if(l.has_replied) return "客户回了：点「展开详情」看「助手建议」，挑一封点「用这封发」。";
   var n = parseInt(l.owner_contact_count, 10) || 0;
-  if(n === 0) return "点「发第一封」发出去，记得附上产品目录，发完回网站点「已联系」，弹框里点「确认记下」才算 1 次。";
+  if(n === 0) return "点「发第一封」发出去，记得附上产品目录，发完 5 秒自动记 1 次，5 秒内点「撤销」就不记。";
   if(n >= 5) return "联系了 5 次都没回，不用再跟了。";
-  return "已经联系过 " + n + " 次：3 天没回就点「跟进信」，发完回网站点「已联系」，弹框里点「确认记下」才算 1 次。";
+  return "已经联系过 " + n + " 次：3 天没回就点「跟进信」，发完 5 秒自动记 1 次，5 秒内点「撤销」就不记。";
 }
 
 /* ---------- 13. 今天最值得联系的 5 家（只看自己的） ---------- */
@@ -5586,10 +5595,18 @@ function saveQuote(status){
     var opened = openQuoteChannelLong(lead, sendText);
     if(!opened) return;
     /* 点“发送报价”先存草稿、打开渠道，回来 5 秒内没点撤销才记“已发出”，点了撤销就还是草稿 */
+    hidePendingContact(false);
     var bar = $("pendingBar");
-    $("pendingText").textContent = "已记已发出，没发出去点这里撤销";
+    var qLeft = 5;
+    $("pendingText").textContent = "5 秒后自动记已发出，没发出去点「撤销」";
     bar.classList.add("show");
+    var qCd = setInterval(function(){
+      qLeft -= 1;
+      if(qLeft <= 0 || !pendingSend || pendingSend.quoteCd !== qCd){ clearInterval(qCd); return; }
+      $("pendingText").textContent = qLeft + " 秒后自动记已发出，没发出去点「撤销」";
+    }, 1000);
     var timer = setTimeout(function(){
+      clearInterval(qCd);
       bar.classList.remove("show");
       var done = function(){
         return logActivity(lead.id, "quote", "报价已发出（" + quoteChannel(lead).label + " " + quoteChannel(lead).value + "），" + money(q.total)).then(function(){
@@ -5601,7 +5618,7 @@ function saveQuote(status){
         api("quote_drafts?id=eq." + encodeURIComponent(draftId), { method:"PATCH", headers:{ "Prefer":"return=minimal" }, body:{ status: "sent" } }).then(done, done);
       } else done();
     }, 5000);
-    pendingSend = { quoteTimer: timer, isQuote: true };
+    pendingSend = { quoteTimer: timer, quoteCd: qCd, isQuote: true };
   })
   .catch(function(e){ errEl.textContent = "保存失败：" + (e.message || "请重试"); errEl.className = "err show"; })
   .then(function(){ if(btn) btn.disabled = false; });
