@@ -114,6 +114,9 @@ button,select,input[type="text"],input[type="email"],input[type="password"]{min-
 .img-note-list .img-note-title{font-size:13px;font-weight:700;color:var(--green);letter-spacing:.03em;margin-bottom:2px}
 .img-note-list a{display:block;padding:9px 2px;border-bottom:1px solid var(--line);font-size:14px;overflow-wrap:anywhere}
 .img-note-list a:last-child{border-bottom:none}
+.img-xhs-hint{margin-top:12px;border:1px solid var(--gold-line);background:var(--bg2);color:var(--green);padding:12px 14px;font-size:14px;line-height:1.7}
+.img-xhs-hint p{margin:0 0 10px}
+.img-xhs-hint .btn{width:100%}
 details.img-wm{margin-top:14px;border:1px solid var(--line);border-radius:0;padding:12px 14px;background:#fff;font-size:14px}
 details.img-wm>summary{cursor:pointer;list-style:none;font-weight:700;color:var(--green);font-size:14px;min-height:48px;display:flex;align-items:center}
 details.img-wm>summary::-webkit-details-marker{display:none}
@@ -664,7 +667,11 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <input type="text" id="imgVariety" class="img-variety-input" placeholder="输入品种名，如：蓝云杉" autocomplete="off">
     <div class="img-search-btns">
       <button class="btn btn-green" type="button" id="imgGoogleBtn" disabled>找图片（谷歌图片）↗</button>
-      <button class="btn btn-outline" type="button" id="imgXhsBtn" disabled>在小红书搜 ↗</button>
+      <button class="btn btn-outline" type="button" id="imgXhsBtn" disabled>在小红书 App 里搜 ↗</button>
+    </div>
+    <div id="imgXhsHint" class="img-xhs-hint" hidden>
+      <p>如果没跳到小红书 App，点浏览器里的「在 App 内打开」，或复制关键词去 App 里搜。</p>
+      <button class="btn btn-outline" type="button" id="imgXhsCopyBtn">复制关键词</button>
     </div>
     <div id="imgNoteList"></div>
     <details class="fold-in img-wm-tool">
@@ -6503,11 +6510,11 @@ function updateImgPanel(){
   if(v){
     g.disabled = false; x.disabled = false;
     g.textContent = "找「" + v + "」的图片（谷歌图片）↗";
-    x.textContent = "在小红书搜「" + v + "」↗";
+    x.textContent = "在小红书 App 里搜「" + v + "」↗";
   } else {
     g.disabled = true; x.disabled = true;
     g.textContent = "找图片（谷歌图片）↗";
-    x.textContent = "在小红书搜 ↗";
+    x.textContent = "在小红书 App 里搜 ↗";
   }
   var html = "";
   for(var key in XHS_NOTES){
@@ -6527,7 +6534,31 @@ $("imgGoogleBtn").addEventListener("click", function(){
 });
 $("imgXhsBtn").addEventListener("click", function(){
   var v = $("imgVariety").value.trim(); if(!v) return;
-  window.open("https://www.xiaohongshu.com/search_result?keyword=" + encodeURIComponent(v + "苗") + "&type=51", "_blank");
+  var kw = v + "苗";
+  var webUrl = "https://www.xiaohongshu.com/search_result?keyword=" + encodeURIComponent(kw) + "&type=51";
+  var href = webUrl, newTab = true;
+  if(/android/i.test(navigator.userAgent)){
+    /* 安卓用 intent 直接拉起小红书 App，没装 App 时回落到网页版搜索地址 */
+    href = "intent://www.xiaohongshu.com/search_result?keyword=" + encodeURIComponent(kw) + "&type=51#Intent;scheme=https;package=com.xingin.xhs;S.browser_fallback_url=" + encodeURIComponent(webUrl) + ";end";
+    newTab = false;
+  }
+  /* 真实链接点击（不用 window.open），iOS Universal Link / 安卓 App Link 才能拦截拉起 App */
+  var a = document.createElement("a");
+  a.href = href;
+  if(newTab){ a.target = "_blank"; a.rel = "noopener"; }
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  var hint = $("imgXhsHint"); if(hint) hint.hidden = false;
+});
+$("imgXhsCopyBtn").addEventListener("click", function(){
+  var v = $("imgVariety").value.trim(); if(!v) return;
+  var kw = v + "苗";
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(kw).then(function(){ toast("关键词已复制，去小红书 App 里粘贴搜"); }, function(){ toast("复制失败，请手动输入关键词：" + kw, true); });
+  } else {
+    toast("复制失败，请手动输入关键词：" + kw, true);
+  }
 });
 /* 去水印通道：粘贴小红书笔记链接，点按钮先把链接复制好、再打开 xiazaitu.com，过去粘贴解析即可 */
 function updateWmBtn(){
