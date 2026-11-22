@@ -47,6 +47,15 @@ button,select,input[type="text"],input[type="email"],input[type="password"]{min-
 .btn-primary:active{background:#1E5C3F}
 .btn-outline{border-color:#143527;background:#FFFEFA;color:var(--green);box-shadow:0 1px 3px rgba(20,53,39,.10)}
 .btn-outline:hover{border-color:var(--green);background:var(--green-soft)}
+/* 回收站 / 已藏起 / 报价回收站：只用站内已有的浅色变量，不另起颜色 */
+.trash-view-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.trash-view-row .btn[aria-pressed="true"]{background:var(--green-soft);border-color:var(--green)}
+.btn-danger{border-color:var(--red);background:var(--red-bg);color:var(--red)}
+.btn-danger:hover{border-color:var(--red);background:#F3DFD9}
+.trash-banner{border:1px solid var(--gold-line);background:var(--amber-bg);color:var(--green);padding:12px 14px;margin-top:10px;font-size:14px;line-height:1.6}
+.hide-reason{width:100%;margin-top:8px;padding:9px 10px;border:1px solid var(--line);background:#fff;min-height:44px;font-size:14px}
+.quote-trash-item{border:1px solid var(--line);background:#fff;padding:10px 12px;margin-top:8px;font-size:14px;line-height:1.6}
+.quote-trash-item .btn{margin:6px 8px 0 0}
 .btn-green{background:linear-gradient(180deg,#1C4732,#143527);border-color:#0D291D;color:#FAFAF8;box-shadow:0 2px 6px rgba(20,53,39,.24),inset 0 1px 0 rgba(255,255,255,.10)}
 .btn-green:hover{background:linear-gradient(180deg,#256045,#1E5C3F)}
 .btn-sm{min-height:48px;padding:8px 14px;font-size:13.5px;border-radius:3px;background:#F8F4E9;box-shadow:0 1px 2px rgba(20,53,39,.08)}
@@ -95,6 +104,33 @@ button,select,input[type="text"],input[type="email"],input[type="password"]{min-
 .count-line{font-size:13px;color:var(--muted);margin-top:10px}
 .search-row{margin-top:10px}
 .search-row input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:48px}
+/* ---------- 找图片面板 ---------- */
+#imgPanel{scroll-margin-top:84px}
+.img-variety-input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:48px}
+.img-search-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.img-search-btns .btn{flex:1 1 220px}
+.img-search-btns .btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;background:#EFEDE4;color:#8A877A;border-color:var(--line)}
+.img-note-list{margin-top:14px;border-top:1px solid var(--gold-line);padding-top:10px}
+.img-note-list .img-note-title{font-size:13px;font-weight:700;color:var(--green);letter-spacing:.03em;margin-bottom:2px}
+.img-note-list a{display:block;padding:9px 2px;border-bottom:1px solid var(--line);font-size:14px;overflow-wrap:anywhere}
+.img-note-list a:last-child{border-bottom:none}
+details.img-wm{margin-top:14px;border:1px solid var(--line);border-radius:0;padding:12px 14px;background:#fff;font-size:14px}
+details.img-wm>summary{cursor:pointer;list-style:none;font-weight:700;color:var(--green);font-size:14px;min-height:48px;display:flex;align-items:center}
+details.img-wm>summary::-webkit-details-marker{display:none}
+details.img-wm>summary::before{content:"▸ ";color:var(--gold)}
+details.img-wm[open]>summary::before{content:"▾ "}
+details.img-wm p{margin:6px 0 2px;color:#3D443E}
+.img-wm-tool{margin-top:16px;border:1px solid var(--line);background:#fff;padding:14px}
+.cat-chip-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.cat-chip.on{background:var(--green);color:#FAFAF8;border-color:var(--green)}
+.group-head{font-family:var(--serif);font-size:19px;color:var(--green);letter-spacing:.03em;margin:22px 0 2px}
+.group-head::after{content:"";display:block;width:36px;height:1px;background:var(--gold);margin-top:7px}
+.photos-box{font-size:13.5px;color:#3D443E}
+.photos-box .msg-actions{margin-top:10px}
+.img-wm-title{font-weight:700;color:var(--green);font-size:15px;margin-bottom:6px}
+.img-wm-steps{margin:0 0 8px;color:#3D443E;font-size:14px;line-height:1.75}
+.img-wm-note{margin:0 0 12px;font-size:12.5px;color:var(--muted);line-height:1.6}
+.img-wm-btns .btn-wm-clear{flex:0 0 auto}
 /* ---------- lead cards ---------- */
 .cards{display:flex;flex-direction:column;gap:24px;margin-top:16px}
 .lead{background:var(--card);border:none;border-bottom:1px solid var(--gold-line);border-radius:0;box-shadow:none;padding:20px 16px;transition:none}
@@ -256,6 +292,29 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
 .back-btns-link:hover{color:var(--green);border-bottom-color:var(--gold)}
 #fabBackBtns{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:45;display:none;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);padding:0 20px;min-height:52px;font-size:15px;font-weight:700;letter-spacing:.03em;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
 #fabBackBtns.show{display:block}
+/* ---------- 客户列表分页：每页 3 个 + 卡片排序号 + 全局回到顶部 ---------- */
+.lead-seq{display:inline-block;background:var(--green);color:#F5CF8A;border:1px solid var(--gold-line);font-size:13px;font-weight:700;letter-spacing:.06em;padding:3px 10px;margin:0 0 8px;line-height:1.5}
+.lead-seq b{font-size:16px;color:#FAFAF8;font-variant-numeric:tabular-nums;margin:0 1px}
+.pager{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;order:5;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-top:2px solid var(--gold-line)}
+#pagerBarTop{margin:22px 0 10px;scroll-margin-top:96px}
+#pagerBar{margin:10px 0 6px}
+.pager-info{font-size:15px;font-weight:700;color:var(--green);letter-spacing:.04em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pager .btn{min-height:52px;padding:10px 20px;font-size:15px;flex:1 1 0;max-width:210px}
+.pager .btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;background:#EFEDE4;color:#8A877A;border-color:var(--line)}
+.pager-jump{display:flex;align-items:center;justify-content:center;gap:8px;flex:1 1 100%;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.pager-jump-label{font-size:15px;font-weight:700;color:var(--green);white-space:nowrap}
+.pager-jump-input{width:76px;min-height:48px;padding:8px 6px;font-size:16px;text-align:center;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:0;font-variant-numeric:tabular-nums}
+.pager-jump-input:focus{outline:2px solid var(--gold-line);outline-offset:1px}
+.pager-jump .btn{flex:0 0 auto;min-height:48px;padding:8px 22px;max-width:none}
+#fabTop{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:44;width:48px;height:48px;min-height:48px;border-radius:50%;padding:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);font-size:20px;font-weight:700;line-height:1;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
+/* 页面底部多留空隙：最后一张卡的按钮不被右下角悬浮按钮压住 */
+#appView{padding-bottom:132px}
+/* ---------- Top 5 折叠：默认收起，只显示标题行，点标题展开 ---------- */
+details.top5-fold>summary{cursor:pointer;list-style:none;display:flex;align-items:flex-start;gap:8px}
+details.top5-fold>summary::-webkit-details-marker{display:none}
+details.top5-fold>summary::before{content:"▸";color:var(--gold-soft);font-size:18px;line-height:1.45;flex:none}
+details.top5-fold[open]>summary::before{content:"▾"}
+details.top5-fold>summary h2{flex:1 1 auto;margin:0}
 @media (prefers-reduced-motion: reduce){
   .quick-actions.flash{animation:none;box-shadow:inset 0 0 0 2px var(--gold)}
 }
@@ -277,6 +336,13 @@ details.fold-in{margin-top:12px;border-top:1px solid var(--line);padding-top:12p
 details.fold-in>summary{cursor:pointer;list-style:none;font-weight:700;color:var(--green);font-size:13.5px;min-height:48px;display:flex;align-items:center}
 details.fold-in>summary::-webkit-details-marker{display:none}
 details.fold-in>summary::before{content:"▸ ";color:var(--gold)}
+/* 背调（客户背调 / 查品种背调 / 首页价格背调）：只用现有的浅色变量，米白底、深绿、细金线 */
+.bg-box{margin-top:10px;border:1px solid var(--line);background:#fff;padding:12px 14px}
+.bg-k{font-size:13px;font-weight:700;color:var(--green)}
+.bg-v{font-size:14px;line-height:1.7;overflow-wrap:anywhere}
+.bg-note{font-size:13px;color:var(--muted);line-height:1.7;overflow-wrap:anywhere}
+.bg-item{border-top:1px solid var(--line);padding:12px 0}
+.bg-item:first-child{border-top:none;padding-top:0}
 details.fold-in[open]>summary::before{content:"▾ "}
 details.fold-in .filters{margin-top:10px}
 /* 要发的消息：每封信单独折起来，默认都收起，想看哪封点哪封 */
@@ -414,6 +480,12 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
   .next-step{font-size:15px}
   .count-line{font-size:14px}
 }
+/* 报价第 2 步手机版：5 个按钮一排挤不下，改两列换行，发送报价单独占一行 */
+@media(max-width:640px){
+  #quoteStep2 .modal-btns{flex-wrap:wrap}
+  #quoteStep2 .modal-btns .btn{flex:1 1 44%}
+  #quoteStep2 .modal-btns .btn:last-child{flex-basis:100%}
+}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{transition:none!important;animation:none!important}
   .lead:hover{transform:none}
@@ -421,19 +493,20 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
 /* ---------- 首页顺序：今天干什么 → Top 5 → 线索列表，其余收起的区块排在列表下面 ---------- */
 #appView{display:flex;flex-direction:column}
 #appView>header{order:0}
-#appView section[aria-label="今天最值得联系的 5 家"]{order:1}
+#appView details[aria-label="今天最值得联系的 5 家"]{order:1}
 #dealBanner{order:2}
-#appView section[aria-label="筛选"]{order:3}
-#listBox{order:4}
-#appView details[aria-label="今天三步"]{order:5}
-#askPanel{order:6}
-#orderPanel{order:7}
-#appView details[aria-label="汇总与同步"]{order:8}
-#appView details[aria-label="团队总览"]{order:9}
-#statsFold{order:10}
-#appView details[aria-label="我的 WhatsApp 与团队名单"]{order:11}
-#appView details[aria-label="使用教程"]{order:12}
-#appView .foot{order:13}
+#appView section[aria-label="找图片"]{order:3}
+#appView section[aria-label="筛选"]{order:4}
+#listBox{order:5}
+#appView details[aria-label="今天三步"]{order:6}
+#askPanel{order:7}
+#orderPanel{order:8}
+#appView details[aria-label="汇总与同步"]{order:9}
+#appView details[aria-label="团队总览"]{order:10}
+#statsFold{order:11}
+#appView details[aria-label="我的 WhatsApp 与团队名单"]{order:12}
+#appView details[aria-label="使用教程"]{order:13}
+#appView .foot{order:14}
 /* 只用浅色：全站只有一套米白底（#FAFAF8）+ 深绿 + 细金线配色，color-scheme 只声明 light，系统深色也不会变黑 */
 </style>
 </head>
@@ -491,15 +564,16 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <div class="notice-banner" id="noticeBanner" style="display:none"></div>
   </header>
 
-  <!-- 今天最值得联系的 5 家：一进来先看到它 -->
-  <section class="panel panel-hero" aria-label="今天最值得联系的 5 家">
-    <h2>今天最值得联系的 5 家 <span class="hint" id="top5Hint">只显示分给你的 · 星越多越值得先联系</span></h2>
-    <p class="sync-line" style="margin:0 0 10px">先从这里挑一家，点「WhatsApp 第一封」发出去。发完回来，5 秒内没点撤销就自动记 1 次联系，不用再点「已联系」。</p>
+  <!-- 今天最值得联系的 5 家：默认收起，只显示标题行，点标题展开 -->
+  <details class="panel panel-hero top5-fold" aria-label="今天最值得联系的 5 家">
+    <summary><h2>今天最值得联系的 5 家 <span class="hint" id="top5Hint">只显示分给你的 · 星越多越值得先联系</span></h2></summary>
+    <p class="sync-line" id="top5Intro" style="margin:12px 0 10px">先从这里挑一家，点「WhatsApp 第一封」发出去。发完回来，5 秒内没点撤销就自动记 1 次联系，不用再点「已联系」。</p>
     <div id="collisionLine" style="margin:0 0 10px;font-size:13.5px"></div>
     <div id="top5Box">正在读取…</div>
     <div id="top5Progress" class="sync-line" style="margin-top:10px"></div>
     <button class="btn btn-outline btn-sm" id="top5Next" type="button" style="margin-top:10px">继续下一批</button>
-  </section>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
+  </details>
 
   <!-- 成交后马上告诉王烁杉 -->
   <div class="deal-banner" id="dealBanner" role="status"></div>
@@ -512,6 +586,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <span class="g-step"><b>第二步</b>　点「WhatsApp 第一封」发出去，记得附上产品目录。</span>
       <span class="g-step"><b>第三步</b>　发完回网站，5 秒内没点撤销就自动记 1 次联系，不用再点。客户回了：展开卡片详情看「助手建议」，挑一封点「用这封发」。</span>
     </div>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 待我回答（只有团队负责人和管理员能看到，JS 控制显隐） -->
@@ -548,25 +623,145 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <h2>数据更新情况</h2>
       <div class="sync-line" id="syncBox">正在读取…</div>
     </section>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 团队总览（收起来的折叠区，默认收起） -->
   <details class="fold" aria-label="团队总览">
     <summary>团队总览 <span class="hint">只算自动记下来的四项</span></summary>
     <div class="overview-grid" id="overviewBox">正在读取…</div>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 我的统计（收起来的折叠区，默认收起） -->
   <details class="fold" id="statsFold" aria-label="我的统计">
     <summary>我的统计 <span class="hint">这个月你联系了几家、回了几家、成交了几家</span></summary>
     <div id="statsBox">正在读取…</div>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
+  <!-- 找图片：输品种名，谷歌图片和小红书两个通道；小红书图去水印自取 -->
+  <details class="fold" id="imgPanel" aria-label="找图片">
+    <summary>找图片 <span class="hint">输入品种名，谷歌图片和小红书都能搜</span></summary>
+    <p class="sync-line" style="margin:0 0 12px">输入品种名，谷歌图片和小红书都能搜；小红书上的图想要无水印的，按下面「去水印」自己取，不用等助手。</p>
+    <input type="text" id="imgVariety" class="img-variety-input" placeholder="输入品种名，如：蓝云杉" autocomplete="off">
+    <div class="img-search-btns">
+      <button class="btn btn-green" type="button" id="imgGoogleBtn" disabled>找图片（谷歌图片）↗</button>
+      <button class="btn btn-outline" type="button" id="imgXhsBtn" disabled>在小红书搜 ↗</button>
+    </div>
+    <div id="imgNoteList"></div>
+    <details class="fold-in img-wm-tool">
+      <summary>去水印</summary>
+      <p class="img-wm-steps">① 在小红书打开挑中的笔记，点分享 → 复制链接<br>② 把链接粘贴到下面输入框<br>③ 点「去 xiazaitu.com 解析」<br>④ 在打开的 xiazaitu.com 输入框里粘贴（链接已自动复制好）、点解析、下载保存无水印成品</p>
+      <p class="img-wm-note">提醒：链接本身在小红书打不开（笔记被删或暂时看不了）时，解析也会失败，换一条能打开的笔记再试。</p>
+      <input type="text" id="wmLink" class="img-variety-input" placeholder="粘贴小红书笔记链接，如 https://www.xiaohongshu.com/explore/……" autocomplete="off">
+      <div class="img-search-btns img-wm-btns">
+        <button class="btn btn-green" type="button" id="wmGoBtn" disabled>去 xiazaitu.com 解析 ↗</button>
+        <button class="btn btn-outline btn-wm-clear" type="button" id="wmClearBtn">清空</button>
+      </div>
+    </details>
+    <details class="img-wm">
+      <summary>备用：微信小程序去水印</summary>
+      <p>海龟去水印（免费、不限量、不用登录）、解析酱（批量下整套图）、小氧去水印（保原画质）。用法：微信搜小程序名打开，粘贴笔记链接，解析后保存。</p>
+    </details>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
+  </details>
+
+  <!-- 价格背调：首页工具，默认折叠；三步：选公司 → 填品种规格 → 点查 -->
+  <details class="fold" id="bgToolFold" aria-label="价格背调">
+    <summary>价格背调 <span class="hint">选公司 → 填品种规格 → 点查，结果在这里看</span></summary>
+    <p class="sync-line" style="margin:12px 0">客户问价先在这里查：第一步选公司，第二步填品种和规格，第三步点查。助手查它那个市场的当地价、进口渠道价、中国市场进口价，再给针对这个客户的报价指导价。查到的价格全标「参考价，未核实」，每项写清来源；查不到的写「未查到公开数据」，不编价。只给团队看，不发客户。</p>
+    <details class="fold-in">
+      <summary>第一步 · 选公司</summary>
+      <div style="margin-top:10px">
+        <select id="bgCompany" class="img-variety-input" style="min-height:48px" aria-label="背调第一步：从线索里选一家公司"></select>
+        <p class="sync-line" id="bgCompanyHint" style="margin:8px 0 0">公司列表直接从线索库里读：新线索一入库就自动出现在这里，不用手动加。</p>
+        <div id="bgCompanyInfo"></div>
+        <div id="bgNoCompany" style="margin-top:10px">
+          <div style="display:flex;gap:8px">
+            <label style="flex:1;min-width:0">地区
+              <select id="bgRegion" class="img-variety-input" style="min-height:48px" aria-label="背调：不选公司时，先选地区">
+                <option value="">先选地区（选填）</option>
+                <option>中亚</option><option>中东</option><option>东南亚</option>
+                <option>俄罗斯及周边</option><option>南亚</option><option>东亚</option>
+                <option>南美</option><option>大洋洲</option>
+              </select>
+            </label>
+            <label style="flex:1;min-width:0">国家
+              <input type="text" id="bgCountry" class="img-variety-input" placeholder="国家（选填）" autocomplete="off" aria-label="背调：不选公司时，国家（选填）">
+            </label>
+          </div>
+          <div style="margin-top:8px">
+            <input type="text" id="bgCity" class="img-variety-input" placeholder="城市（选填），如：多哈" autocomplete="off" aria-label="背调：不选公司时，城市（选填）">
+          </div>
+          <p class="sync-line" style="margin:8px 0 0">不选公司就按地区/国家查通用市场价：不选国家时，助手按这个品种的主要出口市场查，并在小结里写清查的是哪个市场。</p>
+        </div>
+      </div>
+    </details>
+    <details class="fold-in">
+      <summary>第二步 · 填品种、规格、数量</summary>
+      <div style="margin-top:10px">
+        <label style="display:block;font-size:13px;font-weight:600;color:var(--green)">品种（必填）
+          <input type="text" id="bgVariety" class="img-variety-input" style="margin-top:4px" placeholder="如：橄榄树" autocomplete="off" aria-label="背调第二步：输入品种名">
+        </label>
+        <p style="margin:12px 0 0;font-size:13px;font-weight:600;color:var(--green)">规格先选标准（规格可以不填）</p>
+        <div class="msg-actions" style="margin-top:6px">
+          <button class="btn btn-green btn-sm" type="button" id="bgStdCn" aria-label="规格标准：中国标准（高、地径、盆径）">中国标准</button>
+          <button class="btn btn-outline btn-sm" type="button" id="bgStdIntl" aria-label="规格标准：国际标准（高、胸径/干围、容器升数）">国际标准</button>
+        </div>
+        <p class="sync-line" id="bgStdHint" style="margin:8px 0 0">中国标准按高、地径、盆径填；查客户当地价时，助手会先约等于换算成国际标准再查，结果里写清对照关系。</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+          <label style="min-width:0">高（选填）
+            <input type="text" id="bgHeight" class="img-variety-input" placeholder="如：2-2.5 米" autocomplete="off" aria-label="背调第二步：规格-高（选填）">
+          </label>
+          <span id="bgSpecCn" style="display:contents">
+            <label style="min-width:0">地径（选填）
+              <input type="text" id="bgGround" class="img-variety-input" placeholder="如：5-6 cm" autocomplete="off" aria-label="背调第二步：规格-地径（选填，中国标准）">
+            </label>
+            <label style="min-width:0">盆径（选填）
+              <input type="text" id="bgPot" class="img-variety-input" placeholder="如：25 cm" autocomplete="off" aria-label="背调第二步：规格-盆径（选填，中国标准）">
+            </label>
+          </span>
+          <span id="bgSpecIntl" style="display:none">
+            <label style="min-width:0">胸径 / 干围（选填）
+              <input type="text" id="bgGirth" class="img-variety-input" placeholder="如：10-12 cm" autocomplete="off" aria-label="背调第二步：规格-胸径/干围（选填，国际标准）">
+            </label>
+            <label style="min-width:0">容器（选填）
+              <input type="text" id="bgContainer" class="img-variety-input" placeholder="如：15 升" autocomplete="off" aria-label="背调第二步：规格-容器升数（选填，国际标准）">
+            </label>
+          </span>
+          <label style="min-width:0">数量（选填）
+            <input type="text" id="bgQuantity" class="img-variety-input" placeholder="如：500 株" autocomplete="off" aria-label="背调第二步：数量（选填）">
+          </label>
+        </div>
+        <p class="sync-line" style="margin:8px 0 0">规格和数量都是选填：填得越准，查到的价越对得上；客户没说规格、或者不知道按哪个标准，就全空着点查——助手按这个品种最常见的两三个规格查，给一个区间价、每个规格多少钱都列出来，并附一句问客户要规格的话，问清了再报准价。</p>
+      </div>
+    </details>
+    <details class="fold-in">
+      <summary>第三步 · 点查</summary>
+      <button class="btn btn-green" type="button" id="bgStartBtn" style="width:100%;margin-top:10px" disabled aria-label="开始背调">开始背调</button>
+      <p class="sync-line" id="bgStartHint" style="margin:8px 0 0">先在第二步填上品种名，这个按钮才能点。</p>
+    </details>
+    <div id="bgToolList" style="margin-top:14px">还没有价格背调记录。</div>
+    <div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" id="bgRefreshBtn">刷新结果</button></div>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
+  </details>
   <!-- 筛选：搜索框常在外面，更多筛选收起来 -->
   <section class="panel" aria-label="筛选">
     <h2>筛选</h2>
     <div class="search-row"><input type="text" id="fSearch" placeholder="搜公司名 / 产品 / 国家，可以一起搜，如：哈萨克斯坦 玫瑰"></div>
     <div class="count-line" id="countLine"></div>
+    <div class="trash-view-row" role="group" aria-label="回收站和已藏起">
+      <button class="btn btn-outline btn-sm" type="button" id="viewAllBtn" aria-pressed="true">全部线索</button>
+      <button class="btn btn-outline btn-sm" type="button" id="viewTrashBtn" aria-pressed="false">回收站（<span id="trashCount">0</span>）</button>
+      <button class="btn btn-outline btn-sm" type="button" id="viewHiddenBtn" aria-pressed="false">已藏起（<span id="hiddenCount">0</span>）</button>
+      <span class="sync-line" id="viewHint" style="align-self:center">删掉的线索先进回收站，随时能恢复；不靠谱的线索藏起来，在「已藏起」里看、能恢复。</span>
+    </div>
+    <div class="cat-chip-row">
+      <button class="btn btn-outline btn-sm cat-chip" type="button" data-cat-chip="expo">展会信息</button>
+      <button class="btn btn-outline btn-sm cat-chip" type="button" data-cat-chip="import_data">进口数据</button>
+      <span class="sync-line" style="margin:0">点一下只看那组，再点一下恢复看全部。</span>
+    </div>
     <details class="fold-in">
       <summary>更多筛选：负责人 · 地区 · 状态 · 联系方式 · 导出 CSV</summary>
       <div class="filters">
@@ -619,8 +814,34 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     </details>
   </section>
 
+  <!-- 客户列表翻页（上）：紧贴列表上方 -->
+  <nav class="pager" id="pagerBarTop" aria-label="客户列表翻页" style="display:none">
+    <button class="btn btn-outline" type="button" id="pagePrevTop">← 上一页</button>
+    <span class="pager-info" id="pageInfoTop">第 1 / 1 页</span>
+    <button class="btn btn-outline" type="button" id="pageNextTop">下一页 →</button>
+    <div class="pager-jump">
+      <label class="pager-jump-label" for="pageJumpTop">跳到第</label>
+      <input class="pager-jump-input" type="number" id="pageJumpTop" inputmode="numeric" min="1" step="1" aria-label="输入要跳到的页码">
+      <span class="pager-jump-label">页</span>
+      <button class="btn btn-outline" type="button" id="pageJumpBtnTop">跳转</button>
+    </div>
+  </nav>
+
   <!-- 线索列表 -->
   <main id="listBox"><div class="loading">正在加载线索…</div></main>
+
+  <!-- 客户列表翻页（下）：紧贴列表下方，每页 3 个 -->
+  <nav class="pager" id="pagerBar" aria-label="客户列表翻页" style="display:none">
+    <button class="btn btn-outline" type="button" id="pagePrev">← 上一页</button>
+    <span class="pager-info" id="pageInfo">第 1 / 1 页</span>
+    <button class="btn btn-outline" type="button" id="pageNext">下一页 →</button>
+    <div class="pager-jump">
+      <label class="pager-jump-label" for="pageJump">跳到第</label>
+      <input class="pager-jump-input" type="number" id="pageJump" inputmode="numeric" min="1" step="1" aria-label="输入要跳到的页码">
+      <span class="pager-jump-label">页</span>
+      <button class="btn btn-outline" type="button" id="pageJumpBtn">跳转</button>
+    </div>
+  </nav>
 
   <!-- 我的资料与团队名单（收起来的折叠区，默认收起） -->
   <details class="fold" aria-label="我的 WhatsApp 与团队名单">
@@ -639,6 +860,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <h2>请假转交 <span class="hint">请假时把你的客户临时转给队友，回来再转回来</span></h2>
       <div class="sync-line" id="hoBox">正在读取…</div>
     </section>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <!-- 使用教程（收起来的折叠区，默认收起） -->
@@ -675,6 +897,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     </ol>
     <p class="tut-note">没回的时候，点一下「已联系」也算联系过一次，不用写任何字，选渠道（WhatsApp / 邮件 / Telegram）和发的是第一封还是跟进信就行。发进来的记录导进来一次，就自动记了已联系、数了联系次数、判了客户回没回，档案也会跟着更新。</p>
     <p class="tut-note">「早上报数」「晚上 8 点汇总」「每周一汇总」都在页面上面：早上报数是今天新线索的数字加每人各 5 家；晚上 8 点汇总是当天全队每人一行；每周一汇总是本周最值得联系的 5 家（全队、每人各 5 家）加本周数字。</p>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
 
   <p class="foot">团队内部使用 · 数据来自团队数据库，登录后实时读取</p>
@@ -739,6 +962,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <div class="err" id="editErr"></div>
     <div class="modal-btns">
       <button class="btn btn-outline" type="button" id="editCancel">取消</button>
+      <button class="btn btn-outline" type="button" id="editRestore">恢复上一版</button>
       <button class="btn btn-green" type="button" id="editSave">保存</button>
     </div>
   </div>
@@ -995,6 +1219,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
 <div class="toast" id="toast"></div>
 <div class="pending-bar" id="pendingBar"><span id="pendingText"></span><button type="button" id="pendingUndo">撤销</button></div>
 <button type="button" id="fabBackBtns" aria-label="回到这张卡片的按钮区">↑ 回到按钮</button>
+<button type="button" id="fabTop" aria-label="回到页面最顶部">↑</button>
 
 <script>
 "use strict";
@@ -1101,8 +1326,12 @@ var state = {
   profiles: [],
   leads: [],
   filtered: [],
+  page: 1,
   pendingContactLead: null,
   suggByLead: {},
+  varietyByLead: {},
+  standaloneBg: [],
+  bgPollTimer: null,
   profByLead: {},
   chatByLead: {},
   ceByLead: {},
@@ -1111,7 +1340,10 @@ var state = {
   qByLead: {},
   adminWaLink: "",
   top5Page: 0,
-  top5Shown: []
+  view: "",
+  top5Shown: [],
+  catFilter: "",
+  photosByLead: {}
 };
 try { state.user = JSON.parse(LS.get("leads_user") || "null"); } catch(e){ state.user = null; }
 
@@ -1163,6 +1395,16 @@ function typeLabel(lead){
   if(t) return t;
   return "";
 }
+/* 线索分组（和空间 subtype=expo/import_data 对应）：网站没有 subtype 字段，
+   类型存在 lead_type 里，取值可能是 expo/exhibition/fair、import/import_data/trade，
+   用现成的 TYPE_ZH 映射归一，展会 / 进口数据各成一组，其余是正常线索 */
+function leadCat(l){
+  var t = TYPE_ZH[l.lead_type || ""] || "";
+  if(t === "展会") return "expo";
+  if(t === "进口数据") return "import_data";
+  return "";
+}
+function catLabel(c){ return c === "expo" ? "展会信息" : (c === "import_data" ? "进口数据" : "求购与客户"); }
 function localTimeInfo(country, city){
   if(!country && !city) return null;
   var tz = null, approx = false;
@@ -1238,7 +1480,7 @@ var PRICE_SCRIPTS = [
 var NO_WA_MSG = "你还没填自己的 WhatsApp 号，先在「我的 WhatsApp」里填好号再发。";
 var NO_WA_HINT = "你还没填自己的 WhatsApp 号：先在下方「我的 WhatsApp」里填好号才能一键发。";
 function myWaMissing(){
-  if(!state.myProfile) return false;
+  if(!state.myProfile) return !!state.user;
   return !String(state.myProfile.whatsapp || "").trim();
 }
 /* 同一家公司分给了另一个队友：撞单。返回对方负责人的名字，没撞单返回 null */
@@ -1250,7 +1492,7 @@ function collisionInfo(l){
   for(var i = 0; i < state.leads.length; i++){
     var o = state.leads[i];
     if(String(o.id) === String(l.id)) continue;
-    if(String(o.company || "").trim() === c && o.assignee && o.assignee !== l.assignee) return o.assignee;
+    if(isActiveLead(o) && String(o.company || "").trim() === c && o.assignee && o.assignee !== l.assignee) return o.assignee;
   }
   return null;
 }
@@ -1538,7 +1780,7 @@ function checkFirstLogin(){
   $("pwdModal").classList.add("open");
 }
 function loadAll(){
-  loadProfiles().then(function(){ renderWho(); renderTeam(); renderMyWa(); renderHandover(); buildAssigneeFilter(); return loadLeads(); }).then(function(){ renderHandover(); loadSync(); loadTeamData(); loadEvening(); loadStats(); checkHandoverNotice(); checkHandoverReturn(); });
+  loadProfiles().then(function(){ renderWho(); renderTeam(); renderMyWa(); renderHandover(); buildAssigneeFilter(); return loadLeads(); }).then(function(){ renderHandover(); loadSync(); loadTeamData(); loadEvening(); loadStats(); checkHandoverNotice(); checkHandoverReturn(); loadBgData(); });
 }
 function loadProfiles(){
   return api("profiles?select=*&order=created_at.asc").then(function(rows){
@@ -1571,7 +1813,7 @@ function updateNoticeBanner(){
     if(20 - un > 0) lines.push("你只剩 " + un + " 家待开发（底线 20，差 " + (20 - un) + " 家），新线索会先补给你。");
   }
   if(state.isAdmin || state.isLeader){
-    var orders = state.leads.filter(function(l){ return l.order_intent_at && l.status !== "deal"; });
+    var orders = state.leads.filter(function(l){ return isActiveLead(l) && l.order_intent_at && l.status !== "deal"; });
     if(orders.length) lines.push("今天有 " + orders.length + " 家要下单还没人去成交，点下面「要下单了」去确认数量、价格、定金。");
     var collisions = collisionCompanies().length;
     if(collisions) lines.push("今天有 " + collisions + " 家撞单待定（同一家公司分给了两个人），等你定下留谁再动。");
@@ -1584,10 +1826,10 @@ function updateNoticeBanner(){
 function collisionCompanies(){
   var seen = {};
   state.leads.forEach(function(l){
-    if(!l.company) return;
+    if(!isActiveLead(l) || !l.company) return;
     var c = String(l.company).trim();
     state.leads.forEach(function(o){
-      if(String(o.id) !== String(l.id) && String(o.company || "").trim() === c && o.assignee && o.assignee !== l.assignee) seen[c] = 1;
+      if(isActiveLead(o) && String(o.id) !== String(l.id) && String(o.company || "").trim() === c && o.assignee && o.assignee !== l.assignee) seen[c] = 1;
     });
   });
   return Object.keys(seen);
@@ -1598,7 +1840,7 @@ function renderWho(){
   $("whoLine").querySelector("span").textContent = label + (state.isAdmin ? "（管理员，看全部）" : (state.isLeader ? "（团队负责人，看全部）" : ""));
   updateMineCount();
   $("headSub").textContent = state.myName
-    ? (state.isAdmin ? "你能看到全队 8 个人的线索。" : (state.isLeader ? "你是团队负责人，能看到全队所有人的线索，不跟具体客户。" : "默认只看分给你的客户，用上面的筛选可以切换。"))
+    ? (state.isAdmin ? "你能看到全队 8 个人的线索。" : (state.isLeader ? "你是团队负责人，能看到全队所有人的线索，不跟具体客户。" : "只能看分给你的客户，别人的看不到。"))
     : "还没有找到你的个人档案，名单和默认筛选可能不完整，请联系王烁杉确认账号。";
   var tib = $("topImportBtn");
   if(tib) tib.style.display = state.isLeader ? "none" : "";
@@ -1608,13 +1850,15 @@ function renderWho(){
   if(state.isLeader){
     var gb = $("guideBar");
     if(gb) gb.innerHTML = "你是团队负责人：队友问你的问题在上面「待我回答」里，点开写好回答，队友的卡片上会亮「柯哥回你了」；首页是全队最值得联系的 5 家；点开卡片看详情，在「负责人意见」里写跟进意见，队友能看到；早上报数、晚上 8 点汇总、每周一汇总都在上面，全队都看得到。";
+    var t5i = $("top5Intro");
+    if(t5i) t5i.textContent = "下面是全队最值得联系的 5 家：点开卡片，在「负责人意见」里写跟进意见，队友能看到；你不用自己发消息。";
   }
 }
 /* 待开发 = 分给你、还没联系过、没成交也没标没兴趣 */
 function uncontactedCount(name){
   var n = 0;
   state.leads.forEach(function(l){
-    if(l.assignee === name && (parseInt(l.owner_contact_count, 10) || 0) === 0 && l.status !== "deal" && l.status !== "ignored") n++;
+    if(isActiveLead(l) && l.assignee === name && (parseInt(l.owner_contact_count, 10) || 0) === 0 && l.status !== "deal" && l.status !== "ignored") n++;
   });
   return n;
 }
@@ -1622,10 +1866,10 @@ function uncontactedCount(name){
 function updateMineCount(){
   var el = $("mineCount"); if(!el) return;
   if(!state.leads.length){ el.textContent = ""; return; }
-  if(state.isLeader){ el.textContent = " · 全队一共 " + state.leads.length + " 家客户"; return; }
+  if(state.isLeader){ el.textContent = " · 全队一共 " + state.leads.filter(isActiveLead).length + " 家客户"; return; }
   if(state.myName){
     var n = 0;
-    state.leads.forEach(function(l){ if(l.assignee === state.myName) n++; });
+    state.leads.forEach(function(l){ if(isActiveLead(l) && l.assignee === state.myName) n++; });
     var un = uncontactedCount(state.myName);
     var diff = 20 - un;
     el.textContent = " · 你负责 " + n + " 家 · 待开发 " + un + " 家（底线 20" + (diff > 0 ? "，差 " + diff + " 家" : "") + "）";
@@ -1710,6 +1954,13 @@ function loadLeads(){
 function buildAssigneeFilter(){
   var sel = $("fAssignee");
   var cur = sel.value;
+  if(!state.isAdmin && !state.isLeader && state.myName){
+    sel.innerHTML = '<option value="'+esc(state.myName)+'">'+esc(displayName(state.myName))+"</option>";
+    sel.value = state.myName;
+    sel.disabled = true;
+    return;
+  }
+  sel.disabled = false;
   var opts = ['<option value="">全部负责人</option>'];
   TEAM_ALL.forEach(function(n){ opts.push('<option value="'+esc(n)+'">'+esc(displayName(n))+"</option>"); });
   var extra = {};
@@ -1721,7 +1972,7 @@ function buildAssigneeFilter(){
   else sel.value = "";
 }
 function currentFilters(){
-  return { assignee: $("fAssignee").value, region: $("fRegion").value, country: $("fCountry") ? $("fCountry").value : "", status: $("fStatus").value, contact: $("fContact") ? $("fContact").value : "", sort: $("fSort") ? $("fSort").value : "smart", q: $("fSearch").value.trim().toLowerCase() };
+  return { assignee: $("fAssignee").value, region: $("fRegion").value, country: $("fCountry") ? $("fCountry").value : "", status: $("fStatus").value, contact: $("fContact") ? $("fContact").value : "", sort: $("fSort") ? $("fSort").value : "smart", q: $("fSearch").value.trim().toLowerCase(), view: state.view || "" };
 }
 function hasField(v){ return String(v === null || v === undefined ? "" : v).trim() !== ""; }
 /* 国家下拉：先选地区，再出该地区的国家（不在 40 多个国家里翻） */
@@ -1730,8 +1981,8 @@ function buildCountryFilter(){
   var cur = sel.value;
   var region = $("fRegion") ? $("fRegion").value : "";
   var set = {};
-  state.leads.forEach(function(l){
-    if(!l.country) return;
+  (state.isAdmin || state.isLeader ? state.leads : state.leads.filter(function(x){ return x.assignee === state.myName; })).forEach(function(l){
+    if(!isActiveLead(l) || !l.country) return;
     if(region){
       if(region === "__other"){ if(REGIONS.indexOf(l.region) >= 0) return; }
       else if(l.region !== region) return;
@@ -1752,13 +2003,22 @@ function lastContactTime(l){
 function applyFilters(){
   var f = currentFilters();
   state.filtered = state.leads.filter(function(l){
-    if(f.assignee && l.assignee !== f.assignee) return false;
+    /* 回收站只看 deleted_at 非空且没藏起的；已藏起只看 hidden=1 且没进回收站的；主列表两者都不看（和空间 actions.ts leadConditions 一个口径） */
+    if(f.view === "trash"){ if(!l.deleted_at || (parseInt(l.hidden, 10) || 0) === 1) return false; }
+    else if(f.view === "hidden"){ if((parseInt(l.hidden, 10) || 0) !== 1 || l.deleted_at) return false; }
+    else if(l.deleted_at || (parseInt(l.hidden, 10) || 0) === 1) return false;
+    /* 队员硬强制只看自己；唯一例外是 Q195 转出去的：我转给下一个人后，这家负责人变了，
+       但我还能在列表里看到它（卡片只读、不能再联系），所以 rotated_from 是我时放行 */
+    var rotatedMine = !!state.myName && String(l.rotated_from || "") === state.myName && l.assignee !== state.myName;
+    if(!state.isAdmin && !state.isLeader && state.myName && l.assignee !== state.myName && !rotatedMine) return false;
+    if(f.assignee && l.assignee !== f.assignee && !rotatedMine) return false;
     if(f.region){
       if(f.region === "__other"){ if(REGIONS.indexOf(l.region)>=0) return false; }
       else if(l.region !== f.region) return false;
     }
     if(f.country && l.country !== f.country) return false;
     if(f.status && l.status !== f.status) return false;
+    if(state.catFilter && leadCat(l) !== state.catFilter) return false;
     if(f.contact){
       if(f.contact === "whatsapp" && !hasField(l.whatsapp)) return false;
       if(f.contact === "phone" && !hasField(l.phone)) return false;
@@ -1802,7 +2062,20 @@ function applyFilters(){
     sortRule = "排序：最久没联系的在前。";
     state.filtered.sort(function(a, b){ var la = lastContactTime(a), lb = lastContactTime(b); return la < lb ? -1 : (la > lb ? 1 : 0); });
   }
-  $("countLine").textContent = "现在看到 " + state.filtered.length + " 家（一共 " + state.leads.length + " 家）。" + sortRule;
+  /* 分组：没点筛选 chip 时，展会信息在前、进口数据其次、其余正常线索在后；
+     组内保持上面的排序不动。点了 chip 只看那组，不再重排 */
+  if(!state.catFilter){
+    var expoG = [], impG = [], normG = [];
+    state.filtered.forEach(function(l){ var c = leadCat(l); if(c === "expo") expoG.push(l); else if(c === "import_data") impG.push(l); else normG.push(l); });
+    state.filtered = expoG.concat(impG, normG);
+  }
+  var scope = (state.isAdmin || state.isLeader) ? state.leads : state.leads.filter(function(x){ return x.assignee === state.myName; });
+  var trashN = scope.filter(function(l){ return l.deleted_at && (parseInt(l.hidden, 10) || 0) !== 1; }).length;
+  var hiddenN = scope.filter(function(l){ return (parseInt(l.hidden, 10) || 0) === 1 && !l.deleted_at; }).length;
+  var tc = $("trashCount"), hc = $("hiddenCount");
+  if(tc) tc.textContent = trashN;
+  if(hc) hc.textContent = hiddenN;
+  $("countLine").textContent = "现在看到 " + state.filtered.length + " 家（一共 " + scope.length + " 家，其中回收站 " + trashN + " 家、已藏起 " + hiddenN + " 家）。" + (f.view === "trash" ? (state.isAdmin ? "正在看回收站：删掉的线索都在这里，能恢复，也能彻底删。" : "正在看回收站：删掉的线索都在这里，能恢复；想彻底删找管理员。") : f.view === "hidden" ? "正在看已藏起：不靠谱的线索都在这里，确认是真实需求就恢复回列表。" : sortRule);
   updateMineCount();
   updateKegeBadge();
   renderLeads();
@@ -1811,16 +2084,100 @@ function applyFilters(){
   renderWeekly();
   renderOrderPanel();
 }
-["fAssignee","fRegion","fStatus","fContact","fSort"].forEach(function(id){ var el = $(id); if(el) el.addEventListener("change", applyFilters); });
-$("fCountry").addEventListener("change", applyFilters);
+/* 筛选条件一变就回到第 1 页：排序号按新筛选从 1 重新编，停在旧页码会看不到结果 */
+function applyFiltersFirstPage(){ state.page = 1; applyFilters(); }
+["fAssignee","fRegion","fStatus","fContact","fSort"].forEach(function(id){ var el = $(id); if(el) el.addEventListener("change", applyFiltersFirstPage); });
+$("fCountry").addEventListener("change", applyFiltersFirstPage);
 $("fRegion").addEventListener("change", function(){ buildCountryFilter(); });
-$("fSearch").addEventListener("input", applyFilters);
+$("fSearch").addEventListener("input", applyFiltersFirstPage);
+document.querySelectorAll("[data-cat-chip]").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var c = btn.getAttribute("data-cat-chip");
+    state.catFilter = (state.catFilter === c) ? "" : c;
+    document.querySelectorAll("[data-cat-chip]").forEach(function(b){ b.classList.toggle("on", state.catFilter !== "" && b.getAttribute("data-cat-chip") === state.catFilter); });
+    applyFiltersFirstPage();
+  });
+});
+$("pagePrev").addEventListener("click", function(){ gotoPage((state.page || 1) - 1); });
+$("pageNext").addEventListener("click", function(){ gotoPage((state.page || 1) + 1); });
+$("pagePrevTop").addEventListener("click", function(){ gotoPage((state.page || 1) - 1); });
+$("pageNextTop").addEventListener("click", function(){ gotoPage((state.page || 1) + 1); });
+$("pageJumpBtn").addEventListener("click", function(){ jumpToPage($("pageJump")); });
+$("pageJumpBtnTop").addEventListener("click", function(){ jumpToPage($("pageJumpTop")); });
+$("pageJump").addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); jumpToPage($("pageJump")); } });
+$("pageJumpTop").addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); jumpToPage($("pageJumpTop")); } });
+/* 全局回到顶部：一直悬浮在右下角（在卡片「回到按钮」上方，不挡它），点一下回页面最顶 */
+$("fabTop").addEventListener("click", function(){
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+});
 
+/* 客户列表分页：每页只显示 3 个，排序号按筛选后的全局顺序走（在 cardHtml 里算） */
+var PAGE_SIZE = 3;
+function totalPages(){ return Math.max(1, Math.ceil(state.filtered.length / PAGE_SIZE)); }
 function renderLeads(){
   var box = $("listBox");
-  if(!state.filtered.length){ box.innerHTML = '<div class="panel empty">这个筛选下暂时没有线索。</div>'; return; }
-  box.innerHTML = '<div class="cards">' + state.filtered.map(cardHtml).join("") + "</div>";
+  if(!state.filtered.length){ box.innerHTML = '<div class="panel empty">' + (state.view === "trash" ? "回收站是空的。删掉的线索会先放到这里，随时能恢复，不会真丢。" : state.view === "hidden" ? "没有藏起来的线索。不靠谱的新线索（比如只要 1 株、预算只有几美元）会直接藏起来，在这里能看到、能恢复。" : "这个筛选下暂时没有线索。") + "</div>"; renderPager(); return; }
+  var pages = totalPages();
+  if(!state.page || state.page < 1) state.page = 1;
+  if(state.page > pages) state.page = pages;
+  var start = (state.page - 1) * PAGE_SIZE;
+  var pageItems = state.filtered.slice(start, start + PAGE_SIZE);
+  var groupCounts = { expo: 0, import_data: 0, normal: 0 };
+  state.filtered.forEach(function(l){ var c = leadCat(l) || "normal"; groupCounts[c]++; });
+  var pageHtml = "", lastCat = null;
+  pageItems.forEach(function(l){
+    var c = leadCat(l) || "normal";
+    if(c !== lastCat){ lastCat = c; pageHtml += '<div class="group-head">' + catLabel(c) + " · " + groupCounts[c] + " 家</div>"; }
+    pageHtml += cardHtml(l);
+  });
+  box.innerHTML = '<div class="cards">' + pageHtml + "</div>";
   bindCards();
+  renderPager();
+}
+function renderPager(){
+  var show = !!state.filtered.length;
+  var pages = totalPages();
+  [["pagerBar","pageInfo","pagePrev","pageNext","pageJump"],["pagerBarTop","pageInfoTop","pagePrevTop","pageNextTop","pageJumpTop"]].forEach(function(ids){
+    var bar = $(ids[0]); if(!bar) return;
+    if(!show){ bar.style.display = "none"; return; }
+    bar.style.display = "";
+    $(ids[1]).textContent = "第 " + state.page + " / " + pages + " 页";
+    $(ids[2]).disabled = state.page <= 1;
+    $(ids[3]).disabled = state.page >= pages;
+    var inp = $(ids[4]); if(inp) inp.max = pages;
+  });
+}
+/* 平滑滚到客户列表顶部（列表上方的翻页器就是列表顶，滚到它能同时看到翻页器和新一页） */
+function scrollToListTop(){
+  var top = $("pagerBarTop");
+  var target = (top && top.style.display !== "none") ? top : $("listBox");
+  if(!target) return;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+}
+function gotoPage(p){
+  var pages = totalPages();
+  if(p < 1) p = 1;
+  if(p > pages) p = pages;
+  if(p === state.page) return;
+  state.page = p;
+  renderLeads();
+  scrollToListTop();
+}
+/* 跳到第 N 页：不是数字就忽略；超出范围夹到 1 ~ 总页数；跳完滚到列表顶部 */
+function jumpToPage(input){
+  if(!input) return;
+  var raw = (input.value || "").replace(/^\s+|\s+$/g, "");
+  if(!raw) return;
+  var n = parseInt(raw, 10);
+  if(isNaN(n)) return;
+  var pages = totalPages();
+  if(n < 1) n = 1;
+  if(n > pages) n = pages;
+  input.value = "";
+  if(n === state.page){ scrollToListTop(); return; }
+  gotoPage(n);
 }
 function msgBlock(title, text, links, extra){
   extra = extra || {};
@@ -1842,6 +2199,7 @@ function msgBlock(title, text, links, extra){
   h += '<div class="msg-actions">';
   links.forEach(function(L){
     if(L.copyOnly){ h += '<button class="btn btn-outline btn-sm" type="button" data-copy-email="' + esc(L.kind || "first") + '">复制全文</button>'; return; }
+    if(L.channel === "whatsapp" && !state.isLeader && myWaMissing()){ h += '<button class="btn btn-green btn-sm" type="button" disabled style="opacity:.55">先填你的 WhatsApp 号才能发</button>'; return; }
     h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="'+esc(L.channel || "")+'" data-kind="'+esc(L.kind || "")+'"'+(L.backup ? ' data-backup="1"' : "")+' href="'+esc(L.href)+'">'+esc(L.label)+"</a>";
   });
   h += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(foreign)+'">复制这封</button>';
@@ -1916,6 +2274,7 @@ function translateCardField(ta, card, lead){
 }
 function followDue(l){
   if(state.isLeader) return null;
+  if(rotatedAway(l)) return null;
   if(l.status === "deal" || l.status === "ignored") return null;
   if(l.has_replied) return null;
   var n = parseInt(l.owner_contact_count, 10) || 0;
@@ -1930,6 +2289,9 @@ function followDue(l){
   return { days: days, last: last };
 }
 function cardHtml(l){
+  /* 排序号：这家在当前筛选结果里的全局位置（第 2 页接着是 4、5、6），单卡原地刷新时也按这个算，不会丢号 */
+  var seqIdx = state.filtered ? state.filtered.indexOf(l) : -1;
+  var seqHtml = seqIdx >= 0 ? '<span class="lead-seq">第 <b>' + (seqIdx + 1) + "</b> 号</span>" : "";
   var lt = localTimeInfo(l.country, l.city);
   var tags = "";
   var tl = typeLabel(l); if(tl) tags += '<span class="tag type">'+esc(tl)+"</span>";
@@ -2015,7 +2377,7 @@ function cardHtml(l){
   var nowaHint = (!state.isLeader && myWaMissing()) ? '<div class="nowa-hint">' + esc(NO_WA_HINT) + "</div>" : "";
   var suggHtml = suggBlock(l);
   /* 粘贴客户原话：走「这句不会回，帮我写」流程，助手建议就显示在上面 */
-  var pasteHtml = state.isLeader ? "" : '<div class="paste-box"><div class="msg-title">粘贴客户原话，让助手帮你写回复</div>'
+  var pasteHtml = (state.isLeader || isRotated) ? "" : '<div class="paste-box"><div class="msg-title">粘贴客户原话，让助手帮你写回复</div>'
     + '<div>把客户发来的那句话粘贴到下面，点按钮发给助手；助手看完会把回复建议写在上面的「助手建议」里。网站本身不能实时翻译，不会马上变出译文，要等助手看完。</div>'
     + '<textarea data-paste-input placeholder="把客户的原话粘贴在这里"></textarea>'
     + '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-act="pastehelp">发给助手，帮我写回复</button></div></div>';
@@ -2035,7 +2397,7 @@ function cardHtml(l){
   var dueHtml = "";
   if(due){
     dueHtml = '<div class="follow-banner"><span><b>该跟进了：</b>上次联系是 ' + due.days + ' 天前（' + esc(fmtDateShort(due.last)) + '），客户还没回。' + (l.status === "focus" ? "重点客户，别拖。" : "") + '</span>';
-    if(l.whatsapp) dueHtml += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="followup" href="'+esc(waUniversal(l.whatsapp, l.followup_message))+'">发跟进信</a>';
+    if(l.whatsapp) dueHtml += (!state.isLeader && myWaMissing()) ? '<button class="btn btn-green btn-sm" type="button" disabled style="opacity:.55">发跟进信（先填你的号）</button>' : '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="followup" href="'+esc(waUniversal(l.whatsapp, l.followup_message))+'">发跟进信</a>';
     else if(tgu && l.telegram_followup_message) dueHtml += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="telegram" data-kind="followup" href="https://t.me/'+esc(tgu)+"?text="+encodeURIComponent(l.telegram_followup_message)+'">发跟进信</a>';
     else if(l.email) dueHtml += '<a class="btn btn-outline btn-sm" data-sendlink="1" data-channel="email" data-kind="followup" href="'+esc(gmailUrl(l.email, "跟进 - " + (l.company || ""), l.followup_message || ""))+'">发跟进信（邮件）</a>';
     else if(l.followup_message) dueHtml += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(l.followup_message)+'">复制跟进信</button>';
@@ -2043,6 +2405,15 @@ function cardHtml(l){
   }
 
   /* 卡面快捷动作：只留 1 个主按钮（发第一封，深绿实心），已联系、客户回了是次按钮描边；取消类统一收进“撤销”小字链接 */
+  /* 回收站 / 已藏起（和空间一个口径）：回收站 = deleted_at 非空且没藏起；已藏起 = hidden=1 且没进回收站 */
+  var inTrash = !!l.deleted_at && (parseInt(l.hidden, 10) || 0) !== 1;
+  var isHidden = (parseInt(l.hidden, 10) || 0) === 1 && !l.deleted_at;
+  var trashBanner = inTrash
+    ? (state.isAdmin ? '<div class="trash-banner">这条在回收站里，主列表不再显示它。点下面「恢复这条」回到主列表；点「彻底删除」就真删了，再也恢复不了。</div>' : '<div class="trash-banner">这条在回收站里，主列表不再显示它。点下面「恢复这条」回到主列表；想彻底删找管理员。</div>')
+    : "";
+  var hiddenBanner = isHidden
+    ? '<div class="trash-banner">这条被藏起来了：' + esc(l.hidden_reason || "不靠谱") + '。确认是真实需求就恢复回列表。</div>'
+    : "";
   var quick = '<div class="quick-actions">';
   var canCancelLead = (l.assignee === state.myName || state.isAdmin);
   var undoLinks = "";
@@ -2053,9 +2424,11 @@ function cardHtml(l){
     quick += '<span class="no-contact-note">这家已转给 ' + esc(displayName(l.assignee)) + '，你只能看，不能再联系。</span>';
   } else if(!hasContact(l)){
     quick += '<span class="no-contact-note">这家没留联系方式，先放着，等搜到联系方式再联系。</span>'
-      + '<button class="btn btn-outline btn-sm" type="button" data-act="findcontact">找联系方式</button>';
+      + (state.isLeader ? "" : '<button class="btn btn-outline btn-sm" type="button" data-act="findcontact">找联系方式</button>');
+  } else if(state.isLeader){
+    quick += '<span class="no-contact-note">你是团队负责人，不用发消息；点「展开详情」，在「负责人意见」里写跟进意见，队友能看到。</span>';
   } else {
-    if(l.whatsapp) quick += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="first" href="'+esc(waUniversal(l.whatsapp, fmFo))+'">WhatsApp 第一封</a>';
+    if(l.whatsapp) quick += (!state.isLeader && myWaMissing()) ? '<button class="btn btn-green btn-sm" type="button" disabled style="opacity:.55">WhatsApp 第一封（先填你的号）</button>' : '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="first" href="'+esc(waUniversal(l.whatsapp, fmFo))+'">WhatsApp 第一封</a>';
     else if(tgu && l.telegram_first_message) quick += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="telegram" data-kind="first" href="https://t.me/'+esc(tgu)+"?text="+encodeURIComponent(tgFmFo)+'">Telegram 第一封</a>';
     else if(l.email) quick += '<a class="btn btn-green btn-sm" data-sendlink="1" data-channel="email" data-kind="first" href="'+esc(gmailUrl(l.email, "联系 - " + (l.company || ""), fmFo))+'">发邮件</a>';
     if(!tgu && l.telegram_first_message) quick += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(tgFmFo)+'">复制消息（去 Telegram 发）</button>';
@@ -2093,28 +2466,54 @@ function cardHtml(l){
     if(undoLinks) quick += '<details class="undo-fold"><summary>撤销</summary><div class="undo-links">' + undoLinks + '</div></details>';
   }
   quick += '<button class="btn btn-outline btn-sm" type="button" data-act="toggle" aria-expanded="false">展开详情 ▾</button></div>';
+  if(inTrash) quick = '<div class="quick-actions"><button class="btn btn-outline btn-sm" type="button" data-act="trash-restore">恢复这条</button>' + (state.isAdmin ? '<button class="btn btn-danger btn-sm" type="button" data-act="trash-permanent">彻底删除</button>' : "") + '<button class="btn btn-outline btn-sm" type="button" data-act="toggle" aria-expanded="false">展开详情 ▾</button></div>';
+  else if(isHidden) quick = '<div class="quick-actions"><button class="btn btn-outline btn-sm" type="button" data-act="hide-restore">恢复回列表</button><button class="btn btn-outline btn-sm" type="button" data-act="toggle" aria-expanded="false">展开详情 ▾</button></div>';
 
   /* 更多操作挪到展开后的最前面：状态按钮（卡面上）和“更多操作”挨在一起，不用翻过信件模板去找 */
-  var moreOps = (state.isLeader ? "" : '<div class="section-label" style="margin-top:10px">更多操作</div><div class="actions">'
+  /* 转给下一个人按钮：只在“我”是负责人、且没被转走时出现（只读、没分配、管理员看别人客户时不显示） */
+  var rotateNextBtn = (!isRotated && l.assignee === state.myName)
+    ? '<button class="btn btn-outline btn-sm" type="button" data-act="rotate-next">转给下一个人</button>'
+    : "";
+  var moreOps = (state.isLeader || isRotated ? "" : '<div class="section-label" style="margin-top:10px">更多操作</div><div class="actions">'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="activity">全部记录</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="editmsg">编辑消息</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="quote">报价</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="findvar">找品种（目录里没有的）</button>'
+    + '<button class="btn btn-outline btn-sm" type="button" data-act="sendphoto">发实拍照片</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="editinfo">改信息</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="deal">成交</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="handover-back">请假转回来</button>'
+    + (inTrash || isHidden || !canCancelLead ? "" : '<button class="btn btn-outline btn-sm" type="button" data-act="trash-delete">移到回收站</button>'
+    + '<button class="btn btn-outline btn-sm" type="button" data-act="hide-lead">藏起</button>'
+    + '<input type="text" class="hide-reason" data-hide-reason placeholder="藏起的原因（比如：只要 1 株，不靠谱），不填就写“不靠谱”">')
     + '<button class="btn btn-outline btn-sm" type="button" data-act="undo-transfer">取消转交（转回上一个负责人）</button>'
+    + rotateNextBtn
     + "</div>"
-    + '<div class="edit-row"><label>状态</label><select data-field="status">'+statusOpts+'</select>'
+    + '<details class="fold-in"><summary>评分 · 负责人</summary><div class="edit-row"><label>状态</label><select data-field="status">'+statusOpts+'</select>'
     + '<label>星星</label><select data-field="stars">'+starOpts+'</select>'
     + '<label>分错了转给</label><select data-field="assignee">'+assigneeOpts+"</select></div>"
-    + '<div class="tr-status">分错了转给：转错了再选回原来的人就行，会记进流水账；请假回来点上面「请假转回来」，会按记录把转出去的客户一次转回来。</div>');
+    + '<div class="tr-status">分错了转给：转错了再选回原来的人就行，会记进流水账；请假回来点上面「请假转回来」，会按记录把转出去的客户一次转回来。</div></details>');
 
   /* 长小节底部统一放一个“回到按钮”链接，点一下滚回这张卡顶部的按钮区，不用自己往上翻 */
   var backBtnsLink = '<div class="back-btns-row"><button type="button" class="back-btns-link" data-backbtns>↑ 回到按钮</button></div>';
 
+  /* 实拍照片小节（和空间 Q194 对应）：发完照片回来点「已发实拍」记一次，
+     最近一次的记录从流水账 action=photos 里取，存在 state.photosByLead 里。
+     队长（柯赛）不跟具体客户，不给他显示这两个按钮 */
+  var photosHtml = "";
+  if(!state.isLeader && !isRotated){
+    var phCached = state.photosByLead ? state.photosByLead[l.id] : undefined;
+    var phLine = (phCached && phCached.created_at)
+      ? "最近一次「已发实拍」：" + fmtTime(phCached.created_at) + "。记错了，点下面「撤销这次已发实拍」。"
+      : "还没记过已发实拍。";
+    photosHtml = '<details class="fold-in"><summary>实拍照片</summary>'
+      + '<div class="photos-box"><div>挑好实拍照片发给客户后，回来点「已发实拍」记一次，会写进流水账；记错了可以撤销，不改跟进次数和状态。</div>'
+      + '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-act="markphotos">已发实拍</button>'
+      + '<button class="btn btn-outline btn-sm" type="button" data-act="undophotos">撤销这次已发实拍</button></div>'
+      + '<div class="tr-status" data-photos-line>' + esc(phLine) + "</div></div></details>";
+  }
   return '<article class="lead' + (hasContact(l) ? "" : " no-contact") + '" data-id="'+esc(l.id)+'">'
-    + '<div class="lead-top"><div><h3>'+esc(l.company || "（未填公司名）")+"</h3>"
+    + '<div class="lead-top"><div>' + seqHtml + '<h3>'+esc(l.company || "（未填公司名）")+"</h3>"
     + (l.title_zh ? '<p class="title-zh">'+esc(l.title_zh)+"</p>" : "")
     + "</div><div class=\"stars-wrap\"><div class=\"stars\" aria-label=\"星星\">"+starStr(l.stars)+"</div><div class=\"stars-note\">星越多越值得先联系</div></div></div>"
     + (l.summary_zh ? '<p class="summary">'+esc(l.summary_zh)+"</p>" : "")
@@ -2129,13 +2528,15 @@ function cardHtml(l){
     + '<div class="kv">联系过：<b>'+esc(l.owner_contact_count || 0)+"</b> 次（最多联系 5 次）"+(l.found_at ? " · 找到于 "+esc(fmtTime(l.found_at)) : "")+"</div>"
     + '<div class="next-step">下一步：<b>' + esc(nextStepText(l)) + '</b></div>'
     + dueHtml
+    + trashBanner + hiddenBanner
     + (collideWith ? '<div class="collision-banner">这家公司队里还有 ' + esc(displayName(collideWith)) + ' 在跟，别碰，等王烁杉定下留谁再动。发送按钮已经拦住了。</div>' : "")
     + (isRotated ? '<div class="collision-banner" style="border-color:var(--gold);color:var(--green)">这家已转给 ' + esc(displayName(l.assignee)) + '，你只能看。</div>' : "")
     + quick
     + '<div class="lead-body hidden">'
     + moreOps
+    + photosHtml
     + tagsMore
-    + (state.isLeader ? "" : '<div class="import-top"><button class="btn btn-green" type="button" data-act="importchat-top">发聊天记录</button><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按助手建议直接回，不会回才把客户那句话发进来。</span></div>'
+    + (state.isLeader || isRotated ? "" : '<div class="import-top"><button class="btn btn-green" type="button" data-act="importchat-top">发聊天记录</button><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按助手建议直接回，不会回才把客户那句话发进来。</span></div>'
     + '<details class="fold-in"><summary>怎么导聊天记录？点开一步一步看</summary><ol class="steps">'
     + '<li>WhatsApp：打开和客户的聊天 → 点客户名字（或右上角菜单）→「导出聊天记录」→ 选「不含媒体」→ 得到一个 .txt 文件 → 回到这里点「发聊天记录」，在「其他方式」里上传这个文件。</li>'
     + '<li>Telegram：手机上不能一键导出整个聊天，长按客户那句话复制，点「发聊天记录」粘贴进来就行；电脑上可以用桌面版导出 JSON 再上传。</li>'
@@ -2143,10 +2544,12 @@ function cardHtml(l){
     + '<li>导完会显示「已导入，算 1 次联系，客户回了」，看到这句就是导成功了。</li></ol></details>')
     + (contacts ? '<div class="section-label">联系方式</div>' + contacts : "")
     + nowaHint
-    + (msgs ? '<div class="section-label">要发的消息</div>' + msgs + backBtnsLink : "")
-    + suggHtml + pasteHtml + qaBlock(l) + backBtnsLink
+    + (state.isLeader || isRotated ? "" : (msgs ? '<div class="section-label">要发的消息</div>' + msgs + backBtnsLink : ""))
+    + '<details class="fold-in"><summary>帮我回 · 助手建议</summary>' + suggHtml + pasteHtml + "</details>" + qaBlock(l) + backBtnsLink
     + profHtml + chatHtml + backBtnsLink
-    + '<div class="section-label">联系记录（联系过几次、每次啥时候、发了啥）</div>' + historyBlock(l) + backBtnsLink
+    + quoteTrashSection(l) + backBtnsLink
+    + clientBgFoldHtml(l) + varietyFoldHtml(l)
+    + '<details class="fold-in"><summary>联系记录（联系过几次、每次啥时候、发了啥）</summary>' + historyBlock(l) + "</details>" + backBtnsLink
     + (l.notes ? '<div class="notes-old">'+esc(l.notes)+"</div>" : "")
     + '<div class="activity" data-activity></div>'
     + "</div>"
@@ -2243,6 +2646,73 @@ function recordContact(lead, channel, kind, cardEl){
     return { newCount: newCount, autoIgnored: autoIgnored };
   })
   .catch(function(e){ toast(e.message || "记录失败", true); });
+}
+/* ---------- 已发实拍（和空间 Q194 / markPhotosSent 对应） ---------- */
+function photosLineText(ph){
+  if(ph && ph.created_at) return "最近一次「已发实拍」：" + fmtTime(ph.created_at) + "。记错了，点下面「撤销这次已发实拍」。";
+  return "还没记过已发实拍。";
+}
+function updatePhotosLine(card, lead){
+  var el = card ? card.querySelector("[data-photos-line]") : null;
+  if(!el) return;
+  var ph = state.photosByLead ? state.photosByLead[lead.id] : undefined;
+  el.textContent = photosLineText(ph === undefined ? null : ph);
+}
+/* 最近一次已发实拍：卡片绑好后查一次流水账（action=photos 的最新一条），
+   查到了缓存起来，翻页、刷新卡片不再重复查 */
+function loadLatestPhotos(lead, card){
+  if(!card || !card.querySelector("[data-photos-line]")) return;
+  if(!state.photosByLead) state.photosByLead = {};
+  if(state.photosByLead[lead.id] !== undefined){ updatePhotosLine(card, lead); return; }
+  api("lead_activity?select=id,created_at&lead_id=eq." + encodeURIComponent(lead.id) + "&action=eq.photos&order=created_at.desc&limit=1")
+  .then(function(rows){
+    state.photosByLead[lead.id] = (rows && rows.length) ? rows[0] : null;
+    updatePhotosLine(card, lead);
+  }).catch(function(){ /* 查不到就先显示“还没记过”，点「已发实拍」时再记 */ });
+}
+/* 已发实拍：往流水账写一条 action=photos（detail 和空间一样写“发了苗圃实拍照片”），
+   不改跟进次数和状态；写完重查一次最新记录，把时间显示出来 */
+function markPhotos(lead, card){
+  var btn = card ? card.querySelector('[data-act="markphotos"]') : null;
+  if(btn) btn.disabled = true;
+  api("lead_activity", { method:"POST", headers:{ "Prefer":"return=minimal" },
+    body:{ lead_id: lead.id, actor: state.myName || "", action: "photos", detail: "发了苗圃实拍照片" } })
+  .then(function(){
+    return api("lead_activity?select=id,created_at&lead_id=eq." + encodeURIComponent(lead.id) + "&action=eq.photos&order=created_at.desc&limit=1");
+  })
+  .then(function(rows){
+    if(!state.photosByLead) state.photosByLead = {};
+    state.photosByLead[lead.id] = (rows && rows.length) ? rows[0] : null;
+    updatePhotosLine(card, lead);
+    toast("已记下：发了苗圃实拍照片。记错了，点下面「撤销这次已发实拍」。");
+  })
+  .catch(function(e){ toast(e.message || "记录失败，再试一次", true); })
+  .then(function(){ if(btn) btn.disabled = false; });
+}
+/* 撤销最近一次已发实拍：先弹确认框，确认后删掉流水账里最近那条 photos，
+   再补一行 action=undo_photos 的撤销说明；删完重查一次（之前还记过就显示更早那次） */
+function undoPhotos(lead, card){
+  api("lead_activity?select=id,created_at&lead_id=eq." + encodeURIComponent(lead.id) + "&action=eq.photos&order=created_at.desc&limit=1")
+  .then(function(rows){
+    rows = rows || [];
+    if(!rows.length){ toast("没有可撤销的已发实拍记录了", true); return; }
+    var row = rows[0];
+    askConfirm("确定要撤销最近一次「已发实拍」吗？撤销后流水账里 " + fmtTime(row.created_at) + " 那条「发了苗圃实拍照片」会被删掉，就像没记过一样；还会再记一行撤销说明。", function(){
+      api("lead_activity?id=eq." + encodeURIComponent(row.id), { method: "DELETE" })
+      .then(function(){ return logActivity(lead.id, "undo_photos", "撤销了最近一次记的「已发实拍照片」（记错了）"); })
+      .then(function(){
+        return api("lead_activity?select=id,created_at&lead_id=eq." + encodeURIComponent(lead.id) + "&action=eq.photos&order=created_at.desc&limit=1");
+      })
+      .then(function(rows2){
+        if(!state.photosByLead) state.photosByLead = {};
+        state.photosByLead[lead.id] = (rows2 && rows2.length) ? rows2[0] : null;
+        updatePhotosLine(card, lead);
+        toast("已撤销最近一次记的「已发实拍照片」");
+      })
+      .catch(function(e){ toast(e.message || "撤销失败，再试一次", true); });
+    });
+  })
+  .catch(function(){ toast("已发实拍记录没加载出来，过一会儿再试", true); });
 }
 /* 撤销一次联系：删掉那条 contact_events，次数减 1；只反转“满 5 次自动标没兴趣”的情况（手动标的没兴趣不动）；撤销的是唯一一次联系、客户又没回过时，「已联系」状态一并取消，改回「未处理」 */
 function undoContact(lead, eventId, cardEl){
@@ -2415,7 +2885,7 @@ function undoReplyDirect(lead, cardEl){
     }).catch(function(e){ toast(e.message || "取消失败", true); });
   });
 }
-/* 取消最近一次转交：去流水账里找最近一次「分错了转交 / 请假转交」，把负责人改回转交前那个人；
+/* 取消最近一次转交：去流水账里找最近一次「分错了转交 / 请假转交 / 手动轮转」，把负责人改回转交前那个人；
    已经转回来过的、或最近没有转交记录的，明确告诉对方没有可取消的，并告诉对方还能怎么改回来 */
 function undoTransfer(lead, cardEl){
   api("lead_activity?select=*&lead_id=eq." + encodeURIComponent(lead.id) + "&order=created_at.desc&limit=100")
@@ -2424,18 +2894,20 @@ function undoTransfer(lead, cardEl){
     var ev = null;
     for(var i = 0; i < rows.length; i++){
       var a = rows[i].action;
-      if(a === "reassign" || a === "handover_out"){ ev = rows[i]; break; }
+      if(a === "reassign" || a === "handover_out" || a === "rotate"){ ev = rows[i]; break; }
       if(a === "handover_back" || a === "undo_transfer"){ break; }
     }
     if(!ev){ toast("没有可取消的转交：这家最近没转交过，或者已经转回来了", true); return; }
     var before = String(ev.detail || "").split("→")[0] || "";
     var prev = "";
     TEAM_ALL.forEach(function(n){ if(before.indexOf(n) >= 0) prev = n; });
-    if(!prev && ev.action === "handover_out" && ev.actor) prev = ev.actor;
+    if(!prev && (ev.action === "handover_out" || ev.action === "rotate") && ev.actor) prev = ev.actor;
     if(!prev || prev === lead.assignee){ toast("转交记录里没写清原来是谁，没法自动转回去，请在卡片下面「分错了转给」里手动选回原来的人", true); return; }
     var cur = lead.assignee || "";
     askConfirm("确定要取消最近一次转交吗？这家会从 " + (displayName(cur) || "未分配") + " 转回 " + displayName(prev) + "。", function(){
-      patchLead(lead, { assignee: prev }).then(function(){
+      /* 转回后把 rotated_from 清掉：不然这家还挂着“转出去”的标记，转回的人首页会误看到“新转给你” */
+      var backPatch = { assignee: prev, rotated_from: null };
+      patchLead(lead, backPatch).catch(function(){ return patchLead(lead, { assignee: prev }); }).then(function(){
         return logActivity(lead.id, "undo_transfer", "取消转交：从 " + (cur || "未分配") + " 转回 " + prev);
       }).then(function(){
         toast("已取消转交，这家转回 " + displayName(prev));
@@ -2559,6 +3031,14 @@ function bindOneCard(card){
         leaderSaveBtn.disabled = false; leaderSaveBtn.textContent = "保存意见";
       });
     });
+    var leaderCancelBtn = card.querySelector("[data-leader-cancel]");
+    if(leaderCancelBtn) leaderCancelBtn.addEventListener("click", function(){
+      var ta2 = card.querySelector("[data-leader-advice]");
+      var saved = "";
+      ((state.suggByLead && state.suggByLead[lead.id]) || []).forEach(function(s){ if(s && s.leader_advice) saved = s.leader_advice; });
+      if(ta2) ta2.value = saved;
+      toast("已取消，没保存的意见不算数");
+    });
     var stSel = card.querySelector('select[data-field="status"]');
     if(stSel) stSel.addEventListener("change", function(){
       var nv = stSel.value; var old = lead.status;
@@ -2659,6 +3139,9 @@ function bindOneCard(card){
     if(ufBtn) ufBtn.addEventListener("click", function(){ undoFocus(lead, card); });
     var utBtn = card.querySelector('[data-act="undo-transfer"]');
     if(utBtn) utBtn.addEventListener("click", function(){ undoTransfer(lead, card); });
+    /* 转给下一个人（Q195 手动轮转）：和上面「取消转交」成对，转出去靠它、转回来靠取消转交 */
+    var rnBtn = card.querySelector('[data-act="rotate-next"]');
+    if(rnBtn) rnBtn.addEventListener("click", function(){ rotateNext(lead, card); });
     /* 联系记录里每条「客户回了」旁边的“撤销这次” */
     card.querySelectorAll("[data-undo-reply]").forEach(function(btn){
       btn.addEventListener("click", function(){ undoReply(lead, btn.getAttribute("data-undo-reply"), card); });
@@ -2671,6 +3154,21 @@ function bindOneCard(card){
     if(eiBtn) eiBtn.addEventListener("click", function(){ openEditInfo(lead); });
     var fvBtn = card.querySelector('[data-act="findvar"]');
     if(fvBtn) fvBtn.addEventListener("click", function(){ openFindVar(lead); });
+    var spBtn = card.querySelector('[data-act="sendphoto"]');
+    if(spBtn) spBtn.addEventListener("click", function(){ goImgPanel(lead); });
+    /* 已发实拍 / 撤销已发实拍（实拍照片小节里的两个按钮） */
+    var mpBtn = card.querySelector('[data-act="markphotos"]');
+    if(mpBtn) mpBtn.addEventListener("click", function(){ markPhotos(lead, card); });
+    var upBtn = card.querySelector('[data-act="undophotos"]');
+    if(upBtn) upBtn.addEventListener("click", function(){ undoPhotos(lead, card); });
+    /* 写信：每封单独折叠，一次只开一封，点开一封其他的自动收起 */
+    card.querySelectorAll(".msg-block").forEach(function(d){
+      d.addEventListener("toggle", function(){
+        if(!d.open) return;
+        card.querySelectorAll(".msg-block").forEach(function(o){ if(o !== d && o.open) o.open = false; });
+      });
+    });
+    loadLatestPhotos(lead, card);
     /* 粘贴客户原话：走「这句不会回，帮我写」的导入流程 */
     var phBtn = card.querySelector('[data-act="pastehelp"]');
     if(phBtn) phBtn.addEventListener("click", function(){
@@ -2688,6 +3186,26 @@ function bindOneCard(card){
       askConfirm("把「" + (lead.company || "") + "」从 " + (displayName(old) || "未分配") + " 转给 " + displayName(nv) + "？转过去跟进次数从 0 开始算，" + (displayName(old) || "原来的人") + "就不能再联系这家了。", function(){
         reassignLead(lead, nv, old, card);
       }, function(){ asSel.value = old; });
+    });
+    bindBgButtons(card, lead);
+    /* 回收站 / 已藏起：移到回收站、恢复、彻底删除、藏起（原因写在卡片的输入框里） */
+    var tdBtn = card.querySelector('[data-act="trash-delete"]');
+    if(tdBtn) tdBtn.addEventListener("click", function(){ trashLead(lead, card); });
+    var trBtn = card.querySelector('[data-act="trash-restore"]');
+    if(trBtn) trBtn.addEventListener("click", function(){ restoreLead(lead, card); });
+    var tpBtn = card.querySelector('[data-act="trash-permanent"]');
+    if(tpBtn) tpBtn.addEventListener("click", function(){ deleteLeadForever(lead, card); });
+    var hlBtn = card.querySelector('[data-act="hide-lead"]');
+    if(hlBtn) hlBtn.addEventListener("click", function(){
+      var inp = card.querySelector("[data-hide-reason]");
+      hideLead(lead, inp ? inp.value.trim() : "", card);
+    });
+    var hrBtn = card.querySelector('[data-act="hide-restore"]');
+    if(hrBtn) hrBtn.addEventListener("click", function(){ unhideLead(lead, card); });
+    /* 每家卡片的报价区：点开「以前算好的报价」才加载一次，默认收起 */
+    var qb = card.querySelector("[data-quote-box]");
+    if(qb) qb.addEventListener("toggle", function(){
+      if(qb.open && !qb.getAttribute("data-loaded")) loadQuoteLists(lead, qb);
     });
     card.setAttribute("data-bound", "1");
 }
@@ -2733,6 +3251,7 @@ document.addEventListener("click", function(ev){
   else if(act === "helpwrite" || act === "importchat-top"){ openImport(lead); }
   else if(act === "editinfo"){ openEditInfo(lead); }
   else if(act === "findvar"){ openFindVar(lead); }
+  else if(act === "sendphoto"){ goImgPanel(lead); }
   else if(act === "ask"){ openAsk(lead); }
 });
 
@@ -2832,6 +3351,60 @@ function reassignLead(lead, nv, old, cardEl){
   }).then(function(){ toast("已转给 " + displayName(nv) + "，跟进次数从 0 开始算"); applyFilters(); })
   .catch(function(e){ toast(e.message || "转交失败", true); });
 }
+/* 转给下一个人（Q195 手动轮转）：按团队名单顺序轮流，跳过我，优先负担最轻的。
+   负担 = 分给他、状态 new/focus、一次没联系过的条数（和空间里 uncontactedLoadByAssignee 同一口径）。
+   TEAM 里本来就没有团队负责人柯赛，他不跟具体客户，不进轮转名单。 */
+function rotateLoad(name){
+  var n = 0;
+  state.leads.forEach(function(l){
+    if(l.assignee === name && (parseInt(l.owner_contact_count, 10) || 0) === 0 && (l.status === "new" || l.status === "focus")) n++;
+  });
+  return n;
+}
+function pickNextAssignee(me){
+  var others = TEAM.filter(function(n){ return n !== me; });
+  if(!others.length) return "";
+  var best = others[0], bestLoad = rotateLoad(best);
+  others.forEach(function(n){
+    var ld = rotateLoad(n);
+    if(ld < bestLoad){ best = n; bestLoad = ld; }
+  });
+  return best;
+}
+/* 手动轮转：跟进不下去，转给下一个人。和「取消转交」成对：转出去靠它，转回来靠取消转交。
+   只转跟进记录（几次、最后一次什么时候、有没有回），不含聊天内容；新接手的人跟进次数从 0 重算。
+   流水记 action="rotate"（和空间里 rotateLead 同名；不用 handover_out，那个是请假转交的，
+   记混了会污染「我回来了，转回来」的配对计数）。 */
+function rotateNext(lead, cardEl){
+  if(rotatedAway(lead)){ toast("这家已经转出去了，你只能看", true); return; }
+  if(!lead.assignee || lead.assignee !== state.myName){ toast("这家不是分给你的，转不了", true); return; }
+  var next = pickNextAssignee(state.myName);
+  if(!next){ toast("没有可转的人：团队里除了你没有别人能接", true); return; }
+  var n = parseInt(lead.owner_contact_count, 10) || 0;
+  var evs = state.ceByLead[lead.id] || [];
+  var last = "";
+  evs.forEach(function(r){ if(r.created_at && (!last || String(r.created_at) > last)) last = r.created_at; });
+  var handover = "之前 " + state.myName + " 联系了 " + n + " 次" + (last ? "，最后一次 " + fmtTime(last) : "") + "，" + (lead.has_replied ? "客户回过" : "客户没回");
+  askConfirm("把「" + (lead.company || "") + "」转给下一个人 " + displayName(next) + " 吗？\n只转跟进记录（" + handover + "），不含聊天内容。\n转走后你还能看到这家，但发不出去、也不能再记联系；" + displayName(next) + " 接手后跟进次数从 0 重算，首页会看到「新转给你」。", function(){
+    var from = lead.assignee;
+    var patch = { assignee: next, owner_contact_count: 0, rotated_from: from, rotated_at: new Date().toISOString() };
+    function doPatch(p){
+      return patchLead(lead, p).then(function(){
+        return logActivity(lead.id, "rotate", "手动轮转：原负责人 " + from + " → 下一个人 " + next + "；" + handover + "。只转跟进记录（几次、最后一次什么时候、有没有回），不含聊天内容。");
+      });
+    }
+    doPatch(patch).catch(function(){
+      var p2 = { assignee: next, owner_contact_count: 0, rotated_from: from };
+      return doPatch(p2);
+    }).catch(function(){
+      var p3 = { assignee: next, owner_contact_count: 0 };
+      return doPatch(p3);
+    }).then(function(){
+      toast("已转给 " + displayName(next) + "，跟进次数从 0 开始算");
+      if(cardEl) refreshCard(cardEl, lead); else applyFilters();
+    }).catch(function(e){ toast(e.message || "转交失败", true); });
+  });
+}
 
 /* ================= 问柯哥（leader_questions 表） ================= */
 function loadQuestions(){
@@ -2842,6 +3415,443 @@ function loadQuestions(){
     renderAskPanel();
   }).catch(function(){});
 }
+
+/* ================= 背调：客户背调 / 查品种背调 / 首页价格背调 =================
+   说明：网站是静态页，没有后台助手跑背调。下面的代码只做三件事——把“要查”记进
+   数据库（status 置为 checking）、等后台 Muse 查完写回结果后在下次加载、点“刷新
+   结果”、或 30 秒轮询时显示出来、取消/重查。网页里不调用任何搜索或大模型接口，
+   不编造任何价格或公司信息。研究本身由 Muse 在后台做、写回数据库。
+   对照空间：客户背调 8 项（App.tsx 约 6460-6620 行、actions.ts 约 2127-2166 行）、
+   查品种记录（App.tsx 约 7957-8160 行、actions.ts 约 4818-5074 行）、首页价格背调
+   工具（App.tsx 约 2157-2628 行、actions.ts 约 5153-5405 行）。 */
+var BG_CLIENT_ITEMS = [
+  ["client_bg_overview", "公司是干什么的"],
+  ["client_bg_scale", "规模"],
+  ["client_bg_location", "在哪"],
+  ["client_bg_plants", "主营植物"],
+  ["client_bg_trade", "买什么 · 卖什么"],
+  ["client_bg_import_export", "进出口记录"],
+  ["client_bg_online", "官网和社交账号"],
+  ["client_bg_negative", "负面消息"]
+];
+var BG_CLIENT_CLEAR_KEYS = ["client_bg_status", "client_bg_overview", "client_bg_scale", "client_bg_location", "client_bg_plants", "client_bg_trade", "client_bg_import_export", "client_bg_online", "client_bg_negative", "client_bg_sources", "client_bg_note", "client_bg_checked_at"];
+
+/* ---------- 加载：查品种记录 + 首页价格背调记录 ---------- */
+function loadBgData(quiet){
+  return Promise.all([
+    api("variety_requests?select=*&order=created_at.desc&limit=2000").catch(function(){ return []; }),
+    api("standalone_bg_checks?select=*&order=created_at.desc&limit=500").catch(function(){ return []; })
+  ]).then(function(res){
+    state.varietyByLead = {};
+    (res[0] || []).forEach(function(r){ (state.varietyByLead[r.lead_id] = state.varietyByLead[r.lead_id] || []).push(r); });
+    state.standaloneBg = res[1] || [];
+    renderStandaloneBg();
+    scheduleBgRefresh();
+    if(quiet) refreshBgViews();
+    else applyFilters();
+  });
+}
+function anyBgChecking(){
+  var i, k, arr;
+  for(i = 0; i < state.leads.length; i++){ if(state.leads[i].client_bg_status === "checking") return true; }
+  for(k in state.varietyByLead){ arr = state.varietyByLead[k] || []; for(i = 0; i < arr.length; i++){ if(arr[i].bg_status === "checking") return true; } }
+  for(i = 0; i < (state.standaloneBg || []).length; i++){ if(state.standaloneBg[i].status === "checking") return true; }
+  return false;
+}
+/* 有正在查的背调就每 30 秒悄悄拉一次新结果，查完自动出现；没有正在查的就不轮询 */
+function scheduleBgRefresh(){
+  if(state.bgPollTimer){ clearTimeout(state.bgPollTimer); state.bgPollTimer = null; }
+  if(!anyBgChecking()) return;
+  state.bgPollTimer = setTimeout(function(){
+    state.bgPollTimer = null;
+    loadBgData(true).catch(function(){});
+  }, 30000);
+}
+/* 原地刷新已经打开的卡片里的背调区（不重渲染整张卡，折叠开合状态不动；
+   正在输入品种名的输入框有焦点时跳过那一块，别把正在打的字刷掉） */
+function refreshBgViews(){
+  renderStandaloneBg();
+  document.querySelectorAll(".lead").forEach(function(card){
+    var lead = findLead(card.getAttribute("data-id")); if(!lead) return;
+    var cb = card.querySelector('[data-bgview="clientbg"]');
+    if(cb) cb.innerHTML = clientBgHtml(lead);
+    var vb = card.querySelector('[data-bgview="variety"]');
+    if(vb){
+      var inp = vb.querySelector("[data-variety-input]");
+      if(!inp || document.activeElement !== inp) vb.innerHTML = varietyHtml(lead);
+    }
+    bindBgButtons(card, lead);
+  });
+}
+function findVariety(id){
+  var all = state.varietyByLead || {};
+  for(var k in all){ var arr = all[k] || []; for(var i = 0; i < arr.length; i++){ if(String(arr[i].id) === String(id)) return arr[i]; } }
+  return null;
+}
+function refreshBgCard(lead, card){
+  var c = (card && document.contains(card)) ? card : document.querySelector('.lead[data-id="' + lead.id + '"]');
+  if(c) refreshCard(c, lead);
+}
+
+/* ---------- 1. 卡片级客户背调 ---------- */
+function clientBgFoldHtml(l){
+  var st = l.client_bg_status || "";
+  var tag = st === "checking" ? "（正在查）" : st === "done" ? "（已查）" : st === "failed" ? "（没查成，再查）" : "";
+  return '<details class="fold-in"><summary>客户背调' + esc(tag) + '</summary><div data-bgview="clientbg">' + clientBgHtml(l) + '</div></details>';
+}
+function clientBgHtml(l){
+  var st = l.client_bg_status || "";
+  var h = '<div class="bg-note">只给团队看，不发客户。查不到的项写“未查到公开数据”，不编。</div>';
+  if(st === "checking"){
+    h += '<p class="bg-note" style="margin-top:8px">背调中…助手正在网上搜这家客户的公开信息：公司是干什么的、规模多大、在哪、主营什么植物、买什么卖什么、有没有进出口记录、官网和社交账号、有没有负面消息。几分钟后这里会自动出结果，不用守着，也可以点下面「刷新结果」。</p>';
+  } else if(st === "done"){
+    if(l.client_bg_note) h += '<p style="margin-top:8px;font-weight:600;line-height:1.7">' + esc(l.client_bg_note) + '</p>';
+    h += '<div class="bg-box">';
+    BG_CLIENT_ITEMS.forEach(function(it){
+      h += '<div style="margin-top:8px"><div class="bg-k">' + it[1] + '</div><div class="bg-v">' + esc(l[it[0]] || "未查到公开数据") + '</div></div>';
+    });
+    h += '</div>';
+    if(l.client_bg_sources) h += '<p class="bg-note" style="margin-top:8px;white-space:pre-wrap">来源：' + esc(l.client_bg_sources) + '</p>';
+    if(l.client_bg_checked_at) h += '<p class="bg-note">背调时间：' + esc(fmtTime(l.client_bg_checked_at)) + '</p>';
+    h += '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-bgact="clientbg-retry">重新背调</button>'
+      + '<button class="btn btn-outline btn-sm" type="button" data-bgact="clientbg-cancel">取消这份背调</button></div>';
+  } else if(st === "failed"){
+    h += '<p class="bg-note" style="margin-top:8px">这次背调没查成，点下面再查一次。</p>'
+      + '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-bgact="clientbg-retry">再查一次</button></div>';
+  } else {
+    h += '<p class="bg-note" style="margin-top:8px">还没查过。点下面开始：助手去搜这家客户的全部公开信息，只留对工作有帮助的——公司是干什么的、规模多大、在哪、主营什么植物、买什么卖什么、有没有进出口记录、官网和社交账号、有没有负面消息；每项写清来源网址，查不到的写「未查到公开数据」，不编。</p>'
+      + '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-bgact="clientbg-start">开始背调</button></div>';
+  }
+  h += '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-bgact="bg-refresh">刷新结果</button></div>';
+  return h;
+}
+function startClientBg(lead, card){
+  return patchLead(lead, { client_bg_status: "checking" })
+    .then(function(){ return logActivity(lead.id, "note", "给客户「" + (lead.company || "") + "」启动客户背调（公司情况 / 规模 / 主营植物 / 进出口记录 / 官网社交 / 负面消息；逐项带来源，查不到不编）"); })
+    .then(function(){
+      toast("已开始查背调，几分钟后展开卡片在「客户背调」里看结果");
+      scheduleBgRefresh();
+      refreshBgCard(lead, card);
+    })
+    .catch(function(e){ toast(e.message || "背调启动失败", true); });
+}
+function cancelClientBg(lead, card){
+  var patch = {};
+  BG_CLIENT_CLEAR_KEYS.forEach(function(k){ patch[k] = (k === "client_bg_checked_at" ? null : ""); });
+  return patchLead(lead, patch)
+    .then(function(){ return logActivity(lead.id, "note", "取消了客户「" + (lead.company || "") + "」的背调，结果已整份删掉，可以重新查"); })
+    .then(function(){
+      toast("这份背调已取消，结果删掉了，可以重新查");
+      refreshBgCard(lead, card);
+    })
+    .catch(function(e){ toast(e.message || "取消背调失败", true); });
+}
+
+/* ---------- 2. 查品种记录（含每条的价格背调） ---------- */
+function varietyStatusZh(s){ return s === "found" ? "找到了" : s === "not_found" ? "找不到" : "正在查"; }
+function varietyFoldHtml(l){
+  return '<details class="fold-in"><summary>查品种记录（目录里没有的）</summary><div data-bgview="variety">' + varietyHtml(l) + '</div></details>';
+}
+function varietyHtml(l){
+  var list = state.varietyByLead[l.id] || [];
+  var h = '<div class="bg-note">先查能不能找到、多少钱；找不到就列相近的替代品种。结果只先给团队看，不发客户。每条记录上还能点「查背调」：助手去查这个品种在客户当地的市场价、进口渠道价和中国市场进口价，再给一个报价指导价（参考价，未核实，带来源）。</div>';
+  h += '<div style="display:flex;gap:8px;margin-top:10px"><input type="text" class="img-variety-input" style="flex:1;min-width:0" data-variety-input placeholder="客户要的品种名" autocomplete="off" aria-label="客户要的品种名">'
+    + '<button class="btn btn-green btn-sm" type="button" data-bgact="variety-add" style="flex-shrink:0">记下来</button></div>';
+  if(!list.length){
+    h += '<p class="bg-note" style="margin-top:8px">还没有查品种记录。</p>';
+  } else {
+    list.forEach(function(rq){ h += varietyItemHtml(rq); });
+  }
+  h += '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-bgact="bg-refresh">刷新结果</button></div>';
+  return h;
+}
+function varietyItemHtml(rq){
+  var h = '<div class="bg-item"><p style="font-weight:700;line-height:1.7">' + esc(rq.variety) + ' · ' + varietyStatusZh(rq.status) + '</p>';
+  if(rq.price) h += '<p class="bg-note">价格：' + esc(rq.price) + '</p>';
+  if(rq.substitutes) h += '<p class="bg-note">相近的替代品种：' + esc(rq.substitutes) + '</p>';
+  if(rq.note) h += '<p class="bg-note">' + esc(rq.note) + '</p>';
+  h += '<p class="bg-note">只先给团队看，不发客户。</p>';
+  var bg = rq.bg_status || "";
+  if(bg === "done"){
+    h += '<p class="bg-k" style="margin-top:8px">背调结果 · 以下价格均为参考价，未核实</p>';
+    if(rq.bg_local_price) h += '<p class="bg-note">当地市场价：' + esc(rq.bg_local_price) + '</p>';
+    if(rq.bg_import_price) h += '<p class="bg-note">客户进口渠道价：' + esc(rq.bg_import_price) + '</p>';
+    if(rq.bg_china_price) h += '<p class="bg-note">中国市场进口价：' + esc(rq.bg_china_price) + '</p>';
+    if(rq.bg_guide_price) h += '<p style="font-weight:700;line-height:1.7">报价指导价：' + esc(rq.bg_guide_price) + '</p>';
+    if(rq.bg_note) h += '<p class="bg-note">' + esc(rq.bg_note) + '</p>';
+    if(rq.bg_sources) h += '<p class="bg-note" style="white-space:pre-wrap">来源：' + esc(rq.bg_sources) + '</p>';
+    if(rq.bg_checked_at) h += '<p class="bg-note">背调时间：' + esc(fmtTime(rq.bg_checked_at)) + '</p>';
+  } else if(bg === "checking"){
+    h += '<p class="bg-note" style="margin-top:8px">背调中…助手正在网上查这个品种在客户当地的市场价、进口渠道价和中国市场进口价，几分钟后这里会自动出结果。</p>';
+  }
+  h += '<div class="msg-actions">';
+  if(bg !== "checking"){
+    h += '<button class="btn btn-outline btn-sm" type="button" data-bgact="variety-bg" data-id="' + esc(rq.id) + '">' + (bg === "done" ? "重新背调" : bg === "failed" ? "背调没查成，再查一次" : "查背调（价格）") + '</button>';
+  }
+  h += '<button class="btn btn-outline btn-sm" type="button" data-bgact="variety-del" data-id="' + esc(rq.id) + '" data-name="' + esc(rq.variety) + '">删掉这条</button></div>';
+  if(bg === "" || bg === "failed") h += '<p class="bg-note">点一下，助手去查当地市场价、进口渠道价、中国市场进口价，再给一个报价指导价；查到的都是参考价、未核实，带来源。</p>';
+  return h + '</div>';
+}
+function startVarietyBg(lead, id, card){
+  var rq = findVariety(id); if(!rq) return;
+  api("variety_requests?id=eq." + encodeURIComponent(id), { method: "PATCH", headers: { "Prefer": "return=minimal" }, body: { bg_status: "checking" } })
+    .then(function(){
+      rq.bg_status = "checking";
+      return logActivity(lead.id, "variety", "给品种「" + rq.variety + "」启动价格背调（当地市场价 / 进口渠道价 / 中国市场价 → 报价指导价；参考价，未核实）");
+    })
+    .then(function(){
+      toast("已开始给「" + rq.variety + "」查背调，几分钟后回到这条记录看结果");
+      scheduleBgRefresh();
+      refreshBgCard(lead, card);
+    })
+    .catch(function(e){ toast(e.message || "背调启动失败", true); });
+}
+function deleteVariety(lead, id, card, name){
+  api("variety_requests?id=eq." + encodeURIComponent(id), { method: "DELETE" })
+    .then(function(){
+      state.varietyByLead[lead.id] = (state.varietyByLead[lead.id] || []).filter(function(r){ return String(r.id) !== String(id); });
+      return logActivity(lead.id, "variety", "删掉了查品种记录「" + name + "」（连它的价格背调结果一起没了）");
+    })
+    .then(function(){
+      toast("已删掉查品种记录「" + name + "」");
+      refreshBgCard(lead, card);
+    })
+    .catch(function(e){ toast(e.message || "删掉失败", true); });
+}
+
+/* 卡片里所有背调按钮的绑定（bindOneCard 里调；原地刷新后重新绑） */
+function bindBgButtons(card, lead){
+  card.querySelectorAll("[data-bgact]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var act = btn.getAttribute("data-bgact");
+      if(act === "bg-refresh"){ loadBgData(true); return; }
+      if(rotatedAway(lead)){ toast("这家已转给 " + displayName(lead.assignee) + "，你只能看", true); return; }
+      if(act === "clientbg-start"){ startClientBg(lead, card); return; }
+      if(act === "clientbg-retry"){
+        askConfirm("再查一次客户背调？现在这份结果会被新结果覆盖，查的这几分钟里先显示「背调中…」。", function(){ startClientBg(lead, card); });
+        return;
+      }
+      if(act === "clientbg-cancel"){
+        askConfirm("取消这份背调？结果会整份删掉（公司情况、规模、地点、主营、买卖、进出口、官网社媒、负面、来源、小结全清掉），状态回到没查过，之后能重新查一次。", function(){ cancelClientBg(lead, card); });
+        return;
+      }
+      if(act === "variety-add"){
+        var inp = card.querySelector("[data-variety-input]");
+        var v = inp ? inp.value.trim() : "";
+        if(!v){ toast("先写客户要的品种名", true); return; }
+        btn.disabled = true; btn.textContent = "记下中…";
+        api("variety_requests", { method: "POST", headers: { "Prefer": "return=minimal" },
+          body: { lead_id: lead.id, variety: v, status: "checking", created_by: state.myName || "" } })
+          .then(function(){ return logActivity(lead.id, "variety", "客户要的品种目录里没有，记下查品种：「" + v + "」（先给团队看，不发客户）"); })
+          .then(function(){ toast("已记下查品种：「" + v + "」"); return loadBgData(true); })
+          .then(function(){ refreshBgCard(lead, card); })
+          .catch(function(e){ toast(e.message || "记下失败", true); })
+          .then(function(){ btn.disabled = false; btn.textContent = "记下来"; });
+        return;
+      }
+      if(act === "variety-bg"){
+        var id = btn.getAttribute("data-id");
+        var rq = findVariety(id);
+        askConfirm("给品种「" + (rq ? rq.variety : "") + "」查价格背调？助手去查当地市场价、进口渠道价、中国市场进口价，再给一个报价指导价；查到的都是参考价、未核实，带来源，只给团队看、不发客户。", function(){ startVarietyBg(lead, id, card); });
+        return;
+      }
+      if(act === "variety-del"){
+        var id2 = btn.getAttribute("data-id");
+        var nm = btn.getAttribute("data-name") || "";
+        askConfirm("删掉查品种记录「" + nm + "」？这条记录连它的价格背调结果一起没了，记错了才删；只是结果不对，等助手查完再看就行。删掉会记进流水账。", function(){ deleteVariety(lead, id2, card, nm); });
+        return;
+      }
+    });
+  });
+}
+
+/* ---------- 3. 首页价格背调工具 ---------- */
+var bgSpecStd = "cn";
+function bgCompanyOptions(){
+  return state.leads.filter(function(l){ return isActiveLead(l) && (state.isAdmin || state.isLeader || l.assignee === state.myName); });
+}
+function bgSelectedLead(){
+  var sel = $("bgCompany"); if(!sel || !sel.value) return null;
+  return findLead(sel.value);
+}
+function renderStandaloneBg(){
+  var sel = $("bgCompany"); if(!sel) return;
+  var cur = sel.value;
+  var opts = '<option value="">不选公司 · 查通用市场价</option>';
+  bgCompanyOptions().forEach(function(l){
+    opts += '<option value="' + esc(l.id) + '">' + esc((l.company || l.title_zh || "") + ((l.country || l.city) ? " · " + [l.country, l.city].filter(Boolean).join(" ") : "")) + '</option>';
+  });
+  sel.innerHTML = opts;
+  if(cur) sel.value = cur;
+  renderBgCompanyInfo();
+  renderBgList();
+}
+function renderBgCompanyInfo(){
+  var info = $("bgCompanyInfo"), noCo = $("bgNoCompany"), hint = $("bgCompanyHint");
+  if(!info) return;
+  var l = bgSelectedLead();
+  if(l){
+    if(noCo) noCo.style.display = "none";
+    if(hint) hint.textContent = (state.isAdmin || state.isLeader) ? "公司列表直接从线索库里读：新线索一入库就自动出现在这里，不用手动加。你是管理员/负责人，全部公司的线索都能选。" : "公司列表直接从线索库里读：新线索一入库就自动出现在这里，不用手动加。这里只列分给你名下的公司。";
+    info.innerHTML = '<div class="bg-box"><p style="font-weight:700;line-height:1.7">' + esc(l.company || l.title_zh || "") + '</p>'
+      + '<p class="bg-note">已自动带出：' + esc([l.country, l.city].filter(Boolean).join(" · ") || "所在地未填") + (l.region ? " · 市场：" + esc(l.region) : "") + '</p>'
+      + (l.product ? '<p class="bg-note">线索里记过的需求：' + esc(l.product) + '</p>' : "")
+      + '<p class="bg-note">' + (l.status === "deal" ? "档案显示：这家已经成交过，是老客户。" : "档案里以前报过的价，点查之后会在下面的结果里一起列出来，免得这次报得跟以前对不上。") + '</p></div>';
+  } else {
+    if(noCo) noCo.style.display = "";
+    if(hint) hint.textContent = "公司列表直接从线索库里读：新线索一入库就自动出现在这里，不用手动加。";
+    info.innerHTML = "";
+  }
+}
+function bgSpecText(){
+  var h = $("bgHeight") ? $("bgHeight").value.trim() : "";
+  if(bgSpecStd === "cn") return [h, $("bgGround").value.trim(), $("bgPot").value.trim()].filter(Boolean).join(" ");
+  return [h, $("bgGirth").value.trim(), $("bgContainer").value.trim()].filter(Boolean).join(" ");
+}
+function setBgSpecStd(std){
+  bgSpecStd = std;
+  $("bgStdCn").className = std === "cn" ? "btn btn-green btn-sm" : "btn btn-outline btn-sm";
+  $("bgStdIntl").className = std === "intl" ? "btn btn-green btn-sm" : "btn btn-outline btn-sm";
+  $("bgStdHint").textContent = std === "cn"
+    ? "中国标准按高、地径、盆径填；查客户当地价时，助手会先约等于换算成国际标准再查，结果里写清对照关系。"
+    : "国际标准按高、胸径/干围、容器升数填，客户给的就是这个就照这个填；查中国价时，助手会先约等于换算成中国标准再查，结果里写清对照关系。";
+  var cn = $("bgSpecCn"), it = $("bgSpecIntl");
+  if(cn) cn.style.display = std === "cn" ? "" : "none";
+  if(it) it.style.display = std === "intl" ? "" : "none";
+}
+function updateBgStartHint(){
+  var v = $("bgVariety") ? $("bgVariety").value.trim() : "";
+  var btn = $("bgStartBtn"), hint = $("bgStartHint");
+  if(btn) btn.disabled = !v;
+  if(hint) hint.textContent = v ? "点上面开始查，几分钟后结果出现在这里。" : "先在第二步填上品种名，这个按钮才能点。";
+}
+function renderBgList(){
+  var box = $("bgToolList"); if(!box) return;
+  var list = state.standaloneBg || [];
+  if(!list.length){ box.innerHTML = "还没有价格背调记录。"; return; }
+  box.innerHTML = list.map(standaloneBgItemHtml).join("");
+}
+function bgAskSpecHref(c){
+  if(!c.ask_spec_message) return "";
+  var l = c.lead_id ? findLead(c.lead_id) : null;
+  if(!l) return "";
+  if(l.whatsapp) return waUniversal(l.whatsapp, c.ask_spec_message);
+  var u = tgUser(l.telegram);
+  if(u) return "https://t.me/" + u + "?text=" + encodeURIComponent(c.ask_spec_message);
+  if(l.email) return gmailUrl(l.email, "问一下规格 - " + (l.company || ""), c.ask_spec_message);
+  return "";
+}
+function standaloneBgItemHtml(c){
+  var h = '<div class="bg-item"><p style="font-weight:700;line-height:1.7">' + esc(c.variety || "");
+  if(c.lead_title) h += ' <span style="font-weight:400;color:var(--muted)">· 给 ' + esc(c.lead_title) + '</span>';
+  if(c.market_country || c.market_city) h += ' <span style="font-weight:400;color:var(--muted)">· ' + esc([c.market_country, c.market_city].filter(Boolean).join(" ")) + '</span>';
+  if(c.status === "checking") h += ' <span style="font-weight:400;color:var(--muted)">背调中…</span>';
+  else if(c.status === "failed") h += ' <span style="font-weight:400;color:var(--red)">没查成</span>';
+  h += '</p>';
+  var parts = c.spec_standard === "intl"
+    ? [c.spec_height ? "高 " + c.spec_height : "", c.spec_intl_girth ? "胸径/干围 " + c.spec_intl_girth : "", c.spec_intl_container ? "容器 " + c.spec_intl_container : ""]
+    : [c.spec_height ? "高 " + c.spec_height : "", c.spec_ground ? "地径 " + c.spec_ground : "", c.spec_pot ? "盆径 " + c.spec_pot : ""];
+  var specStr = parts.filter(Boolean).join(" · ");
+  if(specStr || c.quantity) h += '<p class="bg-note">' + (specStr ? "规格（" + (c.spec_standard === "intl" ? "国际标准" : "中国标准") + "）：" + esc(specStr) : "规格未定") + (c.quantity ? " · 数量 " + esc(c.quantity) : "") + '</p>';
+  if(c.customer_history) h += '<div class="bg-box"><p class="bg-k">这个客户的档案（报价前先对一眼，别报乱）</p><p class="bg-note" style="white-space:pre-wrap">' + esc(c.customer_history) + '</p></div>';
+  if(c.status === "checking") h += '<p class="bg-note" style="margin-top:8px">助手正在网上查这个品种的当地市场价、进口渠道价和中国市场进口价，几分钟后这里会自动出结果，不用守着。</p>';
+  if(c.status === "done"){
+    h += '<p class="bg-k" style="margin-top:8px">背调结果 · 以下价格均为参考价，未核实</p>';
+    if(c.local_price) h += '<p class="bg-note">当地市场价：' + esc(c.local_price) + '</p>';
+    if(c.import_price) h += '<p class="bg-note">客户进口渠道价：' + esc(c.import_price) + '</p>';
+    if(c.china_price) h += '<p class="bg-note">中国市场进口价：' + esc(c.china_price) + '</p>';
+    if(c.guide_price) h += '<p style="font-weight:700;line-height:1.7">' + (c.lead_title ? "针对这个客户的报价指导价" : "报价指导价") + '：' + esc(c.guide_price) + '</p>';
+    if(!c.spec_height && !c.spec_ground && !c.spec_pot && !c.spec_intl_girth && !c.spec_intl_container){
+      h += '<div class="bg-box"><p class="bg-k">规格未定，这是按常见规格查的区间价</p>';
+      if(c.spec_range_prices) h += '<p class="bg-note" style="white-space:pre-wrap">' + esc(c.spec_range_prices) + '</p>';
+      h += '</div>';
+    }
+    if(c.spec_conversion) h += '<p class="bg-note">规格对照（约等于）：' + esc(c.spec_conversion) + '</p>';
+    if(c.ask_spec_message){
+      h += '<div class="bg-box"><p class="bg-k">问客户要规格的话（问清了再报准价）</p><p class="bg-note" style="white-space:pre-wrap">' + esc(c.ask_spec_message) + '</p>';
+      var href = bgAskSpecHref(c);
+      if(href) h += '<div class="msg-actions"><a class="btn btn-green btn-sm" target="_blank" rel="noopener" href="' + esc(href) + '">发过去问规格 ↗</a></div>';
+      else h += '<p class="bg-note">这条没绑客户、或这家客户没留 WhatsApp / Telegram / 邮箱，把上面这句话复制下来发过去就行。</p><div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-copy="' + encodeURIComponent(c.ask_spec_message) + '">复制这句话</button></div>';
+      h += '</div>';
+    }
+    if(c.note) h += '<p class="bg-note" style="margin-top:8px">' + esc(c.note) + '</p>';
+    if(c.sources) h += '<p class="bg-note" style="white-space:pre-wrap">来源：' + esc(c.sources) + '</p>';
+    if(c.checked_at) h += '<p class="bg-note">背调时间：' + esc(fmtTime(c.checked_at)) + '</p>';
+  }
+  if(c.status === "failed" || c.status === "done"){
+    h += '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-bgretry="' + esc(c.id) + '">' + (c.status === "failed" ? "再查一次" : "重新背调") + '</button></div>';
+  }
+  return h + '</div>';
+}
+function startStandaloneBg(){
+  var v = $("bgVariety").value.trim();
+  if(!v){ toast("先在第二步填上品种名", true); return; }
+  var lead = bgSelectedLead();
+  var specStd = bgSpecText() ? bgSpecStd : "";
+  var body = {
+    lead_id: lead ? lead.id : null,
+    lead_title: lead ? (lead.company || lead.title_zh || "") : "",
+    variety: v,
+    market_country: lead ? (lead.country || "") : $("bgCountry").value.trim(),
+    market_city: lead ? (lead.city || "") : $("bgCity").value.trim(),
+    market_region: lead ? (lead.region || "") : ($("bgRegion").value || ""),
+    spec_height: $("bgHeight").value.trim(),
+    spec_pot: bgSpecStd === "cn" ? $("bgPot").value.trim() : "",
+    spec_ground: bgSpecStd === "cn" ? $("bgGround").value.trim() : "",
+    spec_standard: specStd,
+    spec_intl_girth: bgSpecStd === "intl" ? $("bgGirth").value.trim() : "",
+    spec_intl_container: bgSpecStd === "intl" ? $("bgContainer").value.trim() : "",
+    quantity: $("bgQuantity").value.trim(),
+    status: "checking",
+    created_by: state.myName || ""
+  };
+  var btn = $("bgStartBtn"); btn.disabled = true; btn.textContent = "启动中…";
+  api("standalone_bg_checks", { method: "POST", headers: { "Prefer": "return=minimal" }, body: body })
+    .then(function(){
+      if(lead) return logActivity(lead.id, "note", "首页价格背调：给「" + v + "」查" + (lead.company || "") + "那个市场的价（当地价 / 进口渠道价 / 中国价 → 报价指导价；参考价，未核实）");
+    })
+    .then(function(){
+      toast("已开始查背调，几分钟后结果出现在这里");
+      return loadBgData(true);
+    })
+    .catch(function(e){ toast(e.message || "背调启动失败", true); })
+    .then(function(){ btn.disabled = false; btn.textContent = "开始背调"; updateBgStartHint(); });
+}
+function retryStandaloneBg(id){
+  var c = null;
+  (state.standaloneBg || []).forEach(function(r){ if(String(r.id) === String(id)) c = r; });
+  if(!c) return;
+  askConfirm("给「" + c.variety + "」再查一次价格背调？现在这份结果会被新结果覆盖，查的这几分钟里先显示「背调中…」。查到的都是参考价、未核实，只给团队看、不发客户。", function(){
+    api("standalone_bg_checks?id=eq." + encodeURIComponent(id), { method: "PATCH", headers: { "Prefer": "return=minimal" }, body: { status: "checking" } })
+      .then(function(){
+        c.status = "checking";
+        if(c.lead_id) return logActivity(c.lead_id, "note", "首页价格背调：给「" + c.variety + "」再查一次");
+      })
+      .then(function(){ toast("已重新开始查，几分钟后看结果"); scheduleBgRefresh(); renderBgList(); })
+      .catch(function(e){ toast(e.message || "再查失败", true); });
+  });
+}
+/* 首页价格背调工具的接线（页面加载时执行一次，元素都在脚本上方已存在） */
+$("bgCompany").addEventListener("change", renderBgCompanyInfo);
+$("bgStdCn").addEventListener("click", function(){ setBgSpecStd("cn"); });
+$("bgStdIntl").addEventListener("click", function(){ setBgSpecStd("intl"); });
+$("bgVariety").addEventListener("input", updateBgStartHint);
+$("bgStartBtn").addEventListener("click", startStandaloneBg);
+$("bgRefreshBtn").addEventListener("click", function(){ loadBgData(true); });
+$("bgToolList").addEventListener("click", function(ev){
+  var t = ev.target;
+  if(!t || !t.closest) return;
+  var cp = t.closest("[data-copy]");
+  if(cp){
+    var text = decodeURIComponent(cp.getAttribute("data-copy"));
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ toast("已复制"); }, function(){ toast("复制失败，请长按文字复制", true); });
+    } else { toast("这个浏览器不支持一键复制，请长按文字复制", true); }
+    return;
+  }
+  var rb = t.closest("[data-bgretry]");
+  if(rb) retryStandaloneBg(rb.getAttribute("data-bgretry"));
+});
 function qSeenKey(){ return "leads_seen_q_" + (state.user && state.user.id ? state.user.id : "anon"); }
 function qSeenIds(){ try{ return JSON.parse(localStorage.getItem(qSeenKey()) || "[]").map(String); }catch(e){ return []; } }
 function unseenAnsweredCount(l){
@@ -2909,7 +3919,7 @@ function qaBlock(l){
       + (q.asker_name ? ' · ' + esc(displayName(q.asker_name)) + ' 问' : '') + '</div>'
       + '<div class="qa-q">' + esc(q.question || "") + '</div>';
     if(q.status === "answered" && q.answer){
-      var ansBy = q.answered_by ? (String(q.answered_by) === "柯赛" ? "柯哥" : q.answered_by) : ln;
+      var ansBy = q.answered_by ? displayName(q.answered_by) : ln;
       h += '<div class="qa-a"><b>' + esc(ansBy) + '：</b>' + esc(q.answer) + (q.answered_at ? ' <span class="ct">' + esc(fmtTime(q.answered_at)) + '</span>' : '') + '</div>';
     } else {
       h += '<div class="qa-wait">等' + ln + '回…</div>';
@@ -3005,12 +4015,26 @@ function renderAskPanel(){
       var l = findLead(q.lead_id) || {};
       return '<div class="ask-item"><div><b>' + esc(l.company || ("线索 #" + q.lead_id)) + '</b> <span class="tag type">' + esc(q.topic || "其他") + '</span> · ' + esc(q.asker_name || "") + '</div>'
         + '<div class="ask-q">' + esc(q.question || "") + '</div>'
-        + '<div class="qa-a"><b>回答：</b>' + esc(q.answer || "") + '</div></div>';
+        + '<div class="qa-a"><b>' + esc(q.answered_by ? displayName(q.answered_by) : leaderName()) + '：</b>' + esc(q.answer || "") + (q.answered_at ? ' <span class="ct">' + esc(fmtTime(q.answered_at)) + '</span>' : '') + '</div>'
+        + '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-qundo="' + esc(q.id) + '">撤回回答，重新写</button></div></div>';
     }).join("") + "</details>";
   }
   $("askList").innerHTML = h;
 }
 $("askList").addEventListener("click", function(ev){
+  var undoBtn = ev.target.closest ? ev.target.closest("[data-qundo]") : null;
+  if(undoBtn){
+    var qid2 = undoBtn.getAttribute("data-qundo");
+    askConfirm("撤回这条回答吗？撤回后它回到「待我回答」，队友卡片上的「柯哥回你了」红点会消失，回答内容清空，可以重新写。", function(){
+      undoBtn.disabled = true;
+      api("leader_questions?id=eq." + encodeURIComponent(qid2), { method:"PATCH", headers:{ "Prefer":"return=minimal" },
+        body:{ answer: "", status: "open", answered_at: null, answered_by: "" } })
+      .then(function(){ toast("已撤回回答，可以重新写"); return loadQuestions(); })
+      .then(function(){ applyFilters(); })
+      .catch(function(e){ toast(e.message || "撤回失败", true); undoBtn.disabled = false; });
+    });
+    return;
+  }
   var btn = ev.target.closest ? ev.target.closest("[data-qbtn]") : null;
   if(!btn) return;
   var qid = btn.getAttribute("data-qbtn");
@@ -3067,7 +4091,7 @@ $("exportBtn").addEventListener("click", function(){
 $("exportMineBtn").addEventListener("click", function(){
   if(state.isLeader){ toast("你是团队负责人，不跟具体客户，没有自己的客户表", true); return; }
   if(!state.myName){ toast("还没有找到你的个人档案", true); return; }
-  var mine = state.leads.filter(function(l){ return l.assignee === state.myName; });
+  var mine = state.leads.filter(function(l){ return isActiveLead(l) && l.assignee === state.myName; });
   if(!mine.length){ toast("你名下暂时没有客户", true); return; }
   downloadCsv(mine, "我的客户_" + state.myName + "_" + nowStamp().slice(0,10) + ".csv");
 });
@@ -3103,7 +4127,7 @@ function suggBlock(l){
       if(s.meaning) h += "<div>客户什么意思："+esc(s.meaning)+"</div>";
       if(s.next_reply){
         h += '<div class="next">建议'+(list.length>1 ? (i+1)+"：" : "怎么回：")+'<b>'+esc(s.next_reply)+"</b></div>";
-        if(!state.isLeader) h += '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-sugg-send data-text="'+encodeURIComponent(s.next_reply)+'">用这封发</button></div>';
+        if(!state.isLeader && !rotatedAway(l)) h += '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-sugg-send data-text="'+encodeURIComponent(s.next_reply)+'">用这封发</button></div>';
       }
       if(s.updated_at) h += '<div class="tr-status">更新于 '+esc(fmtTime(s.updated_at))+"</div>";
       h += "</div>";
@@ -3124,7 +4148,7 @@ function leaderAdviceBlock(l, list){
   }
   if(state.isLeader){
     h += '<textarea data-leader-advice placeholder="写跟进意见，队友能看到">'+esc(advice)+"</textarea>";
-    h += '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-leader-save>保存意见</button></div>';
+    h += '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-leader-save>保存意见</button><button class="btn btn-outline btn-sm" type="button" data-leader-cancel>取消</button></div>';
   }
   return h + "</div>";
 }
@@ -3213,6 +4237,7 @@ function renderOverview(){
   var byPerson = {};
   state.leads.forEach(function(l){
     var name = l.assignee || "未分配";
+    if(!isActiveLead(l)) return;
     var g = byPerson[name] || (byPerson[name] = { leads:0, contacts:0, replied:0, contacted:0, last:null, dueNow:0, nextDue:null });
     g.leads++;
     g.contacts += parseInt(l.owner_contact_count, 10) || 0;
@@ -3250,7 +4275,7 @@ function renderOverview(){
     else nextTxt = "暂时没有要跟进的";
     var un = uncontactedCount(name);
     var focusN = 0;
-    state.leads.forEach(function(l){ if(l.assignee === name && l.status === "focus") focusN++; });
+    state.leads.forEach(function(l){ if(isActiveLead(l) && l.assignee === name && l.status === "focus") focusN++; });
     return '<div class="ov-item"><div class="nm">'+esc(displayName(name))+"</div>"
       + '<div class="nums">联系次数：<b>'+g.contacts+"</b> 次 · 客户回了 <b>"+g.replied+"</b> 家 / 联系过 "+g.contacted+" 家</div>"
       + '<div class="nums">待开发：<b>'+un+'</b> 家' + (un < 20 ? ' <span style="color:var(--red);font-weight:700">（不够 20）</span>' : '') + ' · 重点跟进 <b>'+focusN+'</b> 家</div>'
@@ -3357,6 +4382,10 @@ function translateZhAll(text, country){
 /* ================= 编辑消息 ================= */
 var editLead = null;
 var editTimers = {};
+/* 编辑消息的两个快照：editOrig = 打开编辑框时的版本（撤销本次没保存的改动用）；
+   editPrev[leadId] = 上次保存之前的版本（保存后改错了，恢复上一版用；只存在这一次打开的页面里，刷新页面就没了，网站没有存上一版的表） */
+var editOrig = {};
+var editPrev = {};
 function openEditor(lead){
   editLead = lead;
   $("editModalTitle").textContent = "编辑消息 · " + (lead.company || "");
@@ -3408,11 +4437,39 @@ function openEditor(lead){
     st.parentNode.insertBefore(btn, st.nextSibling);
   });
   $("editModal").classList.add("open");
+  editOrig = {};
+  MSG_FIELDS.forEach(function(f){
+    var zhEl = wrap.querySelector('textarea[data-zh="'+f.zh+'"]');
+    var foEl = wrap.querySelector('textarea[data-fo="'+f.foreign+'"]');
+    editOrig[f.zh] = zhEl ? zhEl.value : (lead[f.zh] || "");
+    editOrig[f.foreign] = foEl ? foEl.value : (lead[f.foreign] || "");
+  });
 }
 $("editCancel").addEventListener("click", function(){ $("editModal").classList.remove("open"); editLead = null; });
+$("editRestore").addEventListener("click", function(){
+  var lead = editLead; if(!lead) return;
+  var wrap = $("editFields");
+  var dirty = false;
+  MSG_FIELDS.forEach(function(f){
+    var zhEl = wrap.querySelector('textarea[data-zh="'+f.zh+'"]');
+    if(zhEl && zhEl.value !== (editOrig[f.zh] || "")) dirty = true;
+  });
+  /* 框里改过还没保存：恢复到打开时的版本；框里没动过：恢复到上次保存之前的版本 */
+  var src = dirty ? editOrig : (editPrev[lead.id] || editOrig);
+  MSG_FIELDS.forEach(function(f){
+    var zhEl = wrap.querySelector('textarea[data-zh="'+f.zh+'"]');
+    var foEl = wrap.querySelector('textarea[data-fo="'+f.foreign+'"]');
+    if(zhEl) zhEl.value = src[f.zh] !== undefined ? src[f.zh] : (lead[f.zh] || "");
+    if(foEl) foEl.value = src[f.foreign] !== undefined ? src[f.foreign] : (lead[f.foreign] || "");
+  });
+  toast(dirty ? "已撤销本次还没保存的改动，回到打开时的版本（还没保存，点保存才生效）" : (editPrev[lead.id] ? "已恢复到上次保存之前的版本（还没保存，点保存才生效）" : "没有可恢复的上一版，当前就是打开时的版本"));
+});
 $("editSave").addEventListener("click", function(){
   var lead = editLead; if(!lead) return;
   var wrap = $("editFields");
+  /* 先把保存前的版本存下来：保存后改错了，「恢复上一版」能回到这一版 */
+  editPrev[lead.id] = {};
+  MSG_FIELDS.forEach(function(f){ editPrev[lead.id][f.zh] = lead[f.zh] || ""; editPrev[lead.id][f.foreign] = lead[f.foreign] || ""; });
   var patch = {};
   var changed = false;
   MSG_FIELDS.forEach(function(f){
@@ -3667,9 +4724,12 @@ function bjWeekStartStr(){
 }
 function isThisWeekBJ(iso){ if(!iso) return false; return bjDateStr(new Date(iso)) >= bjWeekStartStr(); }
 function hasContact(l){ return !!(l.whatsapp || l.email || l.telegram || l.phone); }
+/* 回收站 / 已藏起的客户不算在 Top 5、报数、汇总、待开发计数、转交、撞单里（只在回收站 / 已藏起视图里看） */
+function isActiveLead(l){ return l && !l.deleted_at && (parseInt(l.hidden, 10) || 0) !== 1; }
 function topFiveFor(name){
   return state.leads.filter(function(l){
-    return l.assignee === name
+    return isActiveLead(l)
+      && l.assignee === name
       && (parseInt(l.owner_contact_count, 10) || 0) === 0
       && (parseInt(l.contact_count, 10) || 0) === 0
       && l.status !== "deal" && l.status !== "ignored"
@@ -3689,6 +4749,7 @@ function topFiveFor(name){
 /* Top5 上面一组：客户回了 / 该跟进了（回了优先、跟进到期优先），最多 3 家 */
 function topFiveFollowup(name){
   return state.leads.filter(function(l){
+    if(!isActiveLead(l)) return false;
     if(l.assignee !== name) return false;
     if(l.status === "deal" || l.status === "ignored") return false;
     if(l.has_replied) return true;
@@ -3702,7 +4763,8 @@ function topFiveFollowup(name){
 }
 function topFiveForTeam(){
   return state.leads.filter(function(l){
-    return (parseInt(l.owner_contact_count, 10) || 0) === 0
+    return isActiveLead(l)
+      && (parseInt(l.owner_contact_count, 10) || 0) === 0
       && (parseInt(l.contact_count, 10) || 0) === 0
       && l.status !== "deal" && l.status !== "ignored"
       && hasContact(l);
@@ -3726,7 +4788,7 @@ function top5Reason(l){
   var bits = [];
   var st = parseInt(l.stars, 10) || 0;
   if(st) bits.push(st + " 星");
-  if(l.whatsapp) bits.push(myWaMissing() ? "有 WhatsApp，需复制发" : "有 WhatsApp，能直接发消息");
+  if(l.whatsapp) bits.push(state.isLeader ? "有 WhatsApp，负责人能直接发消息" : (myWaMissing() ? "有 WhatsApp，需复制发" : "有 WhatsApp，能直接发消息"));
   else if(l.telegram) bits.push("有 Telegram，能直接发消息");
   else if(l.email) bits.push("有邮箱，能直接发邮件");
   if(isTodayBJ(l.found_at || l.created_at)) bits.push("今天刚搜到");
@@ -3745,13 +4807,15 @@ function topFiveItemHtml(l, idx, isDup){
     + '<div class="sub2">' + esc([l.country, l.product, l.variety].filter(Boolean).join(" · ")) + " · 负责人：" + esc(displayName(l.assignee || "未分配")) + "</div>"
     + (lt ? '<div class="sub2">当地时间 ' + esc(lt.text) + (lt.approx ? "（按首都大概算）" : "") + (lt.night ? " · 深夜，别发" : "") + "</div>" : "")
     + (reason ? '<div class="why">为什么选它：' + esc(reason) + "</div>" : "") + "</div></div><div>";
-  if(lt && lt.night){
+  if(state.isLeader){
+    h += '<span class="sub2">负责人是 ' + esc(displayName(l.assignee || "未分配")) + '，点卡片在「负责人意见」里写跟进意见，队友能看到；你不用自己发消息。</span>';
+  } else if(lt && lt.night){
     h += '<span class="btn btn-outline btn-sm" style="opacity:.75">深夜，等天亮再发</span>';
-  } else if(l.whatsapp) h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="first" data-lead="' + esc(l.id) + '" href="' + esc(waUniversal(l.whatsapp, withCatalogLine(l.first_message || "", firstMsgLang(l)))) + '">WhatsApp 第一封</a>';
+  } else if(l.whatsapp) h += (!state.isLeader && myWaMissing()) ? '<button class="btn btn-green btn-sm" type="button" disabled style="opacity:.55">WhatsApp 第一封（先填你的号）</button>' : '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="whatsapp" data-kind="first" data-lead="' + esc(l.id) + '" href="' + esc(waUniversal(l.whatsapp, withCatalogLine(l.first_message || "", firstMsgLang(l)))) + '">WhatsApp 第一封</a>';
   else if(l.telegram) h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="telegram" data-kind="first" data-lead="' + esc(l.id) + '" href="https://t.me/' + esc(tgUser(l.telegram)) + "?text=" + encodeURIComponent(withCatalogLine(l.telegram_first_message || "", firstMsgLang(l))) + '">Telegram 第一封</a>';
   else if(l.email) h += '<a class="btn btn-green btn-sm" data-sendlink="1" data-channel="email" data-kind="first" data-lead="' + esc(l.id) + '" href="' + esc(gmailUrl(l.email, "联系 - " + (l.company || ""), withCatalogLine(l.first_message || "", firstMsgLang(l)))) + '">发邮件</a>';
   else h += '<span class="sub2">没留 WhatsApp / 邮箱</span>';
-  if(myWaMissing() && l.whatsapp) h += '<button class="btn btn-outline btn-sm" type="button" data-copy="' + encodeURIComponent(withCatalogLine(l.first_message || "", firstMsgLang(l))) + '">复制第一封</button>';
+  if(!state.isLeader && myWaMissing() && l.whatsapp) h += '<button class="btn btn-outline btn-sm" type="button" data-copy="' + encodeURIComponent(withCatalogLine(l.first_message || "", firstMsgLang(l))) + '">复制第一封</button>';
   return h + "</div></div>";
 }
 
@@ -3798,6 +4862,7 @@ function renderTop5(){
     var teamList = topFiveForTeam().slice(0, 5);
     if(!teamList.length){ box.innerHTML = "全队都联系过了，或者还没有带联系方式的新客户。"; }
     else { var seenT = {}; box.innerHTML = teamList.map(function(l, i){ return topFiveItemHtml(l, i, dupFlagFor(l, seenT)); }).join(""); }
+    if($("top5Next")) $("top5Next").style.display = "none";
     setTop5Progress(0);
     return;
   }
@@ -3834,6 +4899,12 @@ function setTop5Progress(shown){
       if(r.created_at && bjDateStr(new Date(r.created_at)) === todayStr && (!r.actor || r.actor === state.myName)) today++;
     });
   });
+  if(state.isLeader){
+    var teamLeft = 0;
+    TEAM.forEach(function(n){ teamLeft += uncontactedCount(n); });
+    el.textContent = "全队还剩 " + teamLeft + " 家没联系过（不含已成交、没兴趣、回收站、已藏起）。";
+    return;
+  }
   var left = uncontactedCount(state.myName);
   el.textContent = "今天已联系 " + today + " 家，你还剩 " + left + " 家没联系过。";
 }
@@ -3851,7 +4922,7 @@ function renderRotatedNotice(){
   var key = "leads_seen_rotated_" + (state.user && state.user.id ? state.user.id : "anon");
   var seen = {};
   try{ seen = JSON.parse(localStorage.getItem(key) || "{}"); }catch(e){ seen = {}; }
-  var fresh = state.leads.filter(function(l){ return l.assignee === state.myName && l.rotated_from && !seen[String(l.id)]; });
+  var fresh = state.leads.filter(function(l){ return isActiveLead(l) && l.assignee === state.myName && l.rotated_from && !seen[String(l.id)]; });
   if(!fresh.length) return;
   line.innerHTML = "新转给你 " + fresh.length + " 家：" + fresh.map(function(l){
     var n = parseInt(l.owner_contact_count, 10) || 0;
@@ -3867,7 +4938,7 @@ function renderRotatedNotice(){
 /* ---------- 14. 早上报数（现场算） ---------- */
 function renderMorning(){
   var box = $("morningBox"); if(!box) return;
-  var today = state.leads.filter(function(l){ return isTodayBJ(l.found_at || l.created_at); });
+  var today = state.leads.filter(function(l){ return isActiveLead(l) && isTodayBJ(l.found_at || l.created_at); });
   var withContact = today.filter(hasContact).length;
   var withWA = today.filter(function(l){ return !!l.whatsapp; }).length;
   var seenCompanies = {}, dup = 0;
@@ -3919,7 +4990,7 @@ function renderEvening(rows){
   var byMember = {};
   rows.filter(function(r){ return r.summary_date === date; }).forEach(function(r){ byMember[r.member] = r; });
   var h = '<div class="sync-line" style="margin-bottom:10px">' + esc(date) + ' 的汇总（全队都看得到）</div>';
-  var ordersOpen = state.leads.filter(function(l){ return l.order_intent_at && l.status !== "deal"; }).length;
+  var ordersOpen = state.leads.filter(function(l){ return isActiveLead(l) && l.order_intent_at && l.status !== "deal"; }).length;
   if(ordersOpen) h += '<div class="sync-line" style="margin-bottom:10px">今天有 <b>' + ordersOpen + '</b> 家要下单还没人去成交，点上面「要下单了」去确认数量、价格、定金。</div>';
   TEAM.forEach(function(name){
     var r = byMember[name];
@@ -3935,7 +5006,7 @@ function renderEvening(rows){
 function renderWeekly(){
   var box = $("weeklyBox"); if(!box) return;
   var ws = bjWeekStartStr();
-  var weekNew = state.leads.filter(function(l){ var d = bjDateStr(new Date(l.found_at || l.created_at || "")); return d && d >= ws; });
+  var weekNew = state.leads.filter(function(l){ if(!isActiveLead(l)) return false; var d = bjDateStr(new Date(l.found_at || l.created_at || "")); return d && d >= ws; });
   var ceCount = 0, reCount = 0;
   Object.keys(state.ceByLead || {}).forEach(function(k){ (state.ceByLead[k] || []).forEach(function(r){ if(isThisWeekBJ(r.created_at)) ceCount++; }); });
   Object.keys(state.reByLead || {}).forEach(function(k){ (state.reByLead[k] || []).forEach(function(r){ if(isThisWeekBJ(r.created_at)) reCount++; }); });
@@ -3946,7 +5017,8 @@ function renderWeekly(){
   h += '<div style="margin-top:12px"><b style="color:var(--green)">本周最值得联系的 5 家（全队）</b></div>';
   var privilegedW = state.isAdmin || state.isLeader;
   var all = state.leads.filter(function(l){
-    return (parseInt(l.owner_contact_count, 10) || 0) === 0
+    return isActiveLead(l)
+      && (parseInt(l.owner_contact_count, 10) || 0) === 0
       && (parseInt(l.contact_count, 10) || 0) === 0
       && l.status !== "deal" && l.status !== "ignored" && hasContact(l);
   }).sort(function(a, b){
@@ -4005,7 +5077,7 @@ function checkReplyPopup(){
       return !isNaN(t) && t >= weekAgo;
     });
     var byId = {}; state.leads.forEach(function(l){ byId[l.id] = l; });
-    if(!state.isAdmin && !state.isLeader) fresh = fresh.filter(function(r){ var l = byId[r.lead_id]; return l && l.assignee === state.myName; });
+    fresh = fresh.filter(function(r){ var l = byId[r.lead_id]; return l && isActiveLead(l) && (state.isAdmin || state.isLeader || l.assignee === state.myName); });
     if(!fresh.length) return;
     $("replyList").innerHTML = fresh.map(function(r){
       var l = byId[r.lead_id] || {};
@@ -4028,6 +5100,12 @@ $("replyList").addEventListener("click", function(ev){
 /* 点开某家卡片：滚到那张卡、展开详情、标已读 */
 function openLeadCard(leadId){
   var card = document.querySelector('.lead[data-id="' + leadId + '"]');
+  if(!card){
+    /* 分页后卡片可能在别的页：先翻到它所在的那一页再找 */
+    var idx = -1;
+    for(var i = 0; i < state.filtered.length; i++){ if(String(state.filtered[i].id) === String(leadId)){ idx = i; break; } }
+    if(idx >= 0){ state.page = Math.floor(idx / PAGE_SIZE) + 1; renderLeads(); card = document.querySelector('.lead[data-id="' + leadId + '"]'); }
+  }
   if(!card){ toast("这家不在当前筛选里，把筛选清掉再找", true); return; }
   card.scrollIntoView({ behavior: "smooth", block: "start" });
   var body = card.querySelector(".lead-body");
@@ -4079,7 +5157,7 @@ function quoteMainContactText(lead){
     if(lead.telegram) return "发给：这家 Telegram 只留了号码、没留用户名，WhatsApp 和邮箱也没留，点发送只存草稿。";
     return "发给：这家没留 WhatsApp、邮箱和 Telegram，点发送只存草稿。";
   }
-  return "发给：" + c.label + " " + c.value + (lead.contact_name ? "（联系人：" + lead.contact_name + "）" : "") + (c.fromLast ? "（和上次联系同一个渠道）" : "（和第一封同一个地方）");
+  return "发给：" + c.label + " " + c.value + (lead.contact_name ? "（联系人：" + lead.contact_name + "）" : "") + (c.fromLast ? "（和上次联系同一个渠道）" : "（和第一封同一个地方）") + ((c.channel === "whatsapp" && !state.isLeader && myWaMissing()) ? "（你还没填自己的 WhatsApp 号，点发送只存草稿）" : "");
 }
 /* 按主联系方式发出去；走 WhatsApp 时没填自己号的照样拦住（和第一封一样，别绕过去） */
 function openQuoteChannel(lead, text){
@@ -4171,7 +5249,7 @@ function setQuoteForeign(ctx){
 function updateQuoteChannel(ctx, lead){
   if(ctx.hintEl) ctx.hintEl.textContent = "";
   if(ctx.mainEl) ctx.mainEl.textContent = quoteMainContactText(lead);
-  ctx.sendBtn.textContent = "发送报价";
+  ctx.sendBtn.textContent = (lead && quoteChannel(lead).channel === "whatsapp" && !state.isLeader && myWaMissing()) ? "先存草稿（没填 WhatsApp 号）" : "发送报价";
 }
 function translateQuoteGreeting(ctx){
   if(!ctx.lead) return;
@@ -4582,6 +5660,142 @@ $("quoteCancelTop").addEventListener("click", function(){ $("quoteModal").classL
 $("quoteSend").addEventListener("click", function(){ saveQuote("sent"); });
 
 /* ---------- 19. 成交：先确认，成交后出清单 ---------- */
+/* ---------- 回收站 / 已藏起 / 报价回收站（和空间一个做法） ----------
+   线索：移到回收站 = deleted_at 写现在（软删，不真删行）；恢复 = 清空；
+   彻底删除 = 真删行（先记流水账再删，删完行就没处记了）。
+   藏起：hidden=1、hidden_reason=原因；恢复：两项都清空。
+   报价：取消 = cancelled_at 写现在（原状态保留）；恢复 = 清空；彻底删除只认已取消的单。 */
+function trashLead(lead, card){
+  askConfirm("把「" + (lead.company || "") + "」移到回收站？移过去后主列表不再显示它，随时能在回收站里恢复，不会真丢。", function(){
+    patchLead(lead, { deleted_at: new Date().toISOString() }).then(function(){
+      return logActivity(lead.id, "delete", "移入回收站");
+    }).then(function(){ toast("已移到回收站，随时能恢复"); applyFilters(); }).catch(function(e){ toast(e.message || "移入回收站失败", true); });
+  });
+}
+function restoreLead(lead, card){
+  askConfirm("把「" + (lead.company || "") + "」从回收站恢复回主列表？恢复后又能正常联系、跟进了。", function(){
+    patchLead(lead, { deleted_at: null }).then(function(){
+      return logActivity(lead.id, "restore", "从回收站恢复");
+    }).then(function(){ toast("已恢复回主列表"); applyFilters(); }).catch(function(e){ toast(e.message || "恢复失败", true); });
+  });
+}
+function deleteLeadForever(lead, card){
+  if(!state.isAdmin){ toast("彻底删除只有管理员能点。你先点「恢复这条」，彻底删找王烁杉。", true); return; }
+  askConfirm("彻底删除「" + (lead.company || "") + "」？这条在回收站里的线索会真删掉，再也恢复不了，流水账也一起没了。", function(){
+    logActivity(lead.id, "delete_forever", "回收站里彻底删了（不能再恢复）").then(function(){
+      return api("leads?id=eq." + encodeURIComponent(lead.id), { method: "DELETE" });
+    }).then(function(){
+      state.leads = state.leads.filter(function(x){ return String(x.id) !== String(lead.id); });
+      toast("已彻底删除");
+      applyFilters();
+    }).catch(function(e){ toast(e.message || "彻底删除失败", true); });
+  });
+}
+function hideLead(lead, reason, card){
+  var r = reason || "不靠谱";
+  askConfirm("把「" + (lead.company || "") + "」藏起来？藏起来后主列表不再显示它，原因记为「" + r + "」，随时能在「已藏起」里恢复。", function(){
+    patchLead(lead, { hidden: 1, hidden_reason: r }).then(function(){
+      return logActivity(lead.id, "hide", "藏起来了：" + r);
+    }).then(function(){ toast("已藏起，在「已藏起」里能恢复"); applyFilters(); }).catch(function(e){ toast(e.message || "藏起失败", true); });
+  });
+}
+function unhideLead(lead, card){
+  var oldReason = lead.hidden_reason || "不靠谱";
+  askConfirm("把「" + (lead.company || "") + "」从「已藏起」恢复回主列表？原来藏起的原因是「" + oldReason + "」。确认是真实需求再恢复。", function(){
+    patchLead(lead, { hidden: 0, hidden_reason: "" }).then(function(){
+      return logActivity(lead.id, "restore", "从「已藏起」恢复（原来藏起的原因：" + oldReason + "）");
+    }).then(function(){ toast("已恢复回主列表"); applyFilters(); }).catch(function(e){ toast(e.message || "恢复失败", true); });
+  });
+}
+/* 视图切换：全部 / 回收站 / 已藏起（数量在 applyFilters 里算好填进按钮） */
+function setLeadView(v){
+  state.view = v || "";
+  state.page = 1;
+  var ab = $("viewAllBtn"), tb = $("viewTrashBtn"), hb = $("viewHiddenBtn");
+  if(ab) ab.setAttribute("aria-pressed", state.view === "" ? "true" : "false");
+  if(tb) tb.setAttribute("aria-pressed", state.view === "trash" ? "true" : "false");
+  if(hb) hb.setAttribute("aria-pressed", state.view === "hidden" ? "true" : "false");
+  applyFilters();
+}
+$("viewAllBtn").addEventListener("click", function(){ setLeadView(""); });
+$("viewTrashBtn").addEventListener("click", function(){ setLeadView(state.view === "trash" ? "" : "trash"); });
+$("viewHiddenBtn").addEventListener("click", function(){ setLeadView(state.view === "hidden" ? "" : "hidden"); });
+
+/* 每家卡片的报价区：以前算好的报价 + 报价回收站（默认收起，点开才加载） */
+function quoteTrashSection(l){
+  if(l.deleted_at) return "";
+  return '<details class="fold-in" data-quote-box><summary>以前算好的报价 · 报价回收站</summary><div data-quote-list>点开后加载…</div></details>';
+}
+function quoteItemsText(q){
+  var items = q.items;
+  if(typeof items === "string"){ try{ items = JSON.parse(items); }catch(e){ items = []; } }
+  if(!items || !items.length) return "";
+  return items.map(function(it){
+    return esc((it.name || it.variety || "") + (it.spec ? " · 规格 " + it.spec : "") + " · " + (it.qty || it.quantity || 0) + " 棵 · 单价 $" + (it.unit_price || it.unit_price_usd || 0) + " · 小计 $" + (it.line_total || it.line_total_usd || 0) + ((it.estimate || it.estimated) ? "（估价）" : ""));
+  }).join("<br>");
+}
+function loadQuoteLists(lead, box){
+  var listEl = box.querySelector("[data-quote-list]");
+  if(listEl) listEl.innerHTML = "正在加载…";
+  api("quote_drafts?select=*&lead_id=eq." + encodeURIComponent(lead.id) + "&order=created_at.desc&limit=40").then(function(rows){
+    box.setAttribute("data-loaded", "1");
+    var drafts = (rows || []).filter(function(q){ return !q.cancelled_at; });
+    var trashed = (rows || []).filter(function(q){ return !!q.cancelled_at; });
+    var h = "";
+    h += '<p class="sync-line" style="margin:8px 0 0">以前算好的报价（不要了的点「取消这份单」，会移到下面的报价回收站）</p>';
+    if(!drafts.length) h += '<p class="sync-line">还没有算好的报价，点卡片上的「报价」算一份。</p>';
+    drafts.forEach(function(q){
+      h += '<div class="quote-trash-item">总价 <b>' + esc(fmtUSD(q.total_usd)) + '</b> · 定金 50% · 有效期 15 天 · FCA 中国口岸 · ' + (q.status === "sent" ? "已发出" : "待确认")
+        + (quoteItemsText(q) ? "<br>" + quoteItemsText(q) : "")
+        + '<br><button class="btn btn-danger btn-sm" type="button" data-quote-cancel="' + esc(String(q.id)) + '">取消这份单</button></div>';
+    });
+    h += '<details class="fold-in" data-quote-trash><summary>报价回收站（' + trashed.length + ' 份）</summary>'
+      + '<p class="sync-line" style="margin:8px 0 0">取消了的单子都在这里，不会发给客户、也不算进以前报过的价。点「恢复这份单」回到上面的列表。</p>';
+    trashed.forEach(function(q){
+      h += '<div class="quote-trash-item">总价 <b>' + esc(fmtUSD(q.total_usd)) + '</b> · 定金 50% · 有效期 15 天 · FCA 中国口岸 · ' + (q.status === "sent" ? "已发出" : "待确认")
+        + (quoteItemsText(q) ? "<br>" + quoteItemsText(q) : "")
+        + '<br><button class="btn btn-outline btn-sm" type="button" data-quote-restore="' + esc(String(q.id)) + '">恢复这份单</button>'
+        + (state.isAdmin ? '<button class="btn btn-danger btn-sm" type="button" data-quote-del="' + esc(String(q.id)) + '">彻底删除</button>' : "") + '</div>';
+    });
+    h += "</details>";
+    if(listEl) listEl.innerHTML = h;
+    box.querySelectorAll("[data-quote-cancel]").forEach(function(btn){
+      btn.addEventListener("click", function(){ cancelQuoteDraft(lead, btn.getAttribute("data-quote-cancel"), box); });
+    });
+    box.querySelectorAll("[data-quote-restore]").forEach(function(btn){
+      btn.addEventListener("click", function(){ restoreQuoteDraft(lead, btn.getAttribute("data-quote-restore"), box); });
+    });
+    box.querySelectorAll("[data-quote-del]").forEach(function(btn){
+      btn.addEventListener("click", function(){ deleteQuoteForever(lead, btn.getAttribute("data-quote-del"), box); });
+    });
+  }).catch(function(){ if(listEl) listEl.innerHTML = "报价没加载出来，收起再点开试一次。"; });
+}
+function cancelQuoteDraft(lead, draftId, box){
+  askConfirm("确定要取消这份单吗？取消后这份单会从上面的列表消失、移到报价回收站，不会再发给客户，也不会算进以前报过的价；在回收站里能恢复，也能彻底删掉。", function(){
+    api("quote_drafts?id=eq." + encodeURIComponent(draftId), { method: "PATCH", headers: { "Prefer": "return=minimal" }, body: { cancelled_at: new Date().toISOString() } }).then(function(){
+      return logActivity(lead.id, "quote", "把一份报价单移到了回收站（在回收站里能恢复，也能彻底删）");
+    }).then(function(){ box.removeAttribute("data-loaded"); loadQuoteLists(lead, box); toast("这份单已移到报价回收站"); }).catch(function(e){ toast(e.message || "取消失败", true); });
+  });
+}
+function restoreQuoteDraft(lead, draftId, box){
+  askConfirm("把这份报价单从回收站恢复回上面的列表？恢复后回到取消前的状态，又能打开、确认发出，也重新算进以前报过的价。", function(){
+    api("quote_drafts?id=eq." + encodeURIComponent(draftId), { method: "PATCH", headers: { "Prefer": "return=minimal" }, body: { cancelled_at: null } }).then(function(){
+      return logActivity(lead.id, "quote", "从回收站恢复了一份报价单（回到取消前的状态）");
+    }).then(function(){ box.removeAttribute("data-loaded"); loadQuoteLists(lead, box); toast("报价单已恢复"); }).catch(function(e){ toast(e.message || "恢复失败", true); });
+  });
+}
+function deleteQuoteForever(lead, draftId, box){
+  if(!state.isAdmin){ toast("彻底删除只有管理员能点。想删找王烁杉。", true); return; }
+  askConfirm("确定要彻底删掉这份单吗？删了就再也恢复不了。", function(){
+    api("quote_drafts?select=cancelled_at&id=eq." + encodeURIComponent(draftId)).then(function(rows){
+      var row = rows && rows[0];
+      if(!row || !row.cancelled_at) throw new Error("这份单不在回收站里，先取消进回收站才能彻底删。");
+      return logActivity(lead.id, "quote", "把回收站里一份报价单彻底删了（不能再恢复）").then(function(){
+        return api("quote_drafts?id=eq." + encodeURIComponent(draftId), { method: "DELETE" });
+      });
+    }).then(function(){ box.removeAttribute("data-loaded"); loadQuoteLists(lead, box); toast("报价单已彻底删除"); }).catch(function(e){ toast(e.message || "彻底删除失败", true); });
+  });
+}
 function markDeal(lead){
   askConfirm("确认「" + (lead.company || "") + "」成交了？先确认定金到账了再点确认；确认后跟进提醒会停掉。", function(){
     patchLead(lead, { status: "deal" }).then(function(){
@@ -4805,7 +6019,7 @@ $("eiSave").addEventListener("click", function(){
 function renderOrderPanel(){
   var panel = $("orderPanel"); if(!panel) return;
   if(!state.isAdmin && !state.isLeader){ panel.classList.add("hidden"); return; }
-  var list = state.leads.filter(function(l){ return l.order_intent_at && l.status !== "deal"; })
+  var list = state.leads.filter(function(l){ return isActiveLead(l) && l.order_intent_at && l.status !== "deal"; })
     .sort(function(a, b){ return String(b.order_intent_at || "") < String(a.order_intent_at || "") ? -1 : 1; });
   panel.classList.remove("hidden");
   if(!list.length){ $("orderList").innerHTML = '<div class="sync-line">暂时没有要下单的客户。</div>'; return; }
@@ -4862,7 +6076,7 @@ function renderHandover(){
   var box = $("hoBox"); if(!box) return;
   if(state.isLeader){ box.textContent = "你是团队负责人，不跟具体客户，不用转交。"; return; }
   if(!state.myName){ box.textContent = "还没有找到你的个人档案，暂时用不了转交。"; return; }
-  var mine = state.leads.filter(function(l){ return l.assignee === state.myName && l.status !== "deal"; });
+  var mine = state.leads.filter(function(l){ return isActiveLead(l) && l.assignee === state.myName && l.status !== "deal"; });
   var cands = mine.filter(handoverCandidate);
   var others = TEAM.filter(function(n){ return n !== state.myName; });
   var h = '<div class="mywa-row"><label style="min-width:80px">转给谁：</label><select id="hoSel" style="flex:1;min-width:160px;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:44px">'
@@ -4987,7 +6201,7 @@ function checkHandoverNotice(){
     if(!mine.length) return;
     var stillMine = mine.filter(function(r){
       var l = findLead(r.lead_id);
-      return l && l.assignee === state.myName;
+      return l && isActiveLead(l) && l.assignee === state.myName;
     });
     if(!stillMine.length) return;
     var box = $("noticeBanner");
@@ -5071,6 +6285,107 @@ document.querySelectorAll(".modal-mask").forEach(function(mask){
     mask.classList.remove("open");
   });
 });
+/* ================= 找图片面板 =================
+   输中文品种名：谷歌图片按原名搜；小红书按「品种名+苗」搜。
+   樟子松、龙须树另外列了现成的笔记链接，点开直接跳小红书；去水印队友自取，网站不代办。 */
+var XHS_NOTES = {
+  "樟子松": [
+    ["毛乌素日记🪴樟子松幼儿园", "https://www.xiaohongshu.com/explore/6a685775000000001303e029"],
+    ["出售樟子松树苗，几十万颗，40-80公分", "https://www.xiaohongshu.com/explore/69b8cc7f0000000022025c0d"],
+    ["就在土左旗！2米大樟松", "https://www.xiaohongshu.com/explore/69abe5af000000001503aa3f"],
+    ["樟子松油松树苗基地", "https://www.xiaohongshu.com/explore/696b632a000000001a031f0a"],
+    ["现内蒙古兴安盟乌兰浩特有樟子松树苗预出售", "https://www.xiaohongshu.com/explore/69b2bd9f000000000b034e1d"]
+  ],
+  "龙须树": [
+    ["龙须树", "https://www.xiaohongshu.com/explore/6afea8d2000000002b00197e"],
+    ["龙须树太香了！客厅氛围感拉满", "https://www.xiaohongshu.com/explore/690572a10000000005031948"],
+    ["龙须枣树苗 土球发货", "https://www.xiaohongshu.com/explore/6ac4b9dd000000000200f8bd"],
+    ["龙枣树基地", "https://www.xiaohongshu.com/explore/690f16c90000000005033127"],
+    ["山东省滨州市沾化区春武百亩龙须枣树基地", "https://www.xiaohongshu.com/explore/6afb1427000000001802bf90"]
+  ]
+};
+function updateImgPanel(){
+  var input = $("imgVariety"); if(!input) return;
+  var v = input.value.trim();
+  var g = $("imgGoogleBtn"), x = $("imgXhsBtn"), list = $("imgNoteList");
+  if(v){
+    g.disabled = false; x.disabled = false;
+    g.textContent = "找「" + v + "」的图片（谷歌图片）↗";
+    x.textContent = "在小红书搜「" + v + "」↗";
+  } else {
+    g.disabled = true; x.disabled = true;
+    g.textContent = "找图片（谷歌图片）↗";
+    x.textContent = "在小红书搜 ↗";
+  }
+  var html = "";
+  for(var key in XHS_NOTES){
+    if(v.indexOf(key) < 0) continue;
+    html += '<div class="img-note-list"><div class="img-note-title">「' + esc(key) + '」现成的小红书笔记，点开直接看：</div>';
+    XHS_NOTES[key].forEach(function(n){
+      html += '<a href="' + esc(n[1]) + '" target="_blank" rel="noopener">' + esc(n[0]) + " ↗</a>";
+    });
+    html += "</div>";
+  }
+  list.innerHTML = html;
+}
+$("imgVariety").addEventListener("input", updateImgPanel);
+$("imgGoogleBtn").addEventListener("click", function(){
+  var v = $("imgVariety").value.trim(); if(!v) return;
+  window.open("https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(v), "_blank");
+});
+$("imgXhsBtn").addEventListener("click", function(){
+  var v = $("imgVariety").value.trim(); if(!v) return;
+  window.open("https://www.xiaohongshu.com/search_result?keyword=" + encodeURIComponent(v + "苗") + "&type=51", "_blank");
+});
+/* 去水印通道：粘贴小红书笔记链接，点按钮先把链接复制好、再打开 xiazaitu.com，过去粘贴解析即可 */
+function updateWmBtn(){
+  var inp = $("wmLink"), btn = $("wmGoBtn"); if(!inp || !btn) return;
+  btn.disabled = !inp.value.trim();
+}
+$("wmLink").addEventListener("input", updateWmBtn);
+$("wmClearBtn").addEventListener("click", function(){
+  var inp = $("wmLink"); if(!inp) return;
+  inp.value = ""; updateWmBtn(); inp.focus();
+});
+$("wmGoBtn").addEventListener("click", function(){
+  var link = $("wmLink").value.trim(); if(!link) return;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(link).then(function(){ toast("链接已复制，去 xiazaitu.com 粘贴解析"); }, function(){ toast("复制失败，请手动复制链接再去粘贴", true); });
+  } else {
+    toast("请手动复制链接，再去 xiazaitu.com 粘贴", true);
+  }
+  window.open("https://xiazaitu.com", "_blank");
+});
+updateWmBtn();
+/* 卡片「发实拍照片」：把这家产品里的第一个品种名填进找图片输入框，平滑滚到面板 */
+function firstVarietyName(lead){
+  var raw = (lead && (lead.variety || lead.product)) || "";
+  if(!raw) return "";
+  var parts = String(raw).split(/[、，,；;·\/|]+/);
+  var first = "";
+  for(var i = 0; i < parts.length; i++){ if(parts[i].trim()){ first = parts[i].trim(); break; } }
+  return first.split(/\s+/)[0] || "";
+}
+/* 回到顶部并折叠（首页各区块底部按钮）：先把这个区块收起，再把它的标题滚到屏幕正中间（回本区块顶部，不是页面最顶） */
+function collapseSectionAndCenter(btn){
+  var d = btn ? btn.closest("details") : null;
+  if(!d) return;
+  d.open = false;
+  var s = d.querySelector("summary");
+  if(!s) return;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  requestAnimationFrame(function(){ s.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); });
+}
+function goImgPanel(lead){
+  var input = $("imgVariety");
+  if(input){ input.value = firstVarietyName(lead); updateImgPanel(); }
+  var panel = $("imgPanel"); if(!panel) return;
+  if(panel && "open" in panel) panel.open = true;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  panel.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+}
+updateImgPanel();
+
 /* ================= 启动 ================= */
 /* 进页面先把所有弹窗都关一遍，免得上次没关掉的弹窗还盖着、按钮点不动 */
 document.querySelectorAll(".modal-mask.open").forEach(function(m){ m.classList.remove("open"); });
