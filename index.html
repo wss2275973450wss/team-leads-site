@@ -6144,13 +6144,23 @@ function renderHandover(){
   var mine = state.leads.filter(function(l){ return isActiveLead(l) && l.assignee === state.myName && l.status !== "deal"; });
   var cands = mine.filter(handoverCandidate);
   var others = TEAM.filter(function(n){ return n !== state.myName; });
+  /* 几号回来：从明天起往后 30 天（按北京时间算），值用 ISO 日期，显示如“11月23日 周一”；默认不预选 */
+  var hoWeekdays = ["周日","周一","周二","周三","周四","周五","周六"];
+  var hoBase = new Date(bjDateStr(new Date()) + "T00:00:00Z");
+  var hoDateOpts = '<option value="">请选择</option>';
+  for(var hoDi = 1; hoDi <= 30; hoDi++){
+    var hoDd = new Date(hoBase.getTime() + hoDi * 86400000);
+    var hoIso = hoDd.toISOString().slice(0, 10);
+    hoDateOpts += '<option value="' + hoIso + '">' + (hoDd.getUTCMonth() + 1) + "月" + hoDd.getUTCDate() + "日 " + hoWeekdays[hoDd.getUTCDay()] + "</option>";
+  }
   var h = '<div class="mywa-row"><label style="min-width:80px">转给谁：</label><select id="hoSel" style="flex:1;min-width:160px;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:44px">'
     + others.map(function(n){
         var uc = uncontactedCount(n);
         return '<option value="' + esc(n) + '">' + esc(displayName(n)) + "（手里待开发 " + uc + " 家" + (uc > 40 ? "，太多了，换个人" : "") + "）</option>";
       }).join("") + "</select></div>"
-    + '<div class="mywa-row"><label style="min-width:80px">几号回来：</label><input type="date" id="hoDate" style="flex:1;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:44px"></div>'
+    + '<div class="mywa-row"><label style="min-width:80px">几号回来：</label><select id="hoDate" style="flex:1;min-width:160px;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:44px">' + hoDateOpts + '</select></div>'
     + '<div class="tr-status">只转下面打勾的（默认是 3 天内该跟进的和 Top5 的），其余留着等你回来自己跟。转之前先看一遍清单。</div>'
+    + '<div style="margin:8px 0 0"><button class="btn btn-outline btn-sm" type="button" id="hoSelectAll">全选</button></div>'
     + '<div id="hoList" style="margin:8px 0">'
     + mine.map(function(l){
         var cand = handoverCandidate(l);
@@ -6165,6 +6175,26 @@ function renderHandover(){
     h += '<div class="tr-status" style="color:var(--red)">上次转交断了：已转 ' + pending.done + " 家、剩 " + pending.remaining.length + ' 家没转。<button class="btn btn-outline btn-sm" type="button" id="hoResume">点继续转完</button></div>';
   }
   box.innerHTML = h;
+  /* 全选 / 全不选：一键全勾或全取消；单个勾变化时同步按钮文案（全勾了显示「全不选」，否则显示「全选」） */
+  function syncHoSelectAllBtn(){
+    var btn = $("hoSelectAll"); if(!btn) return;
+    var boxes = document.querySelectorAll("#hoList input[data-ho]");
+    if(!boxes.length){ btn.textContent = "全选"; btn.disabled = true; return; }
+    var all = true;
+    boxes.forEach(function(cb){ if(!cb.checked) all = false; });
+    btn.textContent = all ? "全不选" : "全选";
+  }
+  var hoAllBtn = $("hoSelectAll");
+  if(hoAllBtn) hoAllBtn.addEventListener("click", function(){
+    var boxes = document.querySelectorAll("#hoList input[data-ho]");
+    var all = boxes.length > 0 && Array.prototype.every.call(boxes, function(cb){ return cb.checked; });
+    boxes.forEach(function(cb){ cb.checked = !all; });
+    syncHoSelectAllBtn();
+  });
+  document.querySelectorAll("#hoList input[data-ho]").forEach(function(cb){
+    cb.addEventListener("change", syncHoSelectAllBtn);
+  });
+  syncHoSelectAllBtn();
   $("hoOut").addEventListener("click", handoverOut);
   $("hoBack").addEventListener("click", handoverBack);
   var rs = $("hoResume");
