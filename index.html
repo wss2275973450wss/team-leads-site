@@ -229,6 +229,27 @@ details>summary{overflow-wrap:break-word}
 .modal-btns .btn{flex:1}
 /* 报价弹窗：下一步固定在弹窗底部 */
 #quoteStep1 .modal-btns,#quoteStep2 .modal-btns{position:sticky;bottom:0;background:var(--card);padding:12px 0 0;z-index:2}
+/* 自定义下拉：代替手机原生 select 的全屏深色弹窗；面板四周留边、上下都有取消、点空白/Esc 关；选项文字完整换行显示 */
+.cs-hidden-sel{position:absolute!important;width:1px;height:1px;opacity:0;pointer-events:none;margin:0;padding:0;border:0}
+.cs-trigger{width:100%;text-align:left;background:#fff;border:1px solid var(--line);min-height:48px;padding:10px 34px 10px 12px;font-size:15px;line-height:1.5;color:var(--ink);cursor:pointer;position:relative;white-space:normal;word-break:break-word}
+.cs-trigger:after{content:"▾";position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--green);font-size:16px;pointer-events:none}
+.cs-trigger.cs-empty{color:#8a8578}
+.cs-trigger:disabled{opacity:.55;cursor:default}
+.edit-row .cs-trigger{flex:1 1 160px;width:auto}
+.mywa-row .cs-trigger{flex:1;min-width:160px;width:auto}
+.modal .field .cs-trigger{width:100%}
+.cs-mask{position:fixed;inset:0;background:rgba(16,32,24,.5);z-index:90;display:none;align-items:center;justify-content:center;padding:20px 16px}
+.cs-mask.open{display:flex}
+.cs-panel{background:var(--card);width:100%;max-width:480px;max-height:min(76dvh,640px);display:flex;flex-direction:column;border-top:2px solid var(--gold);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.cs-panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.cs-panel-title{font-weight:700;color:var(--green);font-size:15px}
+.cs-list{overflow-y:auto;padding:6px 0;flex:1;min-height:0;-webkit-overflow-scrolling:touch}
+.cs-opt{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid #f0ebe0;padding:13px 16px;font-size:15px;line-height:1.6;color:var(--ink);cursor:pointer;white-space:normal;word-break:break-word}
+.cs-opt:last-child{border-bottom:0}
+.cs-opt.sel{background:#FBF6E7;font-weight:700;color:var(--green)}
+.cs-panel-foot{padding:12px 14px;border-top:1px solid var(--line)}
+.cs-panel-foot .btn{width:100%}
+@media(max-width:640px){.bg-loc-row{flex-direction:column}}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom));background:var(--green);color:#FAFAF8;border:1px solid var(--gold-line);padding:11px 20px;border-radius:0;font-size:14px;box-shadow:none;display:none;z-index:60;max-width:92vw;text-align:center}
 .toast.show{display:block}
 .toast.err-t{background:#7C2D12;border-color:#7C2D12}
@@ -673,7 +694,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
         <p class="sync-line" id="bgCompanyHint" style="margin:8px 0 0">公司列表直接从线索库里读：新线索一入库就自动出现在这里，不用手动加。</p>
         <div id="bgCompanyInfo"></div>
         <div id="bgNoCompany" style="margin-top:10px">
-          <div style="display:flex;gap:8px">
+          <div class="bg-loc-row" style="display:flex;gap:8px">
             <label style="flex:1;min-width:0">地区
               <select id="bgRegion" class="img-variety-input" style="min-height:48px" aria-label="背调：不选公司时，先选地区">
                 <option value="">先选地区（选填）</option>
@@ -1210,6 +1231,13 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
 
 <div class="toast" id="toast"></div>
 <div class="pending-bar" id="pendingBar"><span id="pendingText"></span><button type="button" id="pendingUndo">撤销</button></div>
+<div class="cs-mask" id="csMask" role="dialog" aria-modal="true" aria-label="选择">
+  <div class="cs-panel">
+    <div class="cs-panel-head"><span class="cs-panel-title" id="csTitle">选择</span><button class="btn btn-outline btn-sm" type="button" id="csCancelTop">取消</button></div>
+    <div class="cs-list" id="csList" role="listbox"></div>
+    <div class="cs-panel-foot"><button class="btn btn-outline" type="button" id="csCancelBottom">取消</button></div>
+  </div>
+</div>
 <button type="button" id="fabBackBtns" aria-label="回到这张卡片的按钮区">↑ 回到按钮</button>
 <button type="button" id="fabTop" aria-label="回到页面最顶部">↑</button>
 <button type="button" id="fabCollapse" aria-label="收起当前区块">↑ 收起</button>
@@ -1763,6 +1791,8 @@ var pwdForced = false;
 function enterApp(){
   $("loginView").classList.add("hidden");
   $("appView").classList.remove("hidden");
+  /* 登录前整个应用是藏着的，下拉那时都没法换成站内面板；一进来先补一遍 */
+  if(typeof enhanceAllSelects === "function") enhanceAllSelects();
   loadAll();
   checkFirstLogin();
 }
@@ -2537,7 +2567,7 @@ function cardHtml(l){
     + moreOps
     + photosHtml
     + tagsMore
-    + (state.isLeader || isRotated ? "" : '<details class="fold-in"><summary>发聊天记录 · 怎么导</summary><div class="import-top"><button class="btn btn-green" type="button" data-act="importchat-top">发聊天记录</button><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按助手建议直接回，不会回才把客户那句话发进来。</span></div><ol class="steps">'
+    + (state.isLeader || isRotated ? "" : '<details class="fold-in"><summary>发聊天记录 · 怎么导</summary><div class="import-top"><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按助手建议直接回，不会回才把客户那句话发进来。</span><button class="btn btn-green" type="button" data-act="importchat-top" style="margin-left:auto">发聊天记录</button></div><ol class="steps">'
     + '<li>WhatsApp：打开和客户的聊天 → 点客户名字（或右上角菜单）→「导出聊天记录」→ 选「不含媒体」→ 得到一个 .txt 文件 → 回到这里点「发聊天记录」，在「其他方式」里上传这个文件。</li>'
     + '<li>Telegram：手机上不能一键导出整个聊天，长按客户那句话复制，点「发聊天记录」粘贴进来就行；电脑上可以用桌面版导出 JSON 再上传。</li>'
     + '<li>截图：直接把截图发给助手，不用上传到网站，助手能看图。</li>'
@@ -4086,8 +4116,8 @@ $("exportMineBtn").addEventListener("click", function(){
 
 /* ================= 中文对照 / 建议 / 档案 / 聊天记录（2026-11-20） ================= */
 var MSG_FIELDS = [
-  { zh:"first_message_zh", foreign:"first_message", edited:"first_message_edited", label:"第一封" },
-  { zh:"followup_message_zh", foreign:"followup_message", edited:"followup_message_edited", label:"跟进信" },
+  { zh:"first_message_zh", foreign:"first_message", edited:"first_message_edited", label:"WhatsApp 第一封" },
+  { zh:"followup_message_zh", foreign:"followup_message", edited:"followup_message_edited", label:"WhatsApp 跟进信" },
   { zh:"telegram_first_message_zh", foreign:"telegram_first_message", edited:"telegram_first_message_edited", label:"Telegram 第一封" },
   { zh:"telegram_followup_message_zh", foreign:"telegram_followup_message", edited:"telegram_followup_message_edited", label:"Telegram 跟进信" }
 ];
@@ -4392,7 +4422,7 @@ function openEditor(lead){
     if(stEl){ stEl.className = "tr-status"; stEl.textContent = "正在翻译…"; }
     translateZhAll(zhText, lead.country).then(function(out){
       foEl.value = (isFirst && stripped.had) ? withCatalogLine(out, firstMsgLang(lead)) : out;
-      if(stEl){ stEl.className = "tr-status"; stEl.textContent = "外文版已更新，保存后一键发送就用这版。"; }
+      if(stEl){ stEl.className = "tr-status"; stEl.textContent = "外文版已更新，点「发送这封」直接发这版（会先存下来）。"; }
     }).catch(function(){
       if(stEl){ stEl.className = "tr-status err"; stEl.textContent = "翻译没成功，先用原来的发"; }
     });
@@ -4408,16 +4438,54 @@ function openEditor(lead){
     });
   });
   wrap.querySelectorAll(".tr-status").forEach(function(st){
+    var row = document.createElement("div");
+    row.className = "msg-actions";
+    row.style.marginTop = "4px";
     var btn = document.createElement("button");
     btn.type = "button"; btn.className = "btn btn-outline btn-sm"; btn.textContent = "重新翻译";
-    btn.style.marginTop = "4px";
     btn.addEventListener("click", function(){
       var foKey = st.getAttribute("data-st");
       var ta = wrap.querySelector('textarea[data-foreign="'+foKey+'"]');
       var foEl = wrap.querySelector('[data-fo="'+foKey+'"]');
       runModalTranslate(ta, foEl, st);
     });
-    st.parentNode.insertBefore(btn, st.nextSibling);
+    var sendBtn = document.createElement("button");
+    sendBtn.type = "button"; sendBtn.className = "btn btn-green btn-sm"; sendBtn.textContent = "发送这封";
+    sendBtn.addEventListener("click", function(){
+      var foKey = st.getAttribute("data-st");
+      var f = null; MSG_FIELDS.forEach(function(x){ if(x.foreign === foKey) f = x; });
+      if(!f) return;
+      var foEl = wrap.querySelector('[data-fo="'+foKey+'"]');
+      var ta = wrap.querySelector('textarea[data-foreign="'+foKey+'"]');
+      var text = foEl ? foEl.value : (lead[f.foreign] || "");
+      var channel = foKey.indexOf("telegram") === 0 ? "telegram" : "whatsapp";
+      var kind = foKey.indexOf("followup") >= 0 ? "followup" : "first";
+      if(!text || !text.trim()){ toast("外文版还是空的：先在中文框里写好，等翻译出来再发", true); return; }
+      if(state.isLeader){ toast("你是团队负责人，不跟具体客户，不能发消息", true); return; }
+      if(channel === "whatsapp"){
+        if(!lead.whatsapp){ toast("这家没留 WhatsApp 号，发不出去", true); return; }
+        if(!state.isLeader && myWaMissing()){ toast(NO_WA_MSG, true); return; }
+      } else {
+        if(!tgUser(lead.telegram)){ toast("这家没留 Telegram 用户名，发不出去", true); return; }
+      }
+      var other = collisionInfo(lead);
+      if(other){ toast("这家公司队里还有 " + displayName(other) + " 在跟，别碰，等王烁杉定下留谁再动", true); return; }
+      if(rotatedAway(lead)){ toast("这家已转给 " + displayName(lead.assignee) + "，你只能看", true); return; }
+      var href = channel === "whatsapp" ? waUniversal(lead.whatsapp, text) : "https://t.me/" + tgUser(lead.telegram) + "?text=" + encodeURIComponent(text);
+      /* 先把当前改好的版本存下来，发的就是现在这版（不用先点保存） */
+      var zhV = ta ? ta.value : (lead[f.zh] || "");
+      var foV = text;
+      if(isFirstMsgField(f.foreign)){ zhV = stripCatalogLine(zhV).body; foV = stripCatalogLine(foV).body; }
+      if(zhV !== (lead[f.zh] || "") || foV !== (lead[f.foreign] || "")){
+        var patch = {}; patch[f.zh] = zhV; patch[f.foreign] = foV; patch[f.edited] = 1;
+        patchLead(lead, patch).catch(function(){});
+      }
+      window.open(href, "_blank");
+      showPendingContact(lead, channel, kind, null);
+    });
+    row.appendChild(btn);
+    row.appendChild(sendBtn);
+    st.parentNode.insertBefore(row, st.nextSibling);
   });
   $("editModal").classList.add("open");
   editOrig = {};
@@ -6276,6 +6344,139 @@ document.querySelectorAll(".modal-mask").forEach(function(mask){
     mask.classList.remove("open");
   });
 });
+/* ================= 自定义下拉（代替原生 select） =================
+   手机原生 select 会弹全屏深色页：占满屏幕、没有取消键、点空白关不掉、长文字上下截断。
+   全部换成站内面板：四周留边、顶部和底部都有「取消」、点外面空白/Esc 关、选项文字完整换行。
+   原生 select 留在 DOM 里（只隐藏），值和 change 事件都走它，原有逻辑不用改。 */
+var csSeq = 0;
+var csCurrent = null;
+function csIsVisible(el){ return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length); }
+function csLabelOf(sel){
+  var o = sel.options && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex] : null;
+  return o ? o.textContent : "";
+}
+function csSyncTrigger(sel){
+  var tr = sel._csTrigger; if(!tr) return;
+  var label = csLabelOf(sel);
+  tr.textContent = label || "请选择";
+  tr.classList.toggle("cs-empty", !sel.value);
+  tr.disabled = !!sel.disabled;
+}
+function csTitleFor(sel){
+  var lab = sel.closest("label");
+  var txt = "";
+  if(lab){
+    for(var i = 0; i < lab.childNodes.length; i++){
+      if(lab.childNodes[i].nodeType === 3) txt += lab.childNodes[i].textContent;
+    }
+    txt = txt.replace(/\s+/g, " ").trim();
+    if(txt) return txt.slice(0, 40);
+  }
+  var prev = sel.previousElementSibling;
+  if(prev && prev.tagName === "LABEL"){
+    txt = (prev.textContent || "").replace(/\s+/g, " ").trim();
+    if(txt) return txt.slice(0, 40);
+  }
+  return (sel.getAttribute("aria-label") || "选择").slice(0, 40);
+}
+function enhanceSelect(sel){
+  if(!sel || sel.dataset.csDone) return;
+  if(sel.multiple) return;
+  if(sel.style.display === "none" || !csIsVisible(sel)) return;
+  if(!sel.id){ csSeq += 1; sel.id = "cs-sel-" + csSeq; }
+  sel.classList.add("cs-hidden-sel");
+  var tr = document.createElement("button");
+  tr.type = "button";
+  tr.className = "cs-trigger";
+  tr.setAttribute("aria-haspopup", "listbox");
+  sel._csTrigger = tr;
+  sel.parentNode.insertBefore(tr, sel.nextSibling);
+  tr.addEventListener("click", function(ev){ ev.preventDefault(); openCsPanel(sel); });
+  sel.addEventListener("change", function(){ csSyncTrigger(sel); });
+  new MutationObserver(function(){ csSyncTrigger(sel); }).observe(sel, { childList: true });
+  sel.dataset.csDone = "1";
+  csSyncTrigger(sel);
+}
+function openCsPanel(sel){
+  if(sel.disabled) return;
+  csCurrent = sel;
+  $("csTitle").textContent = csTitleFor(sel);
+  var list = $("csList");
+  list.innerHTML = "";
+  Array.prototype.forEach.call(sel.options, function(o){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "cs-opt" + (o.selected ? " sel" : "");
+    b.setAttribute("role", "option");
+    b.textContent = o.textContent;
+    b.addEventListener("click", function(){
+      sel.value = o.value;
+      sel.dispatchEvent(new Event("change", { bubbles: true }));
+      csSyncTrigger(sel);
+      closeCsPanel();
+    });
+    list.appendChild(b);
+  });
+  if(!sel.options.length){
+    var em = document.createElement("div");
+    em.className = "cs-opt"; em.textContent = "没有可选项";
+    list.appendChild(em);
+  }
+  $("csMask").classList.add("open");
+  list.scrollTop = 0;
+  var selEl = list.querySelector(".cs-opt.sel");
+  if(selEl) selEl.scrollIntoView({ block: "nearest" });
+}
+function closeCsPanel(){
+  $("csMask").classList.remove("open");
+  csCurrent = null;
+}
+function enhanceAllSelects(){
+  document.querySelectorAll("select").forEach(function(sel){
+    if(sel.dataset.csDone){ csSyncTrigger(sel); return; }
+    enhanceSelect(sel);
+  });
+}
+/* 页面先藏后显时（登录后进应用、区块从 hidden 变可见），隐藏期间跳过的 select 要补上：
+   任何 class/style/open 变化都排一次补扫（去抖，避免频繁全页扫） */
+var csEnhanceTimer = null;
+function csScheduleEnhance(){
+  if(csEnhanceTimer) return;
+  csEnhanceTimer = setTimeout(function(){ csEnhanceTimer = null; enhanceAllSelects(); }, 80);
+}
+$("csCancelTop").addEventListener("click", closeCsPanel);
+$("csCancelBottom").addEventListener("click", closeCsPanel);
+$("csMask").addEventListener("click", function(ev){ if(ev.target === $("csMask")) closeCsPanel(); });
+document.addEventListener("keydown", function(ev){
+  if(ev.key !== "Escape") return;
+  if($("csMask") && $("csMask").classList.contains("open")){ closeCsPanel(); return; }
+  var m = $("topMenuList");
+  if(m && m.classList.contains("open")){ m.classList.remove("open"); return; }
+  document.querySelectorAll(".modal-mask.open").forEach(function(mask){
+    if(mask.id === "pwdModal" && pwdForced) return;
+    mask.classList.remove("open");
+  });
+});
+new MutationObserver(function(muts){
+  muts.forEach(function(mu){
+    if(mu.type === "childList"){
+      mu.addedNodes.forEach(function(n){
+        if(!n || n.nodeType !== 1) return;
+        if(n.tagName === "SELECT") enhanceSelect(n);
+        else if(n.querySelectorAll) n.querySelectorAll("select").forEach(function(sel){ enhanceSelect(sel); });
+      });
+    } else if(mu.type === "attributes"){
+      var t = mu.target;
+      if(!t || t.nodeType !== 1) return;
+      if(t.tagName === "SELECT") enhanceSelect(t);
+      /* 任何元素显隐变化都可能让之前藏着的 select 露出来（#appView 去掉 hidden、
+         面板解藏、折叠展开、弹窗打开），统一排一次补扫，不再只认 DETAILS/弹窗 */
+      csScheduleEnhance();
+    }
+  });
+}).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "open", "class"] });
+enhanceAllSelects();
+
 /* ================= 找图片面板 =================
    输中文品种名：谷歌图片按原名搜；小红书按「品种名+苗」搜。
    樟子松、龙须树另外列了现成的笔记链接，点开直接跳小红书；去水印队友自取，网站不代办。 */
