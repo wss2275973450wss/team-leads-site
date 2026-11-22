@@ -286,10 +286,7 @@ details.other-ways summary{cursor:pointer;font-weight:700;color:var(--green);min
 .quick-actions .btn-primary{width:auto}
 .quick-actions.flash{animation:qaFlash 1.4s ease-out}
 @keyframes qaFlash{0%{background:rgba(184,151,58,.30)}100%{background:transparent}}
-/* ---------- 回到按钮：小节底部链接 + 右下角浮动按钮 ---------- */
-.back-btns-row{text-align:right;margin:12px 0 4px}
-.back-btns-link{background:transparent;border:none;border-bottom:1px solid var(--gold-line);color:var(--green2);font-size:13.5px;font-weight:700;letter-spacing:.03em;padding:6px 2px;cursor:pointer}
-.back-btns-link:hover{color:var(--green);border-bottom-color:var(--gold)}
+/* ---------- 回到按钮：右下角浮动按钮（各小节底部已改成「回到顶部并折叠」） ---------- */
 #fabBackBtns{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:45;display:none;background:linear-gradient(180deg,#1C4732,#143527);color:#FAFAF8;border:1px solid var(--gold-line);padding:0 20px;min-height:52px;font-size:15px;font-weight:700;letter-spacing:.03em;box-shadow:0 4px 14px rgba(20,53,39,.30);cursor:pointer}
 #fabBackBtns.show{display:block}
 /* ---------- 客户列表分页：每页 3 个 + 卡片排序号 + 全局回到顶部 ---------- */
@@ -659,10 +656,12 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
         <button class="btn btn-green" type="button" id="wmGoBtn" disabled>去 xiazaitu.com 解析 ↗</button>
         <button class="btn btn-outline btn-wm-clear" type="button" id="wmClearBtn">清空</button>
       </div>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <details class="img-wm">
       <summary>备用：微信小程序去水印</summary>
       <p>海龟去水印（免费、不限量、不用登录）、解析酱（批量下整套图）、小氧去水印（保原画质）。用法：微信搜小程序名打开，粘贴笔记链接，解析后保存。</p>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
   </details>
@@ -697,6 +696,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
           <p class="sync-line" style="margin:8px 0 0">不选公司就按地区/国家查通用市场价：不选国家时，助手按这个品种的主要出口市场查，并在小结里写清查的是哪个市场。</p>
         </div>
       </div>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <details class="fold-in">
       <summary>第二步 · 填品种、规格、数量</summary>
@@ -736,11 +736,13 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
         </div>
         <p class="sync-line" style="margin:8px 0 0">规格和数量都是选填：填得越准，查到的价越对得上；客户没说规格、或者不知道按哪个标准，就全空着点查——助手按这个品种最常见的两三个规格查，给一个区间价、每个规格多少钱都列出来，并附一句问客户要规格的话，问清了再报准价。</p>
       </div>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <details class="fold-in">
       <summary>第三步 · 点查</summary>
       <button class="btn btn-green" type="button" id="bgStartBtn" style="width:100%;margin-top:10px" disabled aria-label="开始背调">开始背调</button>
       <p class="sync-line" id="bgStartHint" style="margin:8px 0 0">先在第二步填上品种名，这个按钮才能点。</p>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <div id="bgToolList" style="margin-top:14px">还没有价格背调记录。</div>
     <div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" id="bgRefreshBtn">刷新结果</button></div>
@@ -811,6 +813,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       </label>
       <label>&nbsp;<button class="btn btn-outline" id="exportBtn" type="button" style="width:100%">导出 CSV</button><button class="btn btn-outline" id="exportMineBtn" type="button" style="width:100%;margin-top:6px">导出我的客户</button></label>
       </div>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
   </section>
 
@@ -1009,6 +1012,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
         <button class="btn btn-green" type="button" id="impConfirm">确认导入</button>
       </div>
       <p class="sync-line" style="margin:12px 0 0">转发给王烁杉、再由他转给助手也行；截图直接发给助手，不用上传到网站。语音、图片导进来只有文字部分能分析。</p>
+    <div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>
     </details>
     <div id="impPreview"></div>
     <div class="done-box" id="impDone"></div>
@@ -2106,7 +2110,7 @@ $("pageJumpBtn").addEventListener("click", function(){ jumpToPage($("pageJump"))
 $("pageJumpBtnTop").addEventListener("click", function(){ jumpToPage($("pageJumpTop")); });
 $("pageJump").addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); jumpToPage($("pageJump")); } });
 $("pageJumpTop").addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); jumpToPage($("pageJumpTop")); } });
-/* 全局回到顶部：一直悬浮在右下角（在卡片「回到按钮」上方，不挡它），点一下回页面最顶 */
+/* 全局回到顶部：悬浮在右下角，点一下回页面最顶；压到卡片就自动藏起来（updateFabTopVisibility），绝不盖住卡片按钮和文字 */
 $("fabTop").addEventListener("click", function(){
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
@@ -2134,6 +2138,7 @@ function renderLeads(){
   box.innerHTML = '<div class="cards">' + pageHtml + "</div>";
   bindCards();
   renderPager();
+  updateFabTopVisibility();
 }
 function renderPager(){
   var show = !!state.filtered.length;
@@ -2203,7 +2208,7 @@ function msgBlock(title, text, links, extra){
     h += '<a class="btn btn-green btn-sm" target="_blank" rel="noopener" data-sendlink="1" data-channel="'+esc(L.channel || "")+'" data-kind="'+esc(L.kind || "")+'"'+(L.backup ? ' data-backup="1"' : "")+' href="'+esc(L.href)+'">'+esc(L.label)+"</a>";
   });
   h += '<button class="btn btn-outline btn-sm" type="button" data-copy="'+encodeURIComponent(foreign)+'">复制这封</button>';
-  h += "</div></div></details>";
+  h += "</div>" + COLLAPSE_BTN + "</div></details>";
   return h;
 }
 /* 把卡片里同一封信的所有发送链接都换成当前外文（翻译成功后调用） */
@@ -2385,7 +2390,6 @@ function cardHtml(l){
     return '<option value="'+esc(n)+'"'+(l.assignee===n?" selected":"")+">"+esc(displayName(n))+"</option>";
   }).join("");
   var profHtml = profBlock(l);
-  var chatHtml = chatBlock(l);
   var statusOpts = Object.keys(STATUS_ZH).map(function(k){
     return '<option value="'+k+'"'+(l.status===k?" selected":"")+">"+STATUS_ZH[k]+"</option>";
   }).join("");
@@ -2421,7 +2425,8 @@ function cardHtml(l){
   if(collideWith){
     quick += '<span class="tag" style="background:transparent;border-color:var(--red);color:var(--red);font-weight:700">撞单：队里还有 ' + esc(displayName(collideWith)) + ' 在跟这家，别碰</span>';
   } else if(isRotated){
-    quick += '<span class="no-contact-note">这家已转给 ' + esc(displayName(l.assignee)) + '，你只能看，不能再联系。</span>';
+    quick += '<span class="no-contact-note">这家已转给 ' + esc(displayName(l.assignee)) + '，你只能看，不能再联系。</span>'
+      + '<button class="btn btn-outline btn-sm" type="button" data-act="undo-transfer">取消转交（转回给我）</button>';
   } else if(!hasContact(l)){
     quick += '<span class="no-contact-note">这家没留联系方式，先放着，等搜到联系方式再联系。</span>'
       + (state.isLeader ? "" : '<button class="btn btn-outline btn-sm" type="button" data-act="findcontact">找联系方式</button>');
@@ -2451,7 +2456,6 @@ function cardHtml(l){
       var askLabel = unseenQ ? ((ansBy === "王烁杉" ? "王烁杉回你了" : "柯哥回你了") + " ●") : "问柯哥";
       quick += '<button class="btn btn-sm ' + (unseenQ ? "btn-ask-alert" : "btn-outline") + '" type="button" data-act="ask">' + askLabel + "</button>";
     }
-    quick += '<button class="btn btn-outline btn-sm" type="button" data-act="helpwrite">这句不会回，帮我写</button>';
     /* 取消类统一收进一个“撤销”小字链接：只收起来，撤销本身还能点 */
     var undoEvId = latestUndoableEventId(l);
     if(undoEvId !== null && (parseInt(l.owner_contact_count, 10) || 0) > 0)
@@ -2463,7 +2467,7 @@ function cardHtml(l){
     if(l.status === "deal" && canCancelLead) addUndo('<button class="undo-link" type="button" data-act="undo-deal">取消已成交</button>');
     if(l.order_intent_at && canCancelLead) addUndo('<button class="undo-link" type="button" data-act="undo-orderintent">取消要下单</button>');
     if(l.status === "ignored" && canCancelLead) addUndo('<button class="undo-link" type="button" data-act="undo-ignored">取消没兴趣</button>');
-    if(undoLinks) quick += '<details class="undo-fold"><summary>撤销</summary><div class="undo-links">' + undoLinks + '</div></details>';
+    if(undoLinks) quick += '<details class="undo-fold"><summary>撤销</summary><div class="undo-links">' + undoLinks + '</div>' + COLLAPSE_BTN + '</details>';
   }
   quick += '<button class="btn btn-outline btn-sm" type="button" data-act="toggle" aria-expanded="false">展开详情 ▾</button></div>';
   if(inTrash) quick = '<div class="quick-actions"><button class="btn btn-outline btn-sm" type="button" data-act="trash-restore">恢复这条</button>' + (state.isAdmin ? '<button class="btn btn-danger btn-sm" type="button" data-act="trash-permanent">彻底删除</button>' : "") + '<button class="btn btn-outline btn-sm" type="button" data-act="toggle" aria-expanded="false">展开详情 ▾</button></div>';
@@ -2474,7 +2478,7 @@ function cardHtml(l){
   var rotateNextBtn = (!isRotated && l.assignee === state.myName)
     ? '<button class="btn btn-outline btn-sm" type="button" data-act="rotate-next">转给下一个人</button>'
     : "";
-  var moreOps = (state.isLeader || isRotated ? "" : '<div class="section-label" style="margin-top:10px">更多操作</div><div class="actions">'
+  var moreOps = (state.isLeader || isRotated ? "" : '<details class="fold-in"><summary>更多操作</summary><div class="actions">'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="activity">全部记录</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="editmsg">编辑消息</button>'
     + '<button class="btn btn-outline btn-sm" type="button" data-act="quote">报价</button>'
@@ -2492,10 +2496,7 @@ function cardHtml(l){
     + '<details class="fold-in"><summary>评分 · 负责人</summary><div class="edit-row"><label>状态</label><select data-field="status">'+statusOpts+'</select>'
     + '<label>星星</label><select data-field="stars">'+starOpts+'</select>'
     + '<label>分错了转给</label><select data-field="assignee">'+assigneeOpts+"</select></div>"
-    + '<div class="tr-status">分错了转给：转错了再选回原来的人就行，会记进流水账；请假回来点上面「请假转回来」，会按记录把转出去的客户一次转回来。</div></details>');
-
-  /* 长小节底部统一放一个“回到按钮”链接，点一下滚回这张卡顶部的按钮区，不用自己往上翻 */
-  var backBtnsLink = '<div class="back-btns-row"><button type="button" class="back-btns-link" data-backbtns>↑ 回到按钮</button></div>';
+    + '<div class="tr-status">分错了转给：转错了再选回原来的人就行，会记进流水账；请假回来点上面「请假转回来」，会按记录把转出去的客户一次转回来。</div>' + COLLAPSE_BTN + '</details>' + COLLAPSE_BTN + '</details>');
 
   /* 实拍照片小节（和空间 Q194 对应）：发完照片回来点「已发实拍」记一次，
      最近一次的记录从流水账 action=photos 里取，存在 state.photosByLead 里。
@@ -2510,7 +2511,7 @@ function cardHtml(l){
       + '<div class="photos-box"><div>挑好实拍照片发给客户后，回来点「已发实拍」记一次，会写进流水账；记错了可以撤销，不改跟进次数和状态。</div>'
       + '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-act="markphotos">已发实拍</button>'
       + '<button class="btn btn-outline btn-sm" type="button" data-act="undophotos">撤销这次已发实拍</button></div>'
-      + '<div class="tr-status" data-photos-line>' + esc(phLine) + "</div></div></details>";
+      + '<div class="tr-status" data-photos-line>' + esc(phLine) + "</div></div>" + COLLAPSE_BTN + "</details>";
   }
   return '<article class="lead' + (hasContact(l) ? "" : " no-contact") + '" data-id="'+esc(l.id)+'">'
     + '<div class="lead-top"><div>' + seqHtml + '<h3>'+esc(l.company || "（未填公司名）")+"</h3>"
@@ -2536,20 +2537,19 @@ function cardHtml(l){
     + moreOps
     + photosHtml
     + tagsMore
-    + (state.isLeader || isRotated ? "" : '<div class="import-top"><button class="btn btn-green" type="button" data-act="importchat-top">发聊天记录</button><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按助手建议直接回，不会回才把客户那句话发进来。</span></div>'
-    + '<details class="fold-in"><summary>怎么导聊天记录？点开一步一步看</summary><ol class="steps">'
+    + (state.isLeader || isRotated ? "" : '<details class="fold-in"><summary>发聊天记录 · 怎么导</summary><div class="import-top"><button class="btn btn-green" type="button" data-act="importchat-top">发聊天记录</button><span class="import-hint">客户没回：只点「已联系」就行，不用发记录。客户回了：平时按助手建议直接回，不会回才把客户那句话发进来。</span></div><ol class="steps">'
     + '<li>WhatsApp：打开和客户的聊天 → 点客户名字（或右上角菜单）→「导出聊天记录」→ 选「不含媒体」→ 得到一个 .txt 文件 → 回到这里点「发聊天记录」，在「其他方式」里上传这个文件。</li>'
     + '<li>Telegram：手机上不能一键导出整个聊天，长按客户那句话复制，点「发聊天记录」粘贴进来就行；电脑上可以用桌面版导出 JSON 再上传。</li>'
     + '<li>截图：直接把截图发给助手，不用上传到网站，助手能看图。</li>'
-    + '<li>导完会显示「已导入，算 1 次联系，客户回了」，看到这句就是导成功了。</li></ol></details>')
-    + (contacts ? '<div class="section-label">联系方式</div>' + contacts : "")
+    + '<li>导完会显示「已导入，算 1 次联系，客户回了」，看到这句就是导成功了。</li></ol>' + COLLAPSE_BTN + '</details>')
+    + (contacts ? '<details class="fold-in"><summary>联系方式</summary>' + contacts + COLLAPSE_BTN + '</details>' : "")
     + nowaHint
-    + (state.isLeader || isRotated ? "" : (msgs ? '<div class="section-label">要发的消息</div>' + msgs + backBtnsLink : ""))
-    + '<details class="fold-in"><summary>帮我回 · 助手建议</summary>' + suggHtml + pasteHtml + "</details>" + qaBlock(l) + backBtnsLink
-    + profHtml + chatHtml + backBtnsLink
-    + quoteTrashSection(l) + backBtnsLink
+    + (state.isLeader || isRotated ? "" : (msgs ? '<div class="section-label">要发的消息</div>' + msgs : ""))
+    + '<details class="fold-in"><summary>帮我回 · 助手建议</summary>' + suggHtml + pasteHtml + '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-act="helpwrite">这句不会回，帮我写</button></div>' + qaBlock(l) + COLLAPSE_BTN + '</details>'
+    + profHtml
+    + quoteTrashSection(l)
     + clientBgFoldHtml(l) + varietyFoldHtml(l)
-    + '<details class="fold-in"><summary>联系记录（联系过几次、每次啥时候、发了啥）</summary>' + historyBlock(l) + "</details>" + backBtnsLink
+    + '<details class="fold-in"><summary>联系记录（联系过几次、每次啥时候、发了啥）</summary>' + historyBlock(l) + COLLAPSE_BTN + '</details>'
     + (l.notes ? '<div class="notes-old">'+esc(l.notes)+"</div>" : "")
     + '<div class="activity" data-activity></div>'
     + "</div>"
@@ -2919,6 +2919,7 @@ function undoTransfer(lead, cardEl){
   .catch(function(){ toast("转交记录没加载出来，过一会儿再试", true); });
 }
 function bindOneCard(card){
+    card.setAttribute("data-bound", "1");
     var id = card.getAttribute("data-id");
     var lead = findLead(id); if(!lead) return;
     card.querySelectorAll("[data-copy]").forEach(function(btn){
@@ -2984,11 +2985,11 @@ function bindOneCard(card){
       if(box.classList.contains("open")){ box.classList.remove("open"); return; }
       box.innerHTML = "正在加载…"; box.classList.add("open");
       api("lead_activity?select=*&lead_id=eq." + encodeURIComponent(lead.id) + "&order=created_at.desc&limit=100").then(function(rows){
-        if(!rows || !rows.length){ box.innerHTML = "还没有记录。"; return; }
+        if(!rows || !rows.length){ box.innerHTML = "还没有记录。" + COLLAPSE_BTN; return; }
         box.innerHTML = rows.map(function(r){
           return "<div><span class=\"t\">"+esc(fmtTime(r.created_at))+"</span> · <b>"+esc(r.actor || "")+"</b> · "+esc(r.action || "")+(r.detail ? " · "+esc(r.detail) : "")+"</div>";
-        }).join("");
-      }).catch(function(){ box.innerHTML = "记录没加载出来，过一会儿再点一次。"; });
+        }).join("") + COLLAPSE_BTN;
+      }).catch(function(){ box.innerHTML = "记录没加载出来，过一会儿再点一次。" + COLLAPSE_BTN; });
     });
     var editmsgBtn = card.querySelector('[data-act="editmsg"]');
     if(editmsgBtn) editmsgBtn.addEventListener("click", function(){ openEditor(lead); });
@@ -3161,13 +3162,7 @@ function bindOneCard(card){
     if(mpBtn) mpBtn.addEventListener("click", function(){ markPhotos(lead, card); });
     var upBtn = card.querySelector('[data-act="undophotos"]');
     if(upBtn) upBtn.addEventListener("click", function(){ undoPhotos(lead, card); });
-    /* 写信：每封单独折叠，一次只开一封，点开一封其他的自动收起 */
-    card.querySelectorAll(".msg-block").forEach(function(d){
-      d.addEventListener("toggle", function(){
-        if(!d.open) return;
-        card.querySelectorAll(".msg-block").forEach(function(o){ if(o !== d && o.open) o.open = false; });
-      });
-    });
+    /* 写信每封单独折叠、一次只开一封：由 P23 全站手风琴统一处理，这里不再单独绑 */
     loadLatestPhotos(lead, card);
     /* 粘贴客户原话：走「这句不会回，帮我写」的导入流程 */
     var phBtn = card.querySelector('[data-act="pastehelp"]');
@@ -3207,7 +3202,6 @@ function bindOneCard(card){
     if(qb) qb.addEventListener("toggle", function(){
       if(qb.open && !qb.getAttribute("data-loaded")) loadQuoteLists(lead, qb);
     });
-    card.setAttribute("data-bound", "1");
 }
 /* 卡片按钮兜底：正常情况下每张卡渲染后单独绑按钮（bindOneCard），绑成功会打上 data-bound。
    万一某张卡绑到一半出错、或者列表重渲染的间隙点到了还没绑好的卡，下面的总处理接住卡面上
@@ -3255,9 +3249,10 @@ document.addEventListener("click", function(ev){
   else if(act === "ask"){ openAsk(lead); }
 });
 
-/* ================= 回到按钮：浮动按钮 + 小节底部链接 =================
+/* ================= 回到按钮：右下角浮动按钮 =================
    卡片展开后往下翻，只要这张卡的按钮区被翻到屏幕上方去了，右下角就出现浮动按钮；
-   点浮动按钮或任一小节底部的“回到按钮”链接，直接滚回这张卡的按钮区，并闪一下金色提示落点。 */
+   点浮动按钮，直接滚回这张卡的按钮区，并闪一下金色提示落点。
+   各小节底部的旧“回到按钮”链接已取消，改成每个折叠区块底部自己的「回到顶部并折叠」。 */
 var fabBackBtns = $("fabBackBtns");
 var fabTargetCard = null;
 function scrollToCardBtns(card){
@@ -3288,22 +3283,15 @@ var fabTicking = false;
 function scheduleFabUpdate(){
   if(fabTicking) return;
   fabTicking = true;
-  requestAnimationFrame(function(){ fabTicking = false; updateFabBackBtns(); });
+  requestAnimationFrame(function(){ fabTicking = false; updateFabBackBtns(); updateFabTopVisibility(); });
 }
 window.addEventListener("scroll", scheduleFabUpdate, { passive: true });
 window.addEventListener("resize", scheduleFabUpdate);
-document.addEventListener("click", function(){ setTimeout(updateFabBackBtns, 80); });
+document.addEventListener("click", function(){ setTimeout(function(){ updateFabBackBtns(); updateFabTopVisibility(); }, 80); });
 if(fabBackBtns) fabBackBtns.addEventListener("click", function(){
   if(!fabTargetCard || !document.contains(fabTargetCard)) updateFabBackBtns();
   scrollToCardBtns(fabTargetCard);
 });
-document.addEventListener("click", function(ev){
-  var t = ev.target;
-  if(!t || !t.closest) return;
-  var link = t.closest("[data-backbtns]"); if(!link) return;
-  scrollToCardBtns(link.closest(".lead"));
-});
-
 /* ================= 已联系 / 客户回了 ================= */
 $("cCancel").addEventListener("click", function(){ $("contactModal").classList.remove("open"); state.pendingContactLead = null; });
 $("cConfirm").addEventListener("click", function(){
@@ -3497,7 +3485,7 @@ function refreshBgCard(lead, card){
 function clientBgFoldHtml(l){
   var st = l.client_bg_status || "";
   var tag = st === "checking" ? "（正在查）" : st === "done" ? "（已查）" : st === "failed" ? "（没查成，再查）" : "";
-  return '<details class="fold-in"><summary>客户背调' + esc(tag) + '</summary><div data-bgview="clientbg">' + clientBgHtml(l) + '</div></details>';
+  return '<details class="fold-in"><summary>客户背调' + esc(tag) + '</summary><div data-bgview="clientbg">' + clientBgHtml(l) + '</div>' + COLLAPSE_BTN + '</details>';
 }
 function clientBgHtml(l){
   var st = l.client_bg_status || "";
@@ -3550,7 +3538,7 @@ function cancelClientBg(lead, card){
 /* ---------- 2. 查品种记录（含每条的价格背调） ---------- */
 function varietyStatusZh(s){ return s === "found" ? "找到了" : s === "not_found" ? "找不到" : "正在查"; }
 function varietyFoldHtml(l){
-  return '<details class="fold-in"><summary>查品种记录（目录里没有的）</summary><div data-bgview="variety">' + varietyHtml(l) + '</div></details>';
+  return '<details class="fold-in"><summary>查品种记录（目录里没有的）</summary><div data-bgview="variety">' + varietyHtml(l) + '</div>' + COLLAPSE_BTN + '</details>';
 }
 function varietyHtml(l){
   var list = state.varietyByLead[l.id] || [];
@@ -4017,7 +4005,7 @@ function renderAskPanel(){
         + '<div class="ask-q">' + esc(q.question || "") + '</div>'
         + '<div class="qa-a"><b>' + esc(q.answered_by ? displayName(q.answered_by) : leaderName()) + '：</b>' + esc(q.answer || "") + (q.answered_at ? ' <span class="ct">' + esc(fmtTime(q.answered_at)) + '</span>' : '') + '</div>'
         + '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-qundo="' + esc(q.id) + '">撤回回答，重新写</button></div></div>';
-    }).join("") + "</details>";
+    }).join("") + COLLAPSE_BTN + "</details>";
   }
   $("askList").innerHTML = h;
 }
@@ -4155,7 +4143,7 @@ function leaderAdviceBlock(l, list){
 function profBlock(l){
   var p = (state.profByLead && state.profByLead[l.id]) || null;
   var chats = (state.chatByLead && state.chatByLead[l.id]) || [];
-  var h = '<details class="profile-box"><summary>客户档案</summary>';
+  var h = '<details class="profile-box"><summary>客户档案' + (chats.length ? ' · 聊天 ' + chats.length + ' 条' : '') + '</summary>';
   if(!p){
     h += '<div class="kv2">档案还没生成，导入一次聊天记录或联系一次后自动生成。</div>';
   } else {
@@ -4170,21 +4158,16 @@ function profBlock(l){
     h += '<div class="kv2">沟通记录：聊天 '+chats.length+" 条 · 联系 "+esc(l.owner_contact_count || 0)+" 次 · "+(l.has_replied ? "客户回过" : "客户还没回")+"</div>";
     h += '<div class="kv2">负责人：'+esc(l.assignee || "未分配")+"</div>";
   }
-  return h + "</details>";
+  if(chats.length){
+    h += '<div class="section-label">聊天记录（' + chats.length + ' 条）</div>';
+    chats.slice(-10).forEach(function(m){
+      var who = m.speaker === "me" ? '<span class="who-me">我方</span>' : '<span class="who-cu">客户</span>';
+      var t = m.msg_time ? fmtTime(m.msg_time) : fmtTime(m.created_at);
+      h += '<div class="chat-line"><span class="ct">'+esc(t)+"</span> · "+who+(m.sender_name ? "（"+esc(m.sender_name)+"）" : "")+"<br>"+esc(m.body)+"</div>";
+    });
+  }
+  return h + COLLAPSE_BTN + "</details>";
 }
-function chatBlock(l){
-  var chats = (state.chatByLead && state.chatByLead[l.id]) || [];
-  if(!chats.length) return "";
-  var show = chats.slice(-10);
-  var h = '<details class="chat-log"><summary>聊天记录（'+chats.length+" 条）</summary>";
-  show.forEach(function(m){
-    var who = m.speaker === "me" ? '<span class="who-me">我方</span>' : '<span class="who-cu">客户</span>';
-    var t = m.msg_time ? fmtTime(m.msg_time) : fmtTime(m.created_at);
-    h += '<div class="chat-line"><span class="ct">'+esc(t)+"</span> · "+who+(m.sender_name ? "（"+esc(m.sender_name)+"）" : "")+"<br>"+esc(m.body)+"</div>";
-  });
-  return h + "</details>";
-}
-
 /* ---------- 相对中文时间 ---------- */
 function fmtRel(iso){
   if(!iso) return "还没";
@@ -5724,7 +5707,7 @@ $("viewHiddenBtn").addEventListener("click", function(){ setLeadView(state.view 
 /* 每家卡片的报价区：以前算好的报价 + 报价回收站（默认收起，点开才加载） */
 function quoteTrashSection(l){
   if(l.deleted_at) return "";
-  return '<details class="fold-in" data-quote-box><summary>以前算好的报价 · 报价回收站</summary><div data-quote-list>点开后加载…</div></details>';
+  return '<details class="fold-in" data-quote-box><summary>以前算好的报价 · 报价回收站</summary><div data-quote-list>点开后加载…</div>' + COLLAPSE_BTN + '</details>';
 }
 function quoteItemsText(q){
   var items = q.items;
@@ -5757,7 +5740,7 @@ function loadQuoteLists(lead, box){
         + '<br><button class="btn btn-outline btn-sm" type="button" data-quote-restore="' + esc(String(q.id)) + '">恢复这份单</button>'
         + (state.isAdmin ? '<button class="btn btn-danger btn-sm" type="button" data-quote-del="' + esc(String(q.id)) + '">彻底删除</button>' : "") + '</div>';
     });
-    h += "</details>";
+    h += COLLAPSE_BTN + "</details>";
     if(listEl) listEl.innerHTML = h;
     box.querySelectorAll("[data-quote-cancel]").forEach(function(btn){
       btn.addEventListener("click", function(){ cancelQuoteDraft(lead, btn.getAttribute("data-quote-cancel"), box); });
@@ -6366,16 +6349,67 @@ function firstVarietyName(lead){
   for(var i = 0; i < parts.length; i++){ if(parts[i].trim()){ first = parts[i].trim(); break; } }
   return first.split(/\s+/)[0] || "";
 }
-/* 回到顶部并折叠（首页各区块底部按钮）：先把这个区块收起，再把它的标题滚到屏幕正中间（回本区块顶部，不是页面最顶） */
+/* 回到顶部并折叠：先把这个区块收起，再把它的标题滚到屏幕正中间（回本区块顶部，不是页面最顶）。
+   全站通用：首页各区块、卡片里每个区块、消息折叠、报价区块、所有 details 折叠都用它。
+   不是 details 的流水账（div.activity）也用它：收起后滚到卡片上「全部记录」按钮。 */
+var COLLAPSE_BTN = '<div style="margin-top:12px"><button class="btn btn-outline btn-sm" type="button" onclick="collapseSectionAndCenter(this)">回到顶部并折叠</button></div>';
 function collapseSectionAndCenter(btn){
   var d = btn ? btn.closest("details") : null;
-  if(!d) return;
-  d.open = false;
-  var s = d.querySelector("summary");
-  if(!s) return;
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  requestAnimationFrame(function(){ s.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); });
+  if(d){
+    d.open = false;
+    var s = d.querySelector("summary");
+    if(!s) return;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    requestAnimationFrame(function(){ s.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); });
+    return;
+  }
+  var act = btn ? btn.closest("[data-activity]") : null;
+  if(!act) return;
+  act.classList.remove("open");
+  var card = act.closest(".lead");
+  var t = card ? card.querySelector('[data-act="activity"]') : null;
+  if(!t) return;
+  var reduce2 = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  requestAnimationFrame(function(){ t.scrollIntoView({ behavior: reduce2 ? "auto" : "smooth", block: "center" }); });
 }
+/* 浮动圆按钮（#fabTop）绝不盖住卡片：只要它的位置压到任何一张客户卡片，就藏起来；没压到才显示。
+   在滚动/改大小/点按/翻页后都重算一次，390px 手机上卡片展开到任意位置都不会被它挡住。 */
+function updateFabTopVisibility(){
+  var fab = $("fabTop"); if(!fab) return;
+  var fr = fab.getBoundingClientRect();
+  var hide = false;
+  var cards = document.querySelectorAll(".lead");
+  for(var i = 0; i < cards.length; i++){
+    var cr = cards[i].getBoundingClientRect();
+    if(fr.bottom > cr.top && fr.top < cr.bottom && fr.right > cr.left && fr.left < cr.right){ hide = true; break; }
+  }
+  fab.style.visibility = hide ? "hidden" : "visible";
+}
+/* 全站手风琴：任何一个折叠（details）点开，就把同一组里其他打开的收起来，一次只开一个。
+   组 = 同一个父元素下的折叠；消息折叠（.msg-block）和卡片区块是两组，互不干扰（点开一封信不会关掉卡片区块，反过来也不会）。
+   嵌套的折叠（比如背调三步在「价格背调」里、去水印在「找图片」里）只跟同级比，不会关掉自己的父级。
+   父级收起时，顺带把里面还开着的子折叠也收起来，下次再点开父级就是干净的。
+   用捕获（capture）监听是因为 toggle 事件不冒泡、只在捕获阶段能收到；只在打开时关同组，收起时不碰同组。 */
+document.addEventListener("toggle", function(ev){
+  var d = ev.target;
+  if(!d || d.tagName !== "DETAILS") return;
+  if(d.open){
+    var parent = d.parentNode;
+    if(parent){
+      var isMsg = d.classList.contains("msg-block");
+      var kids = parent.children;
+      for(var i = 0; i < kids.length; i++){
+        var sib = kids[i];
+        if(sib === d || sib.tagName !== "DETAILS") continue;
+        if(sib.classList.contains("msg-block") !== isMsg) continue;
+        if(sib.open) sib.open = false;
+      }
+    }
+  } else {
+    var subs = d.querySelectorAll("details[open]");
+    for(var j = 0; j < subs.length; j++){ subs[j].open = false; }
+  }
+}, true);
 function goImgPanel(lead){
   var input = $("imgVariety");
   if(input){ input.value = firstVarietyName(lead); updateImgPanel(); }
