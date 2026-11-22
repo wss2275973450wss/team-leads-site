@@ -230,7 +230,7 @@ details>summary{overflow-wrap:break-word}
 /* 报价弹窗：下一步固定在弹窗底部 */
 #quoteStep1 .modal-btns,#quoteStep2 .modal-btns{position:sticky;bottom:0;background:var(--card);padding:12px 0 0;z-index:2}
 /* 自定义下拉：代替手机原生 select 的全屏深色弹窗；面板四周留边、上下都有取消、点空白/Esc 关；选项文字完整换行显示 */
-.cs-hidden-sel{position:absolute!important;width:1px;height:1px;opacity:0;pointer-events:none;margin:0;padding:0;border:0}
+.cs-hidden-sel{position:absolute!important;left:0!important;top:0!important;width:1px!important;height:1px!important;min-width:0!important;min-height:0!important;max-width:1px!important;opacity:0;pointer-events:none;margin:0!important;padding:0!important;border:0;overflow:hidden}
 .cs-trigger{width:100%;text-align:left;background:#fff;border:1px solid var(--line);min-height:48px;padding:10px 34px 10px 12px;font-size:15px;line-height:1.5;color:var(--ink);cursor:pointer;position:relative;white-space:normal;word-break:break-word}
 .cs-trigger:after{content:"▾";position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--green);font-size:16px;pointer-events:none}
 .cs-trigger.cs-empty{color:#8a8578}
