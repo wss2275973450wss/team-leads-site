@@ -72,7 +72,7 @@ button,select,input[type="text"],input[type="email"],input[type="password"]{min-
 .app-head h1{font-family:var(--serif);font-size:22px;margin:10px 0 0;color:var(--green);line-height:1.25;letter-spacing:.05em;max-width:100%;overflow-wrap:break-word;word-break:break-word}
 .app-head .sub{color:var(--muted);font-size:13px;margin:5px 0 0}
 .gold-rule{height:1px;background:var(--gold-line);margin:16px 0 2px;border-radius:0}
-.topbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:30;background:rgba(250,250,248,.96);padding:10px 0;border-bottom:1px solid var(--line)}
+.topbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:30;background:#FAFAF8;padding:10px 0;border-bottom:1px solid var(--line)}
 .who{font-size:14px;color:var(--green);font-weight:600}
 .who span{color:var(--muted);font-weight:400}
 .top-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-left:auto;justify-content:flex-end}
@@ -231,11 +231,11 @@ ol.steps li::marker{color:var(--gold);font-weight:700}
 .tut-note{font-size:14px;margin:12px 0 0}
 .tut-note b{color:var(--green)}
 /* ---------- modal / toast ---------- */
-.modal-mask{position:fixed;inset:0;background:rgba(16,32,24,.5);display:none;align-items:flex-end;justify-content:center;z-index:50;overflow-y:auto;padding:12px 10px 0}
+.modal-mask{position:fixed;inset:0;background:rgba(16,32,24,.5);display:none;align-items:flex-end;justify-content:center;z-index:50;overflow-y:auto;padding:24px 10px 24px}
 details,details.fold,details.fold-in,details.msg-block,.profile-box,.chat-log,details.other-ways{overflow:visible}
 details>summary{overflow-wrap:break-word}
 .modal-mask.open{display:flex}
-.modal{background:var(--card);width:100%;max-width:480px;max-height:calc(100dvh - 20px);overflow-y:auto;border-top:2px solid var(--gold);border-radius:0;padding:22px 20px calc(22px + env(safe-area-inset-bottom));box-shadow:none}
+.modal{background:var(--card);width:100%;max-width:480px;max-height:calc(100dvh - 48px);overflow-y:auto;border-top:2px solid var(--gold);border-radius:0;padding:22px 20px calc(22px + env(safe-area-inset-bottom));box-shadow:none}
 @media(min-width:640px){.modal-mask{align-items:center}.modal{border-radius:0}}
 .modal h3{font-family:var(--serif);margin:0 0 12px;font-size:19px;color:var(--green);letter-spacing:.03em}
 .modal .field select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:48px}
@@ -306,6 +306,15 @@ details>summary{overflow-wrap:break-word}
 .sum-row{border:1px solid var(--line);border-radius:0;padding:13px 15px;background:#fff;margin-bottom:10px;font-size:14px;font-variant-numeric:tabular-nums}
 .sum-row .nm{font-family:var(--serif);font-weight:700;color:var(--green);font-size:16px;letter-spacing:.03em}
 .sum-row b{color:var(--green)}
+.sum-row-me{background:#E7F0E9}
+/* #187 未读提醒：问柯哥按钮右上角真红色圆点（只用在未读提醒上） */
+.quick-actions [data-act="ask"]{position:relative}
+.ask-red-dot{position:absolute;top:-6px;right:-6px;width:14px;height:14px;border-radius:50%;background:#D92B1F;border:2px solid #FFFEFA;box-sizing:border-box;pointer-events:none}
+/* #185 请假转交勾选行：行高 75px、公司名 15px 加粗、勾选行整行浅绿底 */
+.ho-row{display:flex;align-items:center;gap:10px;min-height:75px;padding:10px 12px;font-size:14.5px;color:var(--muted);border-bottom:1px solid var(--line);cursor:pointer;background:#fff}
+.ho-row.ho-checked{background:#E7F0E9}
+.ho-company{font-size:15px;font-weight:700;color:var(--green)}
+#myQuestionsFold{order:1}
 .deal-banner{background:var(--green);border:1px solid var(--gold);color:#fff;border-radius:0;padding:16px 18px;margin:32px 0;display:none;font-size:14px;box-shadow:none}
 .deal-banner.show{display:block}
 .deal-banner .btn{margin-top:8px}
@@ -437,6 +446,20 @@ details.msg-block[open] .msg-fold-body{animation:fadein .25s ease}
 .price-script{border:1px solid var(--line);border-radius:0;padding:10px 12px;background:#fff;margin-bottom:8px}
 .price-script .ps-zh{font-size:13px;color:var(--green);font-weight:600}
 .price-script .ps-en{font-size:13.5px;color:#3D443E;margin-top:2px}
+/* #191 待回等了多久：超 24 小时标红 */
+.wait-tag{color:var(--muted);font-weight:600;white-space:nowrap}
+.wait-tag.overdue{color:var(--red);font-weight:700}
+/* #193 问柯哥弹窗：话术折叠标题行 + 提问区 sticky 在弹窗底部 */
+.ps-fold-head{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:48px;padding:10px 12px;border:1px solid var(--gold-line);background:var(--amber-bg);color:var(--green);font-weight:700;font-size:14px;cursor:pointer;text-align:left}
+#askModal .ask-foot{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--gold-line);padding-top:12px;margin-top:8px;z-index:2}
+/* #195 团队总览人名后的今天要跟进标红 */
+.ov-due{color:var(--red);font-weight:700;white-space:nowrap}
+/* #200 卡片顶部常驻补记提示 */
+.retry-hint{display:block;width:100%;min-height:48px;margin-top:10px;padding:10px 12px;border:1px solid var(--red);background:var(--red-bg);color:var(--red);font-weight:700;font-size:14px;line-height:1.5;cursor:pointer;text-align:left}
+/* #201 断网快照横幅 + 操作按钮置灰 */
+.offline-banner{background:var(--amber-bg);border:1px solid var(--gold-line);color:var(--green);padding:12px 14px;margin:0 0 12px;font-size:14px;font-weight:600;line-height:1.6}
+body.offline-mode #appView .btn{opacity:.5}
+body.offline-mode #appView select,body.offline-mode #appView textarea,body.offline-mode #appView input{opacity:.6}
 .btn-ask-alert{background:linear-gradient(180deg,#1C4732,#143527);border:1px solid var(--gold);color:#FAFAF8;box-shadow:0 2px 6px rgba(20,53,39,.25)}
 .btn-ask-alert:hover{background:var(--green2)}
 .mywa-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
@@ -459,7 +482,7 @@ details.undo-fold[open]>summary::before{content:"▾ "}
 .stats-grid{grid-template-columns:1fr 1fr}
 @media(min-width:640px){.stats-grid{grid-template-columns:1fr 1fr 1fr}}
 .stats-grid .num-cell small{font-size:12px;color:var(--muted)}
-#hoList input[type=checkbox]{width:22px;height:22px;accent-color:#143527;flex:none}
+#hoList input[type=checkbox],#hoProxyList input[type=checkbox]{width:22px;height:22px;accent-color:#143527;flex:none}
 /* 翻译失败：这封的发送入口置灰，等确认发旧版或重试翻译 */
 .msg-block.tr-stale a[data-sendlink]{opacity:.65;pointer-events:none}
 .msg-block.tr-stale .btn[data-copy]{opacity:1}
@@ -597,6 +620,20 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
 #appView details[aria-label="我的 WhatsApp 与团队名单"]{order:12}
 #appView details[aria-label="使用教程"]{order:13}
 #appView .foot{order:14}
+/* #211 登录过期层级：过期提示盖过报价弹窗（80）；登录页盖住下面还开着的弹窗（90、不透明底），弹窗本身不动、留着回来接着填 */
+#sessionModal{z-index:80}
+#loginView{position:relative;z-index:90;background:#FAFAF8}
+/* 登录页上没有列表，两个应用浮钮（顶部 / 收起）先藏起来，免得被登录卡盖住点不到；进了应用再出来 */
+body:has(#loginView:not(.hidden)) #fabTop,body:has(#loginView:not(.hidden)) #fabCollapse{display:none!important}
+/* toast 要在登录页之上：登出 / 失效时那句提示就是在登录页上弹的，不能被登录页盖住 */
+.toast{z-index:96}
+/* #209 客户已回复：卡面红点徽标 */
+.reply-red-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#D92B1F;margin-right:5px;flex:none}
+.tag.replied-badge{background:var(--red-bg);border-color:#E5C5BD;color:var(--red);font-weight:700}
+/* #221 客户回了弹窗：内容区自己滚动，按钮行固定在弹窗底部 */
+#replyModal .modal{display:flex;flex-direction:column}
+#replyModal #replyList{overflow-y:auto;min-height:0;-webkit-overflow-scrolling:touch}
+#leadsUpdateBanner{cursor:pointer}
 /* 只用浅色：全站只有一套米白底（#FAFAF8）+ 深绿 + 细金线配色，color-scheme 只声明 light，系统深色也不会变黑 */
 </style>
 </head>
@@ -620,21 +657,27 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
         <label class="ck-row" style="font-size:13px;color:var(--muted);font-weight:400;display:flex;gap:6px;align-items:center"><input type="checkbox" id="showPwd" style="min-height:0"> 显示密码</label>
         <label class="ck-row" style="font-size:13px;color:var(--muted);font-weight:400;display:flex;gap:6px;align-items:center"><input type="checkbox" id="rememberMe" checked style="min-height:0"> 记住我（下次不用再登录）</label>
       </div>
+      <p class="sub" style="margin:6px 0 0">这是你的私人手机吗？不是的话取消勾选。</p>
     </div>
     <button class="btn btn-primary" type="submit" id="loginBtn">登录</button>
     <button class="btn btn-outline" type="button" id="forgotBtn" style="width:100%;margin-top:10px">忘了密码，找王烁杉重置</button>
     <button class="btn btn-outline" type="button" id="forgotMailBtn" style="width:100%;margin-top:10px">没有 WhatsApp？发邮件重置</button>
-    <p class="sub" style="margin:10px 0 0">点上面第一个按钮会打开 WhatsApp，给王烁杉发一句话，他帮你重置密码。WhatsApp 打不开就点第二个，发邮件。</p>
+    <div class="ok" id="pwdResetAskBox" style="display:none;margin-top:10px"></div>
+    <p class="sub" style="margin:10px 0 0">点第一个按钮，先往你的邮箱发一封重置邮件，点开邮件里的链接就能设新密码；邮件发不出去时，再问你有没有 WhatsApp。没有 WhatsApp 就点第二个按钮，直接发邮件找王烁杉。</p>
   </form>
 </div>
 
 <!-- ============ 登录后主界面 ============ -->
 <div id="appView" class="wrap hidden">
+  <div id="offlineBanner" class="offline-banner" style="display:none" role="status"></div>
+  <div id="leadsUpdateBanner" class="offline-banner" style="display:none" role="button" tabindex="0"></div>
   <div class="topbar">
       <div class="who" id="whoLine">已登录</div>
       <div class="top-actions">
         <span class="net-status" id="netStatus"><span class="net-dot" id="netDot"></span><span id="netText">连接中…</span></span>
         <button class="btn btn-outline btn-sm" id="kegeBadge" type="button" style="display:none">柯哥回你了（0）</button>
+        <button class="btn btn-outline btn-sm" id="kegeTodoBadge" type="button" style="display:none">待我回答（0）</button>
+        <button class="btn btn-outline btn-sm" id="repliedShortcut" type="button" style="display:none">回了的客户（0 家）</button>
         <button class="btn btn-outline btn-sm" id="topImportBtn" type="button">发聊天记录</button>
         <div class="top-menu">
           <button class="btn btn-outline btn-sm" id="topMenuBtn" type="button" aria-label="更多">⋯</button>
@@ -663,6 +706,18 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <button class="btn btn-outline btn-sm" id="top5Next" type="button" style="margin-top:10px">继续下一批</button>
   </details>
 
+  <!-- 晚上 8 点汇总直达：汇总默认收在折叠里，晚上打开第一眼看不到，这里给一个直达入口 -->
+  <div style="margin:10px 0;display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn btn-outline" id="eveningJump" type="button">晚上 8 点汇总直达</button>
+    <button class="btn btn-outline" id="hoJump" type="button">请假转交</button>
+  </div>
+
+  <!-- 我的提问：队员问过柯哥的问题清单（默认收起，有提问才显示） -->
+  <details class="fold" id="myQuestionsFold" aria-label="我的提问" style="display:none">
+    <summary>我的提问 <span class="hint">你问柯哥的问题都在这里，回没回一眼看到</span></summary>
+    <div id="myQuestionsBox">正在读取…</div>
+  </details>
+
   <!-- 提醒横幅挪到 Top5 后面：Top5 在“客户线索”标题正下方，第一眼就能看到 -->
   <!-- 横幅文案不再写死：updatePausedBanner() 按数据填（今天有新线索就报新线索，没新线索才报暂停，都没有就不显示） -->
   <div class="paused-banner" id="pausedBanner" style="display:none"></div>
@@ -673,6 +728,9 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
 
   <!-- 客户回了：登录后只在这里露一条横幅，不盖满屏弹弹窗；点“看看”才打开弹窗 -->
   <div class="deal-banner" id="replyBanner" role="status" style="display:none"></div>
+
+  <!-- 待重置密码（只有王烁杉能看到；password_reset_requests 表没建好时悄悄藏起） -->
+  <div class="deal-banner" id="pwdResetBanner" role="status" style="display:none"></div>
 
   <!-- 今天三步：默认收起，在教程里也能看到 -->
   <details class="fold" aria-label="今天三步">
@@ -697,14 +755,14 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
   </section>
 
   <!-- 汇总与同步（收起来的折叠区，默认收起） -->
-  <details class="fold" aria-label="汇总与同步">
+  <details class="fold" id="summaryFold" aria-label="汇总与同步">
     <summary>汇总和数据更新 <span class="hint">早上报数 · 晚上 8 点汇总 · 每周一汇总 · 数据是不是最新的</span></summary>
     <section class="panel" aria-label="早上报数">
       <h2>早上报数（北京时间） <span class="hint">今天的新线索，现场算出来的</span></h2>
       <div id="morningBox">正在读取…</div>
     </section>
 
-    <section class="panel" aria-label="晚上 8 点汇总">
+    <section class="panel" id="eveningSection" aria-label="晚上 8 点汇总">
       <h2>晚上 8 点汇总（北京时间） <span class="hint">全队都看得到</span></h2>
       <div id="eveningBox">正在读取…</div>
     </section>
@@ -897,6 +955,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
           <option value="new">未处理</option>
           <option value="focus">重点跟进</option>
           <option value="contacted">已联系</option>
+          <option value="replied">客户回了</option>
           <option value="ignored">没兴趣</option>
           <option value="deal">已成交</option>
         </select>
@@ -951,6 +1010,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
     <section class="panel" aria-label="我的联系方式">
       <h2>我的 WhatsApp <span class="hint">第一次打开先填，队友能在团队名单里看到</span></h2>
       <div id="myWaBox" class="sync-line">正在读取…</div>
+      <div id="deviceLine" class="sync-line" style="margin-top:10px"></div>
     </section>
 
     <section class="panel" aria-label="团队名单">
@@ -958,7 +1018,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <div class="team-grid" id="teamBox"></div>
     </section>
 
-    <section class="panel" aria-label="请假转交">
+    <section class="panel" id="hoSection" aria-label="请假转交">
       <h2>请假转交 <span class="hint">请假时把你的客户临时转给队友，回来再转回来</span></h2>
       <div class="sync-line" id="hoBox">正在读取…</div>
     </section>
@@ -1022,6 +1082,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
         <option value="followup">跟进信</option>
       </select>
     </div>
+    <div class="err" id="cErr"></div>
     <div class="modal-btns">
       <button class="btn btn-outline" type="button" id="cCancel">取消</button>
       <button class="btn btn-green" type="button" id="cConfirm">确认记下</button>
@@ -1121,6 +1182,18 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
   </div>
 </div>
 
+<!-- 未读回答清单弹窗：顶部角标点开，哪家、谁回的、什么话题都在这里，点一家进一家 -->
+<div class="modal-mask" id="unreadModal" role="dialog" aria-modal="true" aria-label="未读回答清单">
+  <div class="modal" style="max-width:560px">
+    <h3>未读回答清单</h3>
+    <p class="sync-line" style="margin:0 0 12px">这几家有没看过的回答，点一家就进那张卡片。</p>
+    <div id="unreadList"></div>
+    <div class="modal-btns">
+      <button class="btn btn-outline" type="button" id="unreadClose">取消</button>
+    </div>
+  </div>
+</div>
+
 <!-- 报价弹窗：两步——第 1 步填货，第 2 步看单发出去 -->
 <div class="modal-mask" id="quoteModal" role="dialog" aria-modal="true" aria-label="报价">
   <div class="modal" style="max-width:560px">
@@ -1138,6 +1211,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <p class="qterms">报价单上会写明：有效期 15 天 · FCA 中国口岸 · 定金 50% · 交货期第 2 步再定（客户问了先问王烁杉，没问就写“确认中，3 天内回复你”）</p>
       <p class="qterms">有效期到 <span id="quoteExpiry"></span>（15 天内有效）</p>
       <div class="modal-btns">
+        <button class="btn btn-outline" type="button" id="quoteCancel1">取消</button>
         <button class="btn btn-green" type="button" id="quoteNext">下一步</button>
       </div>
     </div>
@@ -1210,14 +1284,16 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       </select>
     </div>
     <div id="priceScripts" class="hidden" style="margin-bottom:12px"></div>
-    <div class="field">
-      <label for="askText">客户的原话 / 你想问的问题</label>
-      <textarea id="askText" class="note-area" style="min-height:110px" placeholder="把客户那句话粘贴进来，或者写下你想问柯哥的问题"></textarea>
-    </div>
-    <div class="err" id="askErr"></div>
-    <div class="modal-btns">
-      <button class="btn btn-outline" type="button" id="askCancel">取消</button>
-      <button class="btn btn-green" type="button" id="askSubmit">发给柯哥</button>
+    <div class="ask-foot">
+      <div class="field">
+        <label for="askText">客户的原话 / 你想问的问题</label>
+        <textarea id="askText" class="note-area" style="min-height:110px" placeholder="把客户那句话粘贴进来，或者写下你想问柯哥的问题"></textarea>
+      </div>
+      <div class="err" id="askErr"></div>
+      <div class="modal-btns">
+        <button class="btn btn-outline" type="button" id="askCancel">取消</button>
+        <button class="btn btn-green" type="button" id="askSubmit">发给柯哥</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1239,6 +1315,7 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
   <div class="modal">
     <h3>确认一下</h3>
     <p class="sync-line" id="confirmText" style="font-size:15px;white-space:pre-line"></p>
+    <button class="btn btn-outline" type="button" id="confirmExpand" style="display:none;width:100%;margin-top:10px">展开看全单</button>
     <div class="modal-btns">
       <button class="btn btn-outline" type="button" id="confirmNo">再想想</button>
       <button class="btn btn-green" type="button" id="confirmYes">确认</button>
@@ -1322,6 +1399,17 @@ textarea.msg-edit{width:100%;border:1px solid var(--line);border-radius:0;paddin
       <button class="btn btn-green" id="dealNotifyBtn" type="button">马上告诉王烁杉</button>
       <span id="dealNotifyOff" style="display:none;align-self:center">（王烁杉的 WhatsApp 还没填）</span>
       <span id="dealNotifySelf" style="display:none;align-self:center">成交已记入今晚 8 点汇总，全队可见。</span>
+    </div>
+  </div>
+</div>
+
+<!-- 登录过期提示：不清空现场，报价等弹窗都留着，重登后回来接着填 -->
+<div class="modal-mask" id="sessionModal" role="dialog" aria-modal="true" aria-label="登录过期了">
+  <div class="modal">
+    <h3>登录过期了</h3>
+    <p class="sync-line" style="font-size:15px">登录过期了，点这里重新登录，回来接着填。你正在填的东西都还留着，不用重填。</p>
+    <div class="modal-btns">
+      <button class="btn btn-green" type="button" id="sessionRelogin">重新登录</button>
     </div>
   </div>
 </div>
@@ -1448,6 +1536,8 @@ var state = {
   leadsFailMsg: "",
   page: 1,
   pendingContactLead: null,
+  updatedSnap: {},
+  fromSnapshot: false,
   suggByLead: {},
   varietyByLead: {},
   standaloneBg: [],
@@ -1464,7 +1554,14 @@ var state = {
   top5Shown: [],
   catFilter: "",
   quickFilter: "",
-  photosByLead: {}
+  photosByLead: {},
+  teamDataLoaded: false,
+  eveningAutoOpened: false,
+  eveningLatestDate: "",
+  eveningPollTimer: null,
+  replyPollTimer: null,
+  leadsPollTimer: null,
+  ownEdits: {}
 };
 try { state.user = JSON.parse(LS.get("leads_user") || "null"); } catch(e){ state.user = null; }
 
@@ -1750,10 +1847,12 @@ function flushPendingContact(){
   if(!p) return;
   if(p.isQuote || !p.lead){ hidePendingContact(false); return; }
   hidePendingContact(false);
-  recordContact(p.lead, p.channel, p.kind, p.card);
+  recordContact(p.lead, p.channel, p.kind, p.card).catch(function(){ /* 没记上已入离线队列，卡上有补记提示 */ });
 }
 function showPendingContact(lead, channel, kind, card){
   flushPendingContact();
+  /* #202 点发送链接先把待记落盘：5 秒内页面被重开也丢不了，回来直接补记 */
+  try{ localStorage.setItem("leads_pending_send", JSON.stringify({ lead_id: lead.id, channel: channel, kind: kind, ts: Date.now() })); }catch(e){}
   var bar = $("pendingBar");
   $("pendingText").textContent = "回到网站后开始算 5 秒";
   bar.classList.add("show");
@@ -1773,13 +1872,18 @@ function showPendingContact(lead, channel, kind, card){
       var p = pendingSend; pendingSend = null;
       clearInterval(cd);
       bar.classList.remove("show");
-      if(p) recordContact(p.lead, p.channel, p.kind, p.card);
+      /* #202 这次已经当场记了，落盘的待记清掉，免得下次打开又补一次 */
+      LS.del("leads_pending_send");
+      if(p) recordContact(p.lead, p.channel, p.kind, p.card).catch(function(){ /* #200 没记上：recordContact 已在卡顶留补记提示并入离线队列 */ });
     }, 5000);
   });
 }
 function hidePendingContact(keepTimer){
   var bar = $("pendingBar");
-  if(bar) bar.classList.remove("show");
+  if(bar){ bar.classList.remove("show"); delete bar.dataset.offline; }
+  var pu = $("pendingUndo"); if(pu) pu.textContent = "撤销";
+  /* #202/#203 待记被撤销或被确认框接管时，落盘的那份也清掉 */
+  LS.del("leads_pending_send");
   if(pendingSend){
     if(pendingSend._armCleanup) pendingSend._armCleanup();
     if(pendingSend.timer) clearTimeout(pendingSend.timer);
@@ -1790,6 +1894,11 @@ function hidePendingContact(keepTimer){
   }
 }
 $("pendingUndo").addEventListener("click", function(){
+  /* #216 离线条的按钮是「知道了」：只收起条子，不弹撤销提示（这次已经进离线队列，网回来补记） */
+  if($("pendingBar").dataset.offline === "1"){
+    hidePendingContact(false);
+    return;
+  }
   var wasQuote = pendingSend && pendingSend.isQuote;
   hidePendingContact(false);
   toast(wasQuote ? "已撤销，报价还是草稿，没记已发出" : "已撤销，这次不算联系");
@@ -1877,6 +1986,16 @@ function scheduleSendFromLink(a){
   if(notMineLead(lead)){ toast("这家是 " + displayName(lead.assignee) + " 的，你只能看，不能替他发", true); return; }
   var channel = a.getAttribute("data-channel") || (a.href.indexOf("t.me") >= 0 ? "telegram" : "whatsapp");
   var kind = a.getAttribute("data-kind") || "first";
+  /* #216 断网时点发送链接：不假装倒数 5 秒，直接说清先记到手机里、进离线队列（#199），网回来自动补记 */
+  if(typeof navigator !== "undefined" && navigator.onLine === false){
+    enqueueContact(lead.id, channel, kind);
+    var obar = $("pendingBar");
+    obar.dataset.offline = "1";
+    $("pendingText").textContent = "现在没网，这次先记到手机里，等有网再补记";
+    $("pendingUndo").textContent = "知道了";
+    obar.classList.add("show");
+    return;
+  }
   /* 发送前在中文框里改过：先把改好的中文和当前外文一起存下来，发的就是现在这版外文 */
   var entry = msgFieldFor(channel, kind);
   var pre = Promise.resolve();
@@ -1928,16 +2047,22 @@ function api(path, opts){
     if(opts.headers){ for(var k in opts.headers) headers[k] = opts.headers[k]; }
     return fetch(REST + path, { method: opts.method || "GET", headers: headers, body: opts.body ? JSON.stringify(opts.body) : undefined })
       .then(function(res){
+        /* #206 收到任何 HTTP 响应都算在线（500 也是服务器回了话，不误标连不上） */
+        setNet(true);
         if(res.status === 401 && !opts._retried){
           return refreshAccessToken().then(function(){
             opts._retried = true;
             return doFetch();
-          }, function(){ doLogout(true); throw new Error("登录已失效，请重新登录"); });
+          }, function(){ handleSessionExpired(); throw new Error("登录已失效，请重新登录"); });
         }
-        if(res.status === 401){ doLogout(true); throw new Error("登录已失效，请重新登录"); }
+        if(res.status === 401){ handleSessionExpired(); throw new Error("登录已失效，请重新登录"); }
         if(!res.ok){ return res.text().then(function(t){ throw new Error("请求失败（"+res.status+"）"+(t?": "+t.slice(0,160):"")); }); }
         if(res.status === 204) return null;
         return res.text().then(function(t){ return t ? JSON.parse(t) : null; });
+      }, function(netErr){
+        /* #206 只有请求根本发不出去（断网）才标连不上 */
+        setNet(false);
+        throw netErr;
       });
   }
   return doFetch();
@@ -1965,6 +2090,7 @@ $("loginForm").addEventListener("submit", function(ev){
     rememberLogin = $("rememberMe") ? $("rememberMe").checked : true;
     state.token = r.data.access_token;
     state.user = r.data.user || null;
+    LS.set("leads_login_at", new Date().toISOString(), rememberLogin);
     if(state.user && state.user.user_metadata && state.user.user_metadata.password_changed_at) LS.set("leads_pwd_done", "1", true);
     LS.set("leads_token", state.token, rememberLogin);
     LS.set("leads_user", JSON.stringify(state.user), rememberLogin);
@@ -1979,9 +2105,38 @@ $("loginForm").addEventListener("submit", function(ev){
 function doLogout(silent){
   state.token = ""; state.user = null;
   LS.del("leads_token"); LS.del("leads_user"); LS.del("leads_refresh");
+  stopPolls();
+  sessionExpiredShown = false;
+  var sm = $("sessionModal"); if(sm) sm.classList.remove("open");
   $("appView").classList.add("hidden");
   $("loginView").classList.remove("hidden");
   if(silent) toast("登录已失效，请重新登录", true);
+}
+/* #211 token 续不上：先别清现场，弹全屏提示，页面和还开着的弹窗（报价、填了一半的内容）都留着；
+   已经在登录页时不再弹。点「重新登录」才回登录页（登录页 z-index 90 盖住弹窗），邮箱已填好，重登后回来接着填 */
+var sessionExpiredShown = false;
+function handleSessionExpired(){
+  var av = $("appView");
+  if(!av || av.classList.contains("hidden")) return;
+  if(sessionExpiredShown) return;
+  sessionExpiredShown = true;
+  state.token = "";
+  LS.del("leads_token"); LS.del("leads_refresh");
+  stopPolls();
+  var m = $("sessionModal"); if(m) m.classList.add("open");
+}
+$("sessionRelogin").addEventListener("click", function(){
+  var m = $("sessionModal"); if(m) m.classList.remove("open");
+  sessionExpiredShown = false;
+  if(state.user && state.user.email) $("email").value = state.user.email;
+  $("appView").classList.add("hidden");
+  $("loginView").classList.remove("hidden");
+  var pw = $("password"); if(pw) pw.focus();
+});
+/* #208/#210 轮询统一停：登出 / 登录过期后不再触发，免得反复弹过期提示 */
+function stopPolls(){
+  if(state.replyPollTimer){ clearInterval(state.replyPollTimer); state.replyPollTimer = null; }
+  if(state.leadsPollTimer){ clearInterval(state.leadsPollTimer); state.leadsPollTimer = null; }
 }
 $("logoutBtn").addEventListener("click", function(){ doLogout(false); });
 $("showPwd").addEventListener("change", function(){
@@ -2096,8 +2251,57 @@ function checkFirstLogin(){
   $("pwdModal").classList.add("open");
 }
 function loadAll(){
-  loadProfiles().then(function(){ renderWho(); renderTeam(); renderMyWa(); renderHandover(); buildAssigneeFilter(); return loadLeads(); }).then(function(){ renderHandover(); loadSync(); loadTeamData(); loadEvening(); loadStats(); checkHandoverNotice(); checkHandoverReturn(); loadBgData(); });
+  loadProfiles().then(function(){ renderWho(); renderTeam(); renderMyWa(); renderHandover(); buildAssigneeFilter(); return loadLeads(); }).then(function(){ checkPendingSendOnLoad(); flushContactQueue(); renderHandover(); loadSync(); loadTeamData(); loadEvening(); startEveningPoll(); maybeOpenEvening(); loadStats(); checkHandoverNotice(); checkHandoverReturn(); loadBgData(); loadPwdResetRequests(); startReplyPoll(); startLeadsPoll(); });
 }
+/* #208 客户回信轮询：每 5 分钟静默查一次（checkReplyPopup 只查 7 天内未读、只弹分给我的）；
+   切回页面时也查一次（visibilitychange 在下面统一挂）。登出 / 过期后 stopPolls 停掉 */
+function startReplyPoll(){
+  if(state.replyPollTimer) return;
+  state.replyPollTimer = setInterval(function(){
+    if(!state.token || document.hidden) return;
+    checkReplyPopup();
+  }, 5 * 60 * 1000);
+}
+/* #210 线索更新轮询：每 2 分钟静默拉一次 updated_at，切回页面时也拉；有变化只亮顶部提示，点提示才刷新 */
+function startLeadsPoll(){
+  if(state.leadsPollTimer) return;
+  state.leadsPollTimer = setInterval(function(){
+    if(!state.token || document.hidden) return;
+    pollLeadsChanges();
+  }, 2 * 60 * 1000);
+}
+function pollLeadsChanges(){
+  if(!state.token || !state.leads || !state.leads.length || state.fromSnapshot) return;
+  api("leads?select=id,updated_at&limit=1000").then(function(rows){
+    var snap = state.updatedSnap || {};
+    var changed = 0;
+    (rows || []).forEach(function(r){
+      var prev = snap[r.id];
+      var cur = r.updated_at || "";
+      if(prev === undefined){ changed++; return; }
+      if(prev !== cur){
+        /* 自己刚改的那家不弹提示：悄悄把快照同步掉 */
+        if(state.ownEdits && state.ownEdits[r.id] && Date.now() - state.ownEdits[r.id] < 10 * 60 * 1000){ snap[r.id] = cur; return; }
+        changed++;
+      }
+    });
+    if(changed > 0){
+      var b = $("leadsUpdateBanner");
+      if(b){ b.textContent = "有 " + changed + " 家更新了，点这里刷新"; b.style.display = ""; }
+    }
+  }).catch(function(){});
+}
+$("leadsUpdateBanner").addEventListener("click", function(){
+  $("leadsUpdateBanner").style.display = "none";
+  loadLeads();
+});
+document.addEventListener("visibilitychange", function(){
+  if(document.hidden || !state.token) return;
+  var av = $("appView");
+  if(!av || av.classList.contains("hidden")) return;
+  checkReplyPopup();
+  pollLeadsChanges();
+});
 function loadProfiles(){
   return api("profiles?select=*&order=created_at.asc").then(function(rows){
     state.profiles = rows || [];
@@ -2240,6 +2444,7 @@ function renderWho(){
     : "还没有找到你的个人档案，名单和默认筛选可能不完整，请联系王烁杉确认账号。";
   var tib = $("topImportBtn");
   if(tib) tib.style.display = state.isLeader ? "none" : "";
+  renderDeviceLine();
   /* 教程里邮件跟进信那句按登录人变：王烁杉名下的 AI 会代发，别人要自己发 */
   var tel = $("tutEmailLine");
   if(tel) tel.textContent = state.isAdmin ? "注意：邮件的跟进信，AI 会从你的邮箱直接发（只发你名下的客户），你不用管。" : "注意：邮件的跟进信要你自己发，AI 只帮王烁杉发他名下的。";
@@ -2364,7 +2569,18 @@ document.addEventListener("click", function(ev){
   ev.preventDefault();
   gotoMyWa();
 });
+/* #217 只显示本机信息，不改任何登录行为：换手机旧手机要不要下线，等王烁杉定了再加 */
+function renderDeviceLine(){
+  var el = $("deviceLine"); if(!el) return;
+  var ua = navigator.userAgent || "";
+  var dev = /Android|iPhone|iPad|iPod|Mobile/i.test(ua) ? "这台手机" : "这台电脑";
+  var br = /Edg\//.test(ua) ? "Edge" : (/Chrome\//.test(ua) ? "Chrome" : (/Firefox\//.test(ua) ? "Firefox" : (/Safari\//.test(ua) ? "Safari" : "浏览器")));
+  var at = "";
+  try{ at = LS.get("leads_login_at") || ""; }catch(e){}
+  el.textContent = "正在登录的设备：" + dev + " · " + br + " · 本次登录" + (at ? " " + fmtDateTimeShort(at) + "（北京时间）" : "时间没记下来") + "。只能看到本机；换手机旧手机要不要下线，等王烁杉定了再加。";
+}
 function renderMyWa(){
+  renderDeviceLine();
   var box = $("myWaBox");
   if(!state.myProfile){
     box.textContent = "你的个人档案还没建好，暂时填不了。档案建好后这里就能填自己的 WhatsApp 号。";
@@ -2415,7 +2631,11 @@ function loadSync(){
       + "新来了：<b>" + esc(pushNew) + "</b> 家<br>"
       + "一共：<b>" + esc(total) + "</b> 家客户<br>"
       + "上次把你在网站上的改动存回去：<b>" + esc(wbRun) + "</b> · " + statusHtml;
-  }).catch(function(){ $("syncBox").textContent = "还没有数据更新记录"; });
+  }).catch(function(){
+    /* #207 接口报错（比如 500）和真没数据是两回事：报错要标红说清没存回去，不能写成「还没有数据更新记录」 */
+    var box = $("syncBox");
+    if(box) box.innerHTML = '<span style="color:var(--red);font-weight:700">同步失败了，刚才那次没存回去，检查网络后刷新再试</span>';
+  });
 }
 
 /* ================= 线索 ================= */
@@ -2425,17 +2645,60 @@ function setNet(ok){
   if(d) d.className = "net-dot " + (ok ? "on" : "off");
   if(t) t.textContent = ok ? "正常" : "连不上";
 }
+/* #204 页面打开时记下每条线索的 updated_at 快照，改星前拿它和库里现值比对 */
+function buildUpdatedSnap(){
+  state.updatedSnap = {};
+  (state.leads || []).forEach(function(l){ state.updatedSnap[l.id] = l.updated_at || ""; });
+}
+/* #201 联网加载成功后存一份快照，断网再打开时至少能看上次的列表 */
+function saveLeadsSnapshot(){
+  try{
+    var s = JSON.stringify({ ts: Date.now(), leads: state.leads || [] });
+    if(s.length < 4000000) localStorage.setItem("leads_snapshot", s);
+  }catch(e){}
+}
+function readLeadsSnapshot(){
+  try{
+    var snap = JSON.parse(localStorage.getItem("leads_snapshot") || "null");
+    if(snap && snap.ts && Array.isArray(snap.leads) && snap.leads.length) return snap;
+  }catch(e){}
+  return null;
+}
 function loadLeads(){
   $("listBox").innerHTML = '<div class="loading">正在加载线索…</div>';
   return api("leads?select=*&order=found_at.desc.nullslast,created_at.desc&limit=1000").then(function(rows){
     state.leads = rows || [];
     state.leadsFailed = false;
     state.leadsFailMsg = "";
+    state.fromSnapshot = false;
     setNet(true);
+    document.body.classList.remove("offline-mode");
+    var ob = $("offlineBanner"); if(ob) ob.style.display = "none";
+    buildUpdatedSnap();
+    saveLeadsSnapshot();
     buildCountryFilter();
     applyFilters();
   }).catch(function(e){
-    setNet(false);
+    /* #206 服务端回了错（500 等）不算断网：只有请求发不出去才标连不上 */
+    if(typeof isNetErr === "function" && isNetErr(e)) setNet(false); else setNet(true);
+    /* #201 接口不通但本地有上次的快照：先给看上次的列表，横幅说清是旧的、改动等有网再记 */
+    var snap = readLeadsSnapshot();
+    if(snap){
+      state.leads = snap.leads;
+      state.leadsFailed = false;
+      state.leadsFailMsg = "";
+      state.fromSnapshot = true;
+      buildUpdatedSnap();
+      document.body.classList.add("offline-mode");
+      var ob2 = $("offlineBanner");
+      if(ob2){
+        ob2.textContent = "现在没网，只能看上次的（" + fmtDateTimeShort(new Date(snap.ts).toISOString()) + "存的），改动等有网再记";
+        ob2.style.display = "";
+      }
+      buildCountryFilter();
+      applyFilters();
+      return;
+    }
     /* 加载失败要立住标志：后面的 loadTeamData → applyFilters → renderLeads 还会再跑一遍，
        不立标志就会把这段报错盖掉、列表显示成“没有线索”。 */
     state.leadsFailed = true;
@@ -2580,7 +2843,11 @@ function applyFilters(){
       else if(l.region !== f.region) return false;
     }
     if(f.country && l.country !== f.country) return false;
-    if(f.status && l.status !== f.status) return false;
+    if(f.status){
+      /* #209 「客户回了」不是 leads.status 的值，按 has_replied 筛 */
+      if(f.status === "replied"){ if(!l.has_replied) return false; }
+      else if(l.status !== f.status) return false;
+    }
     if(state.catFilter && leadCat(l) !== state.catFilter) return false;
     if(f.contact){
       if(f.contact === "whatsapp" && !hasField(l.whatsapp)) return false;
@@ -2657,6 +2924,7 @@ function applyFilters(){
   updateMineCount();
   updateKegeBadge();
   updatePausedBanner();
+  updateRepliedShortcut();
   renderLeads();
   renderTop5();
   renderMorning();
@@ -2664,6 +2932,24 @@ function applyFilters(){
   renderOrderPanel();
   renderDealBanner();
 }
+/* #209 顶部快捷入口「回了的客户（N 家）」：数按当前登录人能看的范围算，点一下直接按「客户回了」筛 */
+function updateRepliedShortcut(){
+  var b = $("repliedShortcut"); if(!b) return;
+  if(state.leadsFailed || !state.leads.length){ b.style.display = "none"; return; }
+  var scope = (state.isAdmin || state.isLeader) ? state.leads : state.leads.filter(function(x){ return x.assignee === state.myName; });
+  var n = dedupedLeads(scope.filter(function(l){ return isActiveLead(l) && l.has_replied; })).length;
+  b.textContent = "回了的客户（" + n + " 家）";
+  b.style.display = n > 0 ? "" : "none";
+}
+$("repliedShortcut").addEventListener("click", function(){
+  var fst = $("fStatus"); if(fst) fst.value = "replied";
+  state.quickFilter = "";
+  document.querySelectorAll("[data-qf]").forEach(function(x){ x.classList.remove("on"); });
+  if(typeof enhanceAllSelects === "function") enhanceAllSelects();
+  setLeadView("");
+  applyFiltersFirstPage();
+  var lb = $("listBox"); if(lb) lb.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 /* 筛选条件一变就回到第 1 页：排序号按新筛选从 1 重新编，停在旧页码会看不到结果 */
 function applyFiltersFirstPage(){ state.page = 1; applyFilters(); }
 ["fAssignee","fRegion","fStatus","fContact","fSort"].forEach(function(id){ var el = $(id); if(el) el.addEventListener("change", applyFiltersFirstPage); });
@@ -2960,7 +3246,7 @@ function cardHtml(l){
   if(lt) tags += '<span class="tag">当地 '+esc(lt.text)+(lt.approx ? "（按首都大概算，可能差几小时）" : "")+"</span>" + (lt.night ? '<span class="tag night">深夜，别这时候发</span>' : "");
   var collideWith = collisionInfo(l);
   var isRotated = rotatedAway(l);
-  if(l.has_replied) tags += '<span class="tag" style="background:var(--green-soft);color:var(--green);font-weight:600">客户已回复</span>';
+  if(l.has_replied) tags += '<span class="tag replied-badge"><span class="reply-red-dot" aria-hidden="true"></span>客户已回复</span>';
   if(l.order_intent_at) tags += '<span class="tag intent">客户要下单了</span>' + (orderNotified(l) ? '<span class="tag">已记进流水账</span>' : "");
   var tagsMore = "";
   if(l.subtype) tagsMore += '<span class="tag">'+esc(l.subtype)+"</span>";
@@ -3130,8 +3416,8 @@ function cardHtml(l){
     if(l.assignee === state.myName || state.isAdmin){
       var unseenQ = unseenAnsweredCount(l) + unseenAdviceCount(l);
       var ansBy = latestAnswerBy(l);
-      var askLabel = unseenQ ? ((ansBy === "王烁杉" ? "王烁杉回你了" : "柯哥回你了") + " ●") : "问柯哥";
-      quick += '<button class="btn btn-sm ' + (unseenQ ? "btn-ask-alert" : "btn-outline") + '" type="button" data-act="ask">' + askLabel + "</button>";
+      var askLabel = unseenQ ? (ansBy === "王烁杉" ? "王烁杉回你了" : "柯哥回你了") : "问柯哥";
+      quick += '<button class="btn btn-sm ' + (unseenQ ? "btn-ask-alert" : "btn-outline") + '" type="button" data-act="ask">' + askLabel + (unseenQ ? '<span class="ask-red-dot" aria-hidden="true"></span>' : "") + "</button>";
     }
     /* 取消类统一放进撤销区：每个都是整行 48px 高的描边按钮，「撤销上次联系」单独一行，
        不再用 13px 竖排小字（33×76px 点不中） */
@@ -3231,6 +3517,7 @@ function cardHtml(l){
     + (l.title_zh ? '<p class="title-zh">'+esc(l.title_zh)+"</p>" : "")
     + '<div class="lead-top-hint">点标题展开详情</div>'
     + "</div><div class=\"stars-wrap\"><div class=\"stars\" aria-label=\"星星\">"+starStr(l.stars)+"</div><div class=\"stars-note\">星越多越值得先联系</div></div></div>"
+    + retryHintHtml(l)
     + (l.summary_zh ? '<p class="summary">'+esc(l.summary_zh)+"</p>" : "")
     + '<div class="meta">'
     + (place ? '<span class="tag">'+esc(place)+"</span>" : "")
@@ -3238,6 +3525,7 @@ function cardHtml(l){
     + '<span class="tag">状态：'+esc(STATUS_ZH[l.status] || l.status || "未处理")+"</span>"
     + '<span class="tag">负责人：'+esc(displayName(l.assignee || "未分配"))+"</span>"
     + tags + "</div>"
+    + rotatedInLine(l)
     + (prod ? '<div class="kv">产品：<b>'+esc(prod)+"</b></div>" : "")
     + (detail ? '<div class="kv">'+detail+"</div>" : "")
     + phoneLine
@@ -3313,7 +3601,7 @@ function historyBlock(l){
 function findLead(id){ for(var i=0;i<state.leads.length;i++) if(String(state.leads[i].id)===String(id)) return state.leads[i]; return null; }
 function patchLead(l, patch){
   return api("leads?id=eq." + encodeURIComponent(l.id), { method:"PATCH", headers:{ "Prefer":"return=minimal" }, body: patch })
-    .then(function(){ for(var k in patch) l[k] = patch[k]; });
+    .then(function(){ for(var k in patch) l[k] = patch[k]; if(!state.ownEdits) state.ownEdits = {}; state.ownEdits[l.id] = Date.now(); });
 }
 function bindCards(){
   /* 一张一张绑：一张卡绑出错也不能连累其他卡（以前一张出错，后面所有卡的按钮都没绑上、全点不动） */
@@ -3402,13 +3690,126 @@ function refreshCard(cardEl, lead){
   renderTop5();
   renderOrderPanel();
 }
-/* 记一次联系：写 contact_events + 更新次数，满 5 次没回自动标没兴趣。发送和「已联系」按钮共用 */
-function recordContact(lead, channel, kind, cardEl){
+/* #205 错误分两类：请求根本发不出去（断网） vs 服务端回了错。只有前者算「没网」 */
+function isNetErr(e){
+  if(!e) return false;
+  if(e instanceof TypeError) return true;
+  var m = String(e.message || e);
+  return /failed to fetch|networkerror|network error|load failed/i.test(m);
+}
+/* #199 离线队列：记联系断网失败先存 localStorage，网回来按顺序补记 */
+function contactQueue(){
+  try{ var q = JSON.parse(localStorage.getItem("leads_pending_contacts") || "[]"); return Array.isArray(q) ? q : []; }catch(e){ return []; }
+}
+function saveContactQueue(q){ try{ localStorage.setItem("leads_pending_contacts", JSON.stringify(q)); }catch(e){} }
+function enqueueContact(leadId, channel, kind){
+  var q = contactQueue();
+  q.push({ lead_id: leadId, channel: channel, kind: kind, ts: Date.now() });
+  saveContactQueue(q);
+}
+/* 手动补记成功后清掉同一家、同渠道、同封的一条排队记录，免得网回来又补一次记重 */
+function dropOneQueued(leadId, channel, kind){
+  var q = contactQueue();
+  for(var i = 0; i < q.length; i++){
+    if(String(q[i].lead_id) === String(leadId) && q[i].channel === channel && q[i].kind === kind){ q.splice(i, 1); saveContactQueue(q); return; }
+  }
+}
+function queuedForLead(leadId){ return contactQueue().filter(function(x){ return String(x.lead_id) === String(leadId); }); }
+/* #200 记失败后卡片顶部留常驻补记提示（队列里有这家的记录，卡片重渲染时也会由 cardHtml 带出来） */
+function retryHintHtml(l){
+  var q = queuedForLead(l.id);
+  if(!q.length) return "";
+  var first = q[0];
+  return '<button class="retry-hint" type="button" data-act="retry-contact" data-channel="' + esc(first.channel || "whatsapp") + '" data-kind="' + esc(first.kind || "first") + '">刚才那次没记上（没网），点这里补记</button>';
+}
+function showCardRetryHint(cardEl, lead, channel, kind){
+  if(!cardEl || !cardEl.querySelector) return;
+  if(cardEl.querySelector("[data-retry-hint]")) return;
+  var btn = document.createElement("button");
+  btn.type = "button"; btn.className = "retry-hint"; btn.setAttribute("data-retry-hint", "1");
+  btn.textContent = "刚才那次没记上（没网），点这里补记";
+  btn.addEventListener("click", function(ev){
+    ev.stopPropagation();
+    var cardNow = btn.closest ? btn.closest(".lead") : cardEl;
+    recordContact(lead, channel, kind, cardNow).catch(function(){});
+  });
+  var top = cardEl.querySelector(".lead-top");
+  if(top && top.nextSibling) cardEl.insertBefore(btn, top.nextSibling);
+  else if(top) cardEl.appendChild(btn);
+  else cardEl.insertBefore(btn, cardEl.firstChild);
+}
+/* #199 网回来（或上线后发现队列里有货）按顺序补记，成功的清掉、失败的留在队列里 */
+var flushingQueue = false;
+function flushContactQueue(){
+  if(flushingQueue) return;
+  var q = contactQueue();
+  if(!q.length) return;
+  if(!state.leads || !state.leads.length) return;
+  flushingQueue = true;
+  var done = 0;
+  var chain = Promise.resolve();
+  q.slice().forEach(function(item){
+    chain = chain.then(function(){
+      var lead = findLead(item.lead_id);
+      if(!lead){
+        saveContactQueue(contactQueue().filter(function(x){ return x.ts !== item.ts; }));
+        return;
+      }
+      return recordContact(lead, item.channel, item.kind, null, { fromQueue: true }).then(function(){
+        done++;
+        saveContactQueue(contactQueue().filter(function(x){ return x.ts !== item.ts; }));
+      }).catch(function(){ /* 失败的留在队列里，下次有网再补 */ });
+    });
+  });
+  chain.then(function(){
+    flushingQueue = false;
+    if(done > 0){ toast("刚才断网没记上的 " + done + " 次已补记"); applyFilters(); }
+  });
+}
+/* #202 页面重开时检查落盘的待记：30 分钟内的补记 1 次，超 30 分钟的丢掉不补 */
+function checkPendingSendOnLoad(){
+  var raw = null;
+  try{ raw = localStorage.getItem("leads_pending_send"); }catch(e){}
+  if(!raw) return;
+  LS.del("leads_pending_send");
+  var p = null;
+  try{ p = JSON.parse(raw); }catch(e){}
+  if(!p || !p.lead_id || !p.ts) return;
+  if(Date.now() - p.ts > 30 * 60 * 1000) return;
+  var lead = findLead(p.lead_id);
+  if(!lead) return;
+  recordContact(lead, p.channel || "whatsapp", p.kind || "first", null).then(function(){
+    toast("刚才发的那次已记上");
+  }).catch(function(){ /* 没记上已入离线队列，网回来自动补 */ });
+}
+/* #199/#201 网一回来：先补记离线队列；正看着断网快照的，重新拉一次真数据 */
+/* #206 断网立刻标红「连不上」，恢复立刻变回「正常」 */
+window.addEventListener("online", function(){
+  setNet(true);
+  flushContactQueue();
+  if(document.body.classList.contains("offline-mode")) loadLeads();
+});
+window.addEventListener("offline", function(){ setNet(false); });
+/* #203 保险：同一家 10 秒内同渠道重复记只算一次 */
+var lastContactMark = {};
+/* 记一次联系：写 contact_events + 更新次数，满 5 次没回自动标没兴趣。发送和「已联系」按钮共用。
+   #198 失败时抛错给调用方（不再吞掉异常假装成功）；opts.fromQueue 是离线补记：不重复入队、不逐条弹 toast、不走 10 秒去重 */
+function recordContact(lead, channel, kind, cardEl, opts){
+  var fromQueue = !!(opts && opts.fromQueue);
+  if(!fromQueue){
+    var dedupKey = String(lead.id) + "|" + channel;
+    var nowMs = Date.now();
+    if(lastContactMark[dedupKey] && nowMs - lastContactMark[dedupKey] < 10000){
+      return Promise.resolve({ deduped: true });
+    }
+    lastContactMark[dedupKey] = nowMs;
+  }
   var newCount = (parseInt(lead.owner_contact_count, 10) || 0) + 1;
   var patch = { owner_contact_count: newCount, contact_count: (parseInt(lead.contact_count, 10) || 0) + 1 };
   var autoIgnored = false;
   if(newCount >= 5 && !lead.has_replied){ patch.status = "ignored"; autoIgnored = true; }
-  else if(lead.status === "new"){ patch.status = "contacted"; }
+  /* 状态同步回写 leads.status：联系过就是 contacted（new 和 focus 都转，已成交/没兴趣的不动） */
+  else if(lead.status === "new" || lead.status === "focus"){ patch.status = "contacted"; }
   return api("contact_events", { method:"POST", headers:{ "Prefer":"return=minimal" },
     body:{ lead_id: lead.id, actor: state.myName || "", channel: channel, kind: kind, counts_toward_followup: true } })
   .then(function(){ return patchLead(lead, patch); })
@@ -3427,12 +3828,27 @@ function recordContact(lead, channel, kind, cardEl){
     }).catch(function(){});
   })
   .then(function(){
-    toast(autoIgnored ? "已记下：联系满 5 次都没回，已标成「没兴趣」（想继续跟，点卡片上的「继续跟进」）" : "已自动记下：这是第 " + newCount + " 次联系");
+    /* #199 手动记成功：清掉队列里同一家同渠道同封的一条，免得网回来重复补记 */
+    if(!fromQueue) dropOneQueued(lead.id, channel, kind);
+    if(!fromQueue) toast(autoIgnored ? "已记下：联系满 5 次都没回，已标成「没兴趣」（想继续跟，点卡片上的「继续跟进」）" : "已自动记下：这是第 " + newCount + " 次联系");
     if(cardEl) refreshCard(cardEl, lead);
     else renderTop5();
     return { newCount: newCount, autoIgnored: autoIgnored };
   })
-  .catch(function(e){ toast(e.message || "记录失败", true); });
+  .catch(function(e){
+    /* 记失败不占 10 秒去重名额：网回来马上再点一次要能真记上（#198） */
+    if(!fromQueue) delete lastContactMark[dedupKey];
+    /* #205 按错误类型给人话：断网只说没网（全中文，不露英文报错）；服务端报错才显示服务端那句 */
+    var net = isNetErr(e);
+    if(net && !fromQueue) enqueueContact(lead.id, channel, kind);
+    if(!fromQueue){
+      toast(net ? "现在没网，这次没记上，等网好了再点一次「已联系」" : (e.message || "记录失败"), true);
+      /* #200 有卡片时在卡顶留常驻补记提示 */
+      if(net && cardEl) showCardRetryHint(cardEl, lead, channel, kind);
+    }
+    /* #198 失败要抛出去，让调用方知道没记上（确认框不关、按钮恢复） */
+    throw (e instanceof Error) ? e : new Error(net ? "现在没网" : "记录失败");
+  });
 }
 /* ---------- 已发实拍（和空间 Q194 / markPhotosSent 对应） ---------- */
 function photosLineText(ph){
@@ -3566,21 +3982,26 @@ function undoReply(lead, eventId, cardEl){
   var stillReplied = remaining.length > 0;
   var newRepliedAt = null;
   remaining.forEach(function(r){ if(!newRepliedAt || String(r.created_at || "") > String(newRepliedAt)) newRepliedAt = r.created_at; });
+  /* 撤销回信且一次都没联系过：状态同步回 new（已成交/没兴趣不动） */
+  var backToNew = !stillReplied && (parseInt(lead.owner_contact_count, 10) || 0) === 0 && lead.status === "contacted";
   var confirmMsg = "确定要取消这次「客户回了」吗？";
   if(ev && ev.created_at) confirmMsg += "（" + fmtRel(ev.created_at) + " 那次）";
   if(stillReplied) confirmMsg += "取消后还剩 " + remaining.length + " 次回复，客户还是回过的状态；联系次数不动。";
   else confirmMsg += "这是这家最后一次回复，取消后会变回没回过；联系次数不动。";
+  if(backToNew) confirmMsg += "这家也没联系过，状态会一起变回「未处理」。";
   askConfirm(confirmMsg, function(){
     api("reply_events?id=eq." + encodeURIComponent(eventId), { method: "DELETE" })
     .then(function(){
       state.reByLead[lead.id] = remaining;
-      return patchLead(lead, { has_replied: stillReplied, replied_at: newRepliedAt });
+      var patch = { has_replied: stillReplied, replied_at: newRepliedAt };
+      if(backToNew) patch.status = "new";
+      return patchLead(lead, patch);
     })
     .then(function(){
-      return logActivity(lead.id, "undo_reply", "取消了一次「客户回了」" + (ev && ev.created_at ? "（" + fmtRel(ev.created_at) + "）" : "") + "，回复次数变成 " + remaining.length + " 次" + (stillReplied ? "；客户还是回过的状态" : "；这是最后一次回复，已变回没回过"));
+      return logActivity(lead.id, "undo_reply", "取消了一次「客户回了」" + (ev && ev.created_at ? "（" + fmtRel(ev.created_at) + "）" : "") + "，回复次数变成 " + remaining.length + " 次" + (stillReplied ? "；客户还是回过的状态" : "；这是最后一次回复，已变回没回过") + (backToNew ? "；没联系过，状态改回「未处理」" : ""));
     })
     .then(function(){
-      toast(stillReplied ? "已取消这次回复，还剩 " + remaining.length + " 次回复" : "已取消这次回复，这家变回没回过");
+      toast(stillReplied ? "已取消这次回复，还剩 " + remaining.length + " 次回复" : "已取消这次回复，这家变回没回过" + (backToNew ? "，状态变回「未处理」" : ""));
       if(cardEl) refreshCard(cardEl, lead);
       else applyFilters();
     })
@@ -3739,9 +4160,21 @@ function bindOneCard(card){
     syncCardToggleBtn(card);
     card.querySelectorAll('[data-act="contacted"]').forEach(function(contactedBtn){
       contactedBtn.addEventListener("click", function(){
+        /* #203 打开确认框先清掉 5 秒待记，别两路重复记 */
+        hidePendingContact(false);
         state.pendingContactLead = lead;
         $("contactModalTitle").textContent = "记录已联系 · " + (lead.company || "");
+        var cErr0 = $("cErr"); if(cErr0){ cErr0.className = "err"; cErr0.textContent = ""; }
         $("contactModal").classList.add("open");
+      });
+    });
+    /* #200 卡顶补记提示：点它把队列里这家的那次补记上，成功后提示随卡片刷新消失 */
+    card.querySelectorAll('[data-act="retry-contact"]').forEach(function(retryBtn){
+      retryBtn.addEventListener("click", function(ev){
+        ev.stopPropagation();
+        retryBtn.disabled = true;
+        recordContact(lead, retryBtn.getAttribute("data-channel") || "whatsapp", retryBtn.getAttribute("data-kind") || "first", card)
+          .catch(function(){ retryBtn.disabled = false; });
       });
     });
     /* 撤销上次联系：卡面快捷区的按钮 + 联系记录里最近一条旁边的“撤销这次”按钮 */
@@ -3819,7 +4252,8 @@ function bindOneCard(card){
         var arr = state.suggByLead[lead.id] || (state.suggByLead[lead.id] = [{}]);
         arr[0].leader_advice = val; arr[0].leader_advice_at = nowIso;
         toast("意见已保存，队友能看到");
-        applyFilters();
+        /* #192 不整页重排：原地刷新这一张卡，卡片保持展开，新意见和更新时间直接显示在卡上 */
+        refreshCard(card, lead);
       })
       .catch(function(e){
         toast(e.message || "保存失败", true);
@@ -3856,9 +4290,31 @@ function bindOneCard(card){
     var starSel = card.querySelector('select[data-field="stars"]');
     if(starSel) starSel.addEventListener("change", function(){
       var nv = parseInt(starSel.value,10);
-      patchLead(lead, { stars: nv, stars_manual: 1 }).then(function(){
-        return logActivity(lead.id, "stars", "星星改成 " + nv + " 星");
-      }).then(function(){ toast("星星已改好"); applyFilters(); }).catch(function(e){ toast(e.message, true); });
+      var oldStars = parseInt(lead.stars, 10) || 0;
+      if(nv === oldStars) return;
+      /* #204 改星前先读库里现在的 updated_at，和页面打开时记下的快照比对：
+         对不上说明别人刚改过，拦住不写、库里保持原值，先刷新再看 */
+      api("leads?select=updated_at&id=eq." + encodeURIComponent(lead.id)).then(function(rows){
+        var fresh = (rows && rows.length) ? (rows[0].updated_at || "") : null;
+        var base = state.updatedSnap ? state.updatedSnap[lead.id] : undefined;
+        if(fresh !== null && base !== undefined && String(fresh) !== String(base)){
+          starSel.value = String(oldStars);
+          toast((lead.company || "这家") + "刚才被改过，先刷新再看", true);
+          return;
+        }
+        patchLead(lead, { stars: nv, stars_manual: 1 }).then(function(){
+          return logActivity(lead.id, "stars", "星星改成 " + nv + " 星");
+        }).then(function(){
+          /* 自己改完后把快照刷新成最新值，下次改星不会被自己拦住 */
+          return api("leads?select=updated_at&id=eq." + encodeURIComponent(lead.id)).then(function(r2){
+            if(r2 && r2.length){ state.updatedSnap[lead.id] = r2[0].updated_at || ""; lead.updated_at = r2[0].updated_at; }
+          }).catch(function(){});
+        }).then(function(){ toast("星星已改好"); applyFilters(); })
+        .catch(function(e){ toast(e.message, true); starSel.value = String(oldStars); });
+      }).catch(function(){
+        starSel.value = String(oldStars);
+        toast("现在没网，星星没改上，等网好了再改", true);
+      });
     });
     /* 中文框里改：停顿约 800 毫秒后自动翻译，下面的外文版、发送链接和复制按钮一起换成新外文 */
     card.querySelectorAll("textarea[data-zhfield]").forEach(function(ta){
@@ -4018,12 +4474,12 @@ function bindOneCard(card){
       openImport(lead);
       $("impPaste").value = "客户：" + v;
     });
-    /* 分错了转给：先弹确认框；转过去跟进次数清零、写一句交接（之前谁联系了几次、最后一次什么时候、回没回） */
+    /* 分错了转给：先弹确认框；跟进次数跟着客户走、不清零，写一句交接（之前谁联系了几次、最后一次什么时候、回没回） */
     var asSel = card.querySelector('select[data-field="assignee"]');
     if(asSel) asSel.addEventListener("change", function(){
       var nv = asSel.value; var old = lead.assignee || "";
       if(nv === old) return;
-      askConfirm("把「" + (lead.company || "") + "」从 " + (displayName(old) || "未分配") + " 转给 " + displayName(nv) + "？转过去跟进次数从 0 开始算，" + (displayName(old) || "原来的人") + "就不能再联系这家了。跟进记录和聊天记录都会一起转过去。" + waTransferWarn(nv, lead), function(){
+      askConfirm("把「" + (lead.company || "") + "」从 " + (displayName(old) || "未分配") + " 转给 " + displayName(nv) + "？跟进次数跟着客户走、不清零，" + (displayName(old) || "原来的人") + "就不能再联系这家了。跟进记录和聊天记录都会一起转过去。" + waTransferWarn(nv, lead), function(){
         reassignLead(lead, nv, old, card);
       }, function(){ asSel.value = old; });
     });
@@ -4084,10 +4540,14 @@ document.addEventListener("click", function(ev){
   var actBtn = t.closest("[data-act]"); if(!actBtn) return;
   var act = actBtn.getAttribute("data-act");
   if(act === "contacted"){
+    /* #203 打开确认框先清掉 5 秒待记，别两路重复记 */
+    hidePendingContact(false);
     state.pendingContactLead = lead;
     $("contactModalTitle").textContent = "记录已联系 · " + (lead.company || "");
+    var cErr1 = $("cErr"); if(cErr1){ cErr1.className = "err"; cErr1.textContent = ""; }
     $("contactModal").classList.add("open");
   }
+  else if(act === "retry-contact"){ recordContact(lead, actBtn.getAttribute("data-channel") || "whatsapp", actBtn.getAttribute("data-kind") || "first", card).catch(function(){}); }
   else if(act === "replied"){ markReplied(lead); }
   else if(act === "quote"){ openQuote(lead); }
   else if(act === "deal"){ markDeal(lead); }
@@ -4115,14 +4575,25 @@ document.addEventListener("click", function(){ setTimeout(function(){ updateFabT
 $("cCancel").addEventListener("click", function(){ $("contactModal").classList.remove("open"); state.pendingContactLead = null; });
 $("cConfirm").addEventListener("click", function(){
   var lead = state.pendingContactLead; if(!lead) return;
+  /* #203 点「确认记下」时先清掉 5 秒待记，别两路重复记 */
+  hidePendingContact(false);
   var channel = $("cChannel").value, kind = $("cKind").value;
   var btn = $("cConfirm"); btn.disabled = true; btn.textContent = "记录中…";
+  var errEl = $("cErr"); if(errEl){ errEl.className = "err"; errEl.textContent = ""; }
   recordContact(lead, channel, kind, null)
   .then(function(){
     $("contactModal").classList.remove("open"); state.pendingContactLead = null;
+    btn.disabled = false; btn.textContent = "确认记下";
     applyFilters();
   })
-  .then(function(){ btn.disabled = false; btn.textContent = "确认记下"; });
+  .catch(function(e){
+    /* #198 没记上：确认框不关，框里说清，按钮恢复，网回来再点一次就能记上 */
+    btn.disabled = false; btn.textContent = "确认记下";
+    if(errEl){
+      errEl.textContent = isNetErr(e) ? "没记上（没网），再试一次" : ("没记上：" + (e.message || "再试一次"));
+      errEl.className = "err show";
+    }
+  });
 });
 function markReplied(lead){
   var cnt = parseInt(lead.owner_contact_count, 10) || 0;
@@ -4130,32 +4601,35 @@ function markReplied(lead){
   if(lead.has_replied) msg += "这家已经记过一次回信了（" + fmtDateShort(lead.replied_at) + "），还要再记一次吗？";
   msg += "确认后可以顺手把客户原话粘贴进来存档（点卡片上的「发聊天记录」）。";
   askConfirm(msg, function(){
-    var patch = { owner_contact_count: 0, has_replied: true, status: "contacted", replied_at: new Date().toISOString() };
+    var patch = { owner_contact_count: 0, has_replied: true, replied_at: new Date().toISOString() };
+    /* 回信清零次数，但不复活已成交/没兴趣：这两种状态保持不动，其余同步成 contacted */
+    if(lead.status !== "deal" && lead.status !== "ignored") patch.status = "contacted";
     api("reply_events", { method:"POST", headers:{ "Prefer":"return=minimal" }, body:{ lead_id: lead.id, actor: state.myName || "" } })
     .then(function(){ return patchLead(lead, patch); })
-    .then(function(){ return logActivity(lead.id, "replied", "客户回复了，联系次数从 0 重新数，状态改成「已联系」"); })
+    .then(function(){ return logActivity(lead.id, "replied", "客户回复了，联系次数从 0 重新数" + (patch.status ? "，状态改成「已联系」" : "，状态保持不变")); })
     .then(function(){ toast("已记下：客户回了，联系次数从 0 重新数。想把客户原话存进来，点卡片上的「发聊天记录」"); applyFilters(); })
     .catch(function(e){ toast(e.message || "记录失败", true); });
   });
 }
-/* 转负责人时走和空间轮转同一套动作：跟进次数清零、写一句交接、原负责人卡片变只读。
-   rotated_from 字段数据库里可能还没有：先带上试一次，写失败就去掉字段重试，不报错。 */
+/* 转负责人时走和空间轮转同一套动作：跟进次数不清零（跟着客户走）、写一句交接、原负责人卡片变只读。
+   rotated_from 字段数据库里可能还没有：先带上试一次，写失败就去掉字段重试，不报错。
+   请假转交、手动轮转、分错转交三路统一：都写 rotated_from、都不清零 owner_contact_count，转回统一清 rotated_from。 */
 function reassignLead(lead, nv, old, cardEl){
   var n = realContactCount(lead);
   var last = realLastContact(lead);
   var handover = n === 0
     ? "之前 " + (old || "未分配") + " 还没联系过"
-    : "之前 " + (old || "未分配") + " 联系了 " + n + " 次" + (last ? "，最后一次 " + fmtDateShort(last) : "") + "，" + (lead.has_replied ? "客户回过" : "没回");
-  var patch = { assignee: nv, owner_contact_count: 0, rotated_from: old || null };
+    : "之前 " + (old || "未分配") + " 联系了 " + n + " 次" + (last ? "，最后一次 " + fmtDateShort(last) : "，上次联系时间没记进来") + "，" + (lead.has_replied ? "客户回过" : "没回");
+  var patch = { assignee: nv, rotated_from: old || null };
   function doPatch(p){
     return patchLead(lead, p).then(function(){
-      return logActivity(lead.id, "reassign", "分错了转交：" + (old || "未分配") + " → " + nv + "；" + handover);
+      return logActivity(lead.id, "reassign", "分错了转交：" + (old || "未分配") + " → " + nv + "；" + handover + "。跟进次数跟着客户走、不清零");
     });
   }
   doPatch(patch).catch(function(){
-    var p2 = { assignee: nv, owner_contact_count: 0 };
+    var p2 = { assignee: nv };
     return doPatch(p2);
-  }).then(function(){ toast("已转给 " + displayName(nv) + "，跟进次数从 0 开始算"); applyFilters(); })
+  }).then(function(){ toast("已转给 " + displayName(nv) + "，跟进次数跟着客户走、不清零"); applyFilters(); })
   .catch(function(e){ toast(e.message || "转交失败", true); });
 }
 /* 转给下一个人（Q195 手动轮转）：按团队名单顺序轮流，跳过我，优先负担最轻的。
@@ -4200,7 +4674,7 @@ function pickNextAssignee(me, lead){
   return best;
 }
 /* 手动轮转：跟进不下去，转给下一个人。和「取消转交」成对：转出去靠它，转回来靠取消转交。
-   跟进记录和聊天记录都会一起转过去；新接手的人跟进次数从 0 重算。
+   跟进记录和聊天记录都会一起转过去；跟进次数跟着客户走、不清零（三路转法统一）。
    流水记 action="rotate"（和空间里 rotateLead 同名；不用 handover_out，那个是请假转交的，
    记混了会污染「我回来了，转回来」的配对计数）。 */
 function rotateNext(lead, cardEl){
@@ -4212,23 +4686,23 @@ function rotateNext(lead, cardEl){
   var last = realLastContact(lead);
   var handover = n === 0
     ? "之前 " + state.myName + " 还没联系过"
-    : "之前 " + state.myName + " 联系了 " + n + " 次" + (last ? "，最后一次 " + fmtDateTimeShort(last) : "") + "，" + (lead.has_replied ? "客户回过" : "客户没回");
-  askConfirm("把「" + (lead.company || "") + "」转给下一个人 " + displayName(next) + " 吗？\n跟进记录和聊天记录都会一起转过去（" + handover + "）。\n转走后你还能看到这家，但发不出去、也不能再记联系；" + displayName(next) + " 接手后跟进次数从 0 重算，首页会看到「新转给你」。" + waTransferWarn(next, lead), function(){
+    : "之前 " + state.myName + " 联系了 " + n + " 次" + (last ? "，最后一次 " + fmtDateTimeShort(last) : "，上次联系时间没记进来") + "，" + (lead.has_replied ? "客户回过" : "客户没回");
+  askConfirm("把「" + (lead.company || "") + "」转给下一个人 " + displayName(next) + " 吗？\n跟进记录和聊天记录都会一起转过去（" + handover + "）。\n转走后你还能看到这家，但发不出去、也不能再记联系；跟进次数跟着客户走、不清零。" + displayName(next) + " 接手后首页会看到「新转给你」。" + waTransferWarn(next, lead), function(){
     var from = lead.assignee;
-    var patch = { assignee: next, owner_contact_count: 0, rotated_from: from, rotated_at: new Date().toISOString() };
+    var patch = { assignee: next, rotated_from: from, rotated_at: new Date().toISOString() };
     function doPatch(p){
       return patchLead(lead, p).then(function(){
-        return logActivity(lead.id, "rotate", "手动轮转：原负责人 " + from + " → 下一个人 " + next + "；" + handover + "。跟进记录和聊天记录都会一起转过去。");
+        return logActivity(lead.id, "rotate", "手动轮转：原负责人 " + from + " → 下一个人 " + next + "；" + handover + "。跟进记录和聊天记录都会一起转过去，跟进次数跟着客户走、不清零。");
       });
     }
     doPatch(patch).catch(function(){
-      var p2 = { assignee: next, owner_contact_count: 0, rotated_from: from };
+      var p2 = { assignee: next, rotated_from: from };
       return doPatch(p2);
     }).catch(function(){
-      var p3 = { assignee: next, owner_contact_count: 0 };
+      var p3 = { assignee: next };
       return doPatch(p3);
     }).then(function(){
-      toast("已转给 " + displayName(next) + "，跟进次数从 0 开始算");
+      toast("已转给 " + displayName(next) + "，跟进次数跟着客户走、不清零");
       if(cardEl) refreshCard(cardEl, lead); else applyFilters();
     }).catch(function(e){ toast(e.message || "转交失败", true); });
   });
@@ -4796,13 +5270,26 @@ function renderPriceScripts(){
   if(!box) return;
   if($("askTopic").value !== "嫌贵"){ box.classList.add("hidden"); box.innerHTML = ""; return; }
   box.classList.remove("hidden");
-  box.innerHTML = '<div class="sync-line" style="margin-bottom:6px">客户嫌贵，先挑一条讲品质的话术直接发给客户；都不合适，再在下面问' + leaderName() + '。</div>'
+  /* #193 话术默认折叠：只留一行标题，点开才展开话术列表 */
+  box.innerHTML = '<button class="ps-fold-head" type="button" data-ps-toggle aria-expanded="false"><span>先挑一条话术直接发，都不合适再问柯哥</span><span data-ps-arrow>▾</span></button>'
+    + '<div class="ps-list" hidden style="margin-top:8px">'
     + PRICE_SCRIPTS.map(function(s, i){
         return '<div class="price-script"><div class="ps-zh">' + esc(s.zh) + '</div><details class="ps-en-fold"><summary>看英文</summary><div class="ps-en">' + esc(s.en) + '</div></details>'
           + '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-psend="' + i + '">用这条发给客户</button></div></div>';
-      }).join("");
+      }).join("") + "</div>";
 }
 $("priceScripts").addEventListener("click", function(ev){
+  var tog = ev.target.closest ? ev.target.closest("[data-ps-toggle]") : null;
+  if(tog){
+    var list = $("priceScripts").querySelector(".ps-list");
+    if(list){
+      var open = list.hasAttribute("hidden");
+      if(open) list.removeAttribute("hidden"); else list.setAttribute("hidden", "");
+      tog.setAttribute("aria-expanded", open ? "true" : "false");
+      var ar = tog.querySelector("[data-ps-arrow]"); if(ar) ar.textContent = open ? "▴" : "▾";
+    }
+    return;
+  }
   var btn = ev.target.closest ? ev.target.closest("[data-psend]") : null;
   if(!btn || !askLead) return;
   var s = PRICE_SCRIPTS[parseInt(btn.getAttribute("data-psend"), 10)];
@@ -4810,7 +5297,7 @@ $("priceScripts").addEventListener("click", function(ev){
   if(askLead.whatsapp){
     if(myWaMissing()){ toast(NO_WA_MSG, true); return; }
     window.open(waUniversal(askLead.whatsapp, s.en), "_blank");
-    recordContact(askLead, "whatsapp", "followup", null);
+    recordContact(askLead, "whatsapp", "followup", null).catch(function(){ /* 没记上已入离线队列 */ });
   } else if(askLead.email){
     window.open("https://mail.google.com/mail/?view=cm&to=" + encodeURIComponent(askLead.email) + "&su=" + encodeURIComponent(mailSubject(askLead, "reply")) + "&body=" + encodeURIComponent(s.en), "_blank");
   } else if(navigator.clipboard && navigator.clipboard.writeText){
@@ -4839,24 +5326,84 @@ $("askSubmit").addEventListener("click", function(){
   .catch(function(e){ errEl.textContent = "发送失败：" + (e.message || "请重试"); errEl.className = "err show"; })
   .then(function(){ btn.disabled = false; btn.textContent = "发给" + leaderName(); });
 });
+/* ---------- #189 我的提问（队员自己的问题清单：话题、提问时间、等了多久、回了没有） ---------- */
+function waitDurationText(q){
+  var start = new Date(q.created_at || "").getTime();
+  if(isNaN(start)) return "";
+  var end = (q.status === "answered" && q.answered_at) ? new Date(q.answered_at).getTime() : Date.now();
+  if(isNaN(end) || end < start) end = start;
+  var mins = Math.floor((end - start) / 60000);
+  if(mins < 60) return mins + " 分钟";
+  if(mins < 1440){
+    var hh = Math.floor(mins / 60), mm = mins % 60;
+    return hh + " 小时" + (mm ? " " + mm + " 分钟" : "");
+  }
+  var dd = Math.floor(mins / 1440), rh = Math.floor((mins % 1440) / 60);
+  return dd + " 天" + (rh ? " " + rh + " 小时" : "");
+}
+function renderMyQuestions(){
+  var fold = $("myQuestionsFold"), box = $("myQuestionsBox");
+  if(!fold || !box) return;
+  if(!state.user || state.isLeader){ fold.style.display = "none"; return; }
+  var mine = (state.questions || []).filter(function(q){
+    return String(q.asker_id) === String(state.user.id) || (state.myName && q.asker_name === state.myName);
+  }).slice().sort(function(a, b){
+    return String(b.created_at || "") < String(a.created_at || "") ? -1 : 1;
+  });
+  if(!mine.length){ fold.style.display = "none"; return; }
+  fold.style.display = "";
+  box.innerHTML = mine.map(function(q){
+    var l = findLead(q.lead_id) || {};
+    var h = '<div class="ask-item"><div><b>' + esc(l.company || ("线索 #" + q.lead_id)) + '</b> <span class="tag type">' + esc(q.topic || "其他") + '</span></div>'
+      + '<div class="qa-q">' + esc(q.question || "") + '</div>'
+      + '<div class="sync-line">提问时间：' + esc(fmtTime(q.created_at)) + '</div>';
+    if(q.status === "answered" && q.answer){
+      h += '<div class="sync-line">等了 ' + esc(waitDurationText(q)) + ' 就回了</div>'
+        + '<div class="qa-a"><b>' + esc(q.answered_by ? displayName(q.answered_by) : leaderName()) + '：</b>' + esc(q.answer) + (q.answered_at ? ' <span class="ct">' + esc(fmtTime(q.answered_at)) + '</span>' : '') + '</div>';
+    } else {
+      h += '<div class="qa-wait">还没回 · 已等 ' + esc(waitDurationText(q)) + '</div>';
+    }
+    return h + '</div>';
+  }).join("");
+}
 /* ---------- 待我回答（负责人 / 管理员） ---------- */
+/* #191 等了多久（短格式：X 天 / X 小时 / X 分钟），标题和每条待回都用它 */
+function waitShort(iso){
+  var start = new Date(iso || "").getTime();
+  if(isNaN(start)) return "";
+  var mins = Math.max(0, Math.floor((Date.now() - start) / 60000));
+  if(mins >= 1440) return Math.floor(mins / 1440) + " 天";
+  if(mins >= 60) return Math.floor(mins / 60) + " 小时";
+  return mins + " 分钟";
+}
+function waitHours(iso){
+  var start = new Date(iso || "").getTime();
+  if(isNaN(start)) return 0;
+  return (Date.now() - start) / 3600000;
+}
 function renderAskPanel(){
   var panel = $("askPanel"); if(!panel) return;
-  if(!state.isLeader && !state.isAdmin){ panel.classList.add("hidden"); return; }
+  var todoBadge = $("kegeTodoBadge");
+  if(!state.isLeader && !state.isAdmin){ panel.classList.add("hidden"); if(todoBadge) todoBadge.style.display = "none"; renderMyQuestions(); return; }
   panel.classList.remove("hidden");
   var open = state.questions.filter(function(q){ return q.status !== "answered"; }).slice().sort(function(a, b){
     return String(a.created_at || "") < String(b.created_at || "") ? -1 : 1;
   });
+  if(todoBadge){ todoBadge.style.display = ""; todoBadge.textContent = "待我回答（" + open.length + "）"; }
+  renderMyQuestions();
   var done = state.questions.filter(function(q){ return q.status === "answered"; }).slice().sort(function(a, b){
     return String(b.answered_at || b.created_at || "") < String(a.answered_at || a.created_at || "") ? -1 : 1;
   }).slice(0, 8);
-  $("askPanelTitle").innerHTML = (state.isLeader ? "待我回答" : "队友的问题 · 待回答")
-    + ' <span class="hint">' + (open.length ? ("还有 " + open.length + " 条没回，先问的先回") : "都回完了") + '</span>';
+  /* #191 标题直接说清：还有几条没回、最久的等了多久（open 已按先问的先排，最久的在最前） */
+  $("askPanelTitle").innerHTML = open.length
+    ? ("还有 " + open.length + " 条没回，最久的等了 " + esc(waitShort(open[0].created_at)))
+    : ((state.isLeader ? "待我回答" : "队友的问题 · 待回答") + ' <span class="hint">都回完了</span>');
   var h = "";
   if(!open.length) h += '<div class="sync-line">暂时没有队友问的问题。</div>';
   h += open.map(function(q){
     var l = findLead(q.lead_id) || {};
-    return '<div class="ask-item"><div><b>' + esc(l.company || ("线索 #" + q.lead_id)) + '</b> <span class="tag type">' + esc(q.topic || "其他") + '</span></div>'
+    var overdue = waitHours(q.created_at) > 24;
+    return '<div class="ask-item"><div><b>' + esc(l.company || ("线索 #" + q.lead_id)) + '</b> <span class="tag type">' + esc(q.topic || "其他") + '</span> <span class="wait-tag' + (overdue ? " overdue" : "") + '">等了 ' + esc(waitShort(q.created_at)) + '</span></div>'
       + '<div class="sync-line">谁问的：' + esc(q.asker_name || "—") + ' · ' + esc(fmtTime(q.created_at)) + (l.country ? ' · ' + esc(l.country) : '') + (l.assignee ? ' · 负责人：' + esc(displayName(l.assignee)) : '') + '</div>'
       + '<div class="ask-q">' + esc(q.question || "") + '</div>'
       + '<textarea data-qans="' + esc(q.id) + '" placeholder="写怎么回，队友照着回给客户"></textarea>'
@@ -5015,7 +5562,26 @@ function prevOwnerLine(l){
     var last = realLastContact(l);
     s += " · 联系过 " + n + " 次";
     if(last) s += " · 最后一次 " + fmtDateShort(last);
+    else s += " · 上次联系时间没记进来";
     s += " · " + (l.has_replied ? "客户回过" : "客户还没回");
+  }
+  return '<div class="kv2">' + s + "</div>";
+}
+/* 卡片顶部一行：这家是转交来的（rotated_from 非空、现在负责人不是转出的人）才显示，
+   写清谁转的、之前跟了几次、最后一次什么时候、回没回；没有真实联系事件时不拿找到日期凑数 */
+function rotatedInLine(l){
+  if(!l || !l.rotated_from) return "";
+  if(!l.assignee || l.assignee === l.rotated_from) return "";
+  var n = realContactCount(l);
+  var s = esc(displayName(l.rotated_from)) + "转交：";
+  if(n === 0){
+    s += "之前还没联系过";
+  } else {
+    var last = realLastContact(l);
+    s += "之前跟了 " + n + " 次";
+    if(last) s += "，最后一次 " + fmtDateShort(last);
+    else s += "，上次联系时间没记进来";
+    s += "，" + (l.has_replied ? "客户回过" : "客户没回");
   }
   return '<div class="kv2">' + s + "</div>";
 }
@@ -5057,6 +5623,8 @@ function profBlock(l){
       h += '<div class="msg-actions"><button class="btn btn-outline btn-sm" type="button" data-prof-more>查看更早的 ' + (chats.length - 10) + ' 条</button></div>';
     }
   }
+  /* #194 问答记录直接渲染进客户档案区（和卡片详情里同一份 qaBlock）；档案还没生成时也显示 */
+  h += qaBlock(l);
   return h + COLLAPSE_BTN + "</details>";
 }
 /* ---------- 相对中文时间 ---------- */
@@ -5099,6 +5667,7 @@ function loadTeamData(){
     state.chatByLead = {}; (res[4] || []).forEach(function(r){ (state.chatByLead[r.lead_id] = state.chatByLead[r.lead_id] || []).push(r); });
     state.questions = res[5] || [];
     state.qByLead = {}; state.questions.forEach(function(r){ (state.qByLead[r.lead_id] = state.qByLead[r.lead_id] || []).push(r); });
+    state.teamDataLoaded = true;
     renderAskPanel();
     renderOverview();
     renderWeekly();
@@ -5106,6 +5675,8 @@ function loadTeamData(){
     applyFilters();
     /* 联系事件这时才到，之前画的请假清单次数/最后一次是按空数据算的，重画一次才对得上 */
     renderHandover();
+    /* 归期和转交进度以数据库里的 handover_plan 为准重建（换手机、清缓存也不丢） */
+    restoreHandoverPlan();
   });
 }
 function renderOverview(){
@@ -5115,12 +5686,15 @@ function renderOverview(){
   state.leads.forEach(function(l){
     var name = l.assignee || "未分配";
     if(!isActiveLead(l)) return;
-    var g = byPerson[name] || (byPerson[name] = { leads:0, contacts:0, replied:0, contacted:0, last:null, dueNow:0, dueList:[], noTime:0, nextDue:null, nextCompany:null });
+    var g = byPerson[name] || (byPerson[name] = { leads:0, contacts:0, fieldContacts:0, replied:0, contacted:0, last:null, dueNow:0, dueList:[], noTime:0, nextDue:null, nextCompany:null });
     g.leads++;
-    g.contacts += parseInt(l.owner_contact_count, 10) || 0;
+    /* 联系次数按 contact_events 真实事件算，不取 owner_contact_count 字段（字段可能和记录对不上，对不上时下面红字提醒） */
+    var evN = (state.ceByLead[l.id] || []).length;
+    g.contacts += evN;
+    g.fieldContacts += parseInt(l.owner_contact_count, 10) || 0;
     if(l.has_replied) g.replied++;
-    /* 「联系过 X 家」和上面的「联系次数」同一个口径：按 owner_contact_count > 0 数，不按状态数，不然两个数打架 */
-    if((parseInt(l.owner_contact_count, 10) || 0) > 0) g.contacted++;
+    /* 「联系过 X 家」和上面的「联系次数」同一个口径：按联系记录里真有事件数，不按字段、不按状态数，不然两个数打架 */
+    if(evN > 0) g.contacted++;
     var times = [];
     (state.ceByLead[l.id] || []).forEach(function(r){ if(r.created_at) times.push(new Date(r.created_at).getTime()); });
     (state.reByLead[l.id] || []).forEach(function(r){ if(r.created_at) times.push(new Date(r.created_at).getTime()); });
@@ -5140,7 +5714,10 @@ function renderOverview(){
   var names = Object.keys(byPerson);
   if(!names.length){ box.textContent = "暂无数据"; return; }
   names.sort(function(a, b){
-    if(a === "未分配") return 1; if(b === "未分配") return -1;
+    /* #196 「未分配」置顶；#195 其余人按「今天要跟进」数从多到少排，0 的沉底 */
+    if(a === "未分配") return -1; if(b === "未分配") return 1;
+    var da = byPerson[a].dueNow || 0, db = byPerson[b].dueNow || 0;
+    if(da !== db) return db - da;
     var ua = uncontactedCount(a), ub = uncontactedCount(b);
     var la = ua < 20 ? 0 : 1, lb = ub < 20 ? 0 : 1;
     if(la !== lb) return la - lb;
@@ -5162,13 +5739,16 @@ function renderOverview(){
     /* 「未分配」不是人：不算待开发、不报「不够 20」，只说还没分给人、共几家 */
     var unLine;
     if(name === "未分配"){
-      unLine = '<div class="nums">还没分给人，共 <b>' + g.leads + '</b> 家 · 重点跟进 <b>' + focusN + '</b> 家</div>';
+      /* #196 有待分配的在未分配行里标红提醒 */
+      unLine = '<div class="nums">' + (g.leads > 0 ? '<span class="ov-due">有 ' + g.leads + ' 家没分出去</span> · ' : '') + '还没分给人，共 <b>' + g.leads + '</b> 家 · 重点跟进 <b>' + focusN + '</b> 家</div>';
     } else {
       var un = uncontactedCount(name);
       unLine = '<div class="nums">待开发：<b>' + un + '</b> 家' + (un < 20 && isNonFollower(name) ? ' <span style="color:var(--red);font-weight:700">（不够 20）</span>' : '') + ' · 重点跟进 <b>' + focusN + '</b> 家</div>';
     }
-    return '<div class="ov-item"><div class="nm">'+esc(displayName(name))+"</div>"
+    /* #195 人名后标红「今天要跟进 X 家」（未分配不是人，不标） */
+    return '<div class="ov-item"><div class="nm">'+esc(displayName(name)) + (name !== "未分配" && g.dueNow > 0 ? ' <span class="ov-due">今天要跟进 ' + g.dueNow + ' 家</span>' : "") + "</div>"
       + '<div class="nums">联系次数：<b>'+g.contacts+"</b> 次 · 客户回了 <b>"+g.replied+"</b> 家 / 联系过 "+g.contacted+" 家</div>"
+      + (g.fieldContacts !== g.contacts ? '<div class="nums" style="color:var(--red);font-weight:700">数字对不上，请核对：字段写 ' + g.fieldContacts + " 次，联系记录里 " + g.contacts + " 次</div>" : "")
       + unLine
       + '<div class="nums">最后联系：<b>'+esc(lastTxt)+"</b></div>"
       + '<div class="nums">下一步：'+nextTxt+"</div></div>";
@@ -5657,7 +6237,7 @@ $("impConfirm").addEventListener("click", function(){
     if(replied){
       patch.has_replied = true; patch.replied_at = new Date().toISOString();
       patch.owner_contact_count = 0; patch.status = "contacted";
-    } else if(lead.status === "new"){
+    } else if(lead.status === "new" || lead.status === "focus"){
       patch.status = "contacted";
     }
     return patchLead(lead, patch);
@@ -5713,6 +6293,12 @@ function bjParts(d){
   return o;
 }
 function bjDateStr(d){ if(!d || isNaN(d.getTime())) return ""; var o = bjParts(d); return o.year + "-" + o.month + "-" + o.day; }
+/* 当前北京时间的小时（0-23） */
+function bjHourNow(){
+  var parts = new Intl.DateTimeFormat("en-CA", { timeZone:"Asia/Shanghai", hour:"2-digit", hour12:false }).formatToParts(new Date());
+  for(var i = 0; i < parts.length; i++){ if(parts[i].type === "hour") return parseInt(parts[i].value, 10) % 24; }
+  return 0;
+}
 function isTodayBJ(iso){ if(!iso) return false; return bjDateStr(new Date(iso)) === bjDateStr(new Date()); }
 function bjWeekStartStr(){
   var o = bjParts(new Date());
@@ -5927,11 +6513,11 @@ function nextStepText(l){
 function updateKegeBadge(){
   var badge = $("kegeBadge"); if(!badge) return;
   if(state.isLeader || !state.myName){ badge.style.display = "none"; return; }
-  var total = 0, firstLead = null;
+  var total = 0;
   state.leads.forEach(function(l){
     if(l.assignee !== state.myName) return;
     var n = unseenAnsweredCount(l) + unseenAdviceCount(l);
-    if(n > 0){ total += n; if(!firstLead) firstLead = l; }
+    if(n > 0){ total += n; }
   });
   if(!total){ badge.style.display = "none"; return; }
   badge.style.display = "";
@@ -5940,10 +6526,55 @@ function updateKegeBadge(){
     if(l.assignee === state.myName && latestAnswerBy(l) === "王烁杉") anyByWang = true;
   });
   badge.textContent = (anyByWang ? "柯哥 / 王烁杉回你了" : "柯哥回你了") + "（" + total + "）";
-  badge.onclick = function(){
-    if(firstLead) openLeadCard(firstLead.id);
-  };
+  badge.onclick = function(){ openUnreadModal(); };
 }
+/* #188 未读清单：哪家、谁回的、回了什么话题，点一家进一家（openLeadCard 会先翻到那家所在的页，PAGE_SIZE = 8） */
+function unreadEntries(){
+  var out = [];
+  if(!state.myName || !state.user) return out;
+  var seen = qSeenIds();
+  state.leads.forEach(function(l){
+    if(l.assignee !== state.myName) return;
+    var qs = ((state.qByLead && state.qByLead[l.id]) || []).filter(function(q){
+      return String(q.asker_id) === String(state.user.id) && q.status === "answered" && seen.indexOf(String(q.id)) < 0;
+    });
+    var adv = unseenAdviceCount(l);
+    if(!qs.length && !adv) return;
+    var topics = qs.map(function(q){ return q.topic || "其他"; });
+    if(adv) topics.push("负责人意见");
+    var who = latestAnswerBy(l) || "柯赛";
+    out.push({ lead: l, who: who, topics: topics, count: qs.length + adv });
+  });
+  return out;
+}
+function openUnreadModal(){
+  var list = $("unreadList"); if(!list) return;
+  var entries = unreadEntries();
+  if(!entries.length){
+    list.innerHTML = '<div class="sync-line">没有未读的回答了。</div>';
+  } else {
+    list.innerHTML = entries.map(function(e){
+      return '<div class="ask-item"><div><b>' + esc(e.lead.company || ("线索 #" + e.lead.id)) + '</b></div>'
+        + '<div class="sync-line">' + esc(displayName(e.who)) + ' 回的 · 话题：' + esc(e.topics.join("、")) + '</div>'
+        + '<div class="msg-actions"><button class="btn btn-green btn-sm" type="button" data-unread-lead="' + esc(String(e.lead.id)) + '">点开这家</button></div></div>';
+    }).join("");
+  }
+  $("unreadModal").classList.add("open");
+}
+$("unreadList").addEventListener("click", function(ev){
+  var btn = ev.target.closest ? ev.target.closest("[data-unread-lead]") : null;
+  if(!btn) return;
+  var leadId = btn.getAttribute("data-unread-lead");
+  $("unreadModal").classList.remove("open");
+  openLeadCard(leadId);
+});
+$("unreadClose").addEventListener("click", function(){ $("unreadModal").classList.remove("open"); });
+/* #190 柯哥（和管理员）顶部「待我回答（N）」角标：点一下直达待我回答面板，N 由 renderAskPanel 同步 */
+$("kegeTodoBadge").addEventListener("click", function(){
+  var p = $("askPanel"); if(!p) return;
+  p.classList.remove("hidden");
+  p.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 function renderTop5(){
   var box = $("top5Box"); if(!box) return;
   if(state.leadsFailed){ box.innerHTML = esc(leadsFailText()); return; }
@@ -6173,10 +6804,25 @@ $("morningBox").addEventListener("click", function(ev){
 });
 
 /* ---------- 15. 晚上 8 点汇总（读 daily_summaries，全队可见） ---------- */
-function loadEvening(){
-  api("daily_summaries?select=*&order=summary_date.desc&limit=100").then(function(rows){
-    renderEvening(rows || []);
-  }).catch(function(){ renderEvening(null); });
+function loadEvening(fromPoll){
+  return api("daily_summaries?select=*&order=summary_date.desc&limit=100").then(function(rows){
+    rows = rows || [];
+    var latest = rows.length ? String(rows[0].summary_date || "") : "";
+    var isNewTonight = !!latest && latest === bjTodayStr() && state.eveningLatestDate !== latest;
+    if(latest) state.eveningLatestDate = latest;
+    renderEvening(rows);
+    if(fromPoll && isNewTonight) toast("今晚汇总出来了");
+  }).catch(function(){ if(!fromPoll) renderEvening(null); });
+}
+/* #177 晚上汇总轮询：19:00–21:00（北京时间）每 5 分钟重读一次，窗口外不重读 */
+function eveningPollTick(){
+  var h = bjHourNow();
+  if(h < 19 || h >= 21) return;
+  loadEvening(true);
+}
+function startEveningPoll(){
+  if(state.eveningPollTimer) return;
+  state.eveningPollTimer = setInterval(eveningPollTick, 5 * 60 * 1000);
 }
 /* 晚上汇总的四个数现场算：按 contact_events / reply_events 那天的记录算，和早上报数一个口径
    （按 actor 分组、没写 actor 或 AI 代发的算到负责人头上、按客户去重）。
@@ -6230,32 +6876,104 @@ function eveningLiveCounts(dateStr){
   });
   return out;
 }
+/* 晚上汇总的重点栏：focus_list 是自由文本客户名，全队可见会把别人家的客户名也露出来。
+   只显示自己的客户名，别人的只显示数字；已标没兴趣/已成交的先过滤掉，不算重点 */
+function eveningFocusHtml(name, r){
+  var raw = (r && r.focus_list) || "";
+  var names = String(raw).split(/[、,，;；\n]+/).map(function(s){ return s.trim(); }).filter(Boolean);
+  names = names.filter(function(nm){
+    return !state.leads.some(function(l){ return isActiveLead(l) && l.assignee === name && String(l.company || "") === nm && (l.status === "ignored" || l.status === "deal"); });
+  });
+  if(name === state.myName) return names.length ? esc(names.join("、")) : "—";
+  return names.length ? "重点 " + names.length + " 家" : "—";
+}
+/* #178 柯赛在汇总里的一行，现场算：答题按 answered_by=柯赛 且 answered_at 是当天；
+   意见按 leader_advice_at 是当天；待回按现在还没回答的问题数 */
+function eveningKegeCounts(dateStr){
+  var answered = 0, advice = 0, open = 0;
+  (state.questions || []).forEach(function(q){
+    if(q.status !== "answered"){ open++; return; }
+    if(q.answered_by === "柯赛" && q.answered_at && bjDateStr(new Date(q.answered_at)) === dateStr) answered++;
+  });
+  Object.keys(state.suggByLead || {}).forEach(function(k){
+    (state.suggByLead[k] || []).forEach(function(s){
+      if(s && s.leader_advice && s.leader_advice_at && bjDateStr(new Date(s.leader_advice_at)) === dateStr) advice++;
+    });
+  });
+  return { answered: answered, advice: advice, open: open };
+}
 function renderEvening(rows){
   var box = $("eveningBox"); if(!box) return;
   if(rows === null){ box.innerHTML = "汇总暂时读不出来，过一会儿再打开看看。"; return; }
-  if(!rows.length){ box.innerHTML = "今晚 8 点的汇总还没出来，晚上 8 点后这里会显示当天的汇总。"; return; }
+  if(!rows.length){
+    box.innerHTML = bjHourNow() < 20
+      ? "还没到 8 点，8 点后这里会显示今天的汇总。"
+      : "今天的汇总没生成出来（可能生成失败），过一会儿再看。";
+    return;
+  }
   var date = rows[0].summary_date;
   var byMember = {};
   rows.filter(function(r){ return r.summary_date === date; }).forEach(function(r){ byMember[r.member] = r; });
   var live = eveningLiveCounts(date);
-  var h = '<div class="sync-line" style="margin-bottom:10px">' + esc(date) + ' 的汇总（全队都看得到）</div>';
+  var h = "";
+  if(date !== bjTodayStr()){
+    var dp = String(date).split("-");
+    h += '<div class="sync-line" style="color:var(--red);font-weight:700;margin-bottom:10px">这是 ' + (dp[1] ? parseInt(dp[1], 10) + "月" : "") + (dp[2] ? parseInt(dp[2], 10) + "日" : "") + ' 的汇总，今天的还没出来</div>';
+  }
+  h += '<div class="sync-line" style="margin-bottom:10px">' + esc(date) + ' 20:00 生成 · 按今天联系／回信记录算（全队都看得到）</div>';
   var ordersOpen = state.leads.filter(function(l){ return isActiveLead(l) && l.order_intent_at && l.status !== "deal"; }).length;
   if(ordersOpen) h += '<div class="sync-line" style="margin-bottom:10px">今天有 <b>' + ordersOpen + '</b> 家要下单还没人去成交，点上面「要下单了」去确认数量、价格、定金。</div>';
+  /* #179 先把每行收集起来再排：自己的行置顶（浅绿底），别人的行按原顺序放后面 */
+  var rowObjs = [];
   TEAM.forEach(function(name){
+    var isMe = name === state.myName;
+    var cls = "sum-row" + (isMe ? " sum-row-me" : "");
     var r = byMember[name];
     var lc = live[name] || { new_dev: 0, old_follow: 0, new_replied: 0, old_replied: 0, any: false };
     if(!r && !lc.any){
       /* 没有汇总行、那天也没有任何联系／回信记录，才是真的没干 */
-      h += '<div class="sum-row"><span class="nm">' + esc(displayName(name)) + '</span> · 今天还没有汇总</div>'; return;
+      rowObjs.push({ me: isMe, html: '<div class="' + cls + '"><span class="nm">' + esc(displayName(name)) + '</span> · 今天还没有汇总</div>' }); return;
     }
     /* 有记录没汇总行：现场补一行，不能因为缺行就当白干 */
     var mismatch = !!r && ((r.new_dev || 0) !== lc.new_dev || (r.old_follow || 0) !== lc.old_follow || (r.new_replied || 0) !== lc.new_replied || (r.old_replied || 0) !== lc.old_replied);
-    h += '<div class="sum-row"><span class="nm">' + esc(displayName(name)) + '</span><br>'
+    rowObjs.push({ me: isMe, html: '<div class="' + cls + '"><span class="nm">' + esc(displayName(name)) + '</span><br>'
       + '开发新客户 <b>' + lc.new_dev + '</b> 家 · 跟进老客户 <b>' + lc.old_follow + '</b> 家 · 新客户回了 <b>' + lc.new_replied + '</b> 家 · 老客户回了 <b>' + lc.old_replied + '</b> 家'
+      + '（来源：今天联系／回信记录现场算）'
       + (mismatch ? '<br><span style="color:var(--red);font-weight:700">汇总表里的数和今天的联系／回信记录对不上，以上面联系记录算的为准</span>' : '')
-      + '<br>重点、要持续跟进的：' + esc((r && r.focus_list) || "—") + '</div>';
+      + '<br>重点、要持续跟进的：' + eveningFocusHtml(name, r) + '</div>' });
   });
+  var kc = eveningKegeCounts(date);
+  var kegeMe = !!state.isLeader;
+  rowObjs.push({ me: kegeMe, html: '<div class="sum-row' + (kegeMe ? " sum-row-me" : "") + '"><span class="nm">' + esc(displayName("柯赛")) + '</span><br>'
+    + '回了 <b>' + kc.answered + '</b> 条问题 · 写了 <b>' + kc.advice + '</b> 条意见 · 还有 <b>' + kc.open + '</b> 条待回'
+    + '（来源：今天联系／回信记录现场算）</div>' });
+  var orderedRows = rowObjs.filter(function(r){ return r.me; }).concat(rowObjs.filter(function(r){ return !r.me; }));
+  h += orderedRows.map(function(r){ return r.html; }).join("");
   box.innerHTML = h;
+}
+
+/* 晚上汇总直达：展开「汇总和数据更新」折叠并滚到「晚上 8 点汇总」那一节 */
+function openEveningSection(){
+  var fold = $("summaryFold");
+  if(fold) fold.open = true;
+  var sec = $("eveningSection");
+  if(sec) setTimeout(function(){ sec.scrollIntoView({ behavior: "smooth", block: "start" }); }, 60);
+}
+$("eveningJump").addEventListener("click", openEveningSection);
+/* #182 请假转交直达：展开「我的 WhatsApp 与团队名单」折叠并滚到请假区 */
+function openHandoverSection(){
+  var folds = document.querySelectorAll('details.fold[aria-label="我的 WhatsApp 与团队名单"]');
+  if(folds.length) folds[0].open = true;
+  var sec = $("hoSection");
+  if(sec) setTimeout(function(){ sec.scrollIntoView({ behavior: "smooth", block: "start" }); }, 60);
+}
+$("hoJump").addEventListener("click", openHandoverSection);
+/* 北京时间 20:00 后打开页面：自动展开汇总折叠并滚到晚上汇总（每次页面加载只做一次） */
+function maybeOpenEvening(){
+  if(state.eveningAutoOpened) return;
+  state.eveningAutoOpened = true;
+  if(bjHourNow() < 20) return;
+  setTimeout(openEveningSection, 800);
 }
 
 /* ---------- 20. 每周一汇总（现场算） ---------- */
@@ -6350,6 +7068,8 @@ function showReplyBanner(fresh, byId){
   });
 }
 function checkReplyPopup(){
+  /* 登出 / 登录过期后轮询不再触发，免得反复弹过期提示 */
+  if(!state.token) return;
   /* 管理员和团队负责人不弹客户回了提醒：他们不是这家客户的负责人，去汇总里看 */
   if(state.isAdmin || state.isLeader) return;
   api("reply_events?select=*&order=id.desc&limit=100").then(function(rows){
@@ -6365,13 +7085,15 @@ function checkReplyPopup(){
     /* 只留分给我的客户：别人的回信不弹给我 */
     fresh = fresh.filter(function(r){ var l = byId[r.lead_id]; return l && isActiveLead(l) && l.assignee === state.myName; });
     if(!fresh.length) return;
-    $("replyList").innerHTML = fresh.map(function(r){
+    /* #221 弹窗里只列前 3 条，剩下的写一行总数，免得 375px 下弹窗占满屏、按钮出屏 */
+    var shownReplies = fresh.slice(0, 3);
+    $("replyList").innerHTML = shownReplies.map(function(r){
       var l = byId[r.lead_id] || {};
       var gist = lastCustomerMsg(r.lead_id);
       return '<div class="reply-item"><b>' + esc(l.company || ("客户 #" + r.lead_id)) + '</b><br>负责人：' + esc(displayName(l.assignee || "—")) + ' · 回信时间：' + esc(fmtTime(r.created_at || r.replied_at))
         + (gist ? '<br>客户回了：' + esc(gist.slice(0, 100)) + (gist.length > 100 ? "…" : "") : "")
         + '<br><button class="btn btn-green btn-sm" type="button" data-open-lead="' + esc(String(r.lead_id)) + '">点开这家卡片</button></div>';
-    }).join("");
+    }).join("") + (fresh.length > 3 ? '<div class="sync-line" style="margin-top:4px">还有 ' + (fresh.length - 3) + ' 条，点开卡片看</div>' : "");
     /* 登录后不直接盖满屏：只在首页顶部露一条横幅，点“看看”才打开弹窗 */
     showReplyBanner(fresh, byId);
   }).catch(function(){});
@@ -7051,8 +7773,10 @@ $("quoteNoDelivery").addEventListener("click", function(){
   if(note) note.textContent = "报价单上写「交货期：确认中，3 天内回复你」，不留空白行。点「发送报价」发出。";
   toast("已选：客户没问，先发");
 });
-$("quoteCancel").addEventListener("click", function(){ $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null; });
-$("quoteCancelTop").addEventListener("click", function(){ $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null; });
+function closeQuoteModal(){ $("quoteModal").classList.remove("open"); quoteLead = null; if(quoteCtx) quoteCtx.lead = null; }
+$("quoteCancel").addEventListener("click", closeQuoteModal);
+$("quoteCancel1").addEventListener("click", closeQuoteModal);
+$("quoteCancelTop").addEventListener("click", closeQuoteModal);
 $("quoteSend").addEventListener("click", function(){ saveQuote("sent"); });
 /* 换个渠道发：选中哪个渠道，主联系方式说明和发送按钮文字都跟着走 */
 $("quoteChannelSel").addEventListener("change", function(){
@@ -7304,18 +8028,29 @@ $("impQuickSend").addEventListener("click", function(){
 });
 
 /* ================= 第三批：确认框 / 提建议 / 找品种 / 改信息 / 要下单列表 ================= */
-var confirmYesCb = null, confirmNoCb = null;
-function askConfirm(msg, onYes, onNo){
+var confirmYesCb = null, confirmNoCb = null, confirmFullMsg = null;
+function askConfirm(msg, onYes, onNo, fullMsg){
   $("confirmText").textContent = msg;
   confirmYesCb = onYes; confirmNoCb = onNo || null;
+  confirmFullMsg = (fullMsg && fullMsg !== msg) ? fullMsg : null;
+  var ex = $("confirmExpand");
+  if(ex) ex.style.display = confirmFullMsg ? "" : "none";
   $("confirmModal").classList.add("open");
 }
+$("confirmExpand").addEventListener("click", function(){
+  if(!confirmFullMsg) return;
+  $("confirmText").textContent = confirmFullMsg;
+  confirmFullMsg = null;
+  $("confirmExpand").style.display = "none";
+});
 $("confirmYes").addEventListener("click", function(){
   $("confirmModal").classList.remove("open");
+  confirmFullMsg = null; var ex = $("confirmExpand"); if(ex) ex.style.display = "none";
   var cb = confirmYesCb; confirmYesCb = confirmNoCb = null; if(cb) cb();
 });
 $("confirmNo").addEventListener("click", function(){
   $("confirmModal").classList.remove("open");
+  confirmFullMsg = null; var ex2 = $("confirmExpand"); if(ex2) ex2.style.display = "none";
   var cb = confirmNoCb; confirmYesCb = confirmNoCb = null; if(cb) cb();
 });
 
@@ -7352,44 +8087,118 @@ function forgotEmailOrWarn(){
   var em = $("email"); if(em) em.focus();
   return "";
 }
+/* #219 求助消息正文直接用邮箱，不再拼「团队成员（）」 */
+function pwdResetHelpText(email){
+  return "你好，我是 " + email + "，我忘了线索网站的密码，麻烦帮我重置一下。";
+}
+/* #213 求助记在这台设备上：发完邮件后登录页一直留着提醒，刷新还在；点了「我已收到新密码」才清掉 */
+function renderPwdResetAsk(){
+  var box = $("pwdResetAskBox"); if(!box) return;
+  var data = null;
+  try{ data = JSON.parse(localStorage.getItem("pwd_reset_asked") || "null"); }catch(e){}
+  if(!data || !data.email){ box.style.display = "none"; box.innerHTML = ""; return; }
+  box.style.display = "";
+  box.innerHTML = "已请王烁杉帮你重置，一般当天回；还没回可以再催一次。"
+    + '<div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">'
+    + '<button class="btn btn-outline btn-sm" type="button" id="pwdResetNudge">再催一次</button>'
+    + '<button class="btn btn-outline btn-sm" type="button" id="pwdResetGot">我已收到新密码</button></div>';
+  $("pwdResetNudge").addEventListener("click", function(){ sendPwdResetHelpMail(data.email); });
+  $("pwdResetGot").addEventListener("click", function(){
+    try{ localStorage.removeItem("pwd_reset_asked"); }catch(e){}
+    renderPwdResetAsk();
+  });
+}
+/* 网站侧试着往 password_reset_requests 表里记一笔（王烁杉那边的「待重置密码」清单读它）；
+   表还没建好时记不进去就静默失败，不影响求助本身 */
+function recordPwdResetRequest(email){
+  try{
+    fetch(REST + "password_reset_requests", {
+      method: "POST",
+      headers: { "apikey": ANON_KEY, "Authorization": "Bearer " + ANON_KEY, "Content-Type": "application/json", "Prefer": "return=minimal" },
+      body: JSON.stringify({ email: email })
+    }).catch(function(){});
+  }catch(e){}
+}
+function sendPwdResetHelpMail(email){
+  var text = pwdResetHelpText(email);
+  var mailLink = document.createElement("a");
+  mailLink.href = "mailto:wss2275973450wss@gmail.com?subject=" + encodeURIComponent("忘了线索网站密码") + "&body=" + encodeURIComponent(text);
+  document.body.appendChild(mailLink); mailLink.click(); mailLink.remove();
+  try{ localStorage.setItem("pwd_reset_asked", JSON.stringify({ email: email, ts: Date.now() })); }catch(e){}
+  recordPwdResetRequest(email);
+  renderPwdResetAsk();
+  var okBox = $("loginOk");
+  okBox.textContent = "已打开邮件：正文已经填好了，直接发给王烁杉，他会帮你重置密码。";
+  okBox.className = "ok show";
+}
+/* #212 自助重置邮件发不出去时才分流：先问「你有 WhatsApp 吗？」，选「没有，发邮件找他」才走邮件 */
+function showRecoverFallback(email){
+  var okBox = $("loginOk");
+  okBox.className = "ok show";
+  okBox.innerHTML = "重置邮件没发出去。你有 WhatsApp 吗？"
+    + '<div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">'
+    + '<button class="btn btn-outline btn-sm" type="button" id="recoverWaBtn">有，用 WhatsApp 找王烁杉</button>'
+    + '<button class="btn btn-outline btn-sm" type="button" id="recoverMailBtn">没有，发邮件找他</button></div>';
+  $("recoverWaBtn").addEventListener("click", function(){
+    window.open("https://wa.me/8613085516503?text=" + encodeURIComponent(pwdResetHelpText(email)), "_blank");
+    try{ localStorage.setItem("pwd_reset_asked", JSON.stringify({ email: email, ts: Date.now() })); }catch(e){}
+    recordPwdResetRequest(email);
+    renderPwdResetAsk();
+  });
+  $("recoverMailBtn").addEventListener("click", function(){ sendPwdResetHelpMail(email); });
+}
 $("forgotBtn").addEventListener("click", function(){
   var email = forgotEmailOrWarn();
   if(!email) return;
   var okBox = $("loginOk");
-  /* 王烁杉自己忘了密码：走 Supabase 密码重置邮件，不用等别人 */
-  if(email === "wss2275973450wss@gmail.com"){
-    fetch(SUPABASE_URL + "/auth/v1/recover", {
-      method: "POST",
-      headers: { "apikey": ANON_KEY, "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email })
-    }).then(function(res){
-      if(res.ok){ okBox.textContent = "重置链接已发到你的邮箱，点开链接就能设新密码。"; }
-      else { okBox.textContent = "重置邮件没发出去，请检查网络后重试，或直接找管理员。"; }
+  /* #220 所有人走同一条路：先调 auth/v1/recover 发自助重置邮件（和王烁杉原来那条一样的接口、一样的参数），
+     不再第一步先开 WhatsApp；recover 失败时才走找王烁杉帮忙的分流（#212） */
+  fetch(SUPABASE_URL + "/auth/v1/recover", {
+    method: "POST",
+    headers: { "apikey": ANON_KEY, "Content-Type": "application/json" },
+    body: JSON.stringify({ email: email })
+  }).then(function(res){
+    if(res.ok){
+      okBox.textContent = "重置链接已发到你的邮箱，点开链接就能设新密码。";
       okBox.className = "ok show";
-    }).catch(function(){
-      okBox.textContent = "重置邮件没发出去，请检查网络后重试。";
-      okBox.className = "ok show";
-    });
-    return;
-  }
-  var who = email ? email : "团队成员";
-  var text = "你好，我是 " + who + "（" + email + "），我忘了线索网站的密码，麻烦帮我重置一下。";
-  window.open("https://wa.me/8613085516503?text=" + encodeURIComponent(text), "_blank");
-  okBox.innerHTML = "已打开 WhatsApp：名字和邮箱已经填好了，直接发给王烁杉，他会帮你重置密码。如果没打开 WhatsApp，<a href=\"mailto:wss2275973450wss@gmail.com?subject=" + encodeURIComponent("忘了线索网站密码") + "&body=" + encodeURIComponent(text) + "\">点这里发邮件</a>。";
-  okBox.className = "ok show";
+    } else {
+      showRecoverFallback(email);
+    }
+  }).catch(function(){
+    showRecoverFallback(email);
+  });
 });
 $("forgotMailBtn").addEventListener("click", function(){
   var email = forgotEmailOrWarn();
   if(!email) return;
-  var who = email ? email : "团队成员";
-  var text = "你好，我是 " + who + "（" + email + "），我忘了线索网站的密码，麻烦帮我重置一下。";
-  var mailLink = document.createElement("a");
-  mailLink.href = "mailto:wss2275973450wss@gmail.com?subject=" + encodeURIComponent("忘了线索网站密码") + "&body=" + encodeURIComponent(text);
-  document.body.appendChild(mailLink); mailLink.click(); mailLink.remove();
-  var okBox = $("loginOk");
-  okBox.textContent = "已打开邮件：名字和邮箱已经填好了，直接发给王烁杉，他会帮你重置密码。";
-  okBox.className = "ok show";
+  /* #212 这个按钮直达邮件找王烁杉，不开 WhatsApp、也不先走自助重置 */
+  sendPwdResetHelpMail(email);
 });
+renderPwdResetAsk();
+/* #213 王烁杉那边的「待重置密码」清单：只有管理员能看；表没建好时悄悄藏起、不报错；队员看不到 */
+function loadPwdResetRequests(){
+  var box = $("pwdResetBanner"); if(!box) return;
+  if(!state.isAdmin){ box.style.display = "none"; box.innerHTML = ""; return; }
+  api("password_reset_requests?select=*&order=created_at.desc&limit=50").then(function(rows){
+    var pending = (rows || []).filter(function(r){ return !r.status || r.status === "pending" || r.status === "open"; });
+    if(!pending.length){ box.style.display = "none"; box.innerHTML = ""; return; }
+    box.style.display = "block";
+    box.classList.add("show");
+    box.innerHTML = '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#D92B1F;margin-right:6px" aria-hidden="true"></span><b>待重置密码（' + pending.length + ' 人求助）</b>'
+      + pending.map(function(r){
+          return '<div style="margin-top:8px">' + esc(r.email || r.requester_email || "") + (r.created_at ? ' · ' + esc(fmtTime(r.created_at)) : "")
+            + ' <button class="btn btn-outline btn-sm" type="button" data-pwdreset-done="' + esc(String(r.id)) + '">已处理</button></div>';
+        }).join("");
+    box.querySelectorAll("[data-pwdreset-done]").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var id = btn.getAttribute("data-pwdreset-done");
+        api("password_reset_requests?id=eq." + encodeURIComponent(id), { method: "PATCH", headers: { "Prefer": "return=minimal" }, body: { status: "done" } })
+          .catch(function(){})
+          .then(function(){ loadPwdResetRequests(); });
+      });
+    });
+  }).catch(function(){ box.style.display = "none"; box.innerHTML = ""; });
+}
 
 /* ---------- 提建议（member_feedback 表，发给王烁杉） ---------- */
 $("feedbackBtn").addEventListener("click", function(){
@@ -7533,7 +8342,7 @@ function handoverCandidate(l){
 function handoverSummaryLine(l){
   var n = realContactCount(l), last = realLastContact(l);
   if(n === 0) return esc(l.company || "") + "：还没联系过" + (l.priority ? "，重点" : "");
-  return esc(l.company || "") + "：跟了 " + n + " 次" + (last ? "，最后一次 " + fmtDateShort(last) : "") + "，" + (l.has_replied ? "客户回过" : "没回") + (l.priority ? "，重点" : "");
+  return esc(l.company || "") + "：跟了 " + n + " 次" + (last ? "，最后一次 " + fmtDateShort(last) : "，上次联系时间没记进来") + "，" + (l.has_replied ? "客户回过" : "没回") + (l.priority ? "，重点" : "");
 }
 /* 请假清单顶部的计数：共几家（只算能转的候选）、已勾几家；勾了没兴趣的（非候选）不算 */
 function updateHoCount(){
@@ -7543,35 +8352,213 @@ function updateHoCount(){
   boxes.forEach(function(cb){ if(cb.checked) checked++; });
   el.textContent = "共 " + boxes.length + " 家，已勾 " + checked + " 家（默认勾 3 天内该跟进的和 Top5）";
 }
+/* 几号回来的下拉选项：从明天起往后 30 天（按北京时间算），值用 ISO 日期，显示如“11月23日 周一”；默认不预选 */
+function hoDateOptions(){
+  var hoWeekdays = ["周日","周一","周二","周三","周四","周五","周六"];
+  var hoBase = new Date(bjDateStr(new Date()) + "T00:00:00Z");
+  var opts = '<option value="">请选择</option>';
+  for(var hoDi = 1; hoDi <= 30; hoDi++){
+    var hoDd = new Date(hoBase.getTime() + hoDi * 86400000);
+    var hoIso = hoDd.toISOString().slice(0, 10);
+    opts += '<option value="' + hoIso + '">' + (hoDd.getUTCMonth() + 1) + "月" + hoDd.getUTCDate() + "日 " + hoWeekdays[hoDd.getUTCDay()] + "</option>";
+  }
+  return opts;
+}
+/* 到期判断（不看 isLeader，代办时给别人算也用这个）：按真实最后联系时间，3 天没回才算到期；没联系记录不算 */
+function hoDueFor(l){
+  if(l.status === "deal" || l.status === "ignored") return false;
+  if(l.has_replied) return false;
+  var n = parseInt(l.owner_contact_count, 10) || 0;
+  if(n < 1 || n >= 5) return false;
+  var last = realLastContact(l);
+  if(!last) return false;
+  var days = bjDayDiff(new Date().toISOString(), last);
+  return days !== null && days >= 3;
+}
+function hoProxyCand(l, member){
+  if(l.status === "deal" || l.status === "ignored") return false;
+  if(hoDueFor(l)) return true;
+  return topFiveFor(member).some(function(t){ return String(t.id) === String(l.id); });
+}
+/* 转回时跳过的客户记在请假区顶部（只存这台设备：没有请假表，同步不了，页面上不声称已同步） */
+function hoBackSkippedKey(){ return "handover_back_skipped_" + state.myName; }
+function hoBackSkippedLoad(){ try{ return JSON.parse(localStorage.getItem(hoBackSkippedKey()) || "[]"); }catch(e){ return []; } }
+function hoBackSkippedSave(leads){
+  var cur = hoBackSkippedLoad();
+  leads.forEach(function(l){
+    if(!cur.some(function(x){ return String(x.id) === String(l.id); })) cur.push({ id: l.id, company: l.company || "", now: l.assignee || "" });
+  });
+  try{ localStorage.setItem(hoBackSkippedKey(), JSON.stringify(cur)); }catch(e){}
+}
+function hoBackSkippedHtml(){
+  var rows = hoBackSkippedLoad();
+  if(!rows.length) return "";
+  return rows.map(function(x){
+    return '<div class="tr-status" style="color:var(--red)">转回跳过：' + esc(x.company || "（未填公司名）") + "（现在在 " + esc(displayName(x.now || "")) + ' 手里）<button class="btn btn-outline btn-sm" type="button" data-hb-skip="' + esc(String(x.id)) + '">手动选回</button></div>';
+  }).join("");
+}
+function bindHoBackSkipped(box){
+  box.querySelectorAll("[data-hb-skip]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var id = btn.getAttribute("data-hb-skip");
+      var l = findLead(id);
+      if(!l){ toast("这家客户没找到", true); return; }
+      var prev = l.assignee || "";
+      patchLead(l, { assignee: state.myName, rotated_from: null }).catch(function(){ return patchLead(l, { assignee: state.myName }); })
+      .then(function(){ return logActivity(l.id, "handover_back", "转回跳过后手动选回，从 " + (prev || "临时负责人") + " 转回 " + state.myName); })
+      .then(function(){
+        var cur = hoBackSkippedLoad().filter(function(x){ return String(x.id) !== String(id); });
+        try{ localStorage.setItem(hoBackSkippedKey(), JSON.stringify(cur)); }catch(e){}
+        toast("已把 " + (l.company || "这家") + " 转回你名下");
+        applyFilters();
+        renderHandover();
+      })
+      .catch(function(e){ toast(e.message || "选回失败", true); });
+    });
+  });
+}
+/* 转交计划写进数据库（lead_activity 的 handover_plan 行）：归期、临时负责人、清单都写在 detail 里，
+   登录时靠它重建断点续转和归期提醒，换手机、清缓存也不丢 */
+function writeHandoverPlan(owner, temp, date, ids){
+  if(!ids.length) return;
+  api("lead_activity", { method:"POST", headers:{ "Prefer":"return=minimal" },
+    body:{ lead_id: ids[0], actor: owner, action: "handover_plan", detail: "归期 " + date + "；临时负责人 " + temp + "；清单 " + ids.join(",") } }).catch(function(){});
+}
+/* 登录后重建：读我最新一条 handover_plan，再看它之后已经转出去几家，剩下的写回本地断点，归期写回归期提醒 */
+function restoreHandoverPlan(){
+  if(!state.myName) return;
+  var me = state.myName;
+  api("lead_activity?select=*&actor=eq." + encodeURIComponent(me) + "&action=eq.handover_plan&order=created_at.desc&limit=1").then(function(rows){
+    if(!rows || !rows.length) return;
+    var plan = rows[0];
+    var d = String(plan.detail || "");
+    var mDate = /归期 (\d{4}-\d{2}-\d{2})/.exec(d);
+    var mTemp = /临时负责人 ([^；]+)/.exec(d);
+    var mIds = /清单 ([0-9,]+)/.exec(d);
+    if(mDate){
+      try{ if(!localStorage.getItem("handover_return_" + me)) localStorage.setItem("handover_return_" + me, mDate[1]); }catch(e){}
+      checkHandoverReturn();
+    }
+    if(!mTemp || !mIds) return;
+    var ids = mIds[1].split(",").filter(Boolean);
+    if(!ids.length) return;
+    api("lead_activity?select=lead_id&actor=eq." + encodeURIComponent(me) + "&action=eq.handover_out&created_at=gte." + encodeURIComponent(plan.created_at) + "&limit=2000").then(function(outs){
+      var doneSet = {};
+      (outs || []).forEach(function(r){ doneSet[String(r.lead_id)] = 1; });
+      var remaining = ids.filter(function(id){ return !doneSet[String(id)]; });
+      if(!remaining.length) return;
+      try{
+        if(!localStorage.getItem("handover_pending_" + me)){
+          localStorage.setItem("handover_pending_" + me, JSON.stringify({ temp: mTemp[1].trim(), done: ids.length - remaining.length, total: ids.length, remaining: remaining, owner: me, returnDate: mDate ? mDate[1] : "" }));
+        }
+      }catch(e){}
+      renderHandover();
+    }).catch(function(){});
+  }).catch(function(){});
+}
+/* 代办转交（柯哥和管理员用）：选队员、选临时负责人、选客户，转交记录记在原负责人名下 */
+function hoProxyHtml(){
+  var opts = TEAM.map(function(n){ return '<option value="' + esc(n) + '">' + esc(displayName(n)) + "</option>"; }).join("");
+  var selStyle = 'style="flex:1;min-width:160px;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:48px"';
+  return '<div class="tr-status">代办转交：帮请假的队员把客户临时转给另一个人。转交记录照样记流水账（记在原负责人名下），跟进次数跟着客户走、不清零。</div>'
+    + '<div class="mywa-row"><label style="min-width:80px">哪个队员：</label><select id="hoProxyFrom" ' + selStyle + '><option value="">请选择</option>' + opts + "</select></div>"
+    + '<div class="mywa-row"><label style="min-width:80px">转给谁：</label><select id="hoProxyTo" ' + selStyle + '><option value="">请选择</option>' + opts + "</select></div>"
+    + '<div class="mywa-row"><label style="min-width:80px">几号回来：</label><select id="hoProxyDate" ' + selStyle + ">" + hoDateOptions() + "</select></div>"
+    + '<div id="hoProxyList" style="margin:8px 0"></div>'
+    + '<div class="mywa-row"><button class="btn btn-green btn-sm" type="button" id="hoProxyOut">代办转交</button></div>'
+    + '<div class="tr-status" id="hoProgP"></div>';
+}
+function bindHoProxy(){
+  var fromSel = $("hoProxyFrom"); if(!fromSel) return;
+  function fillList(){
+    var from = fromSel.value;
+    var list = $("hoProxyList"); if(!list) return;
+    if(!from){ list.innerHTML = ""; return; }
+    var mine = state.leads.filter(function(l){ return isActiveLead(l) && l.assignee === from && l.status !== "deal"; });
+    if(!mine.length){ list.innerHTML = '<div class="sync-line">' + esc(displayName(from)) + " 手里没有要转交的客户</div>"; return; }
+    list.innerHTML = mine.map(function(l){
+      var cand = hoProxyCand(l, from);
+      return '<label class="ho-row' + (cand ? " ho-checked" : "") + '"><input type="checkbox" data-hop="' + esc(String(l.id)) + '"' + (cand ? " checked" : "") + "> " + hoRowLabelHtml(l) + "</label>";
+    }).join("");
+    list.querySelectorAll("input[data-hop]").forEach(function(cb){
+      cb.addEventListener("change", function(){ syncHoRowColors(list); });
+    });
+  }
+  fromSel.addEventListener("change", fillList);
+  var outBtn = $("hoProxyOut");
+  if(outBtn) outBtn.addEventListener("click", hoProxyOutRun);
+}
+function hoProxyOutRun(){
+  var from = $("hoProxyFrom").value, temp = $("hoProxyTo").value, date = $("hoProxyDate").value;
+  if(!from){ toast("先选哪个队员请假", true); return; }
+  if(!temp){ toast("先选临时负责人", true); return; }
+  if(temp === from){ toast("临时负责人不能是本人", true); return; }
+  if(!date){ toast("选一下几号回来", true); return; }
+  var ids = [];
+  document.querySelectorAll("#hoProxyList input[data-hop]:checked").forEach(function(cb){ ids.push(cb.getAttribute("data-hop")); });
+  if(!ids.length){ toast("先勾要转交的客户", true); return; }
+  var lines = ids.map(function(id){ var l = findLead(id); return l ? handoverSummaryLine(l) : ""; }).filter(Boolean);
+  var proxyHead = "代办转交：把 " + displayName(from) + " 的 " + ids.length + " 家客户临时转给 " + displayName(temp) + "：\n";
+  var proxyTail = "\n\n跟进次数跟着客户走、不清零。转交记录记在 " + displayName(from) + " 名下。确定转吗？";
+  var proxyFull = proxyHead + lines.join("\n") + proxyTail;
+  var proxyMsg = lines.length > 5 ? (proxyHead + lines.slice(0, 5).join("\n") + "\n等 " + (lines.length - 5) + " 家" + proxyTail) : proxyFull;
+  askConfirm(proxyMsg, function(){
+    writeHandoverPlan(from, temp, date, ids);
+    handoverRun({ owner: from, temp: temp, done: 0, total: ids.length, remaining: ids, returnDate: date });
+  }, null, proxyFull);
+}
+/* #185 转交清单行内容：公司名 15px 加粗（.ho-company），其余跟进情况跟在后面 */
+function hoRowLabelHtml(l){
+  var n = realContactCount(l), last = realLastContact(l);
+  var rest;
+  if(n === 0) rest = "：还没联系过" + (l.priority ? "，重点" : "");
+  else rest = "：跟了 " + n + " 次" + (last ? "，最后一次 " + fmtDateShort(last) : "，上次联系时间没记进来") + "，" + (l.has_replied ? "客户回过" : "没回") + (l.priority ? "，重点" : "");
+  return '<span class="ho-company">' + esc(l.company || "") + '</span><span>' + esc(rest) + '</span>';
+}
+/* #185 勾选行整行浅绿底：点勾／取消勾／全选后都按当前勾选状态重刷一遍 */
+function syncHoRowColors(root){
+  var scope = root || document;
+  if(!scope || !scope.querySelectorAll) return;
+  scope.querySelectorAll("label.ho-row input[type=checkbox]").forEach(function(cb){
+    var lab = cb.closest ? cb.closest("label.ho-row") : cb.parentNode;
+    if(lab) lab.classList.toggle("ho-checked", !!cb.checked);
+  });
+}
 function renderHandover(){
   var box = $("hoBox"); if(!box) return;
-  if(state.isLeader){ box.textContent = "你是团队负责人，不跟具体客户，不用转交。"; return; }
+  /* 联系记录（loadTeamData）没回来之前不渲染清单：候选和默认勾选都按真实最后联系时间算，
+     空数据会把今天刚联系过的错当成到期、默认打勾 */
+  if(!state.teamDataLoaded){ box.textContent = "联系记录还没回来，等一下再勾…"; return; }
+  /* 柯哥是团队负责人、不跟具体客户：给他代办入口，帮队员转交（管理员在本人的转交区下面也有一个） */
+  if(state.isLeader){ box.innerHTML = hoProxyHtml(); bindHoProxy(); return; }
   if(!state.myName){ box.textContent = "还没有找到你的个人档案，暂时用不了转交。"; return; }
+  var skippedHtml = hoBackSkippedHtml();
   var mine = state.leads.filter(function(l){ return isActiveLead(l) && l.assignee === state.myName && l.status !== "deal"; });
   if(mine.length === 0){
-    var hEmpty = '<div class="sync-line">你手里没有要转交的客户</div>';
+    var hEmpty = skippedHtml + '<div class="sync-line">你手里没有要转交的客户</div>';
     var pending0 = null;
     try{ pending0 = JSON.parse(localStorage.getItem("handover_pending_" + state.myName) || "null"); }catch(e){}
     if(pending0 && pending0.remaining && pending0.remaining.length){
-      hEmpty += '<div class="tr-status" style="color:var(--red)">上次转交断了：已转 ' + pending0.done + " 家、剩 " + pending0.remaining.length + ' 家没转。<button class="btn btn-outline btn-sm" type="button" id="hoResume">点继续转完</button></div>';
+      hEmpty += '<div class="tr-status" style="color:var(--red);font-weight:700">上次转交断了：已转 ' + pending0.done + " 家、剩 " + pending0.remaining.length + ' 家没转。<button class="btn btn-outline btn-sm" type="button" id="hoResume">点继续转完</button></div>';
     }
     box.innerHTML = hEmpty;
+    bindHoBackSkipped(box);
     var rs0 = $("hoResume");
     if(rs0) rs0.addEventListener("click", function(){ handoverRun(JSON.parse(localStorage.getItem("handover_pending_" + state.myName) || "{}")); });
+    if(state.isAdmin){ box.insertAdjacentHTML("beforeend", hoProxyHtml()); bindHoProxy(); }
     return;
   }
   var cands = mine.filter(handoverCandidate);
   var others = TEAM.filter(function(n){ return n !== state.myName; });
-  /* 几号回来：从明天起往后 30 天（按北京时间算），值用 ISO 日期，显示如“11月23日 周一”；默认不预选 */
-  var hoWeekdays = ["周日","周一","周二","周三","周四","周五","周六"];
-  var hoBase = new Date(bjDateStr(new Date()) + "T00:00:00Z");
-  var hoDateOpts = '<option value="">请选择</option>';
-  for(var hoDi = 1; hoDi <= 30; hoDi++){
-    var hoDd = new Date(hoBase.getTime() + hoDi * 86400000);
-    var hoIso = hoDd.toISOString().slice(0, 10);
-    hoDateOpts += '<option value="' + hoIso + '">' + (hoDd.getUTCMonth() + 1) + "月" + hoDd.getUTCDate() + "日 " + hoWeekdays[hoDd.getUTCDay()] + "</option>";
+  var hoDateOpts = hoDateOptions();
+  /* #183 断点横幅放请假区顶部（「转给谁」前面），红字加粗，不再写在列表最下面 */
+  var pendingTop = null;
+  try{ pendingTop = JSON.parse(localStorage.getItem("handover_pending_" + state.myName) || "null"); }catch(e){}
+  var pendingHtml = "";
+  if(pendingTop && pendingTop.remaining && pendingTop.remaining.length){
+    pendingHtml = '<div class="tr-status" style="color:var(--red);font-weight:700">上次转交断了：已转 ' + pendingTop.done + " 家、剩 " + pendingTop.remaining.length + ' 家没转。<button class="btn btn-outline btn-sm" type="button" id="hoResume">点继续转完</button></div>';
   }
-  var h = '<div class="mywa-row"><label style="min-width:80px">转给谁：</label><select id="hoSel" style="flex:1;min-width:160px;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:44px">'
+  var h = skippedHtml + pendingHtml + '<div class="mywa-row"><label style="min-width:80px">转给谁：</label><select id="hoSel" style="flex:1;min-width:160px;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:44px">'
     + '<option value="">请选择</option>'
     + others.map(function(n){
         var uc = uncontactedCount(n);
@@ -7579,30 +8566,28 @@ function renderHandover(){
       }).join("") + "</select></div>"
     + '<div class="mywa-row"><label style="min-width:80px">几号回来：</label><select id="hoDate" style="flex:1;min-width:160px;padding:9px 10px;border:1px solid var(--line);border-radius:0;background:#fff;min-height:44px">' + hoDateOpts + '</select></div>'
     + '<div class="tr-status">只转下面打勾的（默认是 3 天内该跟进的和 Top5 的），其余留着等你回来自己跟。转之前先看一遍清单。</div>'
+    + '<div class="tr-status">计数规则（三路统一）：请假转交、手动轮转、分错转交都不清零跟进次数，跟进次数跟着客户走、不清零；转回来时按请假期间的联系记录合并算：对方一共联系了几次、几家客户回了。</div>'
     + '<div style="margin:8px 0 0"><button class="btn btn-outline btn-sm" type="button" id="hoSelectAll">全选</button></div>'
     + '<div class="tr-status" id="hoCount" style="margin-top:8px"></div>'
     + '<div id="hoList" style="margin:8px 0">'
     + mine.map(function(l){
         var cand = handoverCandidate(l);
-        return '<label style="display:flex;align-items:center;gap:8px;min-height:56px;font-size:14.5px;color:var(--muted)"><input type="checkbox" data-ho="' + esc(String(l.id)) + '"' + (cand ? ' data-ho-cand="1" checked' : "") + "> " + handoverSummaryLine(l) + "</label>";
+        return '<label class="ho-row' + (cand ? " ho-checked" : "") + '"><input type="checkbox" data-ho="' + esc(String(l.id)) + '"' + (cand ? ' data-ho-cand="1" checked' : "") + "> " + hoRowLabelHtml(l) + "</label>";
       }).join("") + "</div>"
     + '<div class="mywa-row"><button class="btn btn-green btn-sm" type="button" id="hoOut">请假转交</button>'
     + '<button class="btn btn-outline btn-sm" type="button" id="hoBack">我回来了，转回来</button></div>'
     + '<div class="tr-status" id="hoProg"></div>';
-  var pending = null;
-  try{ pending = JSON.parse(localStorage.getItem("handover_pending_" + state.myName) || "null"); }catch(e){}
-  if(pending && pending.remaining && pending.remaining.length){
-    h += '<div class="tr-status" style="color:var(--red)">上次转交断了：已转 ' + pending.done + " 家、剩 " + pending.remaining.length + ' 家没转。<button class="btn btn-outline btn-sm" type="button" id="hoResume">点继续转完</button></div>';
-  }
   box.innerHTML = h;
-  /* 全选 / 全不选：一键全勾或全取消；单个勾变化时同步按钮文案（全勾了显示「全不选」，否则显示「全选」） */
+  /* 全选只勾候选（data-ho-cand="1"）：没兴趣／没联系方式／已成交的永远不参与全选，要转只能手动一个一个勾；
+     按钮文案写清候选数：没全勾时「全选（候选 X 家）」，全勾了「已选 X 家（候选）」 */
   function syncHoSelectAllBtn(){
     var btn = $("hoSelectAll"); if(!btn) return;
     var boxes = document.querySelectorAll('#hoList input[data-ho][data-ho-cand="1"]');
-    if(!boxes.length){ btn.textContent = "全选"; btn.disabled = true; return; }
-    var all = true;
-    boxes.forEach(function(cb){ if(!cb.checked) all = false; });
-    btn.textContent = all ? "全不选" : "全选";
+    if(!boxes.length){ btn.textContent = "全选（候选 0 家）"; btn.disabled = true; return; }
+    btn.disabled = false;
+    var checked = 0;
+    boxes.forEach(function(cb){ if(cb.checked) checked++; });
+    btn.textContent = (checked === boxes.length) ? "已选 " + checked + " 家（候选）" : "全选（候选 " + boxes.length + " 家）";
   }
   var hoAllBtn = $("hoSelectAll");
   if(hoAllBtn) hoAllBtn.addEventListener("click", function(){
@@ -7611,43 +8596,64 @@ function renderHandover(){
     boxes.forEach(function(cb){ cb.checked = !all; });
     syncHoSelectAllBtn();
     updateHoCount();
+    syncHoRowColors($("hoList"));
   });
   document.querySelectorAll("#hoList input[data-ho]").forEach(function(cb){
-    cb.addEventListener("change", function(){ syncHoSelectAllBtn(); updateHoCount(); });
+    cb.addEventListener("change", function(){ syncHoSelectAllBtn(); updateHoCount(); syncHoRowColors($("hoList")); });
   });
   syncHoSelectAllBtn();
   updateHoCount();
   $("hoOut").addEventListener("click", handoverOut);
   $("hoBack").addEventListener("click", handoverBack);
+  bindHoBackSkipped(box);
   var rs = $("hoResume");
   if(rs) rs.addEventListener("click", function(){ handoverRun(JSON.parse(localStorage.getItem("handover_pending_" + state.myName) || "{}")); });
+  if(state.isAdmin){ box.insertAdjacentHTML("beforeend", hoProxyHtml()); bindHoProxy(); }
 }
 function handoverRun(job){
-  var ids = job.remaining || [], temp = job.temp, done = job.done || 0, total = job.total || ids.length;
-  var prog = $("hoProg");
+  var owner = job.owner || state.myName;
+  var ids = (job.remaining || []).slice(), temp = job.temp, done = job.done || 0, total = job.total || ids.length;
+  var prog = $("hoProg") || $("hoProgP");
+  var left = ids.slice();
+  var skippedResume = [];
+  function savePending(){
+    try{ localStorage.setItem("handover_pending_" + owner, JSON.stringify({ temp: temp, done: done, total: total, remaining: left, owner: owner, returnDate: job.returnDate })); }catch(e){}
+  }
+  function dropId(id){ left = left.filter(function(x){ return String(x) !== String(id); }); }
   var chain = Promise.resolve();
-  ids.forEach(function(id, idx){
+  ids.forEach(function(id){
     chain = chain.then(function(){
-      var l = findLead(id); if(!l) return;
+      var l = findLead(id);
+      if(!l){ dropId(id); return; }
+      /* 转之前逐家核对当前负责人：不在原负责人手里的跳过并标出来（续转和转回用同一套核对，
+         不然已经转走的客户点「点继续转完」会被再转一次） */
+      if(l.assignee !== owner){ skippedResume.push(l); dropId(id); return; }
       if(prog) prog.textContent = "正在转第 " + (done + 1) + " / " + total + " 家…";
       return api("lead_activity", { method:"POST", headers:{ "Prefer":"return=minimal" },
-        body:{ lead_id: l.id, actor: state.myName, action: "handover_out", detail: "请假转交：原负责人 " + state.myName + " → 临时负责人 " + temp } })
-      .then(function(){ return patchLead(l, { assignee: temp }); })
+        body:{ lead_id: l.id, actor: owner, action: "handover_out", detail: "请假转交：原负责人 " + owner + " → 临时负责人 " + temp } })
+      .then(function(){
+        /* 跟手动轮转一样写 rotated_from = 原负责人：原负责人列表里这家变只读卡（只能看，不能再联系），转回来时清掉 */
+        return patchLead(l, { assignee: temp, rotated_from: owner }).catch(function(){ return patchLead(l, { assignee: temp }); });
+      })
       .then(function(){
         done++;
-        try{ localStorage.setItem("handover_pending_" + state.myName, JSON.stringify({ temp: temp, done: done, total: total, remaining: ids.slice(idx + 1) })); }catch(e){}
+        dropId(id);
+        savePending();
       });
     });
   });
   return chain.then(function(){
-    try{ localStorage.removeItem("handover_pending_" + state.myName); }catch(e){}
+    try{ localStorage.removeItem("handover_pending_" + owner); }catch(e){}
     if(prog) prog.textContent = "";
-    toast("已把 " + total + " 家客户转给 " + displayName(temp) + (job.returnDate ? "，你 " + job.returnDate + " 回来，首页会提醒你转回来" : ""));
-    if(job.returnDate){ try{ localStorage.setItem("handover_return_" + state.myName, job.returnDate); }catch(e){} }
+    var msg = "已把 " + done + " 家客户转给 " + displayName(temp) + (job.returnDate ? "，" + job.returnDate + " 回来，首页会提醒转回来" : "");
+    if(skippedResume.length) msg += "；跳过 " + skippedResume.length + " 家（已不在原负责人手里）：" + skippedResume.map(function(l){ return l.company || "（未填公司名）"; }).join("、");
+    toast(msg);
+    if(job.returnDate){ try{ localStorage.setItem("handover_return_" + owner, job.returnDate); }catch(e){} }
     applyFilters();
+    renderHandover();
   }).catch(function(e){
-    try{ localStorage.setItem("handover_pending_" + state.myName, JSON.stringify({ temp: temp, done: done, total: total, remaining: ids.slice(done), returnDate: job.returnDate })); }catch(err){}
-    toast("网络断了，已转 " + done + " 家、剩 " + (total - done) + " 家没转，回来点「点继续转完」接着转", true);
+    savePending();
+    toast("网络断了，已转 " + done + " 家、剩 " + left.length + " 家没转，回来点「点继续转完」接着转", true);
     renderHandover();
   });
 }
@@ -7656,31 +8662,44 @@ function handoverOut(){
   if(!temp){ toast("先选转给谁", true); return; }
   var date = $("hoDate") ? $("hoDate").value : "";
   if(!date){ toast("选一下几号回来，到了那天提醒你转回来", true); return; }
-  var ids = [], skipped = 0;
-  document.querySelectorAll("#hoList input[data-ho]:checked").forEach(function(cb){
-    if(cb.getAttribute("data-ho-cand") === "1") ids.push(cb.getAttribute("data-ho"));
-    else skipped++;
-  });
-  if(!ids.length){
-    if(skipped) toast("勾的这 " + skipped + " 家都是没兴趣的，不用转（只转要跟进的），先勾要跟进的客户", true);
-    else toast("先勾要转交的客户", true);
-    return;
-  }
+  /* 勾了的都转：候选是默认勾的，没兴趣／没联系方式的只能手动一个一个勾，勾了也照转 */
+  var ids = [];
+  document.querySelectorAll("#hoList input[data-ho]:checked").forEach(function(cb){ ids.push(cb.getAttribute("data-ho")); });
+  if(!ids.length){ toast("先勾要转交的客户", true); return; }
   /* 超过 40 家待开发的人，提醒换个人 */
   if(uncontactedCount(temp) > 40){
-    askConfirm(displayName(temp) + " 手里已经有 " + uncontactedCount(temp) + " 家待开发（超过 40 家），转过去他可能跟不过来，确定还转给他吗？", function(){ handoverOutGo(temp, ids, date, skipped); });
+    askConfirm(displayName(temp) + " 手里已经有 " + uncontactedCount(temp) + " 家待开发（超过 40 家），转过去他可能跟不过来，确定还转给他吗？", function(){ handoverOutGo(temp, ids, date); });
     return;
   }
-  handoverOutGo(temp, ids, date, skipped);
+  handoverOutGo(temp, ids, date);
 }
-function handoverOutGo(temp, ids, date, skipped){
-  var lines = ids.map(function(id){ var l = findLead(id); return l ? handoverSummaryLine(l) : ""; }).filter(Boolean);
-  var extra = "";
-  if(skipped) extra += "\n其中没兴趣的 " + skipped + " 家没转（只转要跟进的）。";
-  if(date) extra += "\n你 " + fmtDateShort(date) + "回来，到了那天首页会提醒你转回来。";
-  askConfirm("转交清单（共 " + ids.length + " 家）给 " + displayName(temp) + "：\n" + lines.join("\n") + extra + "\n\n转过去之后对方能看到你之前跟了几次、最后一次什么时候、回没回。确定转吗？", function(){
-    handoverRun({ temp: temp, done: 0, total: ids.length, remaining: ids, returnDate: date });
+function handoverOutGo(temp, ids, date){
+  /* 哪些算候选、哪些算手动勾的，点确认时按 handoverCandidate() 现算，不看渲染时留下的旧属性 */
+  var candIds = [], manualIds = [];
+  ids.forEach(function(id){
+    var l = findLead(id); if(!l) return;
+    if(handoverCandidate(l)) candIds.push(id); else manualIds.push(id);
   });
+  var lines = candIds.map(function(id){ var l = findLead(id); return l ? handoverSummaryLine(l) : ""; }).filter(Boolean);
+  var manualLines = manualIds.map(function(id){ var l = findLead(id); return l ? handoverSummaryLine(l) : ""; }).filter(Boolean);
+  var extra = "";
+  if(manualIds.length) extra += "\n手动勾的 " + manualIds.length + " 家（不在默认候选里，是你自己一个一个勾的）：\n" + manualLines.join("\n");
+  extra += "\n跟进次数跟着客户走、不清零。";
+  if(date) extra += "\n你 " + fmtDateShort(date) + "回来，到了那天首页会提醒你转回来。";
+  var hoHead = "转交清单（共 " + ids.length + " 家）给 " + displayName(temp) + "：\n";
+  var hoTail = "\n\n转过去之后对方能看到你之前跟了几次、最后一次什么时候、回没回。确定转吗？";
+  var hoFull = hoHead + lines.join("\n") + extra + hoTail;
+  var allHoLines = lines.concat(manualLines);
+  var hoMsg = hoFull;
+  if(allHoLines.length > 5){
+    var shortExtra = "\n跟进次数跟着客户走、不清零。";
+    if(date) shortExtra += "\n你 " + fmtDateShort(date) + "回来，到了那天首页会提醒你转回来。";
+    hoMsg = hoHead + allHoLines.slice(0, 5).join("\n") + "\n等 " + (allHoLines.length - 5) + " 家" + shortExtra + hoTail;
+  }
+  askConfirm(hoMsg, function(){
+    writeHandoverPlan(state.myName, temp, date, ids);
+    handoverRun({ temp: temp, done: 0, total: ids.length, remaining: ids, returnDate: date });
+  }, null, hoFull);
 }
 /* 这家是不是我请假转交出去、还没转回来的：查流水账配对（handover_out 次数 > handover_back 次数）。
    「请假转回来」按钮默认藏着，只有查到配对没转回时才露出来，没转交过的卡上不显示它 */
@@ -7699,15 +8718,16 @@ function checkHandoverOut(lead, btn){
 function handoverBack(){
   var me = encodeURIComponent(state.myName);
   Promise.all([
-    api("lead_activity?select=lead_id,detail&actor=eq." + me + "&action=eq.handover_out&limit=2000").catch(function(){ return []; }),
+    api("lead_activity?select=lead_id,detail,created_at&actor=eq." + me + "&action=eq.handover_out&limit=2000").catch(function(){ return []; }),
     api("lead_activity?select=lead_id&actor=eq." + me + "&action=eq.handover_back&limit=2000").catch(function(){ return []; })
   ]).then(function(res){
     /* 转出去几次、转回来几次按次数配对：请过两次假、回来两次都能转回来（以前只记有没有转回过，第二次请假就转不回来了） */
-    var outCount = {}, backCount = {}, tempOf = {};
+    var outCount = {}, backCount = {}, tempOf = {}, outAt = {};
     (res[0] || []).forEach(function(r){
       var k = String(r.lead_id); outCount[k] = (outCount[k] || 0) + 1;
       var m = /→ 临时负责人 (.+)$/.exec(String(r.detail || ""));
       if(m) tempOf[k] = m[1];
+      if(r.created_at && (!outAt[k] || String(r.created_at) > outAt[k])) outAt[k] = r.created_at;
     });
     (res[1] || []).forEach(function(r){ var k = String(r.lead_id); backCount[k] = (backCount[k] || 0) + 1; });
     var ids = [];
@@ -7721,17 +8741,39 @@ function handoverBack(){
       if(!temp || l.assignee === temp) ok.push(l);
       else bad.push(l);
     });
-    var msg = "把之前转交出去的 " + ok.length + " 家客户转回你名下？" + (bad.length ? "\n其中 " + bad.length + " 家现在不在当初那个临时负责人手里（已跳过，请手动定）：\n" + bad.map(function(l){ return l.company + "（现在在 " + displayName(l.assignee) + " 手里）"; }).join("\n") : "");
+    /* 请假期间对方干了多少：按转出时间之后、临时负责人记下的联系事件数这家，
+       回信看这段时间里有没有回信事件；转回时合并写进转回记录，toast 也照这个数报 */
+    function tenureStats(l){
+      var temp = tempOf[String(l.id)], since = outAt[String(l.id)] || "";
+      var c = 0;
+      (state.ceByLead[l.id] || []).forEach(function(r){ if(String(r.created_at || "") >= since && (!temp || r.actor === temp)) c++; });
+      var rep = (state.reByLead[l.id] || []).some(function(r){ return String(r.created_at || "") >= since; });
+      return { contacts: c, replied: rep };
+    }
+    var totC = 0, totR = 0;
+    ok.forEach(function(l){ var s = tenureStats(l); totC += s.contacts; if(s.replied) totR++; });
+    var msg = "把之前转交出去的 " + ok.length + " 家客户转回你名下？请假期间对方一共联系了 " + totC + " 次、" + totR + " 家客户回了。" + (bad.length ? "\n其中 " + bad.length + " 家现在不在当初那个临时负责人手里（已跳过，请手动定）：\n" + bad.map(function(l){ return l.company + "（现在在 " + displayName(l.assignee) + " 手里）"; }).join("\n") : "");
     askConfirm(msg, function(){
       var chain = Promise.resolve();
       ok.forEach(function(l){
         chain = chain.then(function(){
-          return patchLead(l, { assignee: state.myName }).then(function(){
-            return logActivity(l.id, "handover_back", "请假回来，从临时负责人转回 " + state.myName);
+          var s = tenureStats(l);
+          /* 转回来把 rotated_from 清掉，和三路转法统一 */
+          return patchLead(l, { assignee: state.myName, rotated_from: null }).catch(function(){ return patchLead(l, { assignee: state.myName }); }).then(function(){
+            return logActivity(l.id, "handover_back", "请假回来，从临时负责人转回 " + state.myName + "；请假期间对方联系了 " + s.contacts + " 次，客户" + (s.replied ? "回了" : "没回"));
           });
         });
       });
-      chain.then(function(){ toast("已转回 " + ok.length + " 家客户到你名下" + (bad.length ? "，" + bad.length + " 家跳过没转" : "")); applyFilters(); })
+      chain.then(function(){
+        if(bad.length) hoBackSkippedSave(bad);
+        var t = "已转回 " + ok.length + " 家客户到你名下。";
+        t += "请假期间对方一共联系了 " + totC + " 次、" + totR + " 家客户回了";
+        if(ok.length && ok.length <= 5) t += "：" + ok.map(function(l){ var s = tenureStats(l); return (l.company || "（未填公司名）") + " 联系了 " + s.contacts + " 次、" + (s.replied ? "客户回了" : "客户没回"); }).join("；");
+        if(bad.length) t += "；" + bad.length + " 家跳过没转，已记在请假区顶部";
+        toast(t);
+        applyFilters();
+        renderHandover();
+      })
       .catch(function(e){ toast(e.message || "转回失败", true); });
     });
   });
@@ -7828,6 +8870,47 @@ document.querySelectorAll(".modal-mask").forEach(function(mask){
     /* 点遮罩只关弹窗：客户回了的已读按条算（点开那家卡片才清那一条），遮罩不再全量标已读 */
     mask.classList.remove("open");
   });
+});
+/* ================= #215 手机返回键先关弹窗 =================
+   打开任何弹窗时 history.pushState 压一层；按返回先关最上面那个弹窗，再按一次才退出页面；
+   点「取消」等程序关弹窗时，观察器会把那一层 history 一起消掉；两层弹窗时返回先关上面那个；
+   首次登录强制改密码的 pwdModal 不压层、返回也不关（免得绕过强制改密码）；按前进不会把弹窗重新打开 */
+var modalStack = [];
+var modalHistSuppress = false;
+function modalTrackOpen(id){
+  if(!id) return;
+  if(id === "pwdModal" && pwdForced){ if(modalStack.indexOf(id) < 0) modalStack.push(id); return; }
+  if(modalStack.indexOf(id) >= 0) return;
+  modalStack.push(id);
+  try{ history.pushState({ leadsModal: id }, ""); }catch(e){}
+}
+function modalTrackClose(id){
+  var i = modalStack.indexOf(id);
+  if(i < 0) return;
+  modalStack.splice(i, 1);
+  if(id === "pwdModal" && pwdForced) return;
+  try{
+    if(history.state && history.state.leadsModal === id){
+      modalHistSuppress = true;
+      history.back();
+    }
+  }catch(e){}
+}
+document.querySelectorAll(".modal-mask, #csMask").forEach(function(mask){
+  new MutationObserver(function(){
+    if(mask.classList.contains("open")) modalTrackOpen(mask.id);
+    else modalTrackClose(mask.id);
+  }).observe(mask, { attributes: true, attributeFilter: ["class"] });
+});
+window.addEventListener("popstate", function(){
+  if(modalHistSuppress){ modalHistSuppress = false; return; }
+  var top = modalStack[modalStack.length - 1];
+  if(!top) return;
+  if(top === "pwdModal" && pwdForced) return;
+  modalStack.pop();
+  if(top === "csMask"){ closeCsPanel(); return; }
+  var m = $(top);
+  if(m) m.classList.remove("open");
 });
 /* ================= 自定义下拉（代替原生 select） =================
    手机原生 select 会弹全屏深色页：占满屏幕、没有取消键、点空白关不掉、长文字上下截断。
@@ -8158,39 +9241,58 @@ function expandedCardsInView(){
   }
   return res;
 }
-/* 避让：算 #fabCollapse 需要的 bottom 值。默认 18px（右手拇指高度）；压到卡片按钮区/更多操作/团队名单/Top5/页脚/#fabTop 时，
-   挪到那块区域上方 10px（最多挪 8 轮）；挪上去会顶出屏幕顶、或 8 轮还压着，返回 -1（这时才藏） */
+/* 区域是不是真的看得见：从父元素往上查，祖先里有没打开的 details、带 .hidden 的，
+   或 computed style 是 display:none / visibility:hidden 的，都算看不见。
+   （收起的 details 里面的按钮区虽然看不见，Chrome 仍会给它们算出占位 rect，不能只看 rect。）
+   区域本身是 details 时不算它自己：它自己的 summary 行是真的看得见的。 */
+function fabZoneTrulyVisible(el){
+  var node = el.parentElement;
+  while(node){
+    if(node.tagName === "DETAILS" && !node.open) return false;
+    if(node.classList && node.classList.contains("hidden")) return false;
+    var cs = window.getComputedStyle ? window.getComputedStyle(node) : null;
+    if(cs && (cs.display === "none" || cs.visibility === "hidden")) return false;
+    node = node.parentElement;
+  }
+  return true;
+}
+/* 避让：算 #fabCollapse 该不该显示。只返回两个值：18 = 显示在右下 18px（右手拇指高度），-1 = 藏起来。
+   永远不往上挪位置。判压住之前先看 rect，压住了再看那块区域是不是真的看得见，看不见的（藏在收起的 details 里等）跳过。 */
 function fabCollapseNeedBottom(btn){
   var vh = window.innerHeight || 0;
   var vw = window.innerWidth || 0;
-  var zones = document.querySelectorAll(".lead .quick-actions, .lead .msg-actions, .lead .more-ops, .lead .actions, .team-grid, #teamBox, .top5-item, .foot, #fabTop");
+  var zones = document.querySelectorAll(".lead .lead-top, .lead .quick-actions, .lead .msg-actions, .lead .more-ops, .lead .actions, .team-grid, #teamBox, .top5-item, .foot, #fabTop");
   var bottom = 18, bh = btn.offsetHeight || 48, bw = btn.offsetWidth || 0;
   var bRight = vw - 16, bLeft = bRight - bw;
-  for(var round = 0; round < 8; round++){
-    var bTop = vh - bottom - bh, bBottom = vh - bottom;
-    var hit = null;
-    for(var i = 0; i < zones.length; i++){
-      if(zones[i] === btn) continue;
-      var cr = zones[i].getBoundingClientRect();
-      if(cr.width === 0 && cr.height === 0) continue;
-      if(bBottom > cr.top && bTop < cr.bottom && bRight > cr.left && bLeft < cr.right){ hit = cr; break; }
-    }
-    if(!hit) return bottom;
-    bottom = vh - hit.top + 10;
-    if(vh - bottom - bh < 0) return -1;
+  var bTop = vh - bottom - bh, bBottom = vh - bottom;
+  for(var i = 0; i < zones.length; i++){
+    if(zones[i] === btn) continue;
+    var cr = zones[i].getBoundingClientRect();
+    if(cr.width === 0 && cr.height === 0) continue;
+    if(!(bBottom > cr.top && bTop < cr.bottom && bRight > cr.left && bLeft < cr.right)) continue;
+    if(!fabZoneTrulyVisible(zones[i])) continue;
+    return -1;
   }
-  return -1;
+  return bottom;
 }
 function updateFabCollapse(){
   var btn = $("fabCollapse"); if(!btn) return;
   var show = openDetailsInView().length > 0 || expandedCardsInView().length > 0;
-  btn.classList.toggle("show", show);
-  if(!show){ btn.style.visibility = ""; btn.style.bottom = ""; return; }
-  /* 避让改成先往上挪、不直接藏：默认 bottom 18px，压到避让区就挪到那块上方 10px，挪不上去才藏 */
+  if(!show){
+    btn.classList.remove("show");
+    btn.style.bottom = ""; btn.style.visibility = "";
+    return;
+  }
+  /* 二选一：要么留在 bottom 18px，要么藏起来，永远不往上挪。
+     先把按钮摆出来量位置：visibility:hidden 藏住不闪屏，同步量完再决定；
+     压住就去掉 show 藏掉，没压住就留在 18px。内联 bottom/visibility 每次都清干净，不留中间值。 */
+  btn.classList.add("show");
+  btn.style.bottom = "";
+  btn.style.visibility = "hidden";
   var need = fabCollapseNeedBottom(btn);
-  if(need < 0){ btn.style.visibility = "hidden"; return; }
-  btn.style.visibility = "visible";
-  btn.style.bottom = "calc(" + need + "px + env(safe-area-inset-bottom))";
+  btn.style.visibility = "";
+  btn.style.bottom = "";
+  if(need < 0) btn.classList.remove("show");
 }
 function closeCard(body){
   body.classList.add("hidden");
@@ -8285,6 +9387,11 @@ updateImgPanel();
 /* ================= 启动 ================= */
 /* 进页面先把所有弹窗都关一遍，免得上次没关掉的弹窗还盖着、按钮点不动 */
 document.querySelectorAll(".modal-mask.open").forEach(function(m){ m.classList.remove("open"); });
+/* #201 Service Worker：sw.js 和 index.html 同目录部署时才生效（GitHub Pages 上并排传）；
+   注册失败不报错、不挡页面。从没访问过、SW 还没装好时真断网第一次打开仍是浏览器默认断网页，这是单文件形态的硬限制。 */
+if("serviceWorker" in navigator){
+  try{ navigator.serviceWorker.register("sw.js").catch(function(){}); }catch(e){}
+}
 if(state.token){ enterApp(); }
 </script>
 </body>
